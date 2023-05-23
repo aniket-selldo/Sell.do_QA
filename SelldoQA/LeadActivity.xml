@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<listeners>
+		<listener class-name="com.selldo.Utility.Listneers"></listener>
+		<listener class-name="com.selldo.Utility.AnnotationTransformer"></listener>
+	</listeners>
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="leadActivities.LogOfflineCall_OutboundNotAnsweredTest"/>
+      <class name="leadActivities.ChangingSiteVisitStatusTest"/>
+      <class name="leadActivities.PullToSalesTest"/>
+      <class name="leadActivities.LogOfflineCall_outboundAnsweredTest"/>
+      <class name="leadActivities.SendingEmailTest"/>
+      <class name="leadActivities.PushToSalesTest"/>
+      <class name="leadActivities.AddConductedSiteVisitTest"/>
+      <class name="leadActivities.AddingANoteTest"/>
+      <class name="leadActivities.MarkingSiteVisitNotInterestedTest"/>
+      <class name="leadActivities.FollowupTests"/>
+      <class name="leadActivities.MarkingSiteVisitDidNotVisitTest"/>
+      <class name="leadActivities.AddTaskTest"/>
+      <class name="leadActivities.LogOfflineCall_InboundNotAnsweredTest"/>
+      <class name="leadActivities.ReschedulingSiteVisitTest"/>
+      <class name="leadActivities.MarkingSiteVisitConductedTest"/>
+      <class name="leadActivities.LogOfflineCall_InboundAnsweredTest"/>
+      <class name="leadActivities.SendingEmailWithTemplateTest"/>
+      <class name="leadActivities.SendSmsTest"/>
+      <class name="leadActivities.MarkOnDefaultBreakTest"/>
+      <class name="leadActivities.SendingEmailWithCCandBCCTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

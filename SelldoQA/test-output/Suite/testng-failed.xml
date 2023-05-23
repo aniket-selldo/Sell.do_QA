@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="com.selldo.Utility.Listneers"/>
+    <listener class-name="com.selldo.Utility.AnnotationTransformer"/>
+  </listeners>
+  <test thread-count="5" name="Test(failed)">
+    <classes>
+      <class name="leadActivities.LogOfflineCall_OutboundNotAnsweredTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="logOfflineCall_OutboundNotAnsweredTest"/>
+          <include name="ObjectSupressor"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.LogOfflineCall_OutboundNotAnsweredTest -->
+      <class name="leadActivities.SendingEmailWithTemplateTest">
+        <methods>
+          <include name="sendingEmailWithTemplateTest"/>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.SendingEmailWithTemplateTest -->
+      <class name="leadActivities.FollowupTests">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="scheduleFollowup"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.FollowupTests -->
+      <class name="leadActivities.SendingEmailWithCCandBCCTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="sendingEmailWithCCandBCCTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.SendingEmailWithCCandBCCTest -->
+      <class name="leadActivities.AddTaskTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="ChangingTaskStatusTest"/>
+          <include name="changingTaskStatusTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.AddTaskTest -->
+      <class name="leadActivities.ChangingSiteVisitStatusTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="changingSiteVisitStatusTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.ChangingSiteVisitStatusTest -->
+      <class name="leadActivities.AddingANoteTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="addingNoteTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.AddingANoteTest -->
+      <class name="leadActivities.LogOfflineCall_outboundAnsweredTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="logOfflineCall_outboundAnsweredTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.LogOfflineCall_outboundAnsweredTest -->
+      <class name="leadActivities.AddConductedSiteVisitTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="addConductedSiteVisitTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.AddConductedSiteVisitTest -->
+      <class name="leadActivities.MarkingSiteVisitConductedTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="markingSiteVisitConductedTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.MarkingSiteVisitConductedTest -->
+      <class name="leadActivities.PullToSalesTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="pullToSalesTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.PullToSalesTest -->
+      <class name="leadActivities.SendSmsTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="sendingSmsTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.SendSmsTest -->
+      <class name="leadActivities.ReschedulingSiteVisitTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="reschedulingSiteVisitTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.ReschedulingSiteVisitTest -->
+      <class name="leadActivities.LogOfflineCall_InboundAnsweredTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="logOfflineCall_InboundAnsweredTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.LogOfflineCall_InboundAnsweredTest -->
+      <class name="leadActivities.SendingEmailTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="sendingEmailTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.SendingEmailTest -->
+      <class name="leadActivities.LogOfflineCall_InboundNotAnsweredTest">
+        <methods>
+          <include name="browserConfig"/>
+          <include name="ObjectInvokder"/>
+          <include name="ObjectSupressor"/>
+          <include name="logOfflineCall_InboundNotAnsweredTest"/>
+          <include name="terminate"/>
+        </methods>
+      </class> <!-- leadActivities.LogOfflineCall_InboundNotAnsweredTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
