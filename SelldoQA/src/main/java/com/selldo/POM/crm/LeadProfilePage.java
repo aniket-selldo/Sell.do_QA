@@ -52,7 +52,7 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement push;
 	@FindBy(how = How.CSS, using = ".nav-link.active.lead_pull_to_sales")
 	private WebElement pull;
-	@FindBy(how = How.XPATH, using = "//a[@class='nav-link lead-booking-forms']")
+	@FindBy(how = How.CSS, using = "#lead_booking_forms_lead_profile")
 	private WebElement bookings;
 	@FindBy(how = How.ID, using = "lead_site_visit_lead_profile")
 	private WebElement conductedSiteVisit;
@@ -221,6 +221,8 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement clickOnEditLeadProfile;
 	@FindBy(how = How.XPATH, using = "//input[@name='primary_phone_ph_number']")
 	private WebElement EnterNumber;
+	@FindBy(how = How.CSS, using = ".remove_link")
+	private List<WebElement> ClickOnTrashButton;
 	@FindBy(how = How.XPATH, using = "//button[@class='pull-right btn btn-primary save btn-sm lead_submit']")
 	private WebElement ClickOnSave;
 	@FindBy(how = How.XPATH, using = "(//span[@class='float-right small text-muted'])[1]")
@@ -422,13 +424,11 @@ public class LeadProfilePage extends ReusableUtils {
 	public boolean clickOnSmsLink() throws NumberFormatException, InterruptedException {
 		wait(2000);
 		Boolean b = SMS.isDisplayed();
-		System.out.println("sms displayed > " + SMS.isDisplayed());
-		System.out.println("sms Enabled > " + SMS.isEnabled());
 		for (int i = 0; i <= 10; i++) {
 			if (b == false) {
 				driver.navigate().back();
 				AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-				adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6', '7', '8', '9')),
+				adminDashboardPage.searchLead(Integer.parseInt(R('0','1', '2', '3', '4', '5', '6', '7', '8', '9')),
 						"All Leads");
 			}
 			if (b == true) {
@@ -682,8 +682,19 @@ public class LeadProfilePage extends ReusableUtils {
 
 	public void addPhoneNumber() {
 		jsClick(clickOnEditLeadProfile);
-		waitUntilVisiblity(EnterNumber).sendKeys("+91 " + "1234" + RandomStringUtils.randomNumeric(6));
+		waitUntilVisiblity(EnterNumber).sendKeys("+91 " + "12345" + RandomStringUtils.randomNumeric(5));
 		jsClick(ClickOnSave);
+
+		try {
+			for (int i = 0; i < ClickOnTrashButton.size(); i++) {
+				jsClick(ClickOnTrashButton.get(i));
+			}
+			jsClick(ClickOnSave);
+		} catch (Exception e) {
+		}
+		
+		
+		
 	}
 
 	public String callText() {

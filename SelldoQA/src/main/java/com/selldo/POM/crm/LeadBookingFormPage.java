@@ -32,7 +32,7 @@ public class LeadBookingFormPage extends ReusableUtils {
 	private WebElement secondaryBookingNameField;
 	@FindBy(how = How.XPATH, using = "//select[@name='stage']")
 	private WebElement stageDropdown;
-	@FindBy(how = How.XPATH, using = "//label[text()='Stage']/following::span[1]")
+	@FindBy(how = How.XPATH, using = "(//span[text()='Select'])[1]")
 	private WebElement projectDropdown;
 	@FindBy(how = How.XPATH, using = ".//*[@id='select2-drop']/div/input")
 	private WebElement projectDropdownInputField;

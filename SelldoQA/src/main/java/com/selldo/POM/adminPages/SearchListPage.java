@@ -33,7 +33,7 @@ public class SearchListPage extends ReusableUtils {
 	private WebElement scheduledActivityRangeSpan;
 	@FindBy(how = How.XPATH, using = "//div[@class='daterangepicker dropdown-menu single opensright show-calendar']//tr//td")
 	private List<WebElement> scheduledActivityRange_CalendarStartDate;
-	@FindBy(how = How.XPATH, using = "//*[@id=\"s2id_autogen31\"]")
+	@FindBy(how = How.CSS, using = "#s2id_search_criterium_available_for")
 	private WebElement purposeSpan;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
 	private List<WebElement> purpose_All;
@@ -49,29 +49,32 @@ public class SearchListPage extends ReusableUtils {
 	private WebElement startDate;
 	@FindBy(how = How.XPATH, using = "//input[@class='datepicker ends_on input-normal']")
 	private WebElement endDate;
-	@FindBy(how = How.XPATH, using = "/html/body/div[11]/button[1]")
+	@FindBy(how = How.CSS, using = "button[class='btn btn-sm btn-primary applyBtn']")
 	private WebElement applyButton;
 	@FindBy(how = How.XPATH, using = "//*[@id=\"s2id_search_criterium_date_range_order\"]/a/span[1]")
 	private WebElement order;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
 	private List<WebElement> orderList;
-
+	@FindBy(how = How.XPATH, using = "//th[text()='name']/following::span[1]")
+	private WebElement getLestName;
+	
 	public void clickOnNewListButton() {
-		newListButton.click();
+		waitUntilClickable(newListButton).click();
+	}
+	public String getLestName() {
+		return waitUntilVisiblity(getLestName).getText().trim();
 	}
 
 	public void enterListName(String listName) {
-		name.sendKeys(listName);
+		waitUntilVisiblity(name).sendKeys(listName);
 	}
 
 	public void selectScheduledActivity() {
-		scheduledActivitySpan.click();
+		waitUntilClickable(scheduledActivitySpan).click();
 		List<WebElement> list = scheduledActivity_All;
 		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Lead received on")) {
-				ele.click();
-				System.out.println("Clicked on Lead received on");
+				waitUntilClickable(ele).click();
 				break;
 			}
 		}
@@ -79,12 +82,12 @@ public class SearchListPage extends ReusableUtils {
 
 	// Select the order as it is a mandatory field
 	public void selectOrder() {
-		order.click();
+		waitUntilClickable(order).click();
 		List<WebElement> list = orderList;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Ascending")) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on Lead received on");
 				break;
 			}
@@ -94,49 +97,35 @@ public class SearchListPage extends ReusableUtils {
 	public void selectScheduledActivityRange() {
 
 		// Click Scheduled activity range field
-		scheduledActivityRangeSpan.click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		waitUntilClickable(scheduledActivityRangeSpan).click();
 
 		// Click Start date field and select the date
-		startDate.click();
+		waitUntilClickable(startDate).click();
 		List<WebElement> dates = scheduledActivityRange_CalendarStartDate;
 		int total_node = dates.size();
 		for (int i = 0; i < total_node; i++) {
 			String date = dates.get(i).getText();
 			if (date.equals("2")) {
-				dates.get(i).click();// Clicking on above selected date
+				waitUntilClickable(dates.get(i)).click();// Clicking on above selected date
 				break;
 			}
 		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
+	
 		// Click end date field and select the select date
-		endDate.click();
+		waitUntilClickable(endDate).click();
 		List<WebElement> dates2 = scheduledActivityRange_CalendarEndDate;
 		int total_node2 = dates2.size();
 		for (int i = 0; i < total_node2; i++) {
 			String date = dates2.get(i).getText();
 			if (date.equals("2")) {
-				dates2.get(i).click();// Clicking on above selected date
+				waitUntilClickable(dates2.get(i)).click();// Clicking on above selected date
 				break;
 			}
 		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		
 
 		// Click Apply button
-		applyButton.click();
+		waitUntilClickable(applyButton).click();
 	}
 
 	public void selectPurpose() {
@@ -145,7 +134,7 @@ public class SearchListPage extends ReusableUtils {
 		// Scroll the page to the element
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].scrollIntoView();", element);
-		purposeSpan.click();
+		waitUntilClickable(purposeSpan).click();
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -156,7 +145,7 @@ public class SearchListPage extends ReusableUtils {
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Export")) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on Export");
 				break;
 			}
@@ -164,21 +153,21 @@ public class SearchListPage extends ReusableUtils {
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 	public void selectEditLink() {
-		actionbar.click();
-		editLink.click();
+		waitUntilClickable(actionbar).click();
+		waitUntilClickable(editLink).click();
 	}
 
 	public void changeScheduledActivity() {
-		scheduledActivitySpan.click();
+		waitUntilClickable(scheduledActivitySpan).click();
 		List<WebElement> list = scheduledActivity_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Next scheduled Site visit")) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on Next scheduled Site visit");
 				break;
 			}
@@ -189,12 +178,12 @@ public class SearchListPage extends ReusableUtils {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);", purposeSpan);
 		WebElement element = purposeSpan;
-		element.click();
+		waitUntilClickable(element).click();
 		List<WebElement> list = purpose_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Sales")) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on Sales");
 				break;
 			}
@@ -203,6 +192,6 @@ public class SearchListPage extends ReusableUtils {
 
 	public void changeListName(String listName) {
 		name.clear();
-		name.sendKeys(listName);
+		waitUntilVisiblity(name).sendKeys(listName);
 	}
 }

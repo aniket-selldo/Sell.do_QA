@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="leadActivities.SendSmsTest">
+      <class name="otherLeadActivitiesPack.MarkingOnBreakTest">
         <methods>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
-          <include name="sendingSmsTest"/>
+          <include name="markingOnBreakTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- leadActivities.SendSmsTest -->
+      </class> <!-- otherLeadActivitiesPack.MarkingOnBreakTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

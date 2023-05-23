@@ -29,26 +29,12 @@ public class SmsPage extends ReusableUtils {
 
 	public void selectSmsTemplate(String templateName) {
 
-		templateDropdown.click();
+		waitUntilClickable(templateDropdown).click();
 		List<WebElement> list = template_dd;
 
 		for (WebElement ele : list) {
-			// for every elements it will print the name using innerHTML
-
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
-
-			// Here we will verify if link (item) is equal to Template
-
 			if (ele.getAttribute("innerHTML").contains(templateName)) {
-
-				// if yes then click on link
-
-				ele.click();
-
-				System.out.println("Clicked on Template");
-
-				// break the loop or come out of loop
-
+				waitUntilClickable(ele).click();
 				break;
 			}
 		}

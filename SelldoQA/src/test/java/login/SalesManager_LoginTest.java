@@ -14,13 +14,12 @@ public class SalesManager_LoginTest extends BaseTest {
 
 	@Test
 	public void salesManagerLoginTest() throws Exception {
-nn
+
 		
 		LoginPage login = new LoginPage(driver);
 
 		//getExtTest().log(Status.INFO, "Logging in as Sales Manager.......");
-		login.login(prop.getProperty("nameAA") + "+" + prop.getProperty("sales_manager_email"),
-				prop.getProperty("password"));
+		login.login("aniket.khandizod+m@sell.do",prop.getProperty("password"));
 		Thread.sleep(3000);
 
 

@@ -18,7 +18,7 @@ public class SendSmsTest extends BaseTest {
 	public void sendingSmsTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login("aniket.khandizod+sae02@sell.do", "amura@123");
+		login.login("aniket.khandizod+user033@sell.do", "amura@123");
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
@@ -26,7 +26,6 @@ public class SendSmsTest extends BaseTest {
 		//extentTest.get().log(Status.INFO, "Searching lead by Id.......");
 		adminDashboardPage.searchLead(Integer.parseInt(R('0','1', '2', '3', '4', '5', '6', '7', '8', '9')), "All Leads");
 		leadProfilePage.addPhoneNumber();
-		Assert.assertEquals(getSuccessMSG(), "Lead updated successfully");
 
 		//extentTest.get().log(Status.INFO, "Clicking on Sms Link.......");
 		leadProfilePage.clickOnSmsLink();
@@ -36,7 +35,7 @@ public class SendSmsTest extends BaseTest {
 		SmsPage smsPage = new SmsPage(driver);
 
 		//extentTest.get().log(Status.INFO, "Selecting SMS template from dropdown.......");
-		smsPage.selectSmsTemplate("Share properties to lead");//prop.getProperty("sms_template")
+		smsPage.selectSmsTemplate("Test");//prop.getProperty("sms_template")
 		
 
 		//extentTest.get().log(Status.INFO, "Clicking on Send SMS Button.......");

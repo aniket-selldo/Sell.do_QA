@@ -2,6 +2,7 @@ package com.selldo.POM.adminPages;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,29 +23,29 @@ public class BookingListPage extends ReusableUtils {
 
 	@FindBy(how = How.XPATH, using = "//a[text()='New Booking Search Criteria']")
 	private WebElement newBookingSearchCriteriaButton;
-	@FindBy(how = How.ID, using = "bookings_search_criterium_name")
+	@FindBy(how = How.CSS, using = "#bookings_search_criterium_name")
 	private WebElement name;
-	@FindBy(how = How.XPATH, using = "//input[@id='s2id_autogen2']")
+	@FindBy(how = How.CSS, using = "#s2id_bookings_search_criterium_project_ids")
 	private WebElement projectsSpan;
 	@FindBy(how = How.CSS, using = "div#select2-drop ul li:nth-child(1) div")
 	private WebElement selectDropdownValue;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
 	private List<WebElement> project_All;
-	@FindBy(how = How.XPATH, using = "//*[@id=\"s2id_autogen3\"]")
+	@FindBy(how = How.CSS, using = "#s2id_bookings_search_criterium_campaign_ids")
 	private WebElement campaignSpan;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
 	private List<WebElement> campaign_All;
-	@FindBy(how = How.XPATH, using = "//*[@id=\"s2id_autogen4\"]")
+	@FindBy(how = How.CSS, using = "#s2id_bookings_search_criterium_sources")
 	private WebElement publishersSpan;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']/li")
 	private List<WebElement> publishers_All;
 	@FindBy(how = How.XPATH, using = "//input[@id='bookings_search_criterium_sub_sources']")
 	private WebElement subCampaign;
-	@FindBy(how = How.XPATH, using = "//input[@id='s2id_autogen5']")
+	@FindBy(how = How.CSS, using = "#s2id_bookings_search_criterium_team_ids")
 	private WebElement teamSpan;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
 	private List<WebElement> team_All;
-	@FindBy(how = How.XPATH, using = "//input[@id='s2id_autogen6']")
+	@FindBy(how = How.CSS, using = "#s2id_bookings_search_criterium_sales_ids")
 	private WebElement salesSpan;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
 	private List<WebElement> sales_All;
@@ -60,77 +61,80 @@ public class BookingListPage extends ReusableUtils {
 	private WebElement saveButton;
 	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::i[1]")
 	private WebElement actionbar;
-	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::a[text()='Edit'][1]")
+	@FindBy(how = How.LINK_TEXT, using = "Edit")
 	private WebElement editLink;
+	@FindBy(how = How.CSS, using = "table tbody tr:nth-child(1) td:nth-child(1)")
+	private WebElement getListName;
+	public String getListName() {
+		return waitUntilClickable(getListName).getText().trim();
+	}
 
 	public void clickOnNewBookingSearchCriteriaButton() {
-		newBookingSearchCriteriaButton.click();
+		waitUntilClickable(newBookingSearchCriteriaButton).click();
 	}
 
 	public void enterBookingListName(String listName) {
-		name.sendKeys(listName);
+		waitUntilVisiblity(name).sendKeys(listName);
 	}
 
 	public void selectProject() {
-		projectsSpan.click();
-		selectDropdownValue.click();
+		waitUntilClickable(projectsSpan).click();
+		waitUntilClickable(selectDropdownValue).click();
+
 	}
 
 	public void selectCampaign() {
-		campaignSpan.click();
-		selectDropdownValue.click();
+		waitUntilClickable(campaignSpan).click();
+		waitUntilClickable(selectDropdownValue).click();
 	}
 
 	public void selectPublishers() {
-		publishersSpan.click();
-		selectDropdownValue.click();
+		waitUntilClickable(publishersSpan).click();
+		waitUntilClickable(selectDropdownValue).click();
 	}
 
 	public void selectTeams() {
-		teamSpan.click();
-		selectDropdownValue.click();
+		waitUntilClickable(teamSpan).click();
+		waitUntilClickable(selectDropdownValue).click();
 	}
 
 	public void selectSales() {
 		// Scroll to bottom of page
 		scrollIntoView(salesSpan);
-		salesSpan.click();
-		selectDropdownValue.click();
+		waitUntilClickable(salesSpan).click();;
+		waitUntilClickable(selectDropdownValue).click();
 	}
 
 	public void selectRefundStatus() {
-		refundStatusSpan.click();
+		waitUntilClickable(refundStatusSpan).click();
 		List<WebElement> list = refundStatus_All;
 		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Pending")) {
-				ele.click();
-				System.out.println("Clicked on Pending");
+				waitUntilClickable(ele).click();
 				break;
 			}
 		}
 	}
 
 	public void selectModeOfRefund() {
-		modeOfRefundSpan.click();
+		waitUntilClickable(modeOfRefundSpan).click();
 		List<WebElement> list = modeOfRefund_All;
 		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("RTGS")) {
-				ele.click();
-				System.out.println("Clicked on RTGS");
+				waitUntilClickable(ele).click();
 				break;
 			}
 		}
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 	public void selectEditLink() {
-		actionbar.click();
-		editLink.click();
+		waitUntilClickable(actionbar).click();
+		waitUntilClickable(editLink).click();
+		wait(2000);
 	}
 
 	public void changeBookingListName(String listName) {
@@ -147,38 +151,33 @@ public class BookingListPage extends ReusableUtils {
 			e.printStackTrace();
 		}
 
-		name.sendKeys(listName);
+		waitUntilVisiblity(name).sendKeys(listName);
 	}
 
 	public void changeProject() {
-		projectsSpan.click();
+		waitUntilClickable(projectsSpan).click();
 
 		List<WebElement> list = project_All;
 		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("jagan")) {
-				ele.click();
-				System.out.println("Clicked on jagan");
+				waitUntilClickable(ele).click();
 				break;
 			}
 		}
 	}
 
 	public void changeCampaign() {
-		waitElementToBeClickable(campaignSpan);
-		campaignSpan.click();
+		waitUntilClickable(campaignSpan).click();
 		List<WebElement> list = campaign_All;
 		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("walkin")) {
-				ele.click();
-				System.out.println("Clicked on walkin");
+				waitUntilClickable(ele).click();
 			}
 		}
 	}
 
 	public void changePublishers() {
-		publishersSpan.click();
+		waitUntilClickable(publishersSpan).click();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -186,31 +185,25 @@ public class BookingListPage extends ReusableUtils {
 		}
 		List<WebElement> list = publishers_All;
 		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("DNA - Online")) {
-				ele.click();
-				System.out.println("Clicked on DNA online");
+				waitUntilClickable(ele).click();
 				break;
 			}
 		}
 	}
 
 	public void changeTeams() {
-		teamSpan.click();
+		waitUntilClickable(teamSpan).click();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		List<WebElement> list = team_All;
-		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
-			if (ele.getAttribute("innerHTML").contains("Teamwed")) {
-				ele.click();
-				System.out.println("Clicked on Teamwed");
-				break;
-			}
-		}
+	
+				waitUntilClickable(driver.findElement(By.cssSelector("#select2-drop"))).click();
+				
+			
+		
 	}
 
 	public void changeSales() {
@@ -221,39 +214,27 @@ public class BookingListPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		salesSpan.click();
-		List<WebElement> list = sales_All;
-		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
-			if (ele.getAttribute("innerHTML").contains("Sales Manager")) {
-				ele.click();
-				System.out.println("Clicked on Sales Manager");
-				break;
-			}
-		}
+		waitUntilClickable(salesSpan).click();
+		waitUntilClickable(driver.findElements(By.cssSelector("[class='select2-results-dept-0 select2-result select2-result-selectable']")).get(0)).click();
 	}
 
 	public void changeRefundStatus() {
-		refundStatusSpan.click();
+		waitUntilClickable(refundStatusSpan).click();
 		List<WebElement> list = refundStatus_All;
 		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Refund Done")) {
-				ele.click();
-				System.out.println("Clicked on Refund Done");
+				waitUntilClickable(ele).click();
 				break;
 			}
 		}
 	}
 
 	public void changeModeOfRefund() {
-		modeOfRefundSpan.click();
+		waitUntilClickable(modeOfRefundSpan).click();
 		List<WebElement> list = modeOfRefund_All;
 		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Cheque")) {
-				ele.click();
-				System.out.println("Clicked on Cheque");
+				waitUntilClickable(ele).click();
 				break;
 			}
 		}

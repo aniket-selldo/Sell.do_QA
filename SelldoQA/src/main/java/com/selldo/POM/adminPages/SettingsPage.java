@@ -35,30 +35,30 @@ public class SettingsPage extends ReusableUtils {
 	private WebElement bookingList;
 
 	public void clickOnUserManagementTab() {
-		userManagement.click();
+		waitUntilClickable(	userManagement).click();
 	}
 
 	public void clickOnPartnersTab() {
-		partners.click();
+		waitUntilClickable(partners).click();
 	}
 
 	public void clickOnManagePartnersTab() {
-		managePartners.click();
+		waitUntilClickable(managePartners).click();
 	}
 
 	public void clickOnExportab() {
-		export.click();
+		waitUntilClickable(export).click();
 	}
 
 	public void clickOnImportTab() {
-		importTab.click();
+		waitUntilClickable(importTab).click();
 	}
 
 	public void clickOnSearchListTab() {
-		searchList.click();
+		waitUntilClickable(searchList).click();
 	}
 
 	public void clickOnBookingListTab() {
-		bookingList.click();
+		waitUntilClickable(bookingList).click();
 	}
 }

@@ -1,133 +1,62 @@
 package listsPack;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.commons.mail.EmailException;
-import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import com.aventstack.extentreports.Status;
+import com.selldo.POM.adminPages.SearchListPage;
+import com.selldo.POM.adminPages.SettingsPage;
+import com.selldo.POM.crm.ClientLoginPage;
+import com.selldo.POM.crm.LoginPage;
+import com.selldo.Utility.BaseTest;
 
-import adminPages.AdminDashboardPage;
-import adminPages.SearchListPage;
-import adminPages.SettingsPage;
-import crm.selldo.ClientLoginPage;
-import crm.selldo.LoginPage;
-import utility.SetUp;
-
-public class AddingNewLeadSearchListTest extends SetUp {
-
-	final static Logger logger = Logger.getLogger(AddingNewLeadSearchListTest.class);
-
-	// Description:
-
-	@BeforeTest
-
-	public void sales_presalesLogin() throws Exception {
-
-		mysetUp();
-
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-		Properties property = new Properties();
-		FileInputStream fileInputObj = new FileInputStream(
-				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
-		property.load(fileInputObj);
-
-		LoginPage login = new LoginPage(driver);
-
-		logger.info("Logging in to client page.......");
-		login.login(property.getProperty("superadmin_name") + property.getProperty("superadmin_email"),
-				property.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		logger.info("Logging in to Admin/Support Home Page......");
-		clientLogin.clientLogin(property.getProperty("Other_client_name"));
-	}
-
-	@AfterTest
-
-	public void endingTest() throws Exception {
-
-		Thread.sleep(3000);
-
-		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-
-		logger.info("Logging out of Selldo......");
-		adminDashboardPage.loggingOut();
-
-		logger.info("Closing Browser......");
-		driver.close();
-	}
+public class AddingNewLeadSearchListTest extends BaseTest {
 
 	@Test
 
 	public void addingNewLeadSearchListTest() throws Exception {
 
-		test = extent.createTest("addingNewLeadSearchListTest");
+		LoginPage login = new LoginPage(driver);
 
-		Properties property = new Properties();
-		FileInputStream fileInputObj = new FileInputStream(
-				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
-		property.load(fileInputObj);
+		login.login(prop.getProperty("superadmin_name") + prop.getProperty("superadmin_email"),
+				prop.getProperty("password"));
+		ClientLoginPage clientLogin = new ClientLoginPage(driver);
 
+		clientLogin.clientLogin("Aniket Automation");// prop.getProperty("Other_client_name")
 		SettingsPage settingsPage = new SettingsPage(driver);
 
 		SearchListPage searchListPage = new SearchListPage(driver);
 
-		SoftAssert assertion = new SoftAssert();
-
-		test.log(Status.INFO, "Clicking on Search List tab...........");
+		//test.log(Status.INFO, "Clicking on Search List tab...........");
 		settingsPage.clickOnSearchListTab();
 
-		test.log(Status.INFO, "Clicking on New List button.........");
+		//test.log(Status.INFO, "Clicking on New List button.........");
 		searchListPage.clickOnNewListButton();
 
-		String listName = property.getProperty("listName_AddingNewLeadSearchListTest").toLowerCase();
+		String enterBookingListName="Searchlist"+random("enterBookingListName","A",10).toLowerCase() +" "+DateTime("dd MM YYYY");
 
-		test.log(Status.INFO, "Entering List name....................");
-		searchListPage.enterListName(listName);
+		//test.log(Status.INFO, "Entering List name....................");
+		searchListPage.enterListName(enterBookingListName);
 
-		test.log(Status.INFO, "Selecting Scheduled Activity..........");
+		//test.log(Status.INFO, "Selecting Scheduled Activity..........");
 		searchListPage.selectScheduledActivity();
 
-		test.log(Status.INFO, "Selecting Order......");
+		//test.log(Status.INFO, "Selecting Order......");
 		searchListPage.selectOrder();
 
-		test.log(Status.INFO, "Selecting Scheduled Activity range....");
+		//test.log(Status.INFO, "Selecting Scheduled Activity range....");
 		searchListPage.selectScheduledActivityRange();
 
-		test.log(Status.INFO, "Selecting Purpose.....................");
+		//test.log(Status.INFO, "Selecting Purpose.....................");
 		searchListPage.selectPurpose();
 
-		test.log(Status.INFO, "Clicking on Save button...............");
+		//test.log(Status.INFO, "Clicking on Save button...............");
 		searchListPage.clickOnSaveButton();
 
 		Thread.sleep(2000);
 
-		test.log(Status.INFO, "Validating lead search list name after adding new lead search list.....");
+		//test.log(Status.INFO, "Validating lead search list name after adding new lead search list.....");
 		System.out.println("Started verification");
-		AssertJUnit.assertEquals(
-				driver.findElement(By.xpath("//th[text()='name']/following::span[1]")).getText().toLowerCase(),
-				listName, "Not matched");
+		Assert.assertEquals(searchListPage.getLestName(),enterBookingListName, "Not matched");
 		System.out.println("Completed verification");
-		assertion.assertAll();
 	}
 }

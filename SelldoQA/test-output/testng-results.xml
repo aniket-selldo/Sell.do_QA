@@ -2,60 +2,31 @@
 <testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-05-23T12:50:32 IST" name="Default suite" finished-at="2023-05-23T12:51:00 IST" duration-ms="28724">
+  <suite started-at="2023-05-23T18:45:44 IST" name="Default suite" finished-at="2023-05-23T18:45:56 IST" duration-ms="11312">
     <groups>
     </groups>
-    <test started-at="2023-05-23T12:50:32 IST" name="Default test" finished-at="2023-05-23T12:51:00 IST" duration-ms="28724">
-      <class name="leadActivities.SendSmsTest">
-        <test-method is-config="true" signature="ObjectInvokder()[pri:0, instance:leadActivities.SendSmsTest@70ed52de]" started-at="2023-05-23T12:50:32 IST" name="ObjectInvokder" finished-at="2023-05-23T12:50:32 IST" duration-ms="14" status="PASS">
+    <test started-at="2023-05-23T18:45:44 IST" name="Default test" finished-at="2023-05-23T18:45:56 IST" duration-ms="11312">
+      <class name="otherLeadActivitiesPack.MarkingOnBreakTest">
+        <test-method is-config="true" signature="ObjectInvokder()[pri:0, instance:otherLeadActivitiesPack.MarkingOnBreakTest@6be968ce]" started-at="2023-05-23T18:45:44 IST" name="ObjectInvokder" finished-at="2023-05-23T18:45:44 IST" duration-ms="16" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ObjectInvokder -->
-        <test-method is-config="true" signature="browserConfig()[pri:0, instance:leadActivities.SendSmsTest@70ed52de]" started-at="2023-05-23T12:50:32 IST" name="browserConfig" finished-at="2023-05-23T12:50:34 IST" duration-ms="2416" status="PASS">
+        <test-method is-config="true" signature="browserConfig()[pri:0, instance:otherLeadActivitiesPack.MarkingOnBreakTest@6be968ce]" started-at="2023-05-23T18:45:44 IST" name="browserConfig" finished-at="2023-05-23T18:45:48 IST" duration-ms="3132" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserConfig -->
-        <test-method signature="sendingSmsTest()[pri:0, instance:leadActivities.SendSmsTest@70ed52de]" started-at="2023-05-23T12:50:34 IST" name="sendingSmsTest" finished-at="2023-05-23T12:51:00 IST" duration-ms="26167" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
+        <test-method signature="markingOnBreakTest()[pri:0, instance:otherLeadActivitiesPack.MarkingOnBreakTest@6be968ce]" started-at="2023-05-23T18:45:48 IST" name="markingOnBreakTest" finished-at="2023-05-23T18:45:56 IST" duration-ms="8042" status="FAIL">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='noty_message']"}
-  (Session info: chrome=111.0.5563.146)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.9.1', revision: 'eb2032df7f'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-41-generic', java.version: '17.0.6'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [6ef247aeb76f788678a954bce40e1efe, findElement {using=xpath, value=//div[@class='noty_message']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.9AfPzG}, goog:chromeOptions: {debuggerAddress: localhost:35071}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35071/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 6ef247aeb76f788678a954bce40e1efe]]>
+              <![CDATA[Not matched expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='noty_message']"}
-  (Session info: chrome=111.0.5563.146)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.9.1', revision: 'eb2032df7f'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-41-generic', java.version: '17.0.6'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [6ef247aeb76f788678a954bce40e1efe, findElement {using=xpath, value=//div[@class='noty_message']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.9AfPzG}, goog:chromeOptions: {debuggerAddress: localhost:35071}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35071/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 6ef247aeb76f788678a954bce40e1efe
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-at com.selldo.Utility.BaseTest.getSuccessMSG(BaseTest.java:226)
-at leadActivities.SendSmsTest.sendingSmsTest(SendSmsTest.java:29)
+              <![CDATA[java.lang.AssertionError: Not matched expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:110)
+at org.testng.Assert.failNotEquals(Assert.java:1577)
+at org.testng.Assert.assertTrue(Assert.java:56)
+at com.selldo.POM.crm.SalesPresalesDashboardPage.validatingOnBreakLink(SalesPresalesDashboardPage.java:224)
+at otherLeadActivitiesPack.MarkingOnBreakTest.markingOnBreakTest(MarkingOnBreakTest.java:39)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -86,19 +57,19 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- sendingSmsTest -->
-        <test-method is-config="true" signature="terminate()[pri:0, instance:leadActivities.SendSmsTest@70ed52de]" started-at="2023-05-23T12:51:00 IST" name="terminate" finished-at="2023-05-23T12:51:00 IST" duration-ms="107" status="PASS">
+        </test-method> <!-- markingOnBreakTest -->
+        <test-method is-config="true" signature="terminate()[pri:0, instance:otherLeadActivitiesPack.MarkingOnBreakTest@6be968ce]" started-at="2023-05-23T18:45:56 IST" name="terminate" finished-at="2023-05-23T18:45:56 IST" duration-ms="109" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- terminate -->
-        <test-method is-config="true" signature="ObjectSupressor()[pri:0, instance:leadActivities.SendSmsTest@70ed52de]" started-at="2023-05-23T12:51:00 IST" name="ObjectSupressor" finished-at="2023-05-23T12:51:00 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="ObjectSupressor()[pri:0, instance:otherLeadActivitiesPack.MarkingOnBreakTest@6be968ce]" started-at="2023-05-23T18:45:56 IST" name="ObjectSupressor" finished-at="2023-05-23T18:45:56 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ObjectSupressor -->
-      </class> <!-- leadActivities.SendSmsTest -->
+      </class> <!-- otherLeadActivitiesPack.MarkingOnBreakTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
