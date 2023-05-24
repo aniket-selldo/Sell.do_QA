@@ -12,16 +12,15 @@ public class MarkingOnBreakTest extends BaseTest {
 
 
 	@Test
-
 	public void markingOnBreakTest() throws Exception {
 
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("name"), prop.getProperty("password"));
+		login.login("aniket.khandizod+po@sell.do", "amura@123");
 		SalesPresalesDashboardPage salesPresalesDashboardPage = new SalesPresalesDashboardPage(driver);
 
-		if (!driver.findElement(By.cssSelector("span.status")).getText().contains("Available")) {
-
+		if (!driver.findElement(By.cssSelector("span.status")).getText().trim().equalsIgnoreCase("Available")) {
+			System.out.println("In If Condition");
 			//getExtTest().log(Status.INFO, "check availability of user.......");
 			salesPresalesDashboardPage.availableForCall();
 			salesPresalesDashboardPage.pageRefresh();

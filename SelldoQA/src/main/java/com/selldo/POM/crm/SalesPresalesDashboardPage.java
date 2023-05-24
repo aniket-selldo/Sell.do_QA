@@ -242,6 +242,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	// Clicking on Mark Online Link
 	public void availableForCall() {
 		waitUntilClickable(onBreakLink).click();
+		wait(2000);
 		waitUntilClickable(markOnlineLink).click();
 	}
 

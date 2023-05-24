@@ -1,88 +1,33 @@
 package otherLeadActivitiesPack;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import java.io.FileInputStream;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.mail.EmailException;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import com.aventstack.extentreports.Status;
+import com.selldo.POM.adminPages.AdminDashboardPage;
+import com.selldo.POM.crm.LeadProfilePage;
+import com.selldo.POM.crm.LoginPage;
+import com.selldo.POM.crm.MergeLeadsPage;
+import com.selldo.POM.crm.SalesPresalesDashboardPage;
+import com.selldo.Utility.BaseTest;
 
-import adminPages.AdminDashboardPage;
-import crm.selldo.LeadProfilePage;
-import crm.selldo.LoginPage;
-import crm.selldo.MergeLeadsPage;
-import crm.selldo.SalesPresalesDashboardPage;
-import utility.SetUp;
-
-public class MergingTwoLeadsFromDiffStagesTest extends SetUp {
-
-	// Description: merging two leads from different stages
-
-	final static Logger logger = Logger.getLogger(MergingTwoLeadsFromDiffStagesTest.class);
- 
-	@BeforeTest
-
-	public void appLogin() throws Exception {
-
-		mysetUp();
-		
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-		Properties property = new Properties();
-		FileInputStream fileInputObj = new FileInputStream(
-				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
-		property.load(fileInputObj);
-
-		LoginPage login = new LoginPage(driver);
-		logger.info("Logging in.......");
-		login.login(
-				property.getProperty("name") + "+"
-						+ property.getProperty("user_email_mergingTwoLeadsFromDiffStagesTest"),
-				property.getProperty("password"));
-
-	}
-
-	@AfterTest
-
-	public void endingTest() throws Exception {
-
-		Thread.sleep(3000);
-
-		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-
-		logger.info("Logging out of Selldo......");
-		adminDashboardPage.loggingOut();
-
-		logger.info("Closing Browser......");
-		driver.close();
-	}
+public class MergingTwoLeadsFromDiffStagesTest extends BaseTest {
 
 	@Test
 
 	public void mergingTwoLeadsFromDiffStagesTest() throws Exception {
+		LoginPage login = new LoginPage(driver);
+		login.login(
+				prop.getProperty("name") + "+"
+						,
+				prop.getProperty("password"));
 
-		test = extent.createTest("mergingTwoLeadsFromDiffStagesTest");
-		setExtentTest(test);
-
-		Properties property = new Properties();
-		FileInputStream fileInputObj = new FileInputStream(
-				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
-		property.load(fileInputObj);
 
 
 		Thread.sleep(3000);
@@ -93,46 +38,40 @@ public class MergingTwoLeadsFromDiffStagesTest extends SetUp {
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
-		getExtTest().log(Status.INFO, "Going to All Lead List.......");
-		salesPresalesDashboard.goToAllLeadsList();
+		adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6')), "Prospect");
 
-		getExtTest().log(Status.INFO, "Selecting Prospect list......");
-		adminDashboardPage.SelectList("Prospect");
-
-		getExtTest().log(Status.INFO, "Opening Lead Deatils Page.......");
-		salesPresalesDashboard.openLeadDetails2();
 
 		WebElement Lead1 = driver.findElement(By.cssSelector("span[name='lead_id']"));
 		//String leadtext1 = Lead1.getText().replaceAll("\\s+", "");
 		String leadtext1 = (Lead1.getText().replaceAll("\\s+", "").substring(1))+"#";
 		System.out.println(leadtext1);
 
-		getExtTest().log(Status.INFO, "Going to All Lead List.......");
+		//getExtTest().log(Status.INFO, "Going to All Lead List.......");
 		salesPresalesDashboard.goToAllLeadsList();
 
-		getExtTest().log(Status.INFO, "Selecting Opportunity list......");
+		//getExtTest().log(Status.INFO, "Selecting Opportunity list......");
 		adminDashboardPage.SelectList("Opportunity");
 
-		getExtTest().log(Status.INFO, "Opening Lead Deatils Page.......");
-		salesPresalesDashboard.openLeadDetails();
+		//getExtTest().log(Status.INFO, "Opening Lead Deatils Page.......");
+		salesPresalesDashboard.openLeadDetails(1);
 
-		getExtTest().log(Status.INFO, "Selecting Merge Leads from more.......");
+		//getExtTest().log(Status.INFO, "Selecting Merge Leads from more.......");
 		leadProfilePage.selectMergeLeads();
 
 		MergeLeadsPage mergeLeadsPage = new MergeLeadsPage(driver);
 
-		getExtTest().log(Status.INFO, "Searching lead to be merged.......");
+		//getExtTest().log(Status.INFO, "Searching lead to be merged.......");
 		mergeLeadsPage.searchingLeadToBeMerged(leadtext1);
 
 		Thread.sleep(2000);
 
-		getExtTest().log(Status.INFO, "Clicking on Merge This Button.......");
+		//getExtTest().log(Status.INFO, "Clicking on Merge This Button.......");
 		mergeLeadsPage.clickOnMergeThisButton();
 
-		getExtTest().log(Status.INFO, "Writing some notes.......");
+		//getExtTest().log(Status.INFO, "Writing some notes.......");
 		mergeLeadsPage.enteringSomeNotes(property.getProperty("note_mergingTwoLeadsFromDiffStagesTest"));
 
-		getExtTest().log(Status.INFO, "Clicking on Merge Leads Button.......");
+		//getExtTest().log(Status.INFO, "Clicking on Merge Leads Button.......");
 		mergeLeadsPage.clickOnMergeLeadsButton();
 
 		Thread.sleep(3000);
@@ -140,7 +79,7 @@ public class MergingTwoLeadsFromDiffStagesTest extends SetUp {
 		salesPresalesDashboard.searchLead(leadtext1);
 		Thread.sleep(2000);
 		 
-		getExtTest().log(Status.INFO, "Validating that stage of second lead changed to unqualified..............");
+		//getExtTest().log(Status.INFO, "Validating that stage of second lead changed to unqualified..............");
 		SoftAssert assertion = new SoftAssert();
 		System.out.println("Started verification");
 		AssertJUnit.assertEquals(driver

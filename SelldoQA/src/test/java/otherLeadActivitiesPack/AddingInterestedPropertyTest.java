@@ -18,53 +18,9 @@ import com.selldo.POM.crm.SalesPresalesDashboardPage;
 import com.selldo.Utility.BaseTest;
 
 public class AddingInterestedPropertyTest extends BaseTest {
-	/*
-	 * final static Logger logger =
-	 * Logger.getLogger(AddingInterestedPropertyTest.class);
-	 * 
-	 * // Description:
-	 * 
-	 * @BeforeTest
-	 * 
-	 * public void sales_presalesLogin() throws Exception {
-	 * 
-	 * mysetUp();
-	 * 
-	 * driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	 * 
-	 * Properties property = new Properties(); FileInputStream fileInputObj = new
-	 * FileInputStream( System.getProperty("user.dir") +
-	 * "//src//main//java//Config File//global.properties");
-	 * property.load(fileInputObj);
-	 * 
-	 * LoginPage login = new LoginPage(driver);
-	 * 
-	 * logger.info("Logging in......."); login.login(property.getProperty("name") +
-	 * "+" + property.getProperty("user_add_project_Test"),
-	 * property.getProperty("password")); }
-	 * 
-	 * @AfterTest
-	 * 
-	 * public void endingTest() throws Exception {
-	 * 
-	 * //Thread.sleep(3000);
-	 * 
-	 * logger.info("browser closed......."); driver.close();
-	 * 
-	 * }
-	 */
-
+	
 	@Test
 	public void addingInterestedPropertyTest() throws Exception {
-
-		/*
-		 * Properties property = new Properties(); FileInputStream fileInputObj = new
-		 * FileInputStream( System.getProperty("user.dir") +
-		 * "//src//main//java//Config File//global.properties");
-		 * property.load(fileInputObj);
-		 * 
-		 * test = extent.createTest("Adding Project on Lead Test"); setExtentTest(test);
-		 */
 		LoginPage login = new LoginPage(driver);
 		login.login(prop.getProperty("name"), prop.getProperty("password"));
 
