@@ -1,15 +1,10 @@
 package otherLeadActivitiesPack;
 
-import java.io.FileInputStream;
-import java.util.Properties;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
@@ -23,10 +18,7 @@ public class MergingTwoLeadsFromDiffStagesTest extends BaseTest {
 
 	public void mergingTwoLeadsFromDiffStagesTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		login.login(
-				prop.getProperty("name") + "+"
-						,
-				prop.getProperty("password"));
+		login.login(prop.getProperty("name") ,prop.getProperty("password"));
 
 
 
@@ -69,7 +61,7 @@ public class MergingTwoLeadsFromDiffStagesTest extends BaseTest {
 		mergeLeadsPage.clickOnMergeThisButton();
 
 		//getExtTest().log(Status.INFO, "Writing some notes.......");
-		mergeLeadsPage.enteringSomeNotes(property.getProperty("note_mergingTwoLeadsFromDiffStagesTest"));
+		mergeLeadsPage.enteringSomeNotes(prop.getProperty("note_mergingTwoLeadsFromDiffStagesTest"));
 
 		//getExtTest().log(Status.INFO, "Clicking on Merge Leads Button.......");
 		mergeLeadsPage.clickOnMergeLeadsButton();
@@ -80,13 +72,12 @@ public class MergingTwoLeadsFromDiffStagesTest extends BaseTest {
 		Thread.sleep(2000);
 		 
 		//getExtTest().log(Status.INFO, "Validating that stage of second lead changed to unqualified..............");
-		SoftAssert assertion = new SoftAssert();
 		System.out.println("Started verification");
-		AssertJUnit.assertEquals(driver
-				.findElement(By.cssSelector("div.dropdown.stage.float-left.mr-1 button span[data-title=\"label\"]"))
-				.getText().trim(), "Unqualified", "Merged lead not found under unqualified list");
+		Thread.sleep(10000);
+		driver.navigate().refresh();
+		System.out.println(">>>> "+ salesPresalesDashboard.getCurretLeadStatus());
+		Assert.assertEquals( salesPresalesDashboard.getCurretLeadStatus(), "unqualified", "Merged lead not found under unqualified list");
 		System.out.println("Completed verification");
-		assertion.assertAll();
 
 	}
 

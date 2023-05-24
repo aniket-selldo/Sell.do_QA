@@ -58,7 +58,7 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement conductedSiteVisit;
 	@FindBy(how = How.CSS, using = "#lead_schedule_site_visit_lead_profile")
 	private WebElement siteVisit;
-	@FindBy(how = How.XPATH, using = "//a[@class='nav-link lead-merge']")
+	@FindBy(how = How.CSS, using = "#lead_merge_lead_profile")
 	private WebElement mergeLeads;
 	@FindBy(how = How.CSS, using = "#offline_call_form_lead_profile")
 	private WebElement logOflineCall;
@@ -590,7 +590,7 @@ public class LeadProfilePage extends ReusableUtils {
 		wait(1000);
 		WebElement ele = waitUntilVisiblity(
 				driver.findElement(By.xpath("//div[@id='select2-drop']//div[@class='select2-search']")));
-		System.out.println(ele);
+		System.out.println(ele.getText());
 		wait(1000);
 		waitUntilVisibilityOfElements(driver.findElements(By.cssSelector("li[class*='select2-result'] "))).get(0)
 				.click();

@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="otherLeadActivitiesPack.MarkingOnBreakTest">
+      <class name="otherLeadActivitiesPack.MergingTwoLeadsFromDiffStagesTest">
         <methods>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
-          <include name="markingOnBreakTest"/>
+          <include name="mergingTwoLeadsFromDiffStagesTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- otherLeadActivitiesPack.MarkingOnBreakTest -->
+      </class> <!-- otherLeadActivitiesPack.MergingTwoLeadsFromDiffStagesTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

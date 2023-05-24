@@ -112,9 +112,13 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private List<WebElement> SelectProject;
 	@FindBy(how = How.CSS, using = "#add_interested_property_lead_profile")
 	private WebElement ClickOnAddProjectButton;
+	@FindBy(how = How.CSS, using = "div.dropdown.stage.float-left.mr-1 button span[data-title='label']")
+	private WebElement getCurretLeadStatus;
 	
 	
-	
+	public String getCurretLeadStatus() {
+		return waitUntilVisiblity(getCurretLeadStatus).getText().trim().toLowerCase();
+	}
 	public void addProjectOnLead() {
 		scrollIntoView(ClickOnAddProject);
 		waitUntilClickable(ClickOnAddProject).click();
