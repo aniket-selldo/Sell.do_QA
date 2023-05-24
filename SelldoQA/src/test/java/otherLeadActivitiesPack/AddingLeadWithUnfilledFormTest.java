@@ -1,16 +1,11 @@
 package otherLeadActivitiesPack;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.selldo.POM.crm.AddLeadFormPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
@@ -67,23 +62,21 @@ public class AddingLeadWithUnfilledFormTest extends BaseTest {
 		login.login(prop.getProperty("name"), prop.getProperty("password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
-		// getExtTest().log(Status.INFO, "Clicking on New Lead .......");
+		extentTest.get().log(Status.INFO, "Clicking on New Lead .......");
 		salesPresalesDashboard.selectLeadActions(3);
 
 		Thread.sleep(2000);
 
 		AddLeadFormPage addLeadForm = new AddLeadFormPage(driver);
 
-		// getExtTest().log(Status.INFO, "Clicking on Save button.......");
+		extentTest.get().log(Status.INFO, "Clicking on Save button.......");
 		addLeadForm.clickOnSaveButton();
 
-		// getExtTest().log(Status.INFO, "Verifying error message below Primary Email
-		// Field.......");
+		extentTest.get().log(Status.INFO, "Verifying error message below Primary Email Field.......");
 		AssertJUnit.assertEquals(driver.findElement(By.xpath("//label[text()='Primary Email']/following::span[1]"))
 				.getAttribute("innerHTML"), "Please set atleast a phone or email for this customer", "Not matched");
 
-		// getExtTest().log(Status.INFO, "Verifying error message below Primary Phone
-		// Field.......");
+		extentTest.get().log(Status.INFO, "Verifying error message below Primary Phone Field.......");
 		AssertJUnit.assertEquals(
 				driver.findElement(By.xpath("//label[text()='Tags']/preceding::p[1]")).getAttribute("innerHTML"),
 				"Please set atleast a phone or email for this customer", "Not matched");
@@ -91,13 +84,12 @@ public class AddingLeadWithUnfilledFormTest extends BaseTest {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(0,250)", "");
 
-		// getExtTest().log(Status.INFO, "Verifying error message below Project
-		// Field.......");
+		extentTest.get().log(Status.INFO, "Verifying error message below Project Field.......");
 
 		AssertJUnit.assertEquals(driver.findElement(By.cssSelector("#basic_info > div.form-group.has-error > span"))
 				.getAttribute("innerHTML"), "Please add a Project as its a walkin lead.", "Not matched");
 
-		// getExtTest().log(Status.INFO, "Clicking on Close button.......");
+		extentTest.get().log(Status.INFO, "Clicking on Close button.......");
 		addLeadForm.clickOnCloseButton();
 		String alertString = driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();

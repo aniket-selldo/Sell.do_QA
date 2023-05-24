@@ -1,10 +1,9 @@
 package listsPack;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.BookingListPage;
 import com.selldo.POM.adminPages.SettingsPage;
 import com.selldo.POM.crm.ClientLoginPage;
@@ -26,37 +25,35 @@ public class AddingNewBookingListTest extends BaseTest {
 
 		BookingListPage bookingListPage = new BookingListPage(driver);
 
-		// test.log(Status.INFO, "Clicking on Search List tab...........");
+		extentTest.get().log(Status.INFO, "Clicking on Search List tab...........");
 		settingsPage.clickOnBookingListTab();
 
-		// test.log(Status.INFO, "Clicking on New Booking Search Criteria
-		// button.........");
+		extentTest.get().log(Status.INFO, "Clicking on New Booking Search Criteria button.........");
 		bookingListPage.clickOnNewBookingSearchCriteriaButton();
 
 		String bookingListName = prop.getProperty("listName_AddingNewBookingListTest");
-		// test.log(Status.INFO, "Selecting Sales.....................");
+		extentTest.get().log(Status.INFO, "Selecting Sales.....................");
 		bookingListPage.selectSales();
-		// test.log(Status.INFO, "Selecting Publishers.....................");
+		extentTest.get().log(Status.INFO, "Selecting Publishers.....................");
 		bookingListPage.selectPublishers();
-		// test.log(Status.INFO, "Selecting Team.....................");
+		extentTest.get().log(Status.INFO, "Selecting Team.....................");
 		bookingListPage.selectTeams();
-		// test.log(Status.INFO, "Entering List name....................");
+		extentTest.get().log(Status.INFO, "Entering List name....................");
 		String enterBookingListName=bookingListName+random("enterBookingListName","A",10).toLowerCase() +" "+DateTime("dd/MM/YYYY");
 		bookingListPage.enterBookingListName(enterBookingListName);
 
 	
-		// test.log(Status.INFO, "Selecting Campaign....");
+		extentTest.get().log(Status.INFO, "Selecting Campaign....");
 		bookingListPage.selectCampaign();
-		// test.log(Status.INFO, "Selecting Project..........");
+		extentTest.get().log(Status.INFO, "Selecting Project..........");
 		bookingListPage.selectProject();
 
-		// test.log(Status.INFO, "Clicking on Save button...............");
+		extentTest.get().log(Status.INFO, "Clicking on Save button...............");
 		bookingListPage.clickOnSaveButton();
 
 		Thread.sleep(5000);
 
-		// test.log(Status.INFO, "Validating Booking list name after adding new Booking
-		// list.....");
+		extentTest.get().log(Status.INFO, "Validating Booking list name after adding new Booking  list.....");
 		System.out.println("Started verification");
 		Assert.assertEquals( bookingListPage.getListName() , enterBookingListName, "Not matched");
 		System.out.println("Completed verification");

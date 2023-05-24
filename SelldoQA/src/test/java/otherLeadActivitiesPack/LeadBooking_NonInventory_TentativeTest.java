@@ -3,10 +3,9 @@ package otherLeadActivitiesPack;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
+import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LeadBookingFormPage;
 import com.selldo.POM.crm.LeadProfilePage;
@@ -30,7 +29,7 @@ public class LeadBooking_NonInventory_TentativeTest extends BaseTest {
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
-		//extentTest.get().log(Status.INFO, "Clicking on All Leads.......");
+		extentTest.get().log(Status.INFO, "Clicking on All Leads.......");
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 		adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6', '7', '8', '9')), "Incoming");
 

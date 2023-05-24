@@ -1,15 +1,10 @@
 package otherLeadActivitiesPack;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
-import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.selldo.POM.crm.AddLeadFormPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
@@ -69,85 +64,85 @@ public class AddingNewLeadWithFilledForm_PresalesTest extends BaseTest {
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
-		//getExtTest().log(Status.INFO, "Clicking on New Lead.......");
+		extentTest.get().log(Status.INFO, "Clicking on New Lead.......");
 		salesPresalesDashboard.selectLeadActions(3);
 
 		AddLeadFormPage addLeadForm = new AddLeadFormPage(driver);
 		
 		////Thread.sleep(4000);
 
-		//getExtTest().log(Status.INFO, "Taking First Name.......");
+		extentTest.get().log(Status.INFO, "Taking First Name.......");
 		String firstNameObj = getTestData.firstName;
 		addLeadForm.inputFirstName(firstNameObj);
 
 		////Thread.sleep(3000);
 
-		//getExtTest().log(Status.INFO, "Taking Last Name.......");
+		extentTest.get().log(Status.INFO, "Taking Last Name.......");
 		String lastNameObj = getTestData.lastName;
 		addLeadForm.inputLastName(lastNameObj);
 
-		//getExtTest().log(Status.INFO, "Taking Primary Email.......");
+		extentTest.get().log(Status.INFO, "Taking Primary Email.......");
 		addLeadForm.inputPrimaryEmail(getTestData.email);
 
-		//getExtTest().log(Status.INFO, "Taking Primary Phone.......");
+		extentTest.get().log(Status.INFO, "Taking Primary Phone.......");
 		addLeadForm.inputPrimaryPhone(" " + getTestData.phoneNumber);
 
 		////Thread.sleep(1000);
 
-		//getExtTest().log(Status.INFO, "Selecting Interested project.......");
+		extentTest.get().log(Status.INFO, "Selecting Interested project.......");
 		// addLeadForm.selectingProjectsOfInterest();
 
-		//getExtTest().log(Status.INFO, "Selecting Lead Stage.......");
+		extentTest.get().log(Status.INFO, "Selecting Lead Stage.......");
 		addLeadForm.selectLeadStage("Incoming");
 
-		//getExtTest().log(Status.INFO, "Selecting Team from dropdown.......");
+		extentTest.get().log(Status.INFO, "Selecting Team from dropdown.......");
 		// addLeadForm.selectTeam(property.getProperty("Team_addingNewLeadWithFilledForm_SalesTest"));
 
-		//getExtTest().log(Status.INFO, "Selecting Campaign from dropdown.......");
+		extentTest.get().log(Status.INFO, "Selecting Campaign from dropdown.......");
 		addLeadForm.selectCampaign("Final Destination 2");
 
-		//getExtTest().log(Status.INFO, "Selecting source from dropdown.......");
+		extentTest.get().log(Status.INFO, "Selecting source from dropdown.......");
 		addLeadForm.selectSource();
 
-		//getExtTest().log(Status.INFO, "Selecting Project.......");
+		extentTest.get().log(Status.INFO, "Selecting Project.......");
 		addLeadForm.selectProject();
 
-		//getExtTest().log(Status.INFO, "Taking Address.......");
+		extentTest.get().log(Status.INFO, "Taking Address.......");
 		addLeadForm.inputAddress(getTestData.address);
 
-		//getExtTest().log(Status.INFO, "Taking Street.......");
+		extentTest.get().log(Status.INFO, "Taking Street.......");
 		addLeadForm.inputStreet(getTestData.street);
 
-		//getExtTest().log(Status.INFO, "Taking City.......");
+		extentTest.get().log(Status.INFO, "Taking City.......");
 		addLeadForm.inputCity(getTestData.city);
 
-		//getExtTest().log(Status.INFO, "Taking State.......");
+		extentTest.get().log(Status.INFO, "Taking State.......");
 		addLeadForm.inputState(getTestData.state);
 
-		//getExtTest().log(Status.INFO, "Taking Zip.......");
+		extentTest.get().log(Status.INFO, "Taking Zip.......");
 		addLeadForm.inputZip(getTestData.zip);
 
-		//getExtTest().log(Status.INFO, "Taking minimum and maximum budget.......");
+		extentTest.get().log(Status.INFO, "Taking minimum and maximum budget.......");
 		addLeadForm.inputBudget(getTestData.minBudget, getTestData.maxBudget);
 
-		//getExtTest().log(Status.INFO, "Selecting minimum and maximum possession.......");
+		extentTest.get().log(Status.INFO, "Selecting minimum and maximum possession.......");
 		addLeadForm.selectPossession();
 
-		//getExtTest().log(Status.INFO, "Selecting Property types.......");
+		extentTest.get().log(Status.INFO, "Selecting Property types.......");
 		addLeadForm.selectPropertyTypes();
 
-		//getExtTest().log(Status.INFO, "Selecting Bedroom preferences.......");
+		extentTest.get().log(Status.INFO, "Selecting Bedroom preferences.......");
 		addLeadForm.selectBedroomPreferences();
 
-		//getExtTest().log(Status.INFO, "Taking Location preferences.......");
+		extentTest.get().log(Status.INFO, "Taking Location preferences.......");
 		// addLeadForm.inputLocatioPreferences(property.getProperty("LocationPreferences_addingNewLeadWithFilledForm_PresalesTest"));
 
-		//getExtTest().log(Status.INFO, "Clicking on Save button.......");
+		extentTest.get().log(Status.INFO, "Clicking on Save button.......");
 		addLeadForm.clickOnSaveButton();
 
 		//Thread.sleep(3000);
 
-		//getExtTest().log(Status.INFO, "Verifying Lead creation.......");
+		extentTest.get().log(Status.INFO, "Verifying Lead creation.......");
 		System.out.println("Started verification");
 		AssertJUnit.assertEquals(driver.findElement(By.xpath("//span[@name='first_name']")).getText(),
 				firstNameObj + " " + lastNameObj, "Not matched");

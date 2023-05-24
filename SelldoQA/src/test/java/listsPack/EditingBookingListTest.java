@@ -1,11 +1,10 @@
 package listsPack;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.BookingListPage;
 import com.selldo.POM.adminPages.SettingsPage;
 import com.selldo.POM.crm.ClientLoginPage;
@@ -31,32 +30,32 @@ public class EditingBookingListTest extends BaseTest {
 
 		SoftAssert assertion = new SoftAssert();
 
-		//test.log(Status.INFO, "Clicking on Search List tab...........");
+		extentTest.get().log(Status.INFO, "Clicking on Search List tab...........");
 		settingsPage.clickOnBookingListTab();
 
-		//test.log(Status.INFO, "Selecting edit link from action bar........");
+		extentTest.get().log(Status.INFO, "Selecting edit link from action bar........");
 		bookingListPage.selectEditLink();
 
 		String bookingListName = "Namechange"+random("","A",10).toLowerCase()+DateTime("dd/mm/yyyy");
 
-		//test.log(Status.INFO, "Entering List name....................");
+		extentTest.get().log(Status.INFO, "Entering List name....................");
 		bookingListPage.changeBookingListName(bookingListName);
 
-		//test.log(Status.INFO, "Changing Publishers.....................");
+		extentTest.get().log(Status.INFO, "Changing Publishers.....................");
 		bookingListPage.changePublishers();
 
-		//test.log(Status.INFO, "Changing Team.....................");
+		extentTest.get().log(Status.INFO, "Changing Team.....................");
 		bookingListPage.changeTeams();
 
-		//test.log(Status.INFO, "Changing Sales.....................");
+		extentTest.get().log(Status.INFO, "Changing Sales.....................");
 		bookingListPage.changeSales();
 
-		//test.log(Status.INFO, "Clicking on Save button...............");
+		extentTest.get().log(Status.INFO, "Clicking on Save button...............");
 		bookingListPage.clickOnSaveButton();
 
 		Thread.sleep(2000);
 
-		//test.log(Status.INFO, "Validating Booking list name after editing new Booking list.....");
+		extentTest.get().log(Status.INFO, "Validating Booking list name after editing new Booking list.....");
 		System.out.println("Started verification");
 		Assert.assertEquals(bookingListPage.getListName(), bookingListName, "Not matched");
 		System.out.println("Completed verification");

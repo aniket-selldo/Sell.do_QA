@@ -20,36 +20,34 @@ public class ReschedulingSiteVisitTest extends BaseTest {
 		login.login("aniket.khandizod+sae02@sell.do","amura@123");
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
-		// extentTest.get().log(Status.INFO, "Searching lead by Id.......");
+		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
 		// Thread.sleep(1000);
 		adminDashboardPage.searchLead(Integer.parseInt(R('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')),
 				"All Leads");// prop.getProperty("Rescheduling_SiteVisit_lead_id")
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
-		// extentTest.get().log(Status.INFO, "Clicking on Meeting Link.......");
+		extentTest.get().log(Status.INFO, "Clicking on Meeting Link.......");
 		leadProfilePage.clickOnMeetingLink();
 
 		// Thread.sleep(3000);
 
 		SiteVisitPage siteVisitPage = new SiteVisitPage(driver);
 
-		// extentTest.get().log(Status.INFO, "Selecting Project from
-		// dropdown.........");
+		extentTest.get().log(Status.INFO, "Selecting Project from dropdown.........");
 		siteVisitPage.selectProject();
 
-		// extentTest.get().log(Status.INFO, "Selecting date from Calender.........");
+		extentTest.get().log(Status.INFO, "Selecting date from Calender.........");
 		int date =siteVisitPage.sitevisitScheduleDate();
 
-		// extentTest.get().log(Status.INFO, "Clicking on Site visit button.........");
+		extentTest.get().log(Status.INFO, "Clicking on Site visit button.........");
 		siteVisitPage.clickOnScheduleSiteVisitButton();
 
 		Thread.sleep(2000);
 
 		if (!driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty()) {
 
-			// extentTest.get().log(Status.INFO, "Clicking on Ignore and schedule
-			// button.......");
+			extentTest.get().log(Status.INFO, "Clicking on Ignore and schedule button.......");
 			try {
 				siteVisitPage.clickOnIgnoreAndSchedule();
 				System.out.println("1>>>>"+getSuccessMSG());
@@ -61,8 +59,7 @@ public class ReschedulingSiteVisitTest extends BaseTest {
 
 		// Thread.sleep(2000);
 
-		// extentTest.get().log(Status.INFO, "Selecting Reschedule from Action
-		// bar.........");
+		extentTest.get().log(Status.INFO, "Selecting Reschedule from Action bar.........");
 		leadProfilePage.selectReschedule();
 
 		String projectName = driver.findElement(
@@ -70,11 +67,10 @@ public class ReschedulingSiteVisitTest extends BaseTest {
 				.getText();
 		System.out.println(projectName);
 
-		// extentTest.get().log(Status.INFO, "Changing date to reschedule site
-		// visit.........");
+		extentTest.get().log(Status.INFO, "Changing date to reschedule site visit.........");
 		siteVisitPage.sitevisitRescheduleDate();
 
-		// extentTest.get().log(Status.INFO, "Clicking on Reschedule button.......");
+		extentTest.get().log(Status.INFO, "Clicking on Reschedule button.......");
 		// Thread.sleep(4000);
 		siteVisitPage.clickOnRescheduleButton();
 
@@ -82,8 +78,7 @@ public class ReschedulingSiteVisitTest extends BaseTest {
 
 		if (!driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty()) {
 
-			// extentTest.get().log(Status.INFO, "Clicking on Ignore and schedule
-			// button.......");
+			extentTest.get().log(Status.INFO, "Clicking on Ignore and schedule button.......");
 			try {
 				siteVisitPage.clickOnIgnoreAndSchedule();
 				System.out.println("2>>>>"+getSuccessMSG());
@@ -94,17 +89,15 @@ public class ReschedulingSiteVisitTest extends BaseTest {
 		}
 		// Thread.sleep(4000);
 
-		// extentTest.get().log(Status.INFO, "Clicking on Feed tab.......");
+		extentTest.get().log(Status.INFO, "Clicking on Feed tab.......");
 		leadProfilePage.clickFeedTab();
 
-		// extentTest.get().log(Status.INFO, "Fetching the text appeared under Feed
-		// after scheduling site visit....");
+		extentTest.get().log(Status.INFO, "Fetching the text appeared under Feed after scheduling site visit....");
 		String text = driver.findElement(By.xpath(
 				"//div[@class='title site_visit_date']"))
 				.getText().trim();
 
-		// extentTest.get().log(Status.INFO, "Verifying that Interested property Feed is
-		// generated successfully....");
+		extentTest.get().log(Status.INFO, "Verifying that Interested property Feed is generated successfully....");
 		System.out.println(">>> "+text);
 		Assert.assertEquals(text.split(",")[0], "The Site visit is scheduled for " + projectName + " on "+""+28+"/"+DateTime("MM/YYYY"));
 

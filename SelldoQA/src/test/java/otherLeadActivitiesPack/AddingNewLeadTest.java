@@ -1,16 +1,11 @@
 package otherLeadActivitiesPack;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import org.openqa.selenium.By;
-import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import com.aventstack.extentreports.Status;
 import com.selldo.POM.crm.AddLeadFormPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
@@ -71,38 +66,38 @@ public class AddingNewLeadTest extends BaseTest {
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
-		//getExtTest().log(Status.INFO, "Clicking on New Lead.......");
+		extentTest.get().log(Status.INFO, "Clicking on New Lead.......");
 		salesPresalesDashboard.selectLeadActions(3);
 
 		AddLeadFormPage addLeadForm = new AddLeadFormPage(driver);
 
-		//getExtTest().log(Status.INFO, "Taking First Name.......");
+		extentTest.get().log(Status.INFO, "Taking First Name.......");
 		String firstNameObj = getTestData.firstName;
 		System.out.println(firstNameObj);
 		addLeadForm.inputFirstName(firstNameObj);
 
 		//Thread.sleep(3000);
 
-		//getExtTest().log(Status.INFO, "Taking Last Name.......");
+		extentTest.get().log(Status.INFO, "Taking Last Name.......");
 		String lastNameObj = getTestData.lastName;
 		addLeadForm.inputLastName(lastNameObj);
 
-		//getExtTest().log(Status.INFO, "Taking Primary Email.......");
+		extentTest.get().log(Status.INFO, "Taking Primary Email.......");
 		addLeadForm.inputPrimaryEmail(getTestData.email);
 
-		//getExtTest().log(Status.INFO, "Taking Primary Phone.......");
+		extentTest.get().log(Status.INFO, "Taking Primary Phone.......");
 		addLeadForm.inputPrimaryPhone(" " + getTestData.phoneNumber);
 
-		/* //getExtTest().log(Status.INFO, "Selecting Lead Stage.......");
+		/* extentTest.get().log(Status.INFO, "Selecting Lead Stage.......");
 		addLeadForm.selectLeadStageNewLead(); */
 		
-		//getExtTest().log(Status.INFO, "Selecting Project.......");
+		extentTest.get().log(Status.INFO, "Selecting Project.......");
 		addLeadForm.selectProject();
 		addLeadForm.selectLeadStageNewLead("Incoming");
-		//getExtTest().log(Status.INFO, "Clicking on Save button.......");
+		extentTest.get().log(Status.INFO, "Clicking on Save button.......");
 		addLeadForm.clickOnSaveButton();
 
-		//getExtTest().log(Status.INFO, "Verifying Lead creation.......");
+		extentTest.get().log(Status.INFO, "Verifying Lead creation.......");
 		SoftAssert assertion = new SoftAssert();
 		System.out.println("Started verification");
 		AssertJUnit.assertEquals(driver.findElement(By.xpath("//span[@name='first_name']")).getText(),

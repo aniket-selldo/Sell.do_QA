@@ -21,34 +21,34 @@ public class MarkingOnBreakTest extends BaseTest {
 
 		if (!driver.findElement(By.cssSelector("span.status")).getText().trim().equalsIgnoreCase("Available")) {
 			System.out.println("In If Condition");
-			//getExtTest().log(Status.INFO, "check availability of user.......");
+			extentTest.get().log(Status.INFO, "check availability of user.......");
 			salesPresalesDashboardPage.availableForCall();
 			salesPresalesDashboardPage.pageRefresh();
 			Thread.sleep(2000);
 		}
 
-		//getExtTest().log(Status.INFO, "Selecting Mark On Break.......");
+		extentTest.get().log(Status.INFO, "Selecting Mark On Break.......");
 		salesPresalesDashboardPage.selectMarkOnBreak();
 
 		salesPresalesDashboardPage.pageRefresh();
 
 		Thread.sleep(2000);
 
-		//getExtTest().log(Status.INFO, "Verifying You are on break link.......");
+		extentTest.get().log(Status.INFO, "Verifying You are on break link.......");
 		salesPresalesDashboardPage.validatingOnBreakLink();
 
 		salesPresalesDashboardPage.pageRefresh();
 
 		Thread.sleep(2000);
 
-		//getExtTest().log(Status.INFO, "Clicking on You are on break link......");
+		extentTest.get().log(Status.INFO, "Clicking on You are on break link......");
 		salesPresalesDashboardPage.availableForCall();
 
 		salesPresalesDashboardPage.pageRefresh();
 
 		Thread.sleep(2000);
 
-		//getExtTest().log(Status.INFO, "Verifying User Available link.......");
+		extentTest.get().log(Status.INFO, "Verifying User Available link.......");
 		salesPresalesDashboardPage.validatingAvailableLink();
 
 	}

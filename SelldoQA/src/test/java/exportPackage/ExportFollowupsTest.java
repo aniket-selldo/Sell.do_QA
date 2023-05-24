@@ -12,49 +12,7 @@ import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
 public class ExportFollowupsTest extends BaseTest {
-	/*
-	 * final static Logger logger = Logger.getLogger(ExportFollowupsTest.class);
-	 * 
-	 * // Description:
-	 * 
-	 * @BeforeTest
-	 * 
-	 * public void sales_presalesLogin() throws Exception {
-	 * 
-	 * mysetUp();
-	 * 
-	 * driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	 * 
-	 * Properties property = new Properties(); FileInputStream fileInputObj = new
-	 * FileInputStream( System.getProperty("user.dir") +
-	 * "//src//main//java//Config File//global.properties");
-	 * property.load(fileInputObj);
-	 * 
-	 * LoginPage login = new LoginPage(driver);
-	 * 
-	 * logger.info("Logging in to client page.......");
-	 * login.login(property.getProperty("superadmin_name") +
-	 * property.getProperty("superadmin_email"), property.getProperty("password"));
-	 * 
-	 * ClientLoginPage clientLogin = new ClientLoginPage(driver);
-	 * 
-	 * logger.info("Logging in to Admin/Support Home Page......");
-	 * clientLogin.clientLogin(property.getProperty("client_name"));
-	 * 
-	 * }
-	 * 
-	 * @AfterTest
-	 * 
-	 * public void endingTest() throws Exception {
-	 * 
-	 * Thread.sleep(3000);
-	 * 
-	 * AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-	 * 
-	 * logger.info("Logging out of Selldo......"); adminDashboardPage.loggingOut();
-	 * 
-	 * logger.info("Closing Browser......"); driver.close(); }
-	 */
+	
 	@Test
 	public void exportFollowupsTest() throws Exception {
 
