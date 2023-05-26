@@ -17,8 +17,6 @@ public class SendingEmailWithCCandBCCTest extends BaseTest {
 	@Test
 	public void sendingEmailWithCCandBCCTest() throws Exception {
 
-//		login.login(
-//		prop.getProperty("nameAA") + "+" + prop.getProperty("user_email_sendingEmailWithCCandBCCTest"),prop.getProperty("password"));
 		LoginPage login = new LoginPage(driver);
 		login.login("aniket.khandizod+sae02@sell.do", "amura@123");
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
