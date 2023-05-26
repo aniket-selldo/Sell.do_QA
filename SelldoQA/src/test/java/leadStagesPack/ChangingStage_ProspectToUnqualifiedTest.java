@@ -31,7 +31,7 @@ public class ChangingStage_ProspectToUnqualifiedTest extends BaseTest {
 		//salesPresalesDashboard.openLeadDetails();
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 		String leadId = adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6', '7')),
-				"All Leads");
+				"Prospect");
 		extentTest.get().log(Status.INFO, "Getting Lead Id whose stage is to be changed.......");
 		String leadIdObj = driver.findElement(By.cssSelector("span[name='lead_id']")).getText().replaceAll("\\s+", "");
 		System.out.println(leadIdObj);

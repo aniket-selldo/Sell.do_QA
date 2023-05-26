@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
@@ -38,32 +39,32 @@ public class MergingTwoLeadsFromDiffStagesTest extends BaseTest {
 		String leadtext1 = (Lead1.getText().replaceAll("\\s+", "").substring(1))+"#";
 		System.out.println(leadtext1);
 
-		//getExtTest().log(Status.INFO, "Going to All Lead List.......");
+		extentTest.get().log(Status.INFO, "Going to All Lead List.......");
 		salesPresalesDashboard.goToAllLeadsList();
 
-		//getExtTest().log(Status.INFO, "Selecting Opportunity list......");
+		extentTest.get().log(Status.INFO, "Selecting Opportunity list......");
 		adminDashboardPage.SelectList("Opportunity");
 
-		//getExtTest().log(Status.INFO, "Opening Lead Deatils Page.......");
+		extentTest.get().log(Status.INFO, "Opening Lead Deatils Page.......");
 		salesPresalesDashboard.openLeadDetails(1);
 
-		//getExtTest().log(Status.INFO, "Selecting Merge Leads from more.......");
+		extentTest.get().log(Status.INFO, "Selecting Merge Leads from more.......");
 		leadProfilePage.selectMergeLeads();
 
 		MergeLeadsPage mergeLeadsPage = new MergeLeadsPage(driver);
 
-		//getExtTest().log(Status.INFO, "Searching lead to be merged.......");
+		extentTest.get().log(Status.INFO, "Searching lead to be merged.......");
 		mergeLeadsPage.searchingLeadToBeMerged(leadtext1);
 
 		Thread.sleep(2000);
 
-		//getExtTest().log(Status.INFO, "Clicking on Merge This Button.......");
+		extentTest.get().log(Status.INFO, "Clicking on Merge This Button.......");
 		mergeLeadsPage.clickOnMergeThisButton();
 
-		//getExtTest().log(Status.INFO, "Writing some notes.......");
+		extentTest.get().log(Status.INFO, "Writing some notes.......");
 		mergeLeadsPage.enteringSomeNotes(prop.getProperty("note_mergingTwoLeadsFromDiffStagesTest"));
 
-		//getExtTest().log(Status.INFO, "Clicking on Merge Leads Button.......");
+		extentTest.get().log(Status.INFO, "Clicking on Merge Leads Button.......");
 		mergeLeadsPage.clickOnMergeLeadsButton();
 
 		Thread.sleep(3000);
@@ -71,7 +72,7 @@ public class MergingTwoLeadsFromDiffStagesTest extends BaseTest {
 		salesPresalesDashboard.searchLead(leadtext1);
 		Thread.sleep(2000);
 		 
-		//getExtTest().log(Status.INFO, "Validating that stage of second lead changed to unqualified..............");
+		extentTest.get().log(Status.INFO, "Validating that stage of second lead changed to unqualified..............");
 		System.out.println("Started verification");
 		Thread.sleep(10000);
 		driver.navigate().refresh();

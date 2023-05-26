@@ -1,6 +1,7 @@
 package otherLeadActivitiesPack;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
@@ -12,54 +13,12 @@ import com.selldo.Utility.BaseTest;
 import com.selldo.Utility.GetTestData;
 
 public class AddingNewLeadWithFilledForm_SalesTest extends BaseTest {
-	/*
-	 * final static Logger logger =
-	 * Logger.getLogger(AddingNewLeadWithFilledForm_SalesTest.class);
-	 * 
-	 * // Description: Adding a new lead from Sales by filling all the fields of Add
-	 * // Lead form
-	 * 
-	 * @BeforeTest
-	 * 
-	 * public void appLogin() throws Exception {
-	 * 
-	 * mysetUp();
-	 * 
-	 * driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	 * 
-	 * Properties property = new Properties(); FileInputStream fileInputObj = new
-	 * FileInputStream( System.getProperty("user.dir") +
-	 * "//src//main//java//Config File//global.properties");
-	 * property.load(fileInputObj);
-	 * 
-	 * LoginPage login = new LoginPage(driver); logger.info("Logging in.......");
-	 * login.login( property.getProperty("name") + "+" +
-	 * property.getProperty("user_email_addingNewLeadWithFilledForm_SalesTest"),
-	 * property.getProperty("password")); }
-	 * 
-	 * @AfterTest
-	 * 
-	 * public void endingTest() throws Exception {
-	 * 
-	 * //Thread.sleep(3000);
-	 * 
-	 * AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-	 * 
-	 * logger.info("Logging out of Selldo......"); adminDashboardPage.loggingOut();
-	 * 
-	 * logger.info("Closing Browser......"); driver.close(); }
-	 */
 
 	@Test
-
 	public void addingNewLeadWithFilledForm_SalesTest() throws Exception {
 
-		/*
-		 * test = extent.createTest("addingNewLeadWithFilledForm_SalesTest");
-		 * setExtentTest(test);
-		 */
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("Sales"), prop.getProperty("password"));
+		login.login("aniket.khandizod+12s@sell.do", "amura@123");
 		GetTestData getTestData = new GetTestData();
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
@@ -90,7 +49,7 @@ public class AddingNewLeadWithFilledForm_SalesTest extends BaseTest {
 		addLeadForm.selectLeadStage("Incoming");
 
 		extentTest.get().log(Status.INFO, "Selecting Campaign from dropdown.......");
-		addLeadForm.selectCampaign("Final Destination 2");
+		addLeadForm.selectCampaign("Walkin");
 
 		extentTest.get().log(Status.INFO, "Selecting source from dropdown.......");
 		addLeadForm.selectSource();
@@ -135,7 +94,7 @@ public class AddingNewLeadWithFilledForm_SalesTest extends BaseTest {
 
 		extentTest.get().log(Status.INFO, "Verifying Lead creation.......");
 		System.out.println("Started verification");
-		AssertJUnit.assertEquals(driver.findElement(By.xpath("//span[@name='first_name']")).getText(),
+		Assert.assertEquals(driver.findElement(By.xpath("//span[@name='first_name']")).getText(),
 				firstNameObj + " " + lastNameObj, "Not matched");
 		System.out.println("Completed verification");
 	}

@@ -233,13 +233,22 @@ public class ReusableUtils {
 	}
 
 	protected WebElement Square(WebElement we) {
-//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//		wait.until(ExpectedConditions.visibilityOf(we));
-		wait(100);
+		wait(500);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		// String color[]= {"C7FF33",""};
 		js.executeScript("arguments[0].style.border='5px solid Red'", we);
 		return we;
+	}
+	protected WebElement jsSendKey(WebElement we,String txt) {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		Square(we);
+		js.executeScript("arguments[0].value='"+txt+"'", we);
+		return we;
+	}
+	protected String jsGetText(WebElement we) {
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		Square(we);
+		return (String) js.executeScript("return arguments[0].text;", we);
+		 
 	}
 
 // ----------------Select ------------------

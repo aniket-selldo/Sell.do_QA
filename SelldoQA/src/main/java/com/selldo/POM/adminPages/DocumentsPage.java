@@ -1,11 +1,13 @@
 package com.selldo.POM.adminPages;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.selldo.Utility.BaseTest;
 import com.selldo.Utility.ReusableUtils;
 
 public class DocumentsPage extends ReusableUtils {
@@ -57,19 +59,18 @@ public class DocumentsPage extends ReusableUtils {
 
 	public String deleteFile(String fileName) throws InterruptedException {
 		moveToElement(fileDoc);
-		waitUntilClickable(delete);
-		delete.click();
+		waitUntilClickable(delete,30).click();
 		String text = driver.switchTo().alert().getText().trim();
 		driver.switchTo().alert().accept();
 		return text;
 	}
 
 	public void upload() throws Exception {
-
+		String randomFile =new BaseTest().getScreenshot(new BaseTest().DateTime("HHmmss")+RandomStringUtils.randomAlphanumeric(10),driver);
 		String claimZIP = System.getProperty("user.dir") + "/DataFile/" + "google-new-logo.png";
 		// pass the path of the file to be uploaded using Sendkeys method
 		//waitUntilVisiblity(brows);
-		brows.sendKeys(claimZIP);
+		brows.sendKeys(randomFile);
 		waitUntilInvisibility(loadingBar);
 
 	}

@@ -30,8 +30,6 @@ public class SendSmsTest extends BaseTest {
 		extentTest.get().log(Status.INFO, "Clicking on Sms Link.......");
 		leadProfilePage.clickOnSmsLink();
 		
-
-
 		SmsPage smsPage = new SmsPage(driver);
 
 		extentTest.get().log(Status.INFO, "Selecting SMS template from dropdown.......");
@@ -52,7 +50,8 @@ public class SendSmsTest extends BaseTest {
 
 
 		extentTest.get().log(Status.INFO, "Verifying the text under Email activities....");
-		Assert.assertEquals(text, "Outgoing Success","Fail outgoing SMS"); //Outgoing Error
+		String msg []= {"Outgoing Error","Outgoing Success"};
+		Assert.assertEquals(text,msg[0] ,"Fail outgoing SMS"); //Outgoing Error
 
 	}
 

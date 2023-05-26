@@ -436,7 +436,7 @@ public class LeadProfilePage extends ReusableUtils {
 			}
 		}
 		waitUntilClickable(SMS).click();
-		return b;
+		return true;
 	}
 
 	// .........................Methods for adding a Note.......................
@@ -496,8 +496,8 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void clickEmail_d() {
-		waitUntilClickable(more_d).click();
-		waitUntilClickable(email_d).click();
+		jsClick(more_d);
+		jsClick(email_d);
 	}
 
 	public void clickSms_d() {

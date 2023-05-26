@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -99,14 +100,14 @@ public class AddLeadFormPage extends ReusableUtils {
 	private WebElement MaxBudgetInputField;
 	@FindBy(how = How.CSS, using = "[href=\"#requirement\"]")
 	private WebElement RequirementTab;
-	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Min possession')]")
+	@FindBy(how = How.CSS, using = "#s2id_btn-min-possession")
 	private WebElement MinPossession;
-	@FindBy(how = How.XPATH, using = ".//*[@id='select2-drop']/ul/li[2]/div")
-	private WebElement MinPossession_dd;
-	@FindBy(how = How.XPATH, using = "//span[contains(text(),'Max possession')]")
+	@FindBy(how = How.CSS, using = "li[class='select2-results-dept-0 select2-result select2-result-selectable']")
+	private List<WebElement> MinPossession_dd;
+	@FindBy(how = How.CSS, using = "#s2id_btn-max-possession")
 	private WebElement MaxPossession;
-	@FindBy(how = How.XPATH, using = ".//*[@id='select2-drop']/ul/li[3]/div")
-	private WebElement MaxPossession_dd;
+	@FindBy(how = How.CSS, using = "li[class='select2-results-dept-0 select2-result select2-result-selectable']")
+	private List<WebElement> MaxPossession_dd;
 	@FindBy(how = How.XPATH, using = "//label[text()='Property types']/following::input[1]")
 	private WebElement PropertyTypes;
 	@FindBy(how = How.XPATH, using = ".//*[@id='select2-drop']/ul/li[3]/div")
@@ -183,14 +184,8 @@ public class AddLeadFormPage extends ReusableUtils {
 		waitUntilClickable(ScheduleAndConductSiteVisitForProjectField);
 		ScheduleAndConductSiteVisitForProjectField.click();
 
-		List<WebElement> list = Project_dd;
-		for (WebElement ele : list) {
-			if (ele.getAttribute("innerHTML").contains("Srujan")) {
-				waitUntilClickable(ele);
-				ele.click();
-				break;
-			}
-		}
+		Project_dd.get(0).click();
+		
 
 	}
 
@@ -242,10 +237,8 @@ public class AddLeadFormPage extends ReusableUtils {
 	}
 
 	public void selectSource() {
-		waitUntilClickable(SourceDropdown);
-		SourceDropdown.click();
-		waitUntilClickable(SourceFrom_dd);
-		SourceFrom_dd.click();
+		waitUntilClickable(SourceDropdown).click();
+		waitUntilClickable(SourceFrom_dd).click();
 	}
 
 	public void inputAddress(String address) {
@@ -287,8 +280,7 @@ public class AddLeadFormPage extends ReusableUtils {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(false);", RequirementTab);
 
-		waitUntilClickable(RequirementTab);
-		RequirementTab.click();
+		jsClick(RequirementTab);
 		waitUntilVisiblity(MinBudgetInputField);
 		MinBudgetInputField.sendKeys(min);
 		waitUntilVisiblity(MaxBudgetInputField);
@@ -296,14 +288,13 @@ public class AddLeadFormPage extends ReusableUtils {
 	}
 
 	public void selectPossession() {
-		waitUntilClickable(MinPossession);
-		MinPossession.click();
-		waitUntilClickable(MinPossession_dd);
-		MinPossession_dd.click();
-		waitUntilClickable(MaxPossession);
-		MaxPossession.click();
-		waitUntilClickable(MaxPossession_dd);
-		MaxPossession_dd.click();
+		wait(5000);
+		waitUntilClickable(MinPossession).click();
+		wait(1000);
+		(MinPossession_dd.get(0)).click();
+		wait(1000);
+		waitUntilClickable(MaxPossession).click();
+		(MaxPossession_dd.get(2)).click();
 	}
 
 	public void selectPropertyTypes() {

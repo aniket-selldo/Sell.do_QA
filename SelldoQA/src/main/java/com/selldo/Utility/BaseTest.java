@@ -80,7 +80,7 @@ public class BaseTest {
 
 	
 	@BeforeMethod(alwaysRun = true)
-	public void browserConfig() throws FileNotFoundException, IOException, AWTException {
+	protected void browserConfig() throws FileNotFoundException, IOException, AWTException {
 
 		// -------------------Property Files-------------------//
 		prop = new Properties();
@@ -163,7 +163,7 @@ public class BaseTest {
 	}
 
 	@AfterMethod(alwaysRun = true)
-	public void terminate() throws InterruptedException {
+	protected void terminate() throws InterruptedException {
 
 		try {
 			driver.quit();
@@ -173,7 +173,7 @@ public class BaseTest {
 	}
 
 	@AfterSuite(alwaysRun = true)
-	public void ObjectSupressor() throws IOException {
+	protected void ObjectSupressor() throws IOException {
 		buffer.close();
 	}
 

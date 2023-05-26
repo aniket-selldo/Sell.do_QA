@@ -36,17 +36,20 @@ public class SendingEmailWithTemplateTest extends BaseTest {
 
 		extentTest.get().log(Status.INFO, "Selecting Email template from dropdown.......");
 		emailPage.selectTemplate("Aniket Templete All Variable");
+		emailPage.enterSubject("Subject By Automation");
 
 		extentTest.get().log(Status.INFO, "Clicking on Send Email Button.......");
 		emailPage.clickOnSendEmailButton();
 		Assert.assertEquals(getSuccessMSG(), "Email sent successfully", "email not sended succesfully");
 
+
+		SalesPresalesDashboardPage salesPresalesDashboardPage = new SalesPresalesDashboardPage(driver);
+		salesPresalesDashboardPage.pageRefresh();
+		
 		extentTest.get().log(Status.INFO, "Clicking on Email link under activities section.......");
 		leadProfilePage.clickEmail_d();
 
 
-		SalesPresalesDashboardPage salesPresalesDashboardPage = new SalesPresalesDashboardPage(driver);
-		salesPresalesDashboardPage.pageRefresh();
 
 		extentTest.get().log(Status.INFO, "Fetching the text appeared after sending email....");
 		String text =leadProfilePage.getEmailStatus();

@@ -7,7 +7,8 @@
 		</listeners>
 <test name="Test">
     <classes>
-      <class name="com.selldo.UserManagment.UserManagment"/>
+      <class name="leadActivities.ChangingSiteVisitStatusTest"/>
     </classes>
   </test> <!-- Test -->
-</suite> <!-- Suite -->
+</suite> <!-- Suite --><!-- elements.stream().filter(e -> e.getText().equalsIgnoreCase("24")).findAny().get().click();
+-->

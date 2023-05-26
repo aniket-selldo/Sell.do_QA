@@ -82,7 +82,7 @@ public class AdminDashboardPage  extends ReusableUtils {
 	private WebElement clientName;
 	@FindBy(how = How.XPATH, using = "//div[text()='new enquries ']")
 	private WebElement newEnquiry;
-	@FindBy(how = How.CSS, using = "a[class*='td-l']") // tbody[@class='crm-leads']//a[contains(@class,'td-l')]
+	@FindBy(how = How.CSS, using = "[class='td-lead_id goto_details']") // tbody[@class='crm-leads']//a[contains(@class,'td-l')]
 	private List<WebElement> getAnyLeadID;
 	// ----------------- Select Stratgy----------------------
 	@FindBy(how = How.CSS, using = "#main-menu-settings")

@@ -21,7 +21,7 @@ public class EmailPage extends ReusableUtils {
 
 	}
 
-	@FindBy(how = How.XPATH, using = "//label[text()='Subject']/following::input[1]")
+	@FindBy(how = How.CSS, using = "[placeholder='Subject']")
 	private WebElement subjectInputField;
 	@FindBy(how = How.XPATH, using = "//div[@class='note-editable card-block']")
 	private WebElement textBody;
@@ -49,11 +49,13 @@ public class EmailPage extends ReusableUtils {
 	private WebElement selectQuote;
 
 	public void enterSubject(String subject) {
-		subjectInputField.sendKeys(subject);
+		jsClick(subjectInputField);
+		//waitUntilVisiblity(subjectInputField).sendKeys(subject);
+		jsSendKey(subjectInputField,subject);
 	}
 
 	public void entertextInBody(String body) {
-		textBody.sendKeys(body);
+		waitUntilVisiblity(textBody).sendKeys(body);
 	}
 
 	public void clickOnSendEmailButton() {
@@ -63,12 +65,12 @@ public class EmailPage extends ReusableUtils {
 
 	/*
 	 * public void selectTemplate() throws Exception { Thread.sleep(2000);
-	 * templateDropdown.click(); template_dd.click(); }
+	 * templateDropdown).click(); template_dd).click(); }
 	 */
 
 	public void selectTemplate(String templateName) {
 
-		templateDropdown.click();
+		waitUntilClickable(templateDropdown).click();
 		List<WebElement> list = template_dd;
 
 		for (WebElement ele : list) {
@@ -82,7 +84,7 @@ public class EmailPage extends ReusableUtils {
 
 				// if yes then click on link
 
-				ele.click();
+				waitUntilClickable(ele).click();
 
 				System.out.println("Clicked on Template");
 
@@ -97,32 +99,32 @@ public class EmailPage extends ReusableUtils {
 	public void enterCCEmail(String cc) throws Exception {
 
 		jsClick(addCCLink);
-		CCInputField.sendKeys(cc);
+		waitUntilVisiblity(CCInputField).sendKeys(cc);
 		Thread.sleep(1000);
-		CCInputField.sendKeys(Keys.RETURN);
+		waitUntilVisiblity(CCInputField).sendKeys(Keys.RETURN);
 	}
 
 	public void enterBCCEmail(String bcc) throws Exception {
 
 		jsClick(addBCCLink);
-		BCCInputField.sendKeys(bcc);
+		waitUntilVisiblity(BCCInputField).sendKeys(bcc);
 		Thread.sleep(1000);
-		BCCInputField.sendKeys(Keys.RETURN);
+		waitUntilVisiblity(BCCInputField).sendKeys(Keys.RETURN);
 	}
 
 	public void selectBrochureOption() throws Exception {
 
-		generalEmailLink.click();
-		// selectBrochure.click();
-		selectBrochure.click();
+		waitUntilClickable(generalEmailLink).click();
+		// selectBrochure).click();
+		waitUntilClickable(selectBrochure).click();
 
 	}
 
 	public void selectPriceQuoteOption() throws Exception {
 
-		generalEmailLink.click();
-		// composeEmailLink.click();
-		selectQuote.click();
+		waitUntilClickable(generalEmailLink).click();
+		// composeEmailLink).click();
+		waitUntilClickable(selectQuote).click();
 
 	}
 

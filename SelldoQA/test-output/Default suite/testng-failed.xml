@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="otherLeadActivitiesPack.MergingTwoLeadsFromDiffStagesTest">
+      <class name="leadActivities.SendingEmailWithTemplateTest">
         <methods>
+          <include name="sendingEmailWithTemplateTest"/>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
-          <include name="mergingTwoLeadsFromDiffStagesTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- otherLeadActivitiesPack.MergingTwoLeadsFromDiffStagesTest -->
+      </class> <!-- leadActivities.SendingEmailWithTemplateTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

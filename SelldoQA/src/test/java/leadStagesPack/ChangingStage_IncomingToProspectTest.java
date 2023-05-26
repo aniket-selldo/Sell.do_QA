@@ -32,7 +32,7 @@ public class ChangingStage_IncomingToProspectTest extends BaseTest {
 		extentTest.get().log(Status.INFO, "Opening Lead Details page of a lead under Incomimg stage......");
 		//salesPresalesDashboard.openLeadDetails();
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-		String leadId = adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6', '7')), "All Leads");
+		String leadId = adminDashboardPage.searchLead(Integer.parseInt(R('0','1', '2')), "Incoming");
 		extentTest.get().log(Status.INFO, "Getting Lead Id whose stage is to be changed.......");
 		String leadIdObj = driver.findElement(By.cssSelector("span[name='lead_id']")).getText().replaceAll("\\s+", "");
 		System.out.println(leadIdObj);

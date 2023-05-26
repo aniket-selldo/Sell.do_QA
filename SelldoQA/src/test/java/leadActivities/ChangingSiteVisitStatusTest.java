@@ -36,6 +36,7 @@ public class ChangingSiteVisitStatusTest extends BaseTest {
 		//Thread.sleep(5000);
 
 		if (!driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty()) {
+			
 			siteVisitPage.clickOnIgnoreAndSchedule();
 		}
 		String a = "Site visit for Visit scheduled successfully.";
