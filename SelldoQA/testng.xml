@@ -7,7 +7,7 @@
 		</listeners>
 <test name="Test">
     <classes>
-      <class name="leadActivities.SendSmsTest"/>
+      <class name="leadActivities.LogOfflineCall_outboundAnsweredTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite --><!-- elements.stream().filter(e -> e.getText().equalsIgnoreCase("24")).findAny().get().click();

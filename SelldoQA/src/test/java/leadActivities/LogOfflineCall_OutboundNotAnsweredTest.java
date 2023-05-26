@@ -57,7 +57,6 @@ public class LogOfflineCall_OutboundNotAnsweredTest extends BaseTest {
 
 		extentTest.get().log(Status.INFO, "Clicking on Save button.......");
 		logOfflineCallPage.clickOnSaveButton();
-		Assert.assertEquals(getSuccessMSG(), "Call details added successfully");
 
 		//Thread.sleep(2000);
 

@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="leadActivities.SendingEmailWithTemplateTest">
+      <class name="CollectionTEst">
         <methods>
-          <include name="sendingEmailWithTemplateTest"/>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
+          <include name="clickMultipe"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- leadActivities.SendingEmailWithTemplateTest -->
+      </class> <!-- CollectionTEst -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

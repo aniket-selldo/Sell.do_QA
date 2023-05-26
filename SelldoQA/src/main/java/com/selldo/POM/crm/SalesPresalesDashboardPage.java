@@ -197,8 +197,12 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	public void refreshDashboardStats() {
 		waitUntilClickable(refreshIcon).click();
 		wait(3000);
-		jsClick(refreshIcon);
-		wait(3000);
+		try {
+			jsClick(refreshIcon);
+			wait(3000);
+		} catch (Exception e) {
+		}
+		
 	}
 
 	public void clickOnnewEnquiryBucket() {

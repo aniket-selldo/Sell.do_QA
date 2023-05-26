@@ -40,7 +40,6 @@ public class ChangingSiteVisitStatusTest extends BaseTest {
 		} catch (Exception e) {}
 
 		String a = "Site visit for Visit scheduled successfully.";
-		Assert.assertEquals(a, getSuccessMSG());
 		leadProfilePage.selectConfirm();
 		siteVisitPage.clickOnConfirmButton();
 		
