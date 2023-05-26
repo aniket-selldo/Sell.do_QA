@@ -169,14 +169,16 @@ public class AdminDashboardPage  extends ReusableUtils {
 				driver.findElement(By.xpath("//*[contains(@class,'select2-container form-control select2 cl')]")))
 				.click();
 		waitUntilVisiblity(driver.findElement(By.xpath(".//div[@id='select2-drop']//input"))).sendKeys(leadStage);// Incoming
-		waitUntilVisiblity(driver.findElement(By.xpath("//li[contains(@class,'select2-re')]"))).click();
+		//waitUntilVisiblity(driver.findElement(By.xpath("//li[contains(@class,'select2-re')]"))).click();
+		waitUntilVisiblity(driver.findElement(By.xpath(".//div[@id='select2-drop']//input"))).sendKeys(Keys.ENTER);// Incoming
+
 		try {
+			
 			new LeadProfilePage(driver).clearFilter();
 
 		} catch (Exception e) {
 		}
-		waitUntilVisibilityOfElements(getAnyLeadID);
-		wait(3000);
+		wait(5000);
 		String leadId = waitUntilVisiblity(getAnyLeadID.get(lead)).getText();
 		System.out.println("Selected Lead id >> " + leadId);
 		waitUntilClickable(searchField).click();

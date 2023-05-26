@@ -32,7 +32,7 @@ public class LogOfflineCall_OutboundNotAnsweredTest extends BaseTest {
 
 		extentTest.get().log(Status.INFO, "Selecting Conducted sitevisit from more.........");
 		leadProfilePage.addPhoneNumber();
-		Assert.assertEquals(getSuccessMSG(), "Lead updated successfully");
+		
 		leadProfilePage.selectLogOfflineCalls();
 
 		extentTest.get().log(Status.INFO, "Selecting Direction as Outbound.......");

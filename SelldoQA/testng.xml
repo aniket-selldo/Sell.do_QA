@@ -7,7 +7,7 @@
 		</listeners>
 <test name="Test">
     <classes>
-      <class name="leadActivities.SendingEmailWithTemplateTest"/>
+      <class name="leadActivities.SendSmsTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite --><!-- elements.stream().filter(e -> e.getText().equalsIgnoreCase("24")).findAny().get().click();

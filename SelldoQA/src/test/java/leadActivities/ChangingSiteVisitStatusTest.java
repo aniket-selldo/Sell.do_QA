@@ -33,18 +33,19 @@ public class ChangingSiteVisitStatusTest extends BaseTest {
 		siteVisitPage.selectTentative();
 
 		siteVisitPage.clickOnScheduleSiteVisitButton();
-		//Thread.sleep(5000);
-
-		if (!driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty()) {
-			
+		// Thread.sleep(5000);
+		try {
+			driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty();
 			siteVisitPage.clickOnIgnoreAndSchedule();
-		}
+		} catch (Exception e) {}
+
 		String a = "Site visit for Visit scheduled successfully.";
 		Assert.assertEquals(a, getSuccessMSG());
 		leadProfilePage.selectConfirm();
 		siteVisitPage.clickOnConfirmButton();
-
 		
+		String b ="Site visit for Visit confirmed successfully.";
+		Assert.assertEquals(b, getSuccessMSG());
 	}
 
 }

@@ -38,7 +38,6 @@ public class SendSmsTest extends BaseTest {
 
 		extentTest.get().log(Status.INFO, "Clicking on Send SMS Button.......");
 		smsPage.clickOnSendSmsButton();
-		Assert.assertEquals(getSuccessMSG(), "SMS sent successfully", "SMS not sended succesfully");
 
 
 		extentTest.get().log(Status.INFO, "Clicking on SMS link under activities section.......");

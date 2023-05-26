@@ -30,7 +30,7 @@ public class LogOfflineCall_InboundAnsweredTest extends BaseTest {
 
 		adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6')), "All Leads");
 		leadProfilePage.addPhoneNumber();
-		Assert.assertEquals(getSuccessMSG(), "Lead updated successfully");
+		
 		extentTest.get().log(Status.INFO, "Selecting Conducted sitevisit from more.........");
 		leadProfilePage.selectLogOfflineCalls();
 

@@ -677,7 +677,6 @@ public class LeadProfilePage extends ReusableUtils {
 	public void selectLogOfflineCalls() {
 		waitUntilClickable(more).click();
 		waitUntilClickable(logOflineCall).click();
-
 	}
 
 	public void addPhoneNumber() {

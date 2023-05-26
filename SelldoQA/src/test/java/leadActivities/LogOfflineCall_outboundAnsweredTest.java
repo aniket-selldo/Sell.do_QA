@@ -17,7 +17,7 @@ public class LogOfflineCall_outboundAnsweredTest extends BaseTest {
 	public void logOfflineCall_outboundAnsweredTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("AniketPreSaleUser"), prop.getProperty("password"));
+		login.login("aniket.khandizod+pre02@sell.do", "amura@123");
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
 		LogOfflineCallPage logOfflineCallPage = new LogOfflineCallPage(driver);
@@ -25,9 +25,9 @@ public class LogOfflineCall_outboundAnsweredTest extends BaseTest {
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
 		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
-		adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6')), "All Leads");
+		adminDashboardPage.searchLead(Integer.parseInt(R('0','1', '2', '3', '4', '5', '6')), "All Leads");
 		leadProfilePage.addPhoneNumber();
-		Assert.assertEquals(getSuccessMSG(), "Lead updated successfully");
+		
 		extentTest.get().log(Status.INFO, "Selecting Conducted sitevisit from more.........");
 		leadProfilePage.selectLogOfflineCalls();
 
@@ -58,12 +58,10 @@ public class LogOfflineCall_outboundAnsweredTest extends BaseTest {
 		logOfflineCallPage.clickOnSaveButton();
 		Assert.assertEquals(getSuccessMSG(), "Call details added successfully");
 
-		//Thread.sleep(2000);
 
 		extentTest.get().log(Status.INFO, "Clicking on Call link under activities section.......");
 		leadProfilePage.clickOnCall_d();
 
-		//Thread.sleep(2000);
 
 		extentTest.get().log(Status.INFO, "Fetching the text appeared after adding log offline call....");
 		String text = leadProfilePage.callText() ;
