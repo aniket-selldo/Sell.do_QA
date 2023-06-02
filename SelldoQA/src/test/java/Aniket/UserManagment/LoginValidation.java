@@ -1,20 +1,12 @@
 package Aniket.UserManagment;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
 import java.io.IOException;
 
-import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.selldo.POM.login.LoginPage;
+import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 import com.selldo.Utility.XLUtils;
 

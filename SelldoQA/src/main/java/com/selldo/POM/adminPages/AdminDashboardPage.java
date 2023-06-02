@@ -20,7 +20,7 @@ import com.selldo.Utility.ReusableUtils;
 import Enums.AutoForwarding;
 import Enums.Strategy;
 
-public class AdminDashboardPage  extends ReusableUtils {
+public class AdminDashboardPage extends ReusableUtils {
 
 	public WebDriver driver;
 
@@ -52,7 +52,7 @@ public class AdminDashboardPage  extends ReusableUtils {
 	private WebElement settingIcon;
 	@FindBy(how = How.CSS, using = "i.ion-android-unlock")
 	private WebElement unlockIcon;
-	@FindBy(how = How.XPATH, using = "//h5[text()='Login as']/following::span[1]")
+	@FindBy(how = How.CSS, using = "#s2id_id_signin")
 	private WebElement loginAsField;
 	@FindBy(how = How.CSS, using = "#select2-drop div input")
 	private WebElement enterUserName;
@@ -99,6 +99,10 @@ public class AdminDashboardPage  extends ReusableUtils {
 	private List<WebElement> SelectStratgyOnOff;
 	@FindBy(how = How.XPATH, using = "//input[@class='btn btn-primary save']")
 	private WebElement ClickOnSave;
+	@FindBy(how = How.CSS, using = "button[class='btn btn-light btn-icon toggle-filters']")
+	private WebElement clickOnFilter;
+	@FindBy(how = How.XPATH, using = "//a[text()='Clear All']")
+	private WebElement clickOnClearAll;
 	// ################## Autoforwading On Off ###################
 
 	public void AutoForwading(String admin, Strategy STRATEGY_FOR_LEAD_PUSH_TO_SALES, AutoForwarding flag) {
@@ -108,7 +112,7 @@ public class AdminDashboardPage  extends ReusableUtils {
 		login.login("ketan@amuratech.com", "amura@123");
 
 		try {
-			waitUntilClickable(clickOnSetting,1).isDisplayed();
+			waitUntilClickable(clickOnSetting, 1).isDisplayed();
 			System.out.println("SM Alredy loggedIn");
 			adminDashboardPage.loggingOut();
 			login.login("ketan@amuratech.com", "amura@123");
@@ -145,6 +149,11 @@ public class AdminDashboardPage  extends ReusableUtils {
 		adminDashboardPage.loggingOut();
 	}
 
+	public void clearFilter() {
+		waitUntilClickable(clickOnFilter).click();
+		waitUntilClickable(clickOnClearAll).click();
+	}
+
 	// To Search Lead using random choose
 	public void searchLead(int lead) throws InterruptedException {
 		waitUntilClickable(newEnquiry).click();
@@ -169,11 +178,10 @@ public class AdminDashboardPage  extends ReusableUtils {
 				driver.findElement(By.xpath("//*[contains(@class,'select2-container form-control select2 cl')]")))
 				.click();
 		waitUntilVisiblity(driver.findElement(By.xpath(".//div[@id='select2-drop']//input"))).sendKeys(leadStage);// Incoming
-		//waitUntilVisiblity(driver.findElement(By.xpath("//li[contains(@class,'select2-re')]"))).click();
 		waitUntilVisiblity(driver.findElement(By.xpath(".//div[@id='select2-drop']//input"))).sendKeys(Keys.ENTER);// Incoming
 
 		try {
-			
+
 			new LeadProfilePage(driver).clearFilter();
 
 		} catch (Exception e) {

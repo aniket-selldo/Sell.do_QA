@@ -38,21 +38,21 @@ public class ReassignLeadPage extends ReusableUtils {
 
 	// Selecting Team of user to which lead is to be reassigned
 	public void selectTeam(String teamName) {
-		TeamDropdown.click();// Clicking on Team dropdown
-		TeamTextField.sendKeys(teamName);// Typing team name
-		TeamFromDropdown.click();
+		waitUntilClickable(TeamDropdown).click();// Clicking on Team dropdown
+		waitUntilVisiblity(TeamTextField).sendKeys(teamName);// Typing team name
+		waitUntilClickable(TeamFromDropdown).click();
 	}
 
 	// Selecting User to which lead is to be reassigned
 	public void selectUser(String userName) {
-		UserDropdown.click();// Clicking on User dropdown
-		UserTextField.sendKeys(userName);// Typing User name
-		UserFromDropdown.click();
+		waitUntilClickable(UserDropdown).click();// Clicking on User dropdown
+		waitUntilVisiblity(UserTextField).sendKeys(userName);// Typing User name
+		waitUntilClickable(UserFromDropdown).click();
 	}
 
 	// Clicking on Reassign button
 	public void clickOnReassignButton() {
-		ReassignButton.click();
+		waitUntilClickable(ReassignButton).click();
 	}
 
 }

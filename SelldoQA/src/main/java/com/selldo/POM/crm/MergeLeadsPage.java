@@ -32,25 +32,25 @@ public class MergeLeadsPage extends ReusableUtils {
 	private WebElement MergeLeadsButton;
 
 	public void searchingLeadToBeMerged(String lead_m) throws InterruptedException {
-		SearchField.sendKeys(lead_m);
-		Thread.sleep(2000);
-		SearchLeadsButton.click();
+		waitUntilVisiblity(SearchField).sendKeys(lead_m);
+		wait(500);
+		waitUntilClickable(SearchLeadsButton).click();
 	}
 
 	public void clickOnMergeThisButton() {
-		MergeThisLink.click();
+		waitUntilClickable(MergeThisLink).click();
 	}
 
 	public void enteringSomeNotes(String note) {
-		AddNote.sendKeys(note);
+		waitUntilVisiblity(AddNote).sendKeys(note);
 	}
 
 	public void clickOnMergeLeadsButton() {
-		MergeLeadsButton.click();
+		waitUntilClickable(MergeLeadsButton).click();
 	}
 
 	public void clickOnCloseButton() {
-		CloseButton.click();
+		waitUntilClickable(CloseButton).click();
 	}
 
 }

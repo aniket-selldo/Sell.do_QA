@@ -222,8 +222,7 @@ public class ReusableUtils {
 		wait.until(ExpectedConditions.elementToBeClickable(we));
 		Square(we);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		String name = we.getText().trim();
-		System.out.println(name);
+		System.out.println("jsClicked Element -> "+we.getText().trim());
 		executor.executeScript("arguments[0].click();", we);
 	}
 

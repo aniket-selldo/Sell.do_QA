@@ -7,7 +7,7 @@
 		</listeners>
 <test name="Test">
     <classes>
-      <class name="leadActivities.LogOfflineCall_outboundAnsweredTest"/>
+      <class name="otherLeadActivitiesPack.SearchingLeadByAdminTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite --><!-- elements.stream().filter(e -> e.getText().equalsIgnoreCase("24")).findAny().get().click();

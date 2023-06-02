@@ -90,31 +90,29 @@ public class BaseTest {
 		String browser = prop.getProperty("browser").trim();
 		// -------------------WebDriver-------------------//
 		if (browser.equalsIgnoreCase("chrome")) {
-			Map<String, String> mobileEmulation = new HashMap<>();
-			// mobileEmulation.put("deviceName", "Galaxy S5");
-			// mobileEmulation.put("deviceOrientation", "landscape");
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("use-fake-device-for-media-stream");
-			options.addArguments("use-fake-ui-for-media-stream");
-			options.setExperimentalOption("mobileEmulation", mobileEmulation);
-			Map<String, Object> prefs = new HashMap<String, Object>();
-			Map<String, Object> profile = new HashMap<String, Object>();
-			Map<String, Object> contentSettings = new HashMap<String, Object>();
-
-			// SET CHROME OPTIONS
-			// 0 - Default, 1 - Allow, 2 - Block
-			contentSettings.put("notifications", 1);
-			profile.put("managed_default_content_settings", contentSettings);
-			prefs.put("profile", profile);
-			options.setExperimentalOption("prefs", prefs);
-
+			//================To disable Automation name==========
+			options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+			
+			//================To disble notification popup========
+			options.addArguments("--disable-notifications");
+			
+			//================disable save password=======
+			options.addArguments("--start-maximized");
+			options.addArguments("--disable-web-security");
+			options.addArguments("--no-proxy-server");
+			Map<String, Object> p = new HashMap<String, Object>();
+			p.put("credentials_enable_service", false);
+			p.put("profile.password_manager_enabled", false);
+			options.setExperimentalOption("prefs", p);
+		
 			// ===============WebDriver=================//
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(options);
 			DevTools devTool = driver.getDevTools();
 			devTool.createSession();
 			devTool.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-			devTool.send(Network.emulateNetworkConditions(false, 0, 0, 0, Optional.of(ConnectionType.CELLULAR2G)));
+			devTool.send(Network.emulateNetworkConditions(false, 0, 0, 0, Optional.of(ConnectionType.CELLULAR4G)));
 
 			double latitude = 35.8617;
 			double longitude = 104.1954;
@@ -141,7 +139,6 @@ public class BaseTest {
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
 		driver.get(prop.getProperty("url"));
-		// executor.executeScript("document.body.style.zoom = '0.80'");
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_CONTROL);
 		robot.keyPress(KeyEvent.VK_MINUS);
@@ -151,14 +148,10 @@ public class BaseTest {
 		robot.keyPress(KeyEvent.VK_MINUS);
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_MINUS);
+		robot.keyPress(KeyEvent.VK_F11);
+		robot.keyRelease(KeyEvent.VK_F11);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-//		loginPage A = new loginPage(driver);
-//		client = A.login();
-
-//		LoginPage login = new LoginPage(driver);
-//		login.login(prop.getProperty("name") ,
-//				prop.getProperty("password"));//prop.getProperty("user_email_addConductedSiteVisitTest")
 
 	}
 
@@ -187,6 +180,9 @@ public class BaseTest {
 			e.printStackTrace();
 		}
 		return System.getProperty("user.dir") + "//reports//" + fileName + ".png";
+	}
+	public void zoomAndFullScreen() {
+		
 	}
 
 	protected String random(String method, String choise, int size) {

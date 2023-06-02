@@ -44,7 +44,7 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement meeting;
 	@FindBy(how = How.ID, using = "activity_tabs_more_lead_profile")
 	private WebElement more;// change
-	@FindBy(how = How.XPATH, using = "//a[@class='nav-link lead-reassign']")
+	@FindBy(how = How.CSS, using = "#lead_reassign_lead_profile")
 	private WebElement reassign;
 	@FindBy(how = How.XPATH, using = "//a[@class='nav-link lead-schedule-followup']")
 	private WebElement followup;
@@ -243,9 +243,31 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement clickOnViewNotesOfSiteVisit;
 	@FindBy(how = How.XPATH, using = "//div[@class='small']//div[@class='collapse show']")
 	private WebElement getNoteTextOfSiteVisit;
-	
+	@FindBy(how = How.CSS, using = "div.dropdown.stage.float-left.mr-1 button span[data-title='label']")
+	private WebElement getLeadStage;
+	@FindBy(how = How.NAME, using = "lead_id")
+	private WebElement getLeadId;
+	public String getLeadStage() {
+		for (int i = 0; i < 50; i++) {
+			if(waitUntilVisiblity(getLeadStage).getText().trim().equalsIgnoreCase("Prospect")) {
+				wait(1000);
+				refresh();
+			}
+			else {
+				break;
+			}
+		}
+		
+		return waitUntilVisiblity(getLeadStage).getText().trim();
+	}
+	public String getLeadID() {
+		return waitUntilVisiblity(getLeadId).getText().trim();
+	}
 	public String getEmailStatus() {
 		return waitUntilVisiblity(emailStatusInFeed).getText().trim();
+	}
+	public String noAccessMessageText() {
+		return waitUntilVisiblity(noAccessMessageText).getText().trim();
 	}
 	
 
@@ -560,7 +582,7 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public String getLeadId() {
-		return waitUntilVisiblity(leadid).getText();
+		return waitUntilVisiblity(leadid).getText().trim();
 	}
 
 	public void clickOnSendQuickQuote() {

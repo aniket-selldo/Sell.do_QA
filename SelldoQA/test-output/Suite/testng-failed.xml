@@ -7,15 +7,15 @@
   </listeners>
   <test thread-count="2" parallel="methods" name="Test(failed)">
     <classes>
-      <class name="leadActivities.LogOfflineCall_OutboundNotAnsweredTest">
+      <class name="otherLeadActivitiesPack.SearchingLeadByAdminTest">
         <methods>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
-          <include name="logOfflineCall_OutboundNotAnsweredTest"/>
           <include name="ObjectSupressor"/>
+          <include name="searchingLeadByAdminTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- leadActivities.LogOfflineCall_OutboundNotAnsweredTest -->
+      </class> <!-- otherLeadActivitiesPack.SearchingLeadByAdminTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

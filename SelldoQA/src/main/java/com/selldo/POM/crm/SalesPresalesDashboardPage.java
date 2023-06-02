@@ -49,7 +49,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	@FindBy(how = How.XPATH, using = "//a[contains(@class,'tab')]")
 	private List<WebElement> actionBar;
 	@FindBy(how = How.XPATH, using = "//button[text()='Preview']")
-	private WebElement preview;
+	private  List<WebElement> preview;
 	@FindBy(how = How.XPATH, using = "//button[text()='View Profile']")
 	private WebElement viewProfileButton;
 	@FindBy(how = How.CSS, using = "div.dropdown-menu.dropdown-menu-right.show button.dropdown-item.goto_details")
@@ -177,7 +177,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 
 	public void openLeadProfile(int any) {
 		waitUntilClickable(actionBar.get(any)).click();
-		waitUntilClickable(preview).click();
+		waitUntilClickable(preview.get(any)).click();
 		waitUntilClickable(viewProfileButton).click();
 	}
 
