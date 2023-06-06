@@ -8,6 +8,7 @@ import com.github.javafaker.Faker;
 public class GetTestData {
 
 	Faker faker = new Faker(new Locale("en", "IN"));
+	
 	public String firstName = faker.firstName();
 	public String lastName = faker.lastName();
 	public String location = faker.country();
@@ -28,6 +29,6 @@ public class GetTestData {
 	Random r = new Random();
 	public long phoneNumber = (long) (Math.random() * 100000 + 9833000000L);
 	public long phoneNum = (long) (Math.random() * 100000 + 7833000000L);
-	public String email = "email" + r.nextInt() + "@gmail.com";
-	public String clientEmail = "email" + r.nextInt() + "@gm.com";
+	public String email = "email" + r.nextInt() + "@sell.do";
+	public String clientEmail = "email" + r.nextInt() + "@sell.do";
 }

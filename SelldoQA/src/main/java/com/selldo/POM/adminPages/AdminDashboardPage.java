@@ -103,6 +103,13 @@ public class AdminDashboardPage extends ReusableUtils {
 	private WebElement clickOnFilter;
 	@FindBy(how = How.XPATH, using = "//a[text()='Clear All']")
 	private WebElement clickOnClearAll;
+
+	@FindBy(how = How.XPATH, using = "//span[text()='Search...']")
+	private WebElement clickOnGlobalSearch;
+	@FindBy(how = How.CSS, using = "#select2-drop input")
+	private WebElement enterInGlobalSearch;
+	@FindBy(how = How.CSS, using = "#select2-drop li:nth-child(1)")
+	private WebElement clickOnSearchSuggation;
 	// ################## Autoforwading On Off ###################
 
 	public void AutoForwading(String admin, Strategy STRATEGY_FOR_LEAD_PUSH_TO_SALES, AutoForwarding flag) {
@@ -213,6 +220,12 @@ public class AdminDashboardPage extends ReusableUtils {
 		waitUntilClickable(searchField).click();
 		waitUntilVisiblity(searchTextBox).sendKeys(leadId);
 		waitUntilVisiblity(driver.findElement(By.xpath("//div[@class='select2-result-label']"))).click();
+	}
+
+	public void serchLeadGlobally(String leadId) {
+		waitUntilClickable(clickOnGlobalSearch).click();
+		waitUntilVisiblity(enterInGlobalSearch).sendKeys(leadId);
+		waitUntilClickable(clickOnSearchSuggation).click();
 	}
 
 	public void clickOnDocument() {

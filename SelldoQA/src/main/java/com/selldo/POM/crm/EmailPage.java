@@ -39,19 +39,27 @@ public class EmailPage extends ReusableUtils {
 	private WebElement CCInputField;
 	@FindBy(how = How.XPATH, using = "//label[text()='BCC']/following::input[1]")
 	private WebElement BCCInputField;
-	@FindBy(how = How.CSS, using = "select[name=\"email_template_type\"]")
+	@FindBy(how = How.XPATH, using = "//span[text()='General email']")
 	private WebElement generalEmailLink;
-	@FindBy(how = How.CSS, using = "//a[text()=\"Compose Email\"]\"")
+	@FindBy(how = How.XPATH, using = "//a[text()='Compose Email']")
 	private WebElement composeEmailLink;
-	@FindBy(how = How.CSS, using = "select[name=\"email_template_type\"] option:nth-child(2)")
-	private WebElement selectBrochure;
-	@FindBy(how = How.CSS, using = "select[name=\"email_template_type\"] option:nth-child(3)")
+	@FindBy(how = How.CSS, using = "#select2-drop li")
+	private List<WebElement> SelectGeneralEmailDropdown;
+	@FindBy(how = How.CSS, using = "select[name='email_template_type'] option:nth-child(3)")
 	private WebElement selectQuote;
+	@FindBy(how = How.XPATH, using = "//span[text()='Select product']")
+	private WebElement clickOnSelectProduct;
+	@FindBy(how = How.CSS, using = "#select2-drop li:nth-of-type(1)")
+	private WebElement clickOnFirstProject;
+	@FindBy(how = How.XPATH, using = "//span[text()='Select Email Template']")
+	private WebElement clickOnTamplete;
+	@FindBy(how = How.CSS, using = "#select2-drop li:nth-of-type(1)")
+	private WebElement clickOnFirstTamplete;
 
 	public void enterSubject(String subject) {
 		jsClick(subjectInputField);
-		//waitUntilVisiblity(subjectInputField).sendKeys(subject);
-		jsSendKey(subjectInputField,subject);
+		// waitUntilVisiblity(subjectInputField).sendKeys(subject);
+		jsSendKey(subjectInputField, subject);
 	}
 
 	public void entertextInBody(String body) {
@@ -103,7 +111,15 @@ public class EmailPage extends ReusableUtils {
 		Thread.sleep(1000);
 		waitUntilVisiblity(CCInputField).sendKeys(Keys.RETURN);
 	}
-
+	
+	public void selectAnyProduct() {
+		waitUntilClickable(clickOnSelectProduct).click();
+		waitUntilClickable(clickOnFirstProject).click();
+	}
+	public void selectAnyTamplete() {
+		waitUntilClickable(clickOnTamplete).click();
+		waitUntilClickable(clickOnFirstTamplete).click();
+	}
 	public void enterBCCEmail(String bcc) throws Exception {
 
 		jsClick(addBCCLink);
@@ -113,18 +129,25 @@ public class EmailPage extends ReusableUtils {
 	}
 
 	public void selectBrochureOption() throws Exception {
-
 		waitUntilClickable(generalEmailLink).click();
-		// selectBrochure).click();
-		waitUntilClickable(selectBrochure).click();
+		for (int i = 0; i <SelectGeneralEmailDropdown.size(); i++) {
+			if(SelectGeneralEmailDropdown.get(i).getText().trim().equalsIgnoreCase("Brochure")) {
+				waitUntilClickable(SelectGeneralEmailDropdown.get(i)).click();
+				break;
+			}
+		}
 
 	}
 
 	public void selectPriceQuoteOption() throws Exception {
 
 		waitUntilClickable(generalEmailLink).click();
-		// composeEmailLink).click();
-		waitUntilClickable(selectQuote).click();
+		for (int i = 0; i <SelectGeneralEmailDropdown.size(); i++) {
+			if(SelectGeneralEmailDropdown.get(i).getText().trim().equalsIgnoreCase("Price quote")) {
+				waitUntilClickable(SelectGeneralEmailDropdown.get(i)).click();
+				break;
+			}
+		}
 
 	}
 

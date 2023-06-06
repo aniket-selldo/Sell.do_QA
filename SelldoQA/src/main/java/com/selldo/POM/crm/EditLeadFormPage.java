@@ -26,17 +26,17 @@ public class EditLeadFormPage extends ReusableUtils {
 	private WebElement lastName;
 	@FindBy(how = How.XPATH, using = "//input[@name='primary_email_email']")
 	private WebElement primaryEmail;
-	@FindBy(how = How.XPATH, using = "//button[text()='Save'][@class='pull-right btn btn-primary save btn-sm']")
+	@FindBy(how = How.CSS, using = "div[class='block_unblock_div']")
 	private WebElement saveButton;
 
 	// ................Methods for Basic profile section.....................
 
 	public void clickOnMeetingLink() {
-		salutation.click();
+		waitUntilClickable(salutation).click();
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 }

@@ -1,95 +1,33 @@
 package otherLeadActivitiesPack;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import java.io.FileInputStream;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.commons.mail.EmailException;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import com.aventstack.extentreports.Status;
+import com.selldo.POM.adminPages.AdminDashboardPage;
+import com.selldo.POM.crm.BrochurePage;
+import com.selldo.POM.crm.EmailPage;
+import com.selldo.POM.crm.LeadProfilePage;
+import com.selldo.POM.crm.LoginPage;
+import com.selldo.Utility.BaseTest;
 
-import adminPages.AdminDashboardPage;
-import crm.selldo.BrochurePage;
-import crm.selldo.EmailPage;
-import crm.selldo.LeadProfilePage;
-import crm.selldo.LoginPage;
-import crm.selldo.SalesPresalesDashboardPage;
-import utility.SetUp;
+import API.CreateLead_POST;
 
-public class SendingBrochure_WithTemplateTest extends SetUp {
-
-	WebDriverWait wait;
-
-	final static Logger logger = Logger.getLogger(SendingBrochure_WithTemplateTest.class);
-
-	@BeforeTest
-
-	public void appLogin() throws Exception {
-
-		mysetUp();
-
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-		Properties property = new Properties();
-		FileInputStream fileInputObj = new FileInputStream(
-				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
-		property.load(fileInputObj);
-
-		LoginPage login = new LoginPage(driver);
-		logger.info("Logging in.......");
-		login.login(
-				property.getProperty("name") + "+"
-						+ property.getProperty("user_email_sendingBrochure_WithTemplateTest"),
-				property.getProperty("password"));
-
-	}
-
-	@AfterTest
-
-	public void endingTest() throws Exception {
-
-		Thread.sleep(3000);
-
-		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-
-		logger.info("Logging out of Selldo......");
-		adminDashboardPage.loggingOut();
-
-		logger.info("Closing Browser......");
-		driver.close();
-	}
+public class SendingBrochure_WithTemplateTest extends BaseTest {
 
 	@Test
 
 	public void sendingBrochure_WithTemplateTest() throws Exception {
 
-		Properties property = new Properties();
-		FileInputStream fileInputObj = new FileInputStream(
-				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
-		property.load(fileInputObj);
-
-		test = extent.createTest("sendingBrochure_WithTemplateTest");
-		setExtentTest(test);
-
+		LoginPage login = new LoginPage(driver);
+		login.login("aniket.khandizod+cc@sell.do", "amura@123");
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
-		test.log(Status.INFO, "Searching lead by Id.......");
-		adminDashboardPage.searchLead(property.getProperty("BrochureTest_lead_id"));
+		adminDashboardPage.loginAsUser("AniketPreSale00");
+
+		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
+		adminDashboardPage.serchLeadGlobally(CreateLead_POST.createLeadByAPI(APIKey, PreSalesUserID));
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
@@ -100,21 +38,21 @@ public class SendingBrochure_WithTemplateTest extends SetUp {
 
 		EmailPage emailPage = new EmailPage(driver);
 
-		test.log(Status.INFO, "Select brochure from dropdown.......");
+		extentTest.get().log(Status.INFO, "Select brochure from dropdown.......");
 		emailPage.selectBrochureOption();
+		
+		extentTest.get().log(Status.INFO, "Select Any Product......");
+		emailPage.selectAnyProduct();
+		
+		extentTest.get().log(Status.INFO, "Select Any Tamplete......");
+		emailPage.selectAnyTamplete();
 
 		BrochurePage brochurePage = new BrochurePage(driver);
 
-		test.log(Status.INFO, "Selecting Project from dropdown.......");
-		brochurePage.selectProduct(property.getProperty("project_name_SendingBrochure_WithTemplateTest"));
-
-		test.log(Status.INFO, "Selecting Template.......");
-		brochurePage.selectTemplate(property.getProperty("template_name_SendingBrochure_WithTemplateTest"));
-
-		test.log(Status.INFO, "Fetching  subject of selected template.......");
-		String subjectText = property.getProperty("template_subject_SendingBrochure_WithTemplateTest");
-
+		String subjectText = "Subject By Automation " + random("", "AN", 100);
+		brochurePage.writingSubject(subjectText);
 		Thread.sleep(2000);
+		brochurePage.writingSomeTextInBody("Body By Automation " + random("", "AN", 100));
 
 		test.log(Status.INFO, "Clicking on Send Brochure Button.......");
 		brochurePage.clickOnSendBrochureButton();
@@ -123,16 +61,14 @@ public class SendingBrochure_WithTemplateTest extends SetUp {
 
 		test.log(Status.INFO, "Clicking on Email Link under Activities section.......");
 		leadProfilePage.openEmailActivities();
-		
+
 		Thread.sleep(2000);
 
 		test.log(Status.INFO, "Verifying that Brochure is sent.......");
 
-		SoftAssert assertion = new SoftAssert();
-		AssertJUnit.assertEquals(driver.findElement(By.cssSelector(
+		Assert.assertEquals(driver.findElement(By.cssSelector(
 				"#tab-activity > div.activities_list > div:nth-child(1) > div > div.card > div > div:nth-child(1) > div.col-lg-11 > span"))
 				.getText(), subjectText, "Not matched");
-		assertion.assertAll();
 
 	}
 

@@ -7,15 +7,15 @@
   </listeners>
   <test thread-count="2" parallel="methods" name="Test(failed)">
     <classes>
-      <class name="otherLeadActivitiesPack.SearchingLeadByAdminTest">
+      <class name="otherLeadActivitiesPack.SendingQuotes_WithoutTemplateTest">
         <methods>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
+          <include name="sendingQuotes_WithoutTemplateTest"/>
           <include name="ObjectSupressor"/>
-          <include name="searchingLeadByAdminTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- otherLeadActivitiesPack.SearchingLeadByAdminTest -->
+      </class> <!-- otherLeadActivitiesPack.SendingQuotes_WithoutTemplateTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -57,7 +57,7 @@ public class ReusableUtils {
 	protected List<WebElement> invisibilityOfAllElements(List<WebElement> we) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
 		wait.until(ExpectedConditions.invisibilityOfAllElements(we));
-		//Square(we);
+		// Square(we);
 		return we;
 	}
 
@@ -70,7 +70,7 @@ public class ReusableUtils {
 	protected WebElement waitUntilClickable(WebElement we) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
 		wait.until(ExpectedConditions.elementToBeClickable(we));
-		System.out.println("Clicked Element -> "+we.getText().trim());
+		System.out.println("Clicked Element -> " + we.getText().trim());
 		Square(we);
 		return we;
 	}
@@ -200,7 +200,7 @@ public class ReusableUtils {
 	protected void scrollIntoView(WebElement we) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", we);
-		 scrollBy(-100);
+		scrollBy(-100);
 		// wait(500);
 		Square(we);
 	}
@@ -222,7 +222,7 @@ public class ReusableUtils {
 		wait.until(ExpectedConditions.elementToBeClickable(we));
 		Square(we);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		System.out.println("jsClicked Element -> "+we.getText().trim());
+		System.out.println("jsClicked Element -> " + we.getText().trim());
 		executor.executeScript("arguments[0].click();", we);
 	}
 
@@ -237,17 +237,19 @@ public class ReusableUtils {
 		js.executeScript("arguments[0].style.border='5px solid Red'", we);
 		return we;
 	}
-	protected WebElement jsSendKey(WebElement we,String txt) {
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+
+	protected WebElement jsSendKey(WebElement we, String txt) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Square(we);
-		js.executeScript("arguments[0].value='"+txt+"'", we);
+		js.executeScript("arguments[0].value='" + txt + "'", we);
 		return we;
 	}
+
 	protected String jsGetText(WebElement we) {
-		JavascriptExecutor js = (JavascriptExecutor)driver;
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Square(we);
 		return (String) js.executeScript("return arguments[0].text;", we);
-		 
+
 	}
 
 // ----------------Select ------------------
@@ -353,6 +355,7 @@ public class ReusableUtils {
 	protected String R(char... arr) {
 		return RandomStringUtils.random(1, arr);
 	}
+
 	protected String getSuccessMSG() {
 
 		WebElement ele = driver.findElement(By.xpath("//div[@class='noty_message']"));
@@ -371,8 +374,13 @@ public class ReusableUtils {
 		System.out.println("Noty Message >>> " + ele.getText());
 		try {
 			waitUntilInvisibility(ele);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		return Noty;
+	}
+
+	public String randomEmail() {
+		return "aniket.khandizod+" + random("", "AN", 10) + "@sell.do";
 	}
 
 }

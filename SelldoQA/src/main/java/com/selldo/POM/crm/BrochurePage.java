@@ -40,40 +40,43 @@ public class BrochurePage extends ReusableUtils {
 	private WebElement ChooseTemplateDropdown;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
 	private List<WebElement> ChooseTemplate_All;
+	@FindBy(how = How.XPATH, using = "//span[text()='Select product']")
+	private List<WebElement> selectProduct;
 
 	// Clicking on Add CC link
 	public void clickOnAddCC() {
-		AddCC.click();
+		waitUntilClickable(AddCC).click();
 	}
 
 	// Clicking on Add BCC link
 	public void clickOnAddBCC() {
-		AddBCC.click();
+		waitUntilClickable(AddBCC).click();
 	}
 
 	// Writing the subject for email
 	public void writingSubject(String mysubject) {
+		waitUntilVisiblity(Subject).clear();
 		Subject.sendKeys(mysubject);
 	}
 
 	// Writing some text in the body of email
 	public void writingSomeTextInBody(String contentOfMail) {
-		Body.sendKeys(contentOfMail);
+		waitUntilVisiblity(Body).sendKeys(contentOfMail);
 	}
 
 	// Clicking on Upload Attachments button
 	public void ClickOnUploadAttachmentsButton() {
-		UploadAttachments.click();
+		waitUntilClickable(UploadAttachments).click();
 	}
 
 	// Clicking on Send Brochure button
 	public void clickOnSendBrochureButton() {
-		SendBrochure.click();
+		waitUntilClickable(SendBrochure).click();
 	}
 
 	// Select Product
 	public void selectProduct(String projectName) {
-		SelectProduct.click();
+		waitUntilClickable(SelectProduct).click();
 
 		List<WebElement> list = SelectProduct_All;
 
@@ -88,7 +91,7 @@ public class BrochurePage extends ReusableUtils {
 
 				// if yes then click on link
 
-				ele.click();
+				waitUntilClickable(ele).click();
 
 				System.out.println("Clicked on Template");
 
@@ -102,7 +105,7 @@ public class BrochurePage extends ReusableUtils {
 	// Select Template
 	public void selectTemplate(String templateName) {
 
-		ChooseTemplateDropdown.click();
+		waitUntilClickable(ChooseTemplateDropdown).click();
 
 		List<WebElement> list = ChooseTemplate_All;
 
@@ -117,7 +120,7 @@ public class BrochurePage extends ReusableUtils {
 
 				// if yes then click on link
 
-				ele.click();
+				waitUntilClickable(ele).click();
 
 				System.out.println("Clicked on Template");
 

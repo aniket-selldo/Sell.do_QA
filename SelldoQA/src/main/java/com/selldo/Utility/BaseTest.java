@@ -60,6 +60,9 @@ public class BaseTest {
 	public static ExtentReports extent = ExtentReporterNG.getReportObject();
 	public static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 	public static File filee;
+	public static final String APIKey ="05982fc554c597db3bd1db3a4e6fb9b9";
+	public static final String PreSalesUserID ="642a9b11b083454f959c1b14";
+	public static final String SalesUserID ="64522253b0834520de89a2d1";
 
 	@BeforeSuite(alwaysRun = true)
 	public void ObjectInvokder() throws IOException {
@@ -148,8 +151,8 @@ public class BaseTest {
 		robot.keyPress(KeyEvent.VK_MINUS);
 		robot.keyRelease(KeyEvent.VK_CONTROL);
 		robot.keyRelease(KeyEvent.VK_MINUS);
-		robot.keyPress(KeyEvent.VK_F11);
-		robot.keyRelease(KeyEvent.VK_F11);
+//		robot.keyPress(KeyEvent.VK_F11);
+//		robot.keyRelease(KeyEvent.VK_F11);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
@@ -275,6 +278,9 @@ public class BaseTest {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(time);// yyyy/MM/dd
 		LocalDateTime now = LocalDateTime.now();
 		return dtf.format(now);
+	}
+	public String randomEmail() {
+		return "aniket.khandizod+"+random("","AN",10)+"@sell.do";
 	}
 }
 

@@ -221,6 +221,8 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement clickOnEditLeadProfile;
 	@FindBy(how = How.XPATH, using = "//input[@name='primary_phone_ph_number']")
 	private WebElement EnterNumber;
+	@FindBy(how = How.NAME, using = "primary_email_email")
+	private WebElement EnterEmail;
 	@FindBy(how = How.CSS, using = ".remove_link")
 	private List<WebElement> ClickOnTrashButton;
 	@FindBy(how = How.XPATH, using = "//button[@class='pull-right btn btn-primary save btn-sm lead_submit']")
@@ -247,6 +249,10 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement getLeadStage;
 	@FindBy(how = How.NAME, using = "lead_id")
 	private WebElement getLeadId;
+	@FindBy(how = How.NAME, using = "first_name")
+	private WebElement getLeadName;
+	
+	
 	public String getLeadStage() {
 		for (int i = 0; i < 50; i++) {
 			if(waitUntilVisiblity(getLeadStage).getText().trim().equalsIgnoreCase("Prospect")) {
@@ -262,6 +268,9 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 	public String getLeadID() {
 		return waitUntilVisiblity(getLeadId).getText().trim();
+	}
+	public String getLeadName() {
+		return waitUntilVisiblity(getLeadName).getText().trim();
 	}
 	public String getEmailStatus() {
 		return waitUntilVisiblity(emailStatusInFeed).getText().trim();
@@ -584,7 +593,9 @@ public class LeadProfilePage extends ReusableUtils {
 	public String getLeadId() {
 		return waitUntilVisiblity(leadid).getText().trim();
 	}
-
+	public String getLeadIdWithotHash() {
+		return waitUntilVisiblity(leadid).getText().trim().replaceAll("[^a-zA-Z0-9]", " ");
+	}
 	public void clickOnSendQuickQuote() {
 		waitUntilClickable(sendQuickQuote).click();
 	}
@@ -713,11 +724,21 @@ public class LeadProfilePage extends ReusableUtils {
 			jsClick(ClickOnSave);
 		} catch (Exception e) {
 		}
-		
-		
-		
 	}
+	public void addEmail() {
+		jsClick(clickOnEditLeadProfile);
+		waitUntilVisiblity(EnterEmail).clear();;
+		EnterEmail.sendKeys(randomEmail());
+		jsClick(ClickOnSave);
 
+		try {
+			for (int i = 0; i < ClickOnTrashButton.size(); i++) {
+				jsClick(ClickOnTrashButton.get(i));
+			}
+			jsClick(ClickOnSave);
+		} catch (Exception e) {
+		}
+	}
 	public String callText() {
 
 		return waitUntilVisiblity(callText).getText().trim();

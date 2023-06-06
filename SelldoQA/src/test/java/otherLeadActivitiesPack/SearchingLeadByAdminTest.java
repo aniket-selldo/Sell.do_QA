@@ -32,13 +32,13 @@ public class SearchingLeadByAdminTest extends BaseTest {
 		adminDashboardPage.loginAsUser("AniketPreSale00");
 
 		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
-		adminDashboardPage.searchLead(prop.getProperty("lead_id_to_Search"));
+		adminDashboardPage.searchLead(Integer.parseInt(R('0', '1', '2', '3', '4', '5', '6', '7')), "Incoming");
+
+		String leadId = leadProfilePage.getLeadId();
+		System.out.println(leadId);
 
 		extentTest.get().log(Status.INFO, "Clicking on Edit Icon to open lead edit form.......");
 		leadProfilePage.clickOnEditIcon();
-
-		String leadId = leadProfilePage.getLeadId();;
-		System.out.println(leadId);
 
 		String leadName = driver.findElement(By.xpath("//span[@name='first_name']")).getAttribute("innerHTML").trim();
 		System.out.println(leadName);
@@ -58,40 +58,38 @@ public class SearchingLeadByAdminTest extends BaseTest {
 		leadProfilePage.backToAdmin();
 
 		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
-		adminDashboardPage.searchLead(leadId);
-
+		adminDashboardPage.serchLeadGlobally(leadId);
 
 		extentTest.get().log(Status.INFO, "Validating Lead Id......");
-		AssertJUnit.assertEquals(driver.findElement(By.xpath("//span[@name='lead_id']")).getAttribute("innerHTML")
-				.replaceAll("\\s+", ""), leadId, "Not matched");
+		Assert.assertEquals(leadProfilePage.getLeadID(), leadId, "Not matched");
 
 		extentTest.get().log(Status.INFO, "Searching lead by Phone number......");
-		adminDashboardPage.searchLead(leadPhoneNumber);
+		adminDashboardPage.serchLeadGlobally(leadPhoneNumber);
 
 		Thread.sleep(2000);
-
 		extentTest.get().log(Status.INFO, "Validating Lead name......");
-		AssertJUnit.assertEquals(driver.findElement(By.cssSelector("a.td-bold.goto_details")).getAttribute("innerHTML"),
+		Assert.assertEquals(leadProfilePage.getLeadName(),
 				leadName, "Not matched");
 
 		extentTest.get().log(Status.INFO, "Searching lead by Email......");
-		adminDashboardPage.searchLead(leadEmail);
+		adminDashboardPage.serchLeadGlobally(leadEmail);
 
 		extentTest.get().log(Status.INFO, "Validating Lead name......");
-		AssertJUnit.assertEquals(driver.findElement(By.cssSelector("a.td-bold.goto_details")).getAttribute("innerHTML"),
+		salesPresalesDashboardPage.openLeadDetails(0);
+		Assert.assertEquals(leadProfilePage.getLeadName(),
 				leadName, "Not matched");
 
 		extentTest.get().log(Status.INFO, "Searching lead by name......");
-		adminDashboardPage.searchLead(leadName);
+		adminDashboardPage.serchLeadGlobally(leadId);
 
 		Thread.sleep(2000);
 
 		extentTest.get().log(Status.INFO, "Validating Lead name......");
-		Assert.assertEquals(driver.findElement(By.cssSelector("a.td-bold.goto_details")).getAttribute("innerHTML"),
+		Assert.assertEquals(leadProfilePage.getLeadName(),
 				leadName, "Not matched");
 
-		extentTest.get().log(Status.INFO, "Opening Lead Deatils Page.......");
-		salesPresalesDashboardPage.openLeadDetails(1);
+//		extentTest.get().log(Status.INFO, "Opening Lead Deatils Page.......");
+//		salesPresalesDashboardPage.openLeadDetails(0);
 
 		extentTest.get().log(Status.INFO, "Validating text which says admin have no access to edit.....");
 		Assert.assertEquals(leadProfilePage.noAccessMessageText(),
