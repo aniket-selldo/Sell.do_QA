@@ -61,7 +61,7 @@ public class Update_Lead {
 		
 		
 		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all()
-				.put("https://v2.sell.do/client/leads/"+leadID+".json");
+				.put();
 
 		int statusCode = response.getStatusCode();
 		System.out.println("Status code: " + statusCode);

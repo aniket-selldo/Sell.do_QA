@@ -69,7 +69,7 @@ public class CreateLead_POST {
 	public static String createLeadByAPI(String APIKey,String User) {
 
 		Note note = new Note();
-		note.setContent("Note Rest");
+		note.setContent("Note By Rest Assured");
 
 		AddressesField addressesField = new AddressesField();
 		PrimaryEmail primaryEmail = new PrimaryEmail();
@@ -112,6 +112,9 @@ public class CreateLead_POST {
 		System.out.println("Lead id >> " + jsnPath.getString("sell_do_lead_id"));
 		return "#"+jsnPath.getString("sell_do_lead_id");
 
+	}
+	public static void main(String[] args) {
+		createLeadByAPI();
 	}
 
 }

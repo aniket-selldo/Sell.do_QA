@@ -115,6 +115,9 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	@FindBy(how = How.CSS, using = "div.dropdown.stage.float-left.mr-1 button span[data-title='label']")
 	private WebElement getCurretLeadStatus;
 	
+	public void clickOnOpenTasksLink() {
+		waitUntilClickable(openTasksLink).click();
+	}
 	
 	public String getCurretLeadStatus() {
 		return waitUntilVisiblity(getCurretLeadStatus).getText().trim().toLowerCase();
@@ -129,7 +132,12 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	public String getLeadId() {
 		return waitUntilVisiblity(getLeadId).getText().trim();
 	}
-	
+	public String getMissedFollowups() {
+		return waitUntilVisiblity(missedFollowups).getText().trim();
+	}
+	public String getMissedSiteVisits() {
+		return waitUntilVisiblity(missedSiteVisits).getText().trim();
+	}
 	// To Search Lead
 	public void searchLead(String lead) throws InterruptedException {
 		waitUntilClickable(searchField).click();

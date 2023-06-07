@@ -161,7 +161,7 @@ public class createClientPage extends ReusableUtils {
 
 	public void enterclinetEmail(String name) {
 		Square(clientEmail);
-		clientEmail.sendKeys("" + name + "+@sell.do");
+		clientEmail.sendKeys("aniket.khandizodC+" + name + "@sell.do");
 	}
 
 	public void uploadFile(String fileName) {
@@ -232,14 +232,14 @@ public class createClientPage extends ReusableUtils {
 
 	public void enterEmail(String email) {
 		Square(userEmail);
-		userEmail.sendKeys("" + email + "+@sell.do");
+		userEmail.sendKeys("aniket.khandizod+U" + email + "@sell.do");
 
 	}
 
 	public void enterUserTeam(String team) {
 		Square(userTeam);
 		userTeam.sendKeys(team);
-		scrollIntoView(driver.findElement(By.id("s2id_autogen14")));
+		scrollIntoView(driver.findElement(By.cssSelector("[class='btn btn-primary']")));
 	}
 
 	public void selectVendores() {

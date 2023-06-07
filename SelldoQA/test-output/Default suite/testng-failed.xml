@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Aniket.UserManagment.ClientCreation">
+      <class name="dashboardBucketsPack.MissedFollowup_VerificationTest">
         <methods>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
-          <include name="createPostpaidClient"/>
+          <include name="missedFollowup_VerificationTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- Aniket.UserManagment.ClientCreation -->
+      </class> <!-- dashboardBucketsPack.MissedFollowup_VerificationTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -26,7 +26,6 @@ public class Listneers extends BaseTest implements ITestListener {
 		try {
 			driver = (ChromeDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
 		} catch (Exception e1) {
-			//e1.printStackTrace();
 		}
 
 		String filePath = null;
@@ -34,7 +33,6 @@ public class Listneers extends BaseTest implements ITestListener {
 
 			filePath = getScreenshot(result.getMethod().getMethodName(), driver);
 		} catch (Exception e) {
-			//e.printStackTrace();
 		}
 		extentTest.get().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
 	}
@@ -46,7 +44,6 @@ public class Listneers extends BaseTest implements ITestListener {
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -58,13 +55,8 @@ public class Listneers extends BaseTest implements ITestListener {
 
 	@Override
 	public void onFinish(ITestContext context) {
-		//extentTest.get().log(Status.PASS, "=======Test is Finish====");
 		extent.flush();
 
 	}
-//
-//	public ExtentTest getExtTest() {
-//		return this.extentTest.get();
-//	}
 
 }

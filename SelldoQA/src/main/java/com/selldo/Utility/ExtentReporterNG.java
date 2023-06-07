@@ -27,7 +27,7 @@ public class ExtentReporterNG {
 		extent.attachReporter(reporter);
 		extent.setSystemInfo("Tester", "Aniket Khandizod");
 		extent.setSystemInfo("Email", "aniket.khandizod@sell.do");
-		extent.setSystemInfo("OS", "Linux");
+		extent.setSystemInfo("OS", "Ubuntu");
 		extent.setSystemInfo("Environment", prop.getProperty("url"));
 		return extent;
 

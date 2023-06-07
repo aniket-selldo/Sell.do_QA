@@ -8,7 +8,7 @@
 <test name="Test">
     <classes>
     <!--  <class name="otherLeadActivitiesPack.SendingBrochure_WithTemplateTest"/>-->
-       <class name="Aniket.UserManagment.LoginValidation"/>
+       <class name="dashboardBucketsPack.MissedSitevisit_VerificationTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite --><!-- elements.stream().filter(e -> e.getText().equalsIgnoreCase("24")).findAny().get().click();

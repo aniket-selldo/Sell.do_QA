@@ -7,16 +7,15 @@
   </listeners>
   <test thread-count="2" parallel="methods" name="Test(failed)">
     <classes>
-      <class name="Aniket.UserManagment.LoginValidation">
+      <class name="dashboardBucketsPack.MissedSitevisit_VerificationTest">
         <methods>
           <include name="browserConfig"/>
-          <include name="M2"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
-          <include name="validateLogin" invocation-numbers="0 1 2 3 4 5 6 7 8"/>
+          <include name="missedSitevisit_VerificationTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- Aniket.UserManagment.LoginValidation -->
+      </class> <!-- dashboardBucketsPack.MissedSitevisit_VerificationTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

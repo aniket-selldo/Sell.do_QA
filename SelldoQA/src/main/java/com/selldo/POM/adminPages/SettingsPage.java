@@ -19,7 +19,7 @@ public class SettingsPage extends ReusableUtils {
 
 	}
 
-	@FindBy(how = How.XPATH, using = "//span[text()='user management']")
+	@FindBy(how = How.XPATH, using = "//span[text()='user management ']")
 	private WebElement userManagement;
 	@FindBy(how = How.XPATH, using = "//span[text()='partners']")
 	private WebElement partners;
@@ -35,7 +35,7 @@ public class SettingsPage extends ReusableUtils {
 	private WebElement bookingList;
 
 	public void clickOnUserManagementTab() {
-		waitUntilClickable(	userManagement).click();
+		waitUntilClickable(userManagement).click();
 	}
 
 	public void clickOnPartnersTab() {

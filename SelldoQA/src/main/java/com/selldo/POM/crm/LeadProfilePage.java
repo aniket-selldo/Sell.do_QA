@@ -376,7 +376,7 @@ public class LeadProfilePage extends ReusableUtils {
 		waitUntilVisibilityOfElements(actionBar_Options);
 		List<WebElement> list = actionBar_Options;
 		for (WebElement ele : list) {
-			if (ele.getAttribute("innerHTML").contains("Mark as conducted")) {
+			if (ele.getText().trim().contains("Mark as conducted")) {
 				waitUntilClickable(ele).click();
 				break;
 			}

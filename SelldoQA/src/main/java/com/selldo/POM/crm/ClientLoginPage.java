@@ -42,8 +42,7 @@ public class ClientLoginPage extends ReusableUtils {
 	public void clientLogin(String clientName)  {
 
 		// Clicking on Select a Client Field
-		waitUntilClickable(SelectAClientField);
-		SelectAClientField.click();
+		waitUntilClickable(SelectAClientField,50).click();
 		System.out.println("Clicking on Select a Client Field >>> "+clientName);
 
 		// Thread.sleep(3000);

@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
 import POM.clientCreationPage.createClientPage;
@@ -17,10 +18,13 @@ public class ClientCreation extends BaseTest{
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");// yyyy/MM/dd
 		LocalDateTime now = LocalDateTime.now();
 		createClientPage page= new createClientPage(driver);
+		
+		LoginPage login = new LoginPage(driver);
+		login.login(prop.getProperty("support_manager_email"), prop.getProperty("password"));
 		page.clickOnClientButton();
 		page.enterFirstName(random("enterFirstName","A",7));
 		page.enterLastName(random("enterLastName","A",7));
-		page.enterBuisnessName(dtf.format(now));
+		page.enterBuisnessName(dtf.format(now)+" PostPaid");
 		page.selectBuisnessType();
 		page.shortName(random("shortName","A",6));
 		page.enterClientWebsite(random("enterClientWebsite","AN",7));
@@ -34,7 +38,7 @@ public class ClientCreation extends BaseTest{
 		page.enterState(1);
 		page.enterCity("Pune");
 		page.enterZip(414003);
-		page.enterUserFirstName("2june2023");
+		page.enterUserFirstName(dtf.format(now));
 		page.enterUserLasttName("user");
 		page.enterUserPhone(random("enterClientPhone","N",9));
 		page.enterEmail("aniket.khandizod+2june2023");
