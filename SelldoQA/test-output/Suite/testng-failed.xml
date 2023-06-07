@@ -7,15 +7,16 @@
   </listeners>
   <test thread-count="2" parallel="methods" name="Test(failed)">
     <classes>
-      <class name="otherLeadActivitiesPack.SendingQuotes_WithoutTemplateTest">
+      <class name="Aniket.UserManagment.LoginValidation">
         <methods>
           <include name="browserConfig"/>
+          <include name="M2"/>
           <include name="ObjectInvokder"/>
-          <include name="sendingQuotes_WithoutTemplateTest"/>
           <include name="ObjectSupressor"/>
+          <include name="validateLogin" invocation-numbers="0 1 2 3 4 5 6 7 8"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- otherLeadActivitiesPack.SendingQuotes_WithoutTemplateTest -->
+      </class> <!-- Aniket.UserManagment.LoginValidation -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

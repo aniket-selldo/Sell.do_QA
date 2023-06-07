@@ -2,7 +2,7 @@ package Aniket.UserManagment;
 
 import java.io.IOException;
 
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -16,22 +16,22 @@ public class LoginValidation extends BaseTest {
 	public void validateLogin(String id, String pswd, String exp) {
 		System.out.println(driver.getTitle());
 		LoginPage A = new LoginPage(driver);
+		String exp_url = driver.getCurrentUrl();
 		A.login(id, pswd);
-		String exp_url = "https://v3b.sell.do/users/login";
 		String current_url = driver.getCurrentUrl();
 
 		if (exp.equals("valid")) {
 			if (!exp_url.equals(current_url)) {
 				System.out.println("URL diffrent");
-				AssertJUnit.assertTrue(false);
+				Assert.assertTrue(true);
 			} else {
-				AssertJUnit.assertTrue(true);
+				Assert.assertTrue(false);
 			}
 		} else if (exp.equals("invalid")) {
 			if (exp_url.equals(current_url)) {
-				AssertJUnit.assertTrue(true);
+				Assert.assertTrue(true);
 			} else {
-				AssertJUnit.assertTrue(false);
+				Assert.assertTrue(false);
 			}
 		}
 	}
@@ -53,13 +53,5 @@ public class LoginValidation extends BaseTest {
 		}
 		return loginData;
 	}
-	@Test(dependsOnMethods = { "validateLogin" })
-	public void M2() {
-		LoginPage A = new LoginPage(driver);
-		A.login(prop.getProperty("id"), prop.getProperty("pswd"));
-	}
 	
-	public void clienCreation() {
-		
-	}
 }

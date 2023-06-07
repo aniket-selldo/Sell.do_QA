@@ -6,6 +6,8 @@
 		<listener class-name="com.selldo.Utility.AnnotationTransformer"></listener>
 	</listeners>
 	<test thread-count="5" name="Test">
+
+
 		<!--exportPackage -->
 		<classes>
 			<class name="exportPackage.ExportVirtualNumbersTest" />
@@ -27,6 +29,9 @@
 			<class name="exportPackage.ExportSitevisitsTest" />
 			<class name="exportPackage.ExportInvoices_ItemizedBill_SMSTest" />
 
+			<!--My Code-->
+			<class name="Aniket.UserManagment.LoginValidation" />
+			<class name="Aniket.UserManagment.ClientCreation" />
 
 			<!--leadActivities -->
 			<class name="leadActivities.LogOfflineCall_OutboundNotAnsweredTest" />
@@ -70,27 +75,31 @@
 			<!--otherLeadActivitiesPack -->
 			<class
 				name="otherLeadActivitiesPack.LeadBooking_NonInventory_TentativeTest" />
-<!--			<class name="otherLeadActivitiesPack.SendingBrochure_WithoutTemplateTest" />
--->			<class
+			<class
+				name="otherLeadActivitiesPack.SendingBrochure_WithoutTemplateTest" />
+			<class
 				name="otherLeadActivitiesPack.AddingNewLeadWithFilledForm_SalesTest" />
-<!--			<class name="otherLeadActivitiesPack.SendingBrochure_WithTemplateTest" />
--->			<class
+			<class
+				name="otherLeadActivitiesPack.SendingBrochure_WithTemplateTest" />
+			<class
 				name="otherLeadActivitiesPack.AddingNewLeadWithFilledForm_PresalesTest" />
-<!--			<class name="otherLeadActivitiesPack.SendingQuotes_WithoutTemplateTest" />
--->			
-<!--<class name="otherLeadActivitiesPack.SendingQuotes_WithTemplateTest" />
--->			<class name="otherLeadActivitiesPack.AddingNewLeadTest" />
+			<class
+				name="otherLeadActivitiesPack.SendingQuotes_WithoutTemplateTest" />
+
+			<class name="otherLeadActivitiesPack.SendingQuotes_WithTemplateTest" />
+			<class name="otherLeadActivitiesPack.AddingNewLeadTest" />
 			<class
 				name="otherLeadActivitiesPack.LeadBooking_NonInventory_ConfirmedTest" />
-<!--			<class name="otherLeadActivitiesPack.SearchingLeadByAdminTest" />
---><!--			<class name="otherLeadActivitiesPack.SearchingLeadByUserTest" />
---><!--			<class name="otherLeadActivitiesPack.ReassigningLeadTest" />
--->			<class name="otherLeadActivitiesPack.AddingLeadWithUnfilledFormTest" />
-<!--			<class name="otherLeadActivitiesPack.MergingTwoLeadsFromDiffStagesTest" />
--->			<class name="otherLeadActivitiesPack.MarkingOnBreakTest" />
+			<class name="otherLeadActivitiesPack.SearchingLeadByAdminTest" />
+			<class name="otherLeadActivitiesPack.SearchingLeadByUserTest" />
+			<class name="otherLeadActivitiesPack.ReassigningLeadTest" />
+			<class name="otherLeadActivitiesPack.AddingLeadWithUnfilledFormTest" />
+			<class name="otherLeadActivitiesPack.MergingTwoLeadsFromDiffStagesTest" />
+			<class name="otherLeadActivitiesPack.MarkingOnBreakTest"/>
 			<class name="otherLeadActivitiesPack.AddingInterestedPropertyTest" />
-<!--			<class name="otherLeadActivitiesPack.MergingTwoLeadsFromSameStagesTest" />
--->			<class name="otherLeadActivitiesPack.DocumentTest" />
+			<class
+				name="otherLeadActivitiesPack.MergingTwoLeadsFromSameStagesTest" />
+			<class name="otherLeadActivitiesPack.DocumentTest" />
 		</classes>
 	</test> <!--
 	Test -->

@@ -7,7 +7,8 @@
 		</listeners>
 <test name="Test">
     <classes>
-      <class name="otherLeadActivitiesPack.SendingBrochure_WithTemplateTest"/>
+    <!--  <class name="otherLeadActivitiesPack.SendingBrochure_WithTemplateTest"/>-->
+       <class name="Aniket.UserManagment.LoginValidation"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite --><!-- elements.stream().filter(e -> e.getText().equalsIgnoreCase("24")).findAny().get().click();

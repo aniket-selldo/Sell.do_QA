@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="CollectionTEst">
+      <class name="Aniket.UserManagment.ClientCreation">
         <methods>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
-          <include name="clickMultipe"/>
+          <include name="createPostpaidClient"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- CollectionTEst -->
+      </class> <!-- Aniket.UserManagment.ClientCreation -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
