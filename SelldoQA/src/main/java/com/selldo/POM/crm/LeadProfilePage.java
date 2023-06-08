@@ -66,7 +66,7 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement activityTab;
 	@FindBy(how = How.XPATH, using = "//a[contains(text(),'Feed')][@id='Feed_lead_profile']")
 	private WebElement feedTab;
-	@FindBy(how = How.XPATH, using = "//div[@class='timeline-item activity feeds'] //i[@class='fa fa-ellipsis-v']")
+	@FindBy(how = How.CSS, using = "[class='activities_list'] [class='float-right']")
 	private List<WebElement> actionBar_Sitevisit;
 	@FindBy(how = How.CSS, using = "ul.dropdown-menu.dropdown-menu-right.show li a")
 	private List<WebElement> actionBar_Options;
@@ -251,6 +251,16 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement getLeadId;
 	@FindBy(how = How.NAME, using = "first_name")
 	private WebElement getLeadName;
+	@FindBy(how = How.XPATH, using = "//div[@class='alert alert-danger' and text()='Followup has been scheduled already. You can cancel it.']")
+	private WebElement ValidateFollowupScedule;
+	@FindBy(how = How.XPATH, using = "//div[@class='select2-container form-control cancellation_reason']")
+	private WebElement ClickOnCancellationReson;
+	@FindBy(how = How.CSS, using = "#select2-drop li")
+	private List<WebElement> SelectCancelationReson;
+	@FindBy(how = How.XPATH, using = "//textarea[@name='cancellation_note']")
+	private WebElement EnterCancellationReson;
+	@FindBy(how = How.XPATH, using = "//button[text()='Cancel Followup']")
+	private WebElement clickOnCancleFollowupButton;
 	
 	
 	public String getLeadStage() {
@@ -309,6 +319,21 @@ public class LeadProfilePage extends ReusableUtils {
 	public void followupLink() {
 		waitUntilClickable(more).click();
 		waitUntilClickable(followupLink).click();
+		try {
+			wait(1000);
+			if (ValidateFollowupScedule.isDisplayed()) {
+				waitUntilClickable(ClickOnCancellationReson).click();
+				wait(1000);
+				waitUntilClickable(SelectCancelationReson.get(0)).click();
+				waitUntilVisiblity(EnterCancellationReson).sendKeys("Automation");
+				waitUntilClickable(clickOnCancleFollowupButton).click();
+				waitUntilClickable(more).click();
+				waitUntilClickable(followupLink).click();
+				wait(5000);
+			}
+		} catch (Exception e) {
+			
+		}
 
 	}
 
@@ -372,11 +397,13 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void selectMarkAsConducted() {
+		wait(3000);
 		waitUntilClickable(actionBar_Sitevisit.get(0)).click();
 		waitUntilVisibilityOfElements(actionBar_Options);
 		List<WebElement> list = actionBar_Options;
 		for (WebElement ele : list) {
 			if (ele.getText().trim().contains("Mark as conducted")) {
+				wait(1000);
 				waitUntilClickable(ele).click();
 				break;
 			}

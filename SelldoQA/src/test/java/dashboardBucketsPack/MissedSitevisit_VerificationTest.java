@@ -11,39 +11,7 @@ import com.selldo.POM.crm.SiteVisitPage;
 import com.selldo.Utility.BaseTest;
 
 public class MissedSitevisit_VerificationTest extends BaseTest {
-	/*
-	 * final static Logger logger =
-	 * Logger.getLogger(MissedSitevisit_VerificationTest.class);
-	 * 
-	 * // Description:
-	 * 
-	 * @BeforeTest
-	 * 
-	 * public void sales_presalesLogin() throws Exception {
-	 * 
-	 * mysetUp();
-	 * 
-	 * driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	 * 
-	 * Properties property = new Properties(); FileInputStream fileInputObj = new
-	 * FileInputStream( System.getProperty("user.dir") +
-	 * "//src//main//java//Config File//global.properties");
-	 * property.load(fileInputObj);
-	 * 
-	 * LoginPage login = new LoginPage(driver);
-	 * 
-	 * logger.info("Logging in......."); login.login( property.getProperty("name") +
-	 * "+" + property.getProperty("user_email_MissedSitevisit_VerificationTest"),
-	 * property.getProperty("password")); }
-	 * 
-	 * @AfterTest
-	 * 
-	 * public void endingTest() throws Exception {
-	 * 
-	 * Thread.sleep(3000);
-	 * 
-	 * extentTest.get().log(Status.INFO, "browser closed......."); driver.close(); }
-	 */
+
 	@Test
 	public void missedSitevisit_VerificationTest() throws Exception {
 
@@ -83,7 +51,8 @@ public class MissedSitevisit_VerificationTest extends BaseTest {
 		siteVisitPage.enterNotesForConductedSiteVisit("Already conducted");
 
 		extentTest.get().log(Status.INFO, "Clicking on Mark as Conducted button.......");
-		siteVisitPage.clickOnMarkAsConductedButton();
+		siteVisitPage.clickOnSaveButton();
+		//siteVisitPage.clickOnMarkAsConductedButton();
 
 		extentTest.get().log(Status.INFO, "Going back to dsahboard.......");
 		salesPresalesDashboard.selectLeadActions(2);
@@ -91,8 +60,8 @@ public class MissedSitevisit_VerificationTest extends BaseTest {
 		Thread.sleep(3000);
 
 		extentTest.get().log(Status.INFO, "Refreshing the User Dashboard.......");
-		salesPresalesDashboard.clickOnOpenTasksLink();
 		salesPresalesDashboard.refreshDashboardStats();
+		salesPresalesDashboard.clickOnOpenTasksLink();
 
 		Thread.sleep(5000);
 

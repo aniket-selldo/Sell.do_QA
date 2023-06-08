@@ -1,5 +1,7 @@
 package com.selldo.POM.crm;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -56,9 +58,22 @@ public class FollowupsPage extends ReusableUtils {
 	private WebElement ScheduleFollowupButtonForPostSales;
 	@FindBy(how = How.XPATH, using = "//div[@class='select2-container form-control']")
 	private WebElement followupBy;
+	@FindBy(how = How.CSS, using = ".navigation.clearfix.todays_stat_show_lead")
+	private List<WebElement> getAllFollowupFromActivityDB;
+	
+	public boolean validateIDInActivity(String id) {
+		boolean flag = false;
+		for (WebElement webElement : getAllFollowupFromActivityDB) {
+			if(webElement.getText().replaceAll("[^0-9]+", "").trim().equalsIgnoreCase(id.trim())) {
+				flag=true;
+			}
+		}
+		return flag;
+	}
+	
 	// Selecting current date from calendar
 	public void selectDate() throws Exception {
-		//Thread.sleep(2000);
+		//wait(500);
 		waitUntilClickable(ScheduleOnDateField).click();
 		waitUntilClickable(selectToday).click();
 	}
@@ -100,12 +115,16 @@ public class FollowupsPage extends ReusableUtils {
 
 	// Clicking on Schedule Followup button
 	public String clickOnScheduleFollowupButton() {
-		waitUntilClickable(ScheduleFollowupButton).click();
+		jsClick(ScheduleFollowupButton);
 		return waitUntilVisiblity(followupBy).getText().toLowerCase().trim();
 	}
-
+	public void clickOnScheduleFollowupButon() {
+		jsClick(ScheduleFollowupButton);
+	}
 	public void clickOnIgnoreAndSchedule() {
-		waitUntilClickable(ignoreAndScheduleButton).click();
+		wait(1000);
+		scrollIntoView(ignoreAndScheduleButton);
+		jsClick(ignoreAndScheduleButton);
 	}
 
 	// Closing Follow up Page

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<listeners>
+		<listener class-name="com.selldo.Utility.Listneers"></listener>
+		<listener class-name="com.selldo.Utility.AnnotationTransformer"></listener>
+		</listeners>
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="dashboardBucketsPack.ReengagedLeads_VerificationTest"/>
+      <class name="dashboardBucketsPack.TodaysSitevisit_VerificationTest"/>
+      <class name="dashboardBucketsPack.MissedSitevisit_VerificationTest"/>
+      <class name="dashboardBucketsPack.MissedFollowup_VerificationTest"/>
+      <class name="dashboardBucketsPack.NewEnquiries_VerificationTest"/>
+      <class name="dashboardBucketsPack.MissedCalls_VerificationTest"/>
+      <class name="dashboardBucketsPack.TodaysFollowup_VerificationTest"/>
+      <class name="dashboardBucketsPack.NFA_VerificationTest"/>
+      <class name="dashboardBucketsPack.UnreadEmail_VerificationTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -72,7 +72,7 @@ public class SiteVisitPage extends ReusableUtils {
 	private List<WebElement> calender;
 	@FindBy(how = How.XPATH, using = "//textarea[@name='notes']")
 	private WebElement conductedNotes;
-	@FindBy(how = How.XPATH, using = "//button[text()='Mark as conducted']")
+	@FindBy(how = How.XPATH, using = "//a[text()='Mark as conducted']")
 	private WebElement markAsConductedButton;
 
 	// ......................Mark Did Not Visit.................................
@@ -185,6 +185,7 @@ public class SiteVisitPage extends ReusableUtils {
 		for (int i = 0; i < total_node; i++) {
 			String date = dates.get(i).getText();
 			if (date.equals("10")) {
+				wait(1000);
 				waitUntilClickable(dates.get(i)).click();// Clicking on above selected date
 				break;
 			}
@@ -202,7 +203,7 @@ public class SiteVisitPage extends ReusableUtils {
 	public void clickOnMarkAsConductedButton() throws Exception {
 		waitUntilClickable(markAsConductedButton).click();
 	}
-
+	
 	// ..................Methods for Mark Did Not Visit........................
 
 	public void enterNotesForDidNotVisit(String notes) {

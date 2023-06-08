@@ -114,11 +114,25 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private WebElement ClickOnAddProjectButton;
 	@FindBy(how = How.CSS, using = "div.dropdown.stage.float-left.mr-1 button span[data-title='label']")
 	private WebElement getCurretLeadStatus;
+	@FindBy(how = How.CSS, using = "#reengaged-leads div:nth-child(2)")
+	private WebElement getReenggagedLeadCount;
+	@FindBy(how = How.CSS, using = "#get_leads_count")
+	private WebElement getLeadHash;
 	
+	public String getLeadHash() {
+		jsClick(getLeadHash);
+		wait(1000);
+		return getLeadHash.getText().trim().replaceAll("[^0-9]", "");
+	}
 	public void clickOnOpenTasksLink() {
 		waitUntilClickable(openTasksLink).click();
 	}
-	
+	public void clickOnReenggegeBucket() {
+		waitUntilClickable(getReenggagedLeadCount).click();
+	}
+	public String getReenggagedLeadCount() {
+		return waitUntilVisiblity(getReenggagedLeadCount).getText().trim();
+	}
 	public String getCurretLeadStatus() {
 		return waitUntilVisiblity(getCurretLeadStatus).getText().trim().toLowerCase();
 	}
