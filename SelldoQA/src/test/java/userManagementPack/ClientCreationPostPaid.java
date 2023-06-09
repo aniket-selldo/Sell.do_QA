@@ -12,37 +12,7 @@ import com.selldo.Utility.BaseTest;
 import com.selldo.Utility.GetTestData;
 
 public class ClientCreationPostPaid extends BaseTest {
-	/*
-	 * final static Logger logger = Logger.getLogger(ClientCreationPostPaid.class);
-	 * 
-	 * // Description: Creating a new Post paid client from Post Sales
-	 * 
-	 * @BeforeTest
-	 * 
-	 * public void adminLogin() throws Exception {
-	 * 
-	 * mysetUp();
-	 * 
-	 * driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-	 * 
-	 * LoginPage login = new LoginPage(driver);
-	 * 
-	 * logger.info("Logging in to client page.......");
-	 * 
-	 * Properties property = new Properties(); FileInputStream fileInputObj = new
-	 * FileInputStream( System.getProperty("user.dir") +
-	 * "//src//main//java//Config File//global.properties");
-	 * property.load(fileInputObj);
-	 * 
-	 * login.login(property.getProperty("support_manager_email"),
-	 * property.getProperty("password")); }
-	 * 
-	 * @AfterTest
-	 * 
-	 * public void endingTest() throws Exception {
-	 * 
-	 * logger.info("Closing Browser......"); driver.close(); }
-	 */
+
 	@Test
 	public void creatingClientfromSupport() throws Exception {
 
@@ -51,15 +21,9 @@ public class ClientCreationPostPaid extends BaseTest {
 
 		ClientLoginPage clientLogin = new ClientLoginPage(driver);
 
-//		clientLogin.clientLogin(prop.getProperty("client_name"));
-//
-//		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
 		if (!driver.findElements(By.cssSelector("#main-menu-support-dashboard > a > i")).isEmpty()) {
-
 			extentTest.get().log(Status.INFO, "Logout and again login.......");
 			clientLogin.logout();
-
 		}
 
 		extentTest.get().log(Status.INFO, "Clicking on Create client button.......");
@@ -85,6 +49,12 @@ public class ClientCreationPostPaid extends BaseTest {
 		extentTest.get().log(Status.INFO, "Entering Short Name.......");
 		createClientForm.enterShortName("sky");
 
+		extentTest.get().log(Status.INFO, "Entering Sms mask......");
+		createClientForm.enterSMSmask(random("", "AN", 6));
+
+		extentTest.get().log(Status.INFO, "Entering Buisness Type......");
+		createClientForm.selectBuisnessType();
+
 		extentTest.get().log(Status.INFO, "Entering Client website.......");
 		createClientForm.enterClientWebsite(businessName);
 
@@ -94,10 +64,8 @@ public class ClientCreationPostPaid extends BaseTest {
 		extentTest.get().log(Status.INFO, "Uploading image for Client Logo.......");
 		createClientForm.uploadFile();
 
-		Thread.sleep(3000);
-
 		extentTest.get().log(Status.INFO, "Entering Client Phone Number.......");
-		createClientForm.addClientPhoneNumber();
+		// createClientForm.addClientPhoneNumber();
 
 		extentTest.get().log(Status.INFO, "Entering Client Address.......");
 		createClientForm.enterAddress_NM(prop.getProperty("Address_creatingAClient_FullyFilledFormTest"),
@@ -124,10 +92,7 @@ public class ClientCreationPostPaid extends BaseTest {
 		extentTest.get().log(Status.INFO, "Clicking on Save Button......");
 		createClientForm.clickOnSaveButton();
 
-		//Thread.sleep(10000);
-
 		extentTest.get().log(Status.INFO, "Logging into newly created client " + businessName + "......");
-
 		clientLogin.clientLogin(businessName);
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);

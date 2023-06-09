@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="dashboardBucketsPack.MissedFollowup_VerificationTest">
+      <class name="userManagementPack.CreatingClient_UnfilledformTest">
         <methods>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
+          <include name="ss"/>
           <include name="ObjectSupressor"/>
-          <include name="missedFollowup_VerificationTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- dashboardBucketsPack.MissedFollowup_VerificationTest -->
+      </class> <!-- userManagementPack.CreatingClient_UnfilledformTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

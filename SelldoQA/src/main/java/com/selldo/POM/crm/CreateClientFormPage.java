@@ -1,6 +1,10 @@
 package com.selldo.POM.crm;
 
 import java.awt.AWTException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -74,6 +78,8 @@ public class CreateClientFormPage extends ReusableUtils {
 	private WebElement IndianMobileNumberField;
 	@FindBy(how = How.XPATH, using = "//input[@id='transactional_sms_mask']")
 	private WebElement SMSMaskField;
+	@FindBy(how = How.XPATH, using = "")
+	private WebElement PhoneMaskField;
 	@FindBy(how = How.ID, using = "s2id_autogen6")
 	private WebElement VirtualNumbersField;
 	@FindBy(how = How.XPATH, using = ".//*[@id='select2-drop']/ul/li/div/span")
@@ -178,11 +184,11 @@ public class CreateClientFormPage extends ReusableUtils {
 	// Required Fields
 	@FindBy(how = How.XPATH, using = "//label[text()='Business Name']/following::span[1]")
 	private WebElement BusinessNameRequiredMessage;
-	@FindBy(how = How.XPATH, using = "//label[text()='Business Name']/following::span[2]")
+	@FindBy(how = How.XPATH, using = "//label[text()='Short name']/following::span[2]")
 	private WebElement ShortNameRequiredMessage;
-	@FindBy(how = How.XPATH, using = "//label[text()='Business Name']/following::span[3]")
+	@FindBy(how = How.XPATH, using = "//label[text()='Website']/following::span[1]")
 	private WebElement WebsiteFieldRequiredMessage;
-	@FindBy(how = How.XPATH, using = "//label[text()='Business Name']/following::span[4]")
+	@FindBy(how = How.XPATH, using = "//label[text()='Email']/following::span[1]")
 	private WebElement EmailFieldRequiredMessage;
 	@FindBy(how = How.XPATH, using = "//label[text()='Email domain']/following::span[2]")
 	private WebElement EmailDomainRequiredMessage;
@@ -220,58 +226,112 @@ public class CreateClientFormPage extends ReusableUtils {
 	private WebElement DomainMessage;
 	@FindBy(how = How.XPATH, using = "//input[@type='file']")
 	private WebElement elem;
+	@FindBy(how = How.XPATH, using = "//span[text()='Business Type']")
+	private WebElement clickOnBuisnessType;
+	@FindBy(how = How.CSS, using = "#select2-drop li")
+	private List<WebElement> selectBuisnessType;
+	@FindBy(how = How.XPATH, using = "//a[text()='Add a Client']")
+	private WebElement CreateClientButton;
+
+	// Error messaage
+	@FindBy(how = How.XPATH, using = "//span[text()='This field is required.']")
+	private List<WebElement> getAllReuireFieldMessage;
+	@FindBy(how = How.CSS, using = ".form-group.has-error label")
+	private List<WebElement> getAllReuirefiledName;
+
+	public void getAllReuireFieldMessage() {
+		waitUntilVisibilityOfElements(getAllReuireFieldMessage).stream().map(S -> S.getText().trim())
+				.forEach(System.out::println);
+	}
+
+	public void getAllReuirefiledName() {
+		char a = '"';
+		waitUntilVisibilityOfElements(getAllReuirefiledName).stream().map(S -> S.getText().trim())
+				.forEach(S -> System.out.print(a + "" + S + "" + a + ","));
+	}
+
+	public boolean requireFiledValidationBySize() {
+		return (getAllReuireFieldMessage.size() == getAllReuirefiledName.size()) && getAllReuirefiledName.size() == 19;
+	}
+
+	public boolean reqFiledValidationByName() {
+		List<String> list2 = Arrays.asList("FIRST NAME", "LAST NAME", "BUSINESS NAME", "BUSINESS TYPE", "SHORT NAME",
+				"WEBSITE", "EMAIL", "UPLOAD LOGO:", "PHONE", "TRANSACTIONAL SMS MASK", "ADDRESS", "COUNTRY", "STATE",
+				"CITY", "ZIP", "FIRST NAME", "TEAM", "LAST NAME", "EMAIL");
+		List<String> list1 = getAllReuirefiledName.stream().map(WebElement::getText).collect(Collectors.toList());
+
+		return compareLists(list1, list2);
+	}
+
+	private static <T> boolean compareLists(List<T> list1, List<T> list2) {
+		if (list1 == null && list2 == null) {
+			return true;
+		}
+		if (list1 == null || list2 == null || list1.size() != list2.size()) {
+			return false;
+		}
+		return list1.equals(list2);
+	}
 
 	GetTestData getTestData = new GetTestData();
 
 	// -------Filling Client Details--------
 
+	public String getDomainMessage() {
+		return waitUntilVisiblity(DomainMessage).getText().trim();
+	}
+
+	public void selectBuisnessType() {
+		waitUntilClickable(clickOnBuisnessType).click();
+		waitUntilClickable(selectBuisnessType.get(0)).click();
+	}
+
 	public void enterClientFirstName() {
 		String clientFirstNameObj = getTestData.firstName;
-		clientFirstNameField.sendKeys(clientFirstNameObj);
+		waitUntilVisiblity(clientFirstNameField).sendKeys(clientFirstNameObj);
 	}
 
 	public void enterClientLastName() {
 		String clientLastNameObj = getTestData.lastName;
-		clientLastNameField.sendKeys(clientLastNameObj);
+		waitUntilVisiblity(clientLastNameField).sendKeys(clientLastNameObj);
 	}
 
 	public void enterClientPhoneNumber() {
 		String clientPhoneObj = " " + getTestData.phoneNumber;
-		clientPhoneNumber.sendKeys(clientPhoneObj);
+		waitUntilVisiblity(clientPhoneNumber).sendKeys(randomPhone());
 	}
 
 	public void enterFirstName(String firstname) {
-		FirstNameField.sendKeys(firstname);
+		waitUntilVisiblity(FirstNameField).sendKeys(firstname);
 	}
 
 	public void enterLastName(String lastname) {
-		LastNameField.sendKeys(lastname);
+		waitUntilVisiblity(LastNameField).sendKeys(lastname);
 	}
 
 	public void enterBusinessName(String businessName) {
 		// String businessName = getTestData.location;
-		BusinessNameField.sendKeys(businessName);
+		waitUntilVisiblity(BusinessNameField).sendKeys(businessName);
 	}
 
 	public void enterShortName(String shortName) {
-		ShortNameField.sendKeys(shortName);
+		waitUntilVisiblity(ShortNameField).sendKeys(shortName);
 	}
 
 	public void enterClientWebsite(String businessName) {
-		WebsiteField.sendKeys("http://www." + businessName + "auto.com");
+		waitUntilVisiblity(WebsiteField).sendKeys("http://www." + businessName + "auto.com");
 	}
 
 	public void enterClientEmail() {
-		String clientEmail = getTestData.clientEmail;
-		EmailField_CD.sendKeys(clientEmail);
+		waitUntilVisiblity(EmailField_CD).sendKeys(randomEmail());
 	}
 
 	public void enterEmailDomain(String email) {
-		EmailDomainField.sendKeys(email);
+		waitUntilVisiblity(EmailDomainField).sendKeys(email);
 	}
 
 	public void enterSetUpCharge(String setup) {
-		SetUpChargesField.sendKeys(setup);
+		waitUntilVisiblity(SetUpChargesField).sendKeys(setup);
 	}
 
 	public void uploadFile() throws InterruptedException, AWTException {
@@ -279,38 +339,42 @@ public class CreateClientFormPage extends ReusableUtils {
 		String claimZIP = System.getProperty("user.dir") + "/DataFile/" + "google-new-logo.png";
 
 		// Mention the path of file to do the upload
-		elem.sendKeys(claimZIP);
+		waitUntilVisiblity(elem).sendKeys(claimZIP);
 
 	}
 
 	public void enterClientPhoneNumber(String phone) {
-		PhoneField_CD.sendKeys(phone);
+		waitUntilVisiblity(PhoneField_CD).sendKeys(phone);
 	}
 
 	public void addClientPhoneNumber() {
 
 		String phoneNum = " " + getTestData.phoneNumber;
-		clientPhone.sendKeys(phoneNum);
+		waitUntilVisiblity(clientPhone).sendKeys(phoneNum);
 	}
 
 	public void selectCityForIndianPRI(String pri) {
-		CityForIndianPRIDropdown.click();
-		CityForIndianPRIField.sendKeys(pri);
-		CityForIndianPRI_dd.click();
+		waitUntilClickable(CityForIndianPRIDropdown).click();
+		waitUntilVisiblity(CityForIndianPRIField).sendKeys(pri);
+		waitUntilClickable(CityForIndianPRI_dd).click();
 	}
 
 	public void selectIndianPRInumber() {
-		IndianPRIDropdown.click();
-		IndianPRI_dd.click();
+		waitUntilClickable(IndianPRIDropdown).click();
+		waitUntilClickable(IndianPRI_dd).click();
 	}
 
 	public void enterSMSmask(String sms) {
-		SMSMaskField.sendKeys(sms);
+		waitUntilVisiblity(SMSMaskField).sendKeys(sms);
+	}
+
+	public void enterPhonemask(String sms) {
+		waitUntilVisiblity(SMSMaskField).sendKeys(sms);
 	}
 
 	public void enterVirtualNumber(String vnum) {
-		VirtualNumbersField.sendKeys(vnum);
-		VirtualNumber_dd.click();
+		waitUntilVisiblity(VirtualNumbersField).sendKeys(vnum);
+		waitUntilClickable(VirtualNumber_dd).click();
 	}
 
 	public void selectTimeZone_CD() {
@@ -318,191 +382,195 @@ public class CreateClientFormPage extends ReusableUtils {
 	}
 
 	public void clickOnUploadButton() {
-		UploadLogoButton.click();
+		waitUntilClickable(UploadLogoButton).click();
 
 	}
 
 	// -----------Filling Client Address----------------
 
 	public void enterAddress_M(String address1, String city, String zip, String country) {
-		Address1Field.sendKeys(address1);
-		CityField.sendKeys(city);
+		waitUntilVisiblity(Address1Field).sendKeys(address1);
+		waitUntilVisiblity(CityField).sendKeys(city);
 
 		selectByVisibleText(CountryDropdown, country);
 
 		selectByVisibleText(StateField, "Maharashtra");
-		ZipField.sendKeys(zip);
+		waitUntilVisiblity(ZipField).sendKeys(zip);
 	}
 
 	public void enterAddress_NM(String address1, String address2, String city, String country, String zip) {
-		Address1Field.sendKeys(address1);
-		Address2Field.sendKeys(address2);
-		CityField.sendKeys(city);
+		waitUntilVisiblity(Address1Field).sendKeys(address1);
+		waitUntilVisiblity(Address2Field).sendKeys(address2);
+		waitUntilVisiblity(CityField).sendKeys(city);
 		selectByVisibleText(CountryDropdown, country);
 		Select oSelect = new Select(StateField);
 		oSelect.selectByVisibleText("Maharashtra");
-		ZipField.sendKeys(zip);
+		waitUntilVisiblity(ZipField).sendKeys(zip);
 	}
 
 	// --------------Mix Panel Setting-------------------
 
 	public void settingMixpanel(String api, String token, String secret) throws InterruptedException {
-		MixpanelSettingCheckbox.click();
+		waitUntilClickable(MixpanelSettingCheckbox).click();
 		Thread.sleep(2000);
-		ApiKeyField.sendKeys(api);
-		TokenField.sendKeys(token);
-		SecretField.sendKeys(secret);
+		waitUntilVisiblity(ApiKeyField).sendKeys(api);
+		waitUntilVisiblity(TokenField).sendKeys(token);
+		waitUntilVisiblity(SecretField).sendKeys(secret);
 	}
 
 	// --------------Filling User Details----------------
 
 	public void enterFirstName() {
 		String adminFirstNameObj = getTestData.firstName;
-		FirstNameField.sendKeys(adminFirstNameObj);
+		waitUntilVisiblity(FirstNameField).sendKeys(adminFirstNameObj);
 	}
 
 	public void enterLastName() {
 		String adminLastNameObj = getTestData.lastName;
-		LastNameField.sendKeys(adminLastNameObj);
+		waitUntilVisiblity(LastNameField).sendKeys(adminLastNameObj);
 	}
 
 	public void enterUserPhoneNumber() {
-		String phoneObj = " " + getTestData.phoneNum;
-		PhoneField_UD.sendKeys(phoneObj);
+		waitUntilVisiblity(PhoneField_UD).sendKeys(randomPhone());
+
 	}
 
 	public void enterUserEmail() {
-		String userEmail = getTestData.email;
-		EmailField_UD.sendKeys(userEmail);
+		waitUntilVisiblity(EmailField_UD).sendKeys(randomEmail());
 	}
 
 	public void enterUsersTeam() {
 		String team = getTestData.team;
-		TeamField.sendKeys(team);
+		waitUntilVisiblity(TeamField).sendKeys(team);
 	}
 
 	public void selectPromotionalEmail() {
-		PromotionalEmailDropdown.click();
-		PromotionalEmail_dd.click();
+		waitUntilClickable(PromotionalEmailDropdown).click();
+		waitUntilClickable(PromotionalEmail_dd).click();
 	}
 
 	public void vendorConfiguration() {
-		PromotionalEmailDropdown.click();
-		PromotionalEmail_dd.click();
-		PromotionalSMSdropdown.click();
-		PromotionalSMS_dd.click();
-		TransactionalEmailDropdown.click();
-		TransactionalEmail_dd.click();
-		TransactionalSMSdropdown.click();
-		TransactionalSMS_dd.click();
+		waitUntilClickable(PromotionalEmailDropdown).click();
+		waitUntilClickable(PromotionalEmail_dd).click();
+		waitUntilClickable(PromotionalSMSdropdown).click();
+		waitUntilClickable(PromotionalSMS_dd).click();
+		waitUntilClickable(TransactionalEmailDropdown).click();
+		waitUntilClickable(TransactionalEmail_dd).click();
+		waitUntilClickable(TransactionalSMSdropdown).click();
+		waitUntilClickable(TransactionalSMS_dd).click();
 	}
 
 	public void selectMarketingDomain() {
-		MarketingDomainDropdown.click();
-		MarketingDomain_dd.click();
+		waitUntilClickable(MarketingDomainDropdown).click();
+		waitUntilClickable(MarketingDomain_dd).click();
 	}
 
 	public void clickOnSaveButton() {
-		SaveButton.click();
+		waitUntilClickable(SaveButton).click();
+		waitUntilVisiblity(CreateClientButton, 100);
+	}
+
+	public void clickOnSaveButonWithoutWait() {
+		waitUntilClickable(SaveButton).click();
 	}
 
 	public String getBusinessNameRequiredMessage() {
-		String businessNameRequiredMessage = BusinessNameRequiredMessage.getText();
+		String businessNameRequiredMessage = waitUntilVisiblity(BusinessNameRequiredMessage).getText().trim();
 		return businessNameRequiredMessage;
 	}
 
 	public String getShortNameRequiredMessage() {
-		String shortNameRequiredMessage = ShortNameRequiredMessage.getText();
+		String shortNameRequiredMessage = waitUntilVisiblity(ShortNameRequiredMessage).getText().trim();
 		return shortNameRequiredMessage;
 	}
 
 	public String getWebsiteFieldRequiredMessage() {
-		String websiteFieldRequiredMessage = WebsiteFieldRequiredMessage.getText();
+		String websiteFieldRequiredMessage = waitUntilVisiblity(WebsiteFieldRequiredMessage).getText().trim();
 		return websiteFieldRequiredMessage;
 	}
 
 	public String getEmailFieldRequiredMessage() {
-		String emailFieldRequiredMessage = EmailFieldRequiredMessage.getText();
+		String emailFieldRequiredMessage = waitUntilVisiblity(EmailFieldRequiredMessage).getText().trim();
 		return emailFieldRequiredMessage;
 	}
 
 	public String getEmailDomainRequiredMessage() {
-		String emailDomainRequiredMessage = EmailDomainRequiredMessage.getText();
+		String emailDomainRequiredMessage = waitUntilVisiblity(EmailDomainRequiredMessage).getText().trim();
 		return emailDomainRequiredMessage;
 	}
 
 	public String getUploadLogoRequiredMessage() {
-		String uploadLogoRequiredMessage = UploadLogoRequiredMessage.getText();
+		String uploadLogoRequiredMessage = waitUntilVisiblity(UploadLogoRequiredMessage).getText().trim();
 		return uploadLogoRequiredMessage;
 	}
 
 	public String getClientPhoneRequiredMessage() {
-		String clientPhoneRequiredMessage = ClientPhoneRequiredMessage.getText();
+		String clientPhoneRequiredMessage = waitUntilVisiblity(ClientPhoneRequiredMessage).getText().trim();
 		return clientPhoneRequiredMessage;
 	}
 
-	public String getCityForIndianPRIRequiredMessage() {
-		String cityForIndianPRIRequiredMessage = CityForIndianPRIRequiredMessage.getText();
-		return cityForIndianPRIRequiredMessage;
-	}
+//	public String getCityForIndianPRIRequiredMessage() {
+//		String cityForIndianPRIRequiredMessage = waitUntilVisiblity(CityForIndianPRIRequiredMessage).getText().trim();
+//		return cityForIndianPRIRequiredMessage;
+//	}
 
 	public String getIndianPRIRequiredMessage() {
-		String indianPRIRequiredMessageRequiredMessage = IndianPRIRequiredMessage.getText();
+		String indianPRIRequiredMessageRequiredMessage = waitUntilVisiblity(IndianPRIRequiredMessage).getText().trim();
 		return indianPRIRequiredMessageRequiredMessage;
 	}
 
 	public String getSMSmaskFieldRequiredMessage() {
-		String smsMaskFieldRequiredMessage = SMSmaskFieldRequiredMessage.getText();
+		String smsMaskFieldRequiredMessage = waitUntilVisiblity(SMSmaskFieldRequiredMessage).getText().trim();
 		return smsMaskFieldRequiredMessage;
 	}
 
 	public String getAddressFieldRequiredMessage() {
-		String addressFieldRequiredMessage = AddressFieldRequiredMessage.getText();
+		String addressFieldRequiredMessage = waitUntilVisiblity(AddressFieldRequiredMessage).getText().trim();
 		return addressFieldRequiredMessage;
 	}
 
 	public String getCityFieldRequiredMessage() {
-		String cityFiledRequiredMessage = CityFieldRequiredMessage.getText();
+		String cityFiledRequiredMessage = waitUntilVisiblity(CityFieldRequiredMessage).getText().trim();
 		return cityFiledRequiredMessage;
 	}
 
 	public String getStateDropdownRequiredMessage() {
-		String stateDropdownRequiredMessage = StateDropdownRequiredMessage.getText();
+		String stateDropdownRequiredMessage = waitUntilVisiblity(StateDropdownRequiredMessage).getText().trim();
 		return stateDropdownRequiredMessage;
 	}
 
 	public String getCountryDropdownRequiredMessage() {
-		String countryDropdownRequiredMessage = CountryDropdownRequiredMessage.getText();
+		String countryDropdownRequiredMessage = waitUntilVisiblity(CountryDropdownRequiredMessage).getText().trim();
 		return countryDropdownRequiredMessage;
 	}
 
 	public String getZipFieldRequiredMessage() {
-		String zipFieldRequiredMessage = ZipFieldRequiredMessage.getText();
+		String zipFieldRequiredMessage = waitUntilVisiblity(ZipFieldRequiredMessage).getText().trim();
 		return zipFieldRequiredMessage;
 	}
 
 	public String getFirstNameRequiredMessage() {
-		String firstNameRequiredMessage = FirstNameRequiredMessage.getText();
+		String firstNameRequiredMessage = waitUntilVisiblity(FirstNameRequiredMessage).getText().trim();
 		return firstNameRequiredMessage;
 	}
 
 	public String getLastNameRequiredMessage() {
-		String lastNameRequiredMessage = LastNameRequiredMessage.getText();
+		String lastNameRequiredMessage = waitUntilVisiblity(LastNameRequiredMessage).getText().trim();
 		return lastNameRequiredMessage;
 	}
 
 	public String getUserEmailRequiredMessage() {
-		String userEmailRequiredMessage = UserEmailRequiredMessage.getText();
+		String userEmailRequiredMessage = waitUntilVisiblity(UserEmailRequiredMessage).getText().trim();
 		return userEmailRequiredMessage;
 	}
 
 	public String getTeamFieldRequiredMessage() {
-		String teamFieldRequiredMessage = TeamFieldRequiredMessage.getText();
+		String teamFieldRequiredMessage = waitUntilVisiblity(TeamFieldRequiredMessage).getText().trim();
 		return teamFieldRequiredMessage;
 	}
 
 	public String getMarketingDomainRequiredMessage() {
-		String marketingDomainRequiredMessage = MarketingDomainRequiredMessage.getText();
+		String marketingDomainRequiredMessage = waitUntilVisiblity(MarketingDomainRequiredMessage).getText().trim();
 		return marketingDomainRequiredMessage;
 	}
 

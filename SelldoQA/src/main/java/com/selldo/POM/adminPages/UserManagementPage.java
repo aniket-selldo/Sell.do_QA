@@ -24,10 +24,10 @@ public class UserManagementPage extends ReusableUtils {
 	private WebElement manageUsers;
 
 	public void clickOnManageTeam() {
-		manageTeam.click();
+		waitUntilClickable(manageTeam).click();
 	}
 
 	public void clickOnManageUsers() {
-		manageUsers.click();
+		waitUntilClickable(manageUsers).click();
 	}
 }

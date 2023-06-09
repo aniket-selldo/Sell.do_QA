@@ -1,33 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-06-08T16:49:44 IST" name="Suite" finished-at="2023-06-08T16:50:38 IST" duration-ms="53668">
+  <suite started-at="2023-06-09T14:38:36 IST" name="Suite" finished-at="2023-06-09T14:39:16 IST" duration-ms="40261">
     <groups>
     </groups>
-    <test started-at="2023-06-08T16:49:44 IST" name="Test" finished-at="2023-06-08T16:50:38 IST" duration-ms="53668">
-      <class name="dashboardBucketsPack.MissedSitevisit_VerificationTest">
-        <test-method is-config="true" signature="ObjectInvokder()[pri:0, instance:dashboardBucketsPack.MissedSitevisit_VerificationTest@2a693f59]" started-at="2023-06-08T16:49:44 IST" name="ObjectInvokder" finished-at="2023-06-08T16:49:44 IST" duration-ms="12" status="PASS">
+    <test started-at="2023-06-09T14:38:36 IST" name="Test" finished-at="2023-06-09T14:39:16 IST" duration-ms="40261">
+      <class name="userManagementPack.CreatingPresalesManagerTest">
+        <test-method is-config="true" signature="ObjectInvokder()[pri:0, instance:userManagementPack.CreatingPresalesManagerTest@3f4faf53]" started-at="2023-06-09T14:38:36 IST" name="ObjectInvokder" finished-at="2023-06-09T14:38:36 IST" duration-ms="16" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ObjectInvokder -->
-        <test-method is-config="true" signature="browserConfig()[pri:0, instance:dashboardBucketsPack.MissedSitevisit_VerificationTest@2a693f59]" started-at="2023-06-08T16:49:44 IST" name="browserConfig" finished-at="2023-06-08T16:49:47 IST" duration-ms="2818" status="PASS">
+        <test-method is-config="true" signature="browserConfig()[pri:0, instance:userManagementPack.CreatingPresalesManagerTest@3f4faf53]" started-at="2023-06-09T14:38:36 IST" name="browserConfig" finished-at="2023-06-09T14:38:39 IST" duration-ms="2317" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserConfig -->
-        <test-method signature="missedSitevisit_VerificationTest()[pri:0, instance:dashboardBucketsPack.MissedSitevisit_VerificationTest@2a693f59]" started-at="2023-06-08T16:49:47 IST" name="missedSitevisit_VerificationTest" finished-at="2023-06-08T16:50:38 IST" duration-ms="50717" status="PASS">
+        <test-method signature="creatingPresalesManagerTest()[pri:0, instance:userManagementPack.CreatingPresalesManagerTest@3f4faf53]" started-at="2023-06-09T14:38:39 IST" name="creatingPresalesManagerTest" finished-at="2023-06-09T14:39:16 IST" duration-ms="37683" status="FAIL">
+          <exception class="org.openqa.selenium.ElementClickInterceptedException">
+            <message>
+              <![CDATA[element click intercepted: Element <input type="submit" name="commit" value="Save" class="btn btn-primary" data-disable-with="Saving" style="border: 5px solid red;"> is not clickable at point (1601, 807). Other element would receive the click: <div id="select2-drop-mask" class="select2-drop-mask" style=""></div>
+  (Session info: chrome=111.0.5563.146)
+Build info: version: '4.9.1', revision: 'eb2032df7f'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-43-generic', java.version: '17.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [098d247c76d9a0055f5611313c9c4bf6, clickElement {id=38fe6e8a-fdd8-4d65-828b-2e91ac648020}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.QEptWt}, goog:chromeOptions: {debuggerAddress: localhost:35883}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35883/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on linux (098d247c76d9a0055f5611313c9c4bf6)] -> xpath: //input[@class='btn btn-primary']]
+Session ID: 098d247c76d9a0055f5611313c9c4bf6]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element <input type="submit" name="commit" value="Save" class="btn btn-primary" data-disable-with="Saving" style="border: 5px solid red;"> is not clickable at point (1601, 807). Other element would receive the click: <div id="select2-drop-mask" class="select2-drop-mask" style=""></div>
+  (Session info: chrome=111.0.5563.146)
+Build info: version: '4.9.1', revision: 'eb2032df7f'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-43-generic', java.version: '17.0.6'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [098d247c76d9a0055f5611313c9c4bf6, clickElement {id=38fe6e8a-fdd8-4d65-828b-2e91ac648020}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.QEptWt}, goog:chromeOptions: {debuggerAddress: localhost:35883}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35883/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[ChromeDriver: chrome on linux (098d247c76d9a0055f5611313c9c4bf6)] -> xpath: //input[@class='btn btn-primary']]
+Session ID: 098d247c76d9a0055f5611313c9c4bf6
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:52)
+at jdk.proxy2/jdk.proxy2.$Proxy19.click(Unknown Source)
+at com.selldo.POM.adminPages.NewUserFormPage.clickOnSaveButton(NewUserFormPage.java:143)
+at userManagementPack.CreatingPresalesManagerTest.creatingPresalesManagerTest(CreatingPresalesManagerTest.java:92)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:833)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.ElementClickInterceptedException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- missedSitevisit_VerificationTest -->
-        <test-method is-config="true" signature="terminate()[pri:0, instance:dashboardBucketsPack.MissedSitevisit_VerificationTest@2a693f59]" started-at="2023-06-08T16:50:38 IST" name="terminate" finished-at="2023-06-08T16:50:38 IST" duration-ms="106" status="PASS">
+        </test-method> <!-- creatingPresalesManagerTest -->
+        <test-method is-config="true" signature="terminate()[pri:0, instance:userManagementPack.CreatingPresalesManagerTest@3f4faf53]" started-at="2023-06-09T14:39:16 IST" name="terminate" finished-at="2023-06-09T14:39:16 IST" duration-ms="104" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- terminate -->
-        <test-method is-config="true" signature="ObjectSupressor()[pri:0, instance:dashboardBucketsPack.MissedSitevisit_VerificationTest@2a693f59]" started-at="2023-06-08T16:50:38 IST" name="ObjectSupressor" finished-at="2023-06-08T16:50:38 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="ObjectSupressor()[pri:0, instance:userManagementPack.CreatingPresalesManagerTest@3f4faf53]" started-at="2023-06-09T14:39:17 IST" name="ObjectSupressor" finished-at="2023-06-09T14:39:17 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ObjectSupressor -->
-      </class> <!-- dashboardBucketsPack.MissedSitevisit_VerificationTest -->
+      </class> <!-- userManagementPack.CreatingPresalesManagerTest -->
     </test> <!-- Test -->
   </suite> <!-- Suite -->
 </testng-results>

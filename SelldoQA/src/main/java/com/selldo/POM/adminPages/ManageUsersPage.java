@@ -33,6 +33,22 @@ public class ManageUsersPage extends ReusableUtils {
 	private WebElement actionBar;
 	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::a[text()='Edit'][1]")
 	private WebElement edit;
+	@FindBy(how = How.CSS, using = "#s2id_search_params_status")
+	private WebElement ClickOnActiveInactiveFilter;
+	@FindBy(how = How.CSS, using = "#s2id_search_params_status .select2-search-choice-close")
+	private WebElement clickToAblolish;
+	@FindBy(how = How.XPATH, using = "//table[@class='table table-responsive']//td[4]/span")
+	private WebElement getUserStatus;
+	@FindBy(how = How.XPATH, using = "(//span[@class='td-bold'])[1]")
+	private WebElement getUserNameFromList;
+
+	public String getUserStatus() {
+		return waitUntilVisiblity(getUserStatus).getText().trim();
+	}
+
+	public String getUserNameFromList() {
+		return waitUntilVisiblity(getUserNameFromList).getText().trim();
+	}
 
 	// Locale locale = new Locale(langauge; "en-IND");
 	// Faker faker = new Faker(locale);
@@ -44,33 +60,39 @@ public class ManageUsersPage extends ReusableUtils {
 	 */
 
 	public void clickOnNewUserButton() {
-		newUserButton.click();
+		waitUntilClickable(newUserButton).click();
 	}
 
 	/*
-	 * public void searchUser(CharSequence[] phone_SearchObj) {
-	 * funnelIcon.click();
-	 * searchInputField).sendKeys(phone_SearchObj);
-	 * applyButton.click(); }
+	 * public void searchUser(CharSequence[] phone_SearchObj) { funnelIcon.click();
+	 * searchInputField).sendKeys(phone_SearchObj); applyButton.click(); }
 	 */
 
+	public void searchUser2(String emailID) {
+		wait(5000);
+		waitUntilClickable(funnelIcon).click();
+		waitUntilVisiblity(searchInputField).sendKeys(emailID);
+		waitUntilClickable(clickToAblolish).click();
+		waitUntilClickable(applyButton).click();
+	}
+
 	public void searchUser(String emailID) {
-		funnelIcon.click();
-		searchInputField.sendKeys(emailID);
-		applyButton.click();
+		waitUntilClickable(funnelIcon).click();
+		waitUntilVisiblity(searchInputField).sendKeys(emailID);
+		waitUntilClickable(applyButton).click();
 	}
 
 	public void resettingFilter() {
-		funnelIcon.click();
-		clearAll.click();
+		waitUntilClickable(funnelIcon).click();
+		waitUntilClickable(clearAll).click();
 	}
 
 	public void clickOnActionBar() {
-		actionBar.click();
+		waitUntilClickable(actionBar).click();
 	}
 
 	public void selectEdit() {
-		actionBar.click();
-		edit.click();
+		waitUntilClickable(actionBar).click();
+		waitUntilClickable(edit).click();
 	}
 }

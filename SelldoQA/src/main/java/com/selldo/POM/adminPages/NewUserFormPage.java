@@ -1,5 +1,7 @@
 package com.selldo.POM.adminPages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -35,32 +37,36 @@ public class NewUserFormPage extends ReusableUtils {
 	@FindBy(how = How.XPATH, using = "//span[text()='Please Select a Team']")
 	private WebElement teamDropdown;
 	@FindBy(how = How.XPATH, using = "//span[text()='Select teams']")
+	private WebElement teamDropdown2;
+	@FindBy(how = How.XPATH, using = "//span[text()='Select teams']")
 	private WebElement managerTeamDropdown;
 	@FindBy(how = How.XPATH, using = ".//*[@id='select2-drop']/ul/li[50]/div")
 	private WebElement team_dd;
+	@FindBy(how = How.CSS, using = "#select2-drop li")
+	private List<WebElement> team_dd2;
 	@FindBy(how = How.XPATH, using = ".//*[@id='select2-drop']/ul/li[2]/div")
 	private WebElement SourceFrom_dd;
 	@FindBy(how = How.XPATH, using = "//input[@class='btn btn-primary']")
 	private WebElement saveButton;
 
 	public void enterFirstName(String firstname) {
-		firstName.sendKeys(firstname);
+		waitUntilVisiblity(firstName).sendKeys(firstname);
 	}
 
 	public void enterLastName(String lastname) {
-		lastName.sendKeys(lastname);
+		waitUntilVisiblity(lastName).sendKeys(lastname);
 	}
 
 	public void enterPhone(String ph) {
-		phone.sendKeys(ph);
+		waitUntilVisiblity(phone).sendKeys(ph);
 	}
 
 	public void enterEmail(String em) {
-		email.sendKeys(em);
+		waitUntilVisiblity(email).sendKeys(em);
 	}
 
 	public void clickOnProfessionalDetailsTab() {
-		professionalDetailsTab.click();
+		waitUntilClickable(professionalDetailsTab).click();
 	}
 
 	// Methods for Selecting Department
@@ -115,14 +121,19 @@ public class NewUserFormPage extends ReusableUtils {
 
 	public void selectTeam() {
 
-		teamDropdown.click();
-		team_dd.click();
+		waitUntilClickable(teamDropdown).click();
+		waitUntilClickable(team_dd).click();
 	}
+	public void selectTeam2() {
 
+		waitUntilClickable(teamDropdown2).click();
+		wait(1000);
+		waitUntilClickable(team_dd2.get(1)).click();;
+	}
 	public void selectTeamForManager() {
 
-		managerTeamDropdown.click();
-		team_dd.click();
+		waitUntilClickable(managerTeamDropdown).click();
+		waitUntilClickable(team_dd).click();
 	}
 
 	public void selectTeamByText() {
@@ -130,6 +141,6 @@ public class NewUserFormPage extends ReusableUtils {
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 }

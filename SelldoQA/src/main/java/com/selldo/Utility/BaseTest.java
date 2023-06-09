@@ -282,6 +282,9 @@ public class BaseTest {
 	public String randomEmail() {
 		return "aniket.khandizod+"+random("","AN",10)+"@sell.do";
 	}
+	public String randomPhone() {
+		return " 12345"+random("","N",5);
+	}
 }
 
 

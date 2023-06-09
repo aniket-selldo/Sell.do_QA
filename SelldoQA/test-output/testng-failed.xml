@@ -7,15 +7,15 @@
   </listeners>
   <test thread-count="2" parallel="methods" name="Test(failed)">
     <classes>
-      <class name="dashboardBucketsPack.MissedSitevisit_VerificationTest">
+      <class name="userManagementPack.CreatingPresalesManagerTest">
         <methods>
+          <include name="creatingPresalesManagerTest"/>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
-          <include name="missedSitevisit_VerificationTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- dashboardBucketsPack.MissedSitevisit_VerificationTest -->
+      </class> <!-- userManagementPack.CreatingPresalesManagerTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

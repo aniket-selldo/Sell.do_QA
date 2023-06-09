@@ -53,7 +53,12 @@ public class ReusableUtils {
 		Square(we);
 		return we;
 	}
-
+	protected WebElement waitUntilVisiblity(WebElement we, long delay) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(delay));
+		wait.until(ExpectedConditions.visibilityOf(we));
+		Square(we);
+		return we;
+	}
 	protected List<WebElement> invisibilityOfAllElements(List<WebElement> we) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
 		wait.until(ExpectedConditions.invisibilityOfAllElements(we));
@@ -381,6 +386,9 @@ public class ReusableUtils {
 
 	public String randomEmail() {
 		return "aniket.khandizod+" + random("", "AN", 10) + "@sell.do";
+	}
+	public String randomPhone() {
+		return " 12345"+random("","N",5);
 	}
 
 }
