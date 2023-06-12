@@ -74,11 +74,11 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement actionBar_Followup;
 	@FindBy(how = How.CSS, using = "a.nav-link.lead-schedule-followup")
 	public WebElement followupLink;
-	@FindBy(how = How.CSS, using = "body > nav > div.top-navigation-right-panel > div > div.dropdown.float-right > a > i")
+	@FindBy(how = How.CSS, using = "#user-account-icon")
 	private WebElement userIcon;
 	@FindBy(how = How.CSS, using = "[data-method=\"delete\"]")
 	private WebElement logout;
-	@FindBy(how = How.CSS, using = "a[href='/client/signout']")
+	@FindBy(how = How.XPATH, using = "//a[text()='Back to admin']")
 	private WebElement backToAdmin;
 	@FindBy(how = How.XPATH, using = "//div[@class='timeline-item activity notes']//span[1]") // chanve
 																								// //li[@class='nav-item
@@ -469,6 +469,7 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void backToAdmin() throws Exception {
+		waitUntilClickable(userIcon).click();
 		waitUntilClickable(userIcon).click();
 		waitUntilClickable(backToAdmin).click();
 

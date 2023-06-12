@@ -32,21 +32,21 @@ public class ManageTeamsPage extends ReusableUtils {
 	private WebElement applyButton;
 
 	public void clickOnNewTeam() {
-		newTeamLink.click();
+		waitUntilClickable(newTeamLink).click();
 	}
 
 	public void clickOnActionBar() {
-		actionBar.click();
+		waitUntilClickable(actionBar).click();
 	}
 
 	public void clickOnEdit() {
-		edit.click();
+		waitUntilClickable(edit).click();
 	}
 
 	public void searchTeam(String teamName) {
-		funnelIcon.click();
-		searchInputField.sendKeys(teamName);
-		applyButton.click();
+		waitUntilClickable(funnelIcon).click();
+		waitUntilVisiblity(searchInputField).sendKeys(teamName);
+		waitUntilClickable(applyButton).click();
 	}
 
 }

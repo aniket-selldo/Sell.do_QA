@@ -23,6 +23,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 		PageFactory.initElements(driver, this);
 
 	}
+
 //
 	@FindBy(how = How.CSS, using = "i.ion-ios-people")
 	private WebElement leadsIcon;
@@ -32,7 +33,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private WebElement inventoryCubeIcon;
 	@FindBy(how = How.XPATH, using = "//button[text()='Save As']")
 	private WebElement saveAsButton;
-	@FindBy(how = How.CSS, using = "#s2id_autogen2 > a > span.select2-chosen")
+	@FindBy(how = How.XPATH, using = "//div[@class='select2-container form-control select2 clean-select2 lead-list']")
 	private WebElement listField;
 	@FindBy(how = How.CSS, using = "#select2-drop > div > input")
 	private WebElement listSearch;
@@ -49,7 +50,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	@FindBy(how = How.XPATH, using = "//a[contains(@class,'tab')]")
 	private List<WebElement> actionBar;
 	@FindBy(how = How.XPATH, using = "//button[text()='Preview']")
-	private  List<WebElement> preview;
+	private List<WebElement> preview;
 	@FindBy(how = How.XPATH, using = "//button[text()='View Profile']")
 	private WebElement viewProfileButton;
 	@FindBy(how = How.CSS, using = "div.dropdown-menu.dropdown-menu-right.show button.dropdown-item.goto_details")
@@ -72,7 +73,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private WebElement editProfile;
 	@FindBy(how = How.XPATH, using = "//h5[text()='Edit User']/following::i[1]")
 	private WebElement crossIcon_EditProfile;
-	@FindBy(how = How.XPATH, using = "//input[@value='Save']")
+	@FindBy(how = How.CSS, using = "input[data-disable-with='Saving']")
 	private WebElement saveButton_EditProfile;
 	@FindBy(how = How.CSS, using = "div.dropdown-menu.dropdown-menu-right.call-center-availability-dropdown.show a:nth-child(2)")
 	private WebElement markOnBreak;
@@ -118,24 +119,61 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private WebElement getReenggagedLeadCount;
 	@FindBy(how = How.CSS, using = "#get_leads_count")
 	private WebElement getLeadHash;
-	
+	@FindBy(how = How.XPATH, using = "//input[@id='user_first_name']")
+	private WebElement getFirstNameOfUser;
+	@FindBy(how = How.XPATH, using = "//input[@id='user_last_name']")
+	private WebElement getLastNameOfUser;
+	@FindBy(how = How.XPATH, using = "//input[@class='phone_number form-control user_primary_phone']")
+	private WebElement getPhoneOfUser;
+	@FindBy(how = How.XPATH, using = "//input[@id='user_email']")
+	private WebElement getEmailOfUser;
+	@FindBy(how = How.XPATH, using = "//input[@name='secondary_phone_number']")
+	private WebElement getSecondaryPhoneOfUser;
+	@FindBy(how = How.XPATH, using = "//tr[@class='leads-small']")
+	private List<WebElement> getLeadListVisiblity;
+
+	public String getFirstNameOfUser() {
+		return waitUntilVisiblity(getFirstNameOfUser).getAttribute("value").trim();
+	}
+
+	public String getLastNameOfUser() {
+		return waitUntilVisiblity(getLastNameOfUser).getAttribute("value").trim();
+	}
+
+	public String getPhoneOfUser() {
+		return waitUntilVisiblity(getPhoneOfUser).getAttribute("value").trim();
+	}
+
+	public String getEmailOfUser() {
+		return waitUntilVisiblity(getEmailOfUser).getAttribute("value").trim();
+	}
+
+	public String getSecondaryPhoneOfUser() {
+		return waitUntilVisiblity(getSecondaryPhoneOfUser).getAttribute("value").trim();
+	}
+
 	public String getLeadHash() {
 		jsClick(getLeadHash);
 		wait(1000);
 		return getLeadHash.getText().trim().replaceAll("[^0-9]", "");
 	}
+
 	public void clickOnOpenTasksLink() {
 		waitUntilClickable(openTasksLink).click();
 	}
+
 	public void clickOnReenggegeBucket() {
 		waitUntilClickable(getReenggagedLeadCount).click();
 	}
+
 	public String getReenggagedLeadCount() {
 		return waitUntilVisiblity(getReenggagedLeadCount).getText().trim();
 	}
+
 	public String getCurretLeadStatus() {
 		return waitUntilVisiblity(getCurretLeadStatus).getText().trim().toLowerCase();
 	}
+
 	public void addProjectOnLead() {
 		scrollIntoView(ClickOnAddProject);
 		waitUntilClickable(ClickOnAddProject).click();
@@ -143,15 +181,19 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 		waitUntilClickable(SelectProject.get(0)).click();
 		waitUntilClickable(ClickOnAddProjectButton).click();
 	}
+
 	public String getLeadId() {
 		return waitUntilVisiblity(getLeadId).getText().trim();
 	}
+
 	public String getMissedFollowups() {
 		return waitUntilVisiblity(missedFollowups).getText().trim();
 	}
+
 	public String getMissedSiteVisits() {
 		return waitUntilVisiblity(missedSiteVisits).getText().trim();
 	}
+
 	// To Search Lead
 	public void searchLead(String lead) throws InterruptedException {
 		waitUntilClickable(searchField).click();
@@ -161,7 +203,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 		Thread.sleep(1000);
 		webElement.sendKeys(Keys.ENTER);// Clicking enter
 	}
-	
+
 	public int getPushToSalesCount() {
 		return Integer.parseInt(waitUntilVisiblity(getPushToSalesCount).getText().trim());
 	}
@@ -205,6 +247,8 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 
 	public void openLeadDetails(int any) {
 		wait(1000);
+		waitUntilVisibilityOfElements(getLeadListVisiblity);
+		wait(1000);
 		waitUntilClickable(actionBar.get(any)).click();
 		waitUntilClickable(details).click();
 
@@ -224,7 +268,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 			wait(3000);
 		} catch (Exception e) {
 		}
-		
+
 	}
 
 	public void clickOnnewEnquiryBucket() {
@@ -277,8 +321,11 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	}
 
 	public void SelectList(String reassign) throws Exception {
+		waitUntilVisibilityOfElements(getLeadListVisiblity);
 		waitUntilClickable(listField).click();
+		waitUntilVisibilityOfElements(getLeadListVisiblity);
 		waitUntilVisiblity(listSearch).sendKeys(reassign);
+		waitUntilVisibilityOfElements(getLeadListVisiblity);
 		(listSearch).sendKeys(Keys.ENTER);
 	}
 
@@ -306,8 +353,9 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	}
 
 	public void editUserProfile() {
-		waitUntilClickable(userAccountIcon).click();
-		waitUntilClickable(editProfile).click();
+		jsClick(userAccountIcon);
+		jsClick(editProfile);
+		
 	}
 
 	public void closeEditProfile() {

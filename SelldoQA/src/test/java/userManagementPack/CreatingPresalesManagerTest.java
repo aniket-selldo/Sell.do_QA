@@ -24,8 +24,8 @@ public class CreatingPresalesManagerTest extends BaseTest {
 		login.login(prop.getProperty("admin"), prop.getProperty("password"));
 		ClientLoginPage clientLogin = new ClientLoginPage(driver);
 
-		clientLogin.clientLogin("testqa");
-
+		clientLogin.clientLogin(prop.getProperty("client_name"));
+		
 		GetTestData getTestData = new GetTestData();
 
 		Thread.sleep(3000);
@@ -68,7 +68,7 @@ public class CreatingPresalesManagerTest extends BaseTest {
 
 		String email = randomEmail();
 		extentTest.get().log(Status.INFO, "Entering Email Id.	.......");
-		newUserFormPage.enterEmail(getTestData.email);
+		newUserFormPage.enterEmail(email);
 
 		extentTest.get().log(Status.INFO, "Clicking on Professional Details Tab......");
 		newUserFormPage.clickOnProfessionalDetailsTab();

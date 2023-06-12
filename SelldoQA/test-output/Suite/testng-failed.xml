@@ -7,15 +7,15 @@
   </listeners>
   <test thread-count="2" parallel="methods" name="Test(failed)">
     <classes>
-      <class name="userManagementPack.CreatingPresalesManagerTest">
+      <class name="adminPack.BookingALead_ConfirmedTest">
         <methods>
-          <include name="creatingPresalesManagerTest"/>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
+          <include name="bookingALead_ConfirmedTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- userManagementPack.CreatingPresalesManagerTest -->
+      </class> <!-- adminPack.BookingALead_ConfirmedTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

@@ -29,9 +29,9 @@ public class ManageUsersPage extends ReusableUtils {
 	private WebElement applyButton;
 	@FindBy(how = How.XPATH, using = "//a[text()='Clear All']")
 	private WebElement clearAll;
-	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::i[1]")
+	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::i[7]")
 	private WebElement actionBar;
-	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::a[text()='Edit'][1]")
+	@FindBy(how = How.XPATH, using = "//div[@class='dropdown extended show']//a[text()='Edit']")
 	private WebElement edit;
 	@FindBy(how = How.CSS, using = "#s2id_search_params_status")
 	private WebElement ClickOnActiveInactiveFilter;
@@ -41,7 +41,13 @@ public class ManageUsersPage extends ReusableUtils {
 	private WebElement getUserStatus;
 	@FindBy(how = How.XPATH, using = "(//span[@class='td-bold'])[1]")
 	private WebElement getUserNameFromList;
+	@FindBy(how = How.XPATH, using = "//th[text()='name']/following::span[1]")
+	private WebElement getUserNameFromUserList;
 
+	public String getUserNameFromUserList() {
+		return waitUntilVisiblity(getUserNameFromUserList).getAttribute("innerHTML").trim();
+	}
+	
 	public String getUserStatus() {
 		return waitUntilVisiblity(getUserStatus).getText().trim();
 	}

@@ -14,7 +14,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -26,10 +25,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.devtools.DevTools;
-import org.openqa.selenium.devtools.v112.emulation.Emulation;
-import org.openqa.selenium.devtools.v112.network.Network;
-import org.openqa.selenium.devtools.v112.network.model.ConnectionType;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -38,6 +37,7 @@ import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import myPom.LoginAsClient;
@@ -50,7 +50,7 @@ public class BaseTest {
 	// public static ChromeDriver driver;
 
 	public static Properties prop;
-	public static ChromeDriver driver;
+	public static WebDriver driver;
 	public static LoginAsClient client;
 	public static FileWriter writer;
 	public static BufferedWriter buffer;
@@ -60,9 +60,9 @@ public class BaseTest {
 	public static ExtentReports extent = ExtentReporterNG.getReportObject();
 	public static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 	public static File filee;
-	public static final String APIKey ="05982fc554c597db3bd1db3a4e6fb9b9";
-	public static final String PreSalesUserID ="642a9b11b083454f959c1b14";
-	public static final String SalesUserID ="64522253b0834520de89a2d1";
+	public static final String APIKey = "05982fc554c597db3bd1db3a4e6fb9b9";
+	public static final String PreSalesUserID = "642a9b11b083454f959c1b14";
+	public static final String SalesUserID = "64522253b0834520de89a2d1";
 
 	@BeforeSuite(alwaysRun = true)
 	public void ObjectInvokder() throws IOException {
@@ -81,26 +81,21 @@ public class BaseTest {
 
 	}
 
-	
 	@BeforeMethod(alwaysRun = true)
 	protected void browserConfig() throws FileNotFoundException, IOException, AWTException {
-
 		// -------------------Property Files-------------------//
 		prop = new Properties();
 		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
-
 		// -------------------get Browser Property-------------------//
 		String browser = prop.getProperty("browser").trim();
 		// -------------------WebDriver-------------------//
 		if (browser.equalsIgnoreCase("chrome")) {
 			ChromeOptions options = new ChromeOptions();
-			//================To disable Automation name==========
-			options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
-			
-			//================To disble notification popup========
+			// ================To disable Automation name==========
+			options.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
+			// ================To disble notification popup========
 			options.addArguments("--disable-notifications");
-			
-			//================disable save password=======
+			// ================disable save password===============
 			options.addArguments("--start-maximized");
 			options.addArguments("--disable-web-security");
 			options.addArguments("--no-proxy-server");
@@ -108,36 +103,27 @@ public class BaseTest {
 			p.put("credentials_enable_service", false);
 			p.put("profile.password_manager_enabled", false);
 			options.setExperimentalOption("prefs", p);
-		
+			// =================Dark Mode =========================
+			options.addArguments("--force-dark-mode");
 			// ===============WebDriver=================//
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(options);
-			DevTools devTool = driver.getDevTools();
-			devTool.createSession();
-			devTool.send(Network.enable(Optional.empty(), Optional.empty(), Optional.empty()));
-			devTool.send(Network.emulateNetworkConditions(false, 0, 0, 0, Optional.of(ConnectionType.CELLULAR4G)));
 
-			double latitude = 35.8617;
-			double longitude = 104.1954;
-			devTool.send(
-					Emulation.setGeolocationOverride(Optional.of(latitude), Optional.of(longitude), Optional.of(1)));
-			devTool.send(Emulation.setScriptExecutionDisabled(false));
+		} else if (browser.equalsIgnoreCase("firefoxdriver")) {
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+		} else if (browser.equalsIgnoreCase("edgedriver")) {
+			WebDriverManager.edgedriver().setup();
+			driver = new EdgeDriver();
+		} else if (browser.equalsIgnoreCase("SafariDriver")) {
+			WebDriverManager.safaridriver().setup();
+			driver = new SafariDriver();
+		} else if (browser.equalsIgnoreCase("HtmlUnitDriver")) {
+			driver = new HtmlUnitDriver(BrowserVersion.CHROME);
+		} else if (browser.equalsIgnoreCase("ChromeDriver")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
 		}
-//		 else if (browser.equalsIgnoreCase("firefoxdriver")) {
-//			WebDriverManager.firefoxdriver().setup();
-//			driver = new FirefoxDriver();
-//		} else if (browser.equalsIgnoreCase("edgedriver")) {
-//			WebDriverManager.edgedriver().setup();
-//			driver = new EdgeDriver();
-//		} else if (browser.equalsIgnoreCase("SafariDriver")) {
-//			WebDriverManager.safaridriver().setup();
-//			driver = new SafariDriver();
-//		} else if (browser.equalsIgnoreCase("HtmlUnitDriver")) {
-//			driver = new HtmlUnitDriver(BrowserVersion.CHROME);
-//		}else if (browser.equalsIgnoreCase("ChromeDriver")) {
-//			WebDriverManager.chromedriver().setup();
-//			driver = new ChromeDriver();
-//		}
 		// -------------------Browser Management-------------------//
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
@@ -184,8 +170,9 @@ public class BaseTest {
 		}
 		return System.getProperty("user.dir") + "//reports//" + fileName + ".png";
 	}
+
 	public void zoomAndFullScreen() {
-		
+
 	}
 
 	protected String random(String method, String choise, int size) {
@@ -238,7 +225,8 @@ public class BaseTest {
 		System.out.println("Noty Message >>> " + ele.getText());
 		try {
 			new ReusableUtils(driver).waitUntilInvisibility(ele);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		return Noty;
 	}
 
@@ -274,17 +262,18 @@ public class BaseTest {
 			ele = driver.findElement(By.xpath("//div[@class='noty_message']")).isDisplayed();
 		}
 	}
+
 	public String DateTime(String time) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(time);// yyyy/MM/dd
 		LocalDateTime now = LocalDateTime.now();
 		return dtf.format(now);
 	}
+
 	public String randomEmail() {
-		return "aniket.khandizod+"+random("","AN",10)+"@sell.do";
+		return "aniket.khandizod+" + random("", "AN", 10) + "@sell.do";
 	}
+
 	public String randomPhone() {
-		return " 12345"+random("","N",5);
+		return " 12345" + random("", "N", 5);
 	}
 }
-
-
