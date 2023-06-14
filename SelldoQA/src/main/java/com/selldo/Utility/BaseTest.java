@@ -276,4 +276,9 @@ public class BaseTest {
 	public String randomPhone() {
 		return " 12345" + random("", "N", 5);
 	}
+	public void loading() {
+		
+		driver.findElement(By.xpath("//div[@class='tc loading_screen_bars']"));
+		
+	}
 }
