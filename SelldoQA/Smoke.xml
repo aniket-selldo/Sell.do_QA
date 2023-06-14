@@ -29,11 +29,37 @@
 			<class name="exportPackage.ExportSitevisitsTest" />
 			<class name="exportPackage.ExportInvoices_ItemizedBill_SMSTest" />
 
+			<!--DashboardBucketsPack-->
+			<class name="dashboardBucketsPack.ReengagedLeads_VerificationTest" />
+			<class name="dashboardBucketsPack.TodaysSitevisit_VerificationTest" />
+			<class name="dashboardBucketsPack.MissedFollowup_VerificationTest" />
+			<class name="dashboardBucketsPack.MissedSitevisit_VerificationTest" />
+			<class name="dashboardBucketsPack.NewEnquiries_VerificationTest" />
+			<class name="dashboardBucketsPack.MissedCalls_VerificationTest" />
+			<class name="dashboardBucketsPack.TodaysFollowup_VerificationTest" />
+			<class name="dashboardBucketsPack.NFA_VerificationTest" />
+			<class name="dashboardBucketsPack.UnreadEmail_VerificationTest" />
+
+			<!--UserManagementPack-->
+			<class name="userManagementPack.EditTeamTest" />
+			<class name="userManagementPack.CreatingClient_UnfilledformTest" />
+			<class name="userManagementPack.CreatingPostsalesUserTest" />
+			<class name="userManagementPack.CreatingPresalesManagerTest" />
+			<class name="userManagementPack.ClientCreationPostPaid" />
+			<class name="userManagementPack.CreatingSalesManagerTest" />
+			<class name="userManagementPack.CreatingPresalesUserTest" />
+			<class name="userManagementPack.CreatingAdminUserTest" />
+			<class name="userManagementPack.CreatingPostsalesManagerTest" />
+			<class name="userManagementPack.AddingNewTeamTest" />
+			<class name="userManagementPack.SearchingUserTest" />
+			<class name="userManagementPack.EditingUserTest" />
+			<class name="userManagementPack.CreatingSalesUserTest" />
+
 			<!--My Code-->
 			<class name="Aniket.UserManagment.LoginValidation" />
 			<class name="Aniket.UserManagment.ClientCreation" />
 
-			<!--leadActivities -->
+			<!--LeadActivities -->
 			<class name="leadActivities.LogOfflineCall_OutboundNotAnsweredTest" />
 			<class name="leadActivities.ChangingSiteVisitStatusTest" />
 			<class name="leadActivities.PullToSalesTest" />
@@ -94,8 +120,9 @@
 			<class name="otherLeadActivitiesPack.SearchingLeadByUserTest" />
 			<class name="otherLeadActivitiesPack.ReassigningLeadTest" />
 			<class name="otherLeadActivitiesPack.AddingLeadWithUnfilledFormTest" />
-			<class name="otherLeadActivitiesPack.MergingTwoLeadsFromDiffStagesTest" />
-			<class name="otherLeadActivitiesPack.MarkingOnBreakTest"/>
+			<class
+				name="otherLeadActivitiesPack.MergingTwoLeadsFromDiffStagesTest" />
+			<class name="otherLeadActivitiesPack.MarkingOnBreakTest" />
 			<class name="otherLeadActivitiesPack.AddingInterestedPropertyTest" />
 			<class
 				name="otherLeadActivitiesPack.MergingTwoLeadsFromSameStagesTest" />
