@@ -2,7 +2,7 @@ package com.selldo.POM.crm;
 
 import java.util.List;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -90,6 +90,10 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement more_d;
 	@FindBy(how = How.CSS, using = "#SiteVisit_lead_profile")
 	private WebElement sitevisit_d;
+	@FindBy(how = How.CSS, using = "#Followup_lead_profile")
+	private WebElement followUp_d;
+	@FindBy(how = How.CSS, using = "#Note_lead_profile")
+	private WebElement Note_d;
 	@FindBy(how = How.XPATH, using = "//div[@class='col-lg-1']")
 	private WebElement sitevisit_d_actionbar;
 	@FindBy(how = How.XPATH, using = "//a[text()='Confirm']")
@@ -261,7 +265,8 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement EnterCancellationReson;
 	@FindBy(how = How.XPATH, using = "//button[text()='Cancel Followup']")
 	private WebElement clickOnCancleFollowupButton;
-	
+	@FindBy(how = How.XPATH, using = "(//div[@class='timeline-item activity notes']//span)[1]")
+	private WebElement getFirstNoteText;
 	
 	public String getLeadStage() {
 		for (int i = 0; i < 50; i++) {
@@ -574,7 +579,21 @@ public class LeadProfilePage extends ReusableUtils {
 		scrollIntoViewUp(feedTab);
 		waitUntilClickable(feedTab).click();
 	}
-
+	public void clickFeedTabFollowUp() {
+		scrollIntoViewUp(more_d);
+		waitUntilClickable(more_d).click();
+		scrollIntoViewUp(followUp_d);
+		waitUntilClickable(followUp_d).click();
+	}
+	public void clickFeedTabNote() {
+		scrollIntoViewUp(more_d);
+		waitUntilClickable(more_d).click();
+		scrollIntoViewUp(Note_d);
+		waitUntilClickable(Note_d).click();
+	}
+	public String getFirstNoteText() {
+		return waitUntilVisiblity(getFirstNoteText).getText().trim();
+	}
 	public void clickOnActionBar() {
 		waitUntilClickable(followup_d_actionbar).click();
 	}

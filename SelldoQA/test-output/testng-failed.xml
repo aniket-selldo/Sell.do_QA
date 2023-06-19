@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="adminPack.BookingALead_ConfirmedTest">
+      <class name="WorkFlowTest.followupTest">
         <methods>
           <include name="browserConfig"/>
+          <include name="test"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
-          <include name="bookingALead_ConfirmedTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- adminPack.BookingALead_ConfirmedTest -->
+      </class> <!-- WorkFlowTest.followupTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

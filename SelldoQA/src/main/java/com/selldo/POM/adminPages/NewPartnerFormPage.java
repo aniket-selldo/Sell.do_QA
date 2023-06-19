@@ -31,7 +31,7 @@ public class NewPartnerFormPage extends ReusableUtils {
 	private WebElement sourceOfRequirement;
 	@FindBy(how = How.XPATH, using = "//a[@href='#channel-partner-contact']")
 	private WebElement contactDetails;
-	@FindBy(how = How.ID, using = "channel_partner_contact_salutation")
+	@FindBy(how = How.XPATH, using = "//span[text()='salutation']")
 	private WebElement salutation;
 	@FindBy(how = How.ID, using = "channel_partner_contact_first_name")
 	private WebElement firstName;
@@ -69,78 +69,79 @@ public class NewPartnerFormPage extends ReusableUtils {
 	private WebElement saveButton;
 
 	public void enterPartnerName(String partner) {
-		name.sendKeys(partner);
+		waitUntilVisiblity(name).sendKeys(partner);
 	}
 
 	public void selectDateOfJoining() {
-		dateOfJoining.click();
+		waitUntilClickable(dateOfJoining).click();
 		List<WebElement> dates = wholeCalender;
 		int total_node = dates.size();
 		for (int i = 0; i < total_node; i++) {
 			String date = dates.get(i).getText();
 			if (date.equals("9")) {
-				dates.get(i).click();// Clicking on above selected date
+				waitUntilClickable(dates.get(i)).click();// Clicking on above selected date
 				break;
 			}
 		}
 	}
 
 	public void enterSourceOfRecruitment(String source) {
-		sourceOfRequirement.sendKeys(source);
+		waitUntilVisiblity(sourceOfRequirement).sendKeys(source);
 	}
 
 	public void clickOnContactDetailsTab() {
-		contactDetails.click();
+		waitUntilClickable(contactDetails).click();
 	}
 
 	public void selectSalutation() {
+		waitUntilClickable(salutation);
 		Select oSelect = new Select(salutation);
 		oSelect.selectByIndex(1);
 	}
 
 	public void enterFirstName(String fName) {
-		firstName.sendKeys(fName);
+		waitUntilVisiblity(firstName).sendKeys(fName);
 	}
 
 	public void enterLastName(String lName) {
-		lastName.sendKeys(lName);
+		waitUntilVisiblity(lastName).sendKeys(lName);
 	}
 
 	public void enterPhone(String phone) {
-		phoneField.sendKeys(phone);
+		waitUntilVisiblity(phoneField).sendKeys(phone);
 	}
 
 	public void enterEmail(String pEmail) {
-		email.sendKeys(pEmail);
+		waitUntilVisiblity(email).sendKeys(pEmail);
 	}
 
 	public void enterAlternatePhone(String aPhone) {
-		alternatePhone.sendKeys(aPhone);
+		waitUntilVisiblity(alternatePhone).sendKeys(aPhone);
 	}
 
 	public void enterAlternateEmail(String aEmail) {
-		alternateEmail.sendKeys(aEmail);
+		waitUntilVisiblity(alternateEmail).sendKeys(aEmail);
 	}
 
 	public void enterDesignation(String des) {
-		designation.sendKeys(des);
+		waitUntilVisiblity(designation).sendKeys(des);
 	}
 
 	public void enterPanNumber(String pan) {
-		panNumber.sendKeys(pan);
+		waitUntilVisiblity(panNumber).sendKeys(pan);
 	}
 
 	public void clickOnSpecialization() {
-		specialization.click();
+		waitUntilClickable(specialization).click();
 	}
 
 	public void selectChannelPartnerType() {
-		channelPartnerType.click();
+		waitUntilClickable(channelPartnerType).click();
 		List<WebElement> list = channelPartnerType_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Local")) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on Local");
 				break;
 			}
@@ -148,16 +149,16 @@ public class NewPartnerFormPage extends ReusableUtils {
 	}
 
 	public void enterReraNumber() {
-		reraNumber.sendKeys("123456");
+		waitUntilVisiblity(reraNumber).sendKeys("123456");
 	}
 
 	public void selectPropertyType() {
-		propertyType.click();
+		waitUntilClickable(propertyType).click();
 		List<WebElement> list = propertyType_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Studio")) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on Studio");
 				break;
 			}
@@ -165,15 +166,15 @@ public class NewPartnerFormPage extends ReusableUtils {
 	}
 
 	public void enterMinBudget(String min) {
-		minBudget.sendKeys(min);
+		waitUntilVisiblity(minBudget).sendKeys(min);
 	}
 
 	public void enterMaxBudget(String max) {
-		maxBudget.sendKeys(max);
+		waitUntilVisiblity(maxBudget).sendKeys(max);
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 }

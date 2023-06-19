@@ -7,15 +7,15 @@
   </listeners>
   <test thread-count="2" parallel="methods" name="Test(failed)">
     <classes>
-      <class name="adminPack.BookingALead_ConfirmedTest">
+      <class name="channelPartnerPack.AddingChannelPartner_FilledFormTest">
         <methods>
           <include name="browserConfig"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
-          <include name="bookingALead_ConfirmedTest"/>
+          <include name="addingChannelPartner_FilledFormTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- adminPack.BookingALead_ConfirmedTest -->
+      </class> <!-- channelPartnerPack.AddingChannelPartner_FilledFormTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

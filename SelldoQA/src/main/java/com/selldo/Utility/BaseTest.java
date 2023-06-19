@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -61,6 +61,8 @@ public class BaseTest {
 	public static ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 	public static File filee;
 	public static final String APIKey = "05982fc554c597db3bd1db3a4e6fb9b9";
+	public static final String APIKeyFullAccess="99c4b48c7732b5183000999d1200d520";
+	public static final String ClientID = "642a8145b083453f914ce854";
 	public static final String PreSalesUserID = "642a9b11b083454f959c1b14";
 	public static final String SalesUserID = "64522253b0834520de89a2d1";
 
@@ -280,5 +282,8 @@ public class BaseTest {
 		
 		driver.findElement(By.xpath("//div[@class='tc loading_screen_bars']"));
 		
+	}
+	public String Random(int size) {
+		return RandomStringUtils.randomAlphabetic(size);
 	}
 }

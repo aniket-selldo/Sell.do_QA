@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Sell.do Web Automation Results</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Jun 12, 2023 10:27:53 am</span></a>
+<a href="#"><span class="badge badge-primary">Jun 14, 2023 01:25:04 pm</span></a>
 </li>
 </ul>
 </div>
@@ -84,9 +84,9 @@
           tag=""
           device="">
           <div class="test-detail">
-            <p class="name">bookingALead_ConfirmedTest</p>
+            <p class="name">addingChannelPartner_FilledFormTest</p>
             <p class="text-sm">
-              <span>10:27:56 am</span> / <span>00:00:35:157</span>
+              <span>1:25:07 pm</span> / <span>00:00:20:966</span>
               <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
@@ -94,33 +94,90 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-fail">bookingALead_ConfirmedTest</h5>
-<span class='badge badge-success'>06.12.2023 10:27:56 am</span>
-<span class='badge badge-danger'>06.12.2023 10:28:31 am</span>
-<span class='badge badge-default'>00:00:35:157</span>
+<h5 class="test-status text-fail">addingChannelPartner_FilledFormTest</h5>
+<span class='badge badge-success'>06.14.2023 1:25:07 pm</span>
+<span class='badge badge-danger'>06.14.2023 1:25:28 pm</span>
+<span class='badge badge-default'>00:00:20:966</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
 </div>
 </div>    <div class="row mb-3"><div class="col-md-3">
-<img data-featherlight='/home/aniket/git/Sell.do_QA/SelldoQA//reports//bookingALead_ConfirmedTest.png' src="/home/aniket/git/Sell.do_QA/SelldoQA//reports//bookingALead_ConfirmedTest.png">
-    <div class="title">bookingALead_ConfirmedTest</div>
+<img data-featherlight='/home/aniket/git/Sell.do_QA/SelldoQA//reports//addingChannelPartner_FilledFormTest.png' src="/home/aniket/git/Sell.do_QA/SelldoQA//reports//addingChannelPartner_FilledFormTest.png">
+    <div class="title">addingChannelPartner_FilledFormTest</div>
     </div></div>
 <div class="detail-body mt-4">
 <table class="table table-sm">
   <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
   <tbody>
       <tr class="event-row">
-        <td><span class="badge log fail-bg">Fail</span></td>
-        <td>10:28:31 am</td>
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:25:15 pm</td>
         <td>
-          <textarea readonly class="code-block">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator 'By.xpath: //span[text()='Campaign Responses']/preceding::a[@class='btn btn-light']' (tried for 5 second(s) with 500 milliseconds interval)
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at com.selldo.Utility.ReusableUtils.waitUntilClickable(ReusableUtils.java:77)
-	at com.selldo.POM.crm.LeadProfilePage.addingInventory(LeadProfilePage.java:696)
-	at adminPack.BookingALead_ConfirmedTest.bookingALead_ConfirmedTest(BookingALead_ConfirmedTest.java:58)
+          Clicking on Partners tab.......
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:25:16 pm</td>
+        <td>
+          Clicking on Manage Partners tab.......
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:25:17 pm</td>
+        <td>
+          Clicking on New Partner Tab.......
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:25:19 pm</td>
+        <td>
+          Entering Channel Partner name.......
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:25:19 pm</td>
+        <td>
+          Selecting date of joining from calender......
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:25:21 pm</td>
+        <td>
+          Entering Source of recruitment.......
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:25:22 pm</td>
+        <td>
+          Clicking on Contact Details tab.......
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:25:24 pm</td>
+        <td>
+          Selecting Salutation from dropdown.......
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>1:25:25 pm</td>
+        <td>
+          <textarea readonly class="code-block">org.openqa.selenium.support.ui.UnexpectedTagNameException: Element should have been "select" but was "span"
+Build info: version: '4.9.1', revision: 'eb2032df7f'
+System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-43-generic', java.version: '17.0.6'
+Driver info: driver.version: unknown
+	at org.openqa.selenium.support.ui.Select.<init>(Select.java:49)
+	at com.selldo.POM.adminPages.NewPartnerFormPage.selectSalutation(NewPartnerFormPage.java:98)
+	at channelPartnerPack.AddingChannelPartner_FilledFormTest.addingChannelPartner_FilledFormTest(AddingChannelPartner_FilledFormTest.java:61)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -136,42 +193,6 @@
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[text()='Campaign Responses']/preceding::a[@class='btn btn-light']"}
-  (Session info: chrome=111.0.5563.146)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
-Build info: version: '4.9.1', revision: 'eb2032df7f'
-System info: os.name: 'Linux', os.arch: 'amd64', os.version: '5.19.0-43-generic', java.version: '17.0.6'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [66df550357479a16eb5ea08be6300d48, findElement {using=xpath, value=//span[text()='Campaign Responses']/preceding::a[@class='btn btn-light']}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.oZINrk}, goog:chromeOptions: {debuggerAddress: localhost:39027}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39027/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 66df550357479a16eb5ea08be6300d48
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
-	at jdk.proxy2/jdk.proxy2.$Proxy19.isDisplayed(Unknown Source)
-	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
-	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
-	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
-	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:660)
-	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:656)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
-	... 18 more
 </textarea>
           
         </td>
@@ -203,12 +224,12 @@ Session ID: 66df550357479a16eb5ea08be6300d48
 <span class="meta">
 <span class='badge log badge-danger'>1</span>
 </span>
-<p class="name">org.openqa.selenium.TimeoutException</p>
+<p class="name">org.openqa.selenium.support.ui.UnexpectedTagNameException</p>
 <p class="duration text-sm">1 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4>org.openqa.selenium.TimeoutException</h4>
+<h4>org.openqa.selenium.support.ui.UnexpectedTagNameException</h4>
 <span status="fail" class='badge log badge-danger'>1 failed</span>
 </div>
 <table class='table table-sm mt-4'>
@@ -222,9 +243,9 @@ Session ID: 66df550357479a16eb5ea08be6300d48
 <tbody>
 <tr class="tag-test-status" status="fail">
 <td><span class="badge log fail-bg">Fail</span></td>
-<td>10:27:56 am</td>
+<td>13:25:07 pm</td>
 <td>
-<a href="#" class="linked" test-id='1' id='1'>bookingALead_ConfirmedTest</a>
+<a href="#" class="linked" test-id='1' id='1'>addingChannelPartner_FilledFormTest</a>
 </td>
 </tr>
 </tbody>
@@ -244,13 +265,13 @@ Session ID: 66df550357479a16eb5ea08be6300d48
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Jun 12, 2023 10:27:53 am</h3>
+<h3>Jun 14, 2023 01:25:04 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Jun 12, 2023 10:28:31 am</h3>
+<h3>Jun 14, 2023 01:25:28 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -303,8 +324,8 @@ Session ID: 66df550357479a16eb5ea08be6300d48
 <div class="card-footer">
 <div><small data-tooltip='0%'><b>0</b> events passed</small></div>
 <div>
-<small data-tooltip='100%'><b>1</b> events failed,
-<b data-tooltip='%'>0</b> others
+<small data-tooltip='11%'><b>1</b> events failed,
+<b data-tooltip='%'>8</b> others
 </small>
 </div>
 </div>
@@ -320,7 +341,7 @@ Session ID: 66df550357479a16eb5ea08be6300d48
 </div></div>
 <script>
 var timeline = {
-"bookingALead_ConfirmedTest":35.157
+"addingChannelPartner_FilledFormTest":20.966
 };
 </script>
 <div class="row">
@@ -376,7 +397,7 @@ passEvents: 0,
 failEvents: 1,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 0
+infoEvents: 8
 };
 </script>        </div>
       </div>

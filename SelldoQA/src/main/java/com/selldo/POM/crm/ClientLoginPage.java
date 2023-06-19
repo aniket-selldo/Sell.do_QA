@@ -39,11 +39,11 @@ public class ClientLoginPage extends ReusableUtils {
 	@FindBy(how = How.CSS, using = "i#user-account-icon")
 	private WebElement userAccount;
 
-	public void clientLogin(String clientName)  {
+	public void clientLogin(String clientName) {
 
 		// Clicking on Select a Client Field
-		waitUntilClickable(SelectAClientField,50).click();
-		System.out.println("Clicking on Select a Client Field >>> "+clientName);
+		waitUntilClickable(SelectAClientField, 50).click();
+		System.out.println("Clicking on Select a Client Field >>> " + clientName);
 
 		// Thread.sleep(3000);
 
@@ -97,10 +97,10 @@ public class ClientLoginPage extends ReusableUtils {
 	}
 
 	public void logout() {
-		waitUntilClickable(userAccount);
+		waitUntilClickable(userAccount, 2);
 
 		userAccount.click();
-		waitUntilClickable(Logout);
+		waitUntilClickable(Logout, 2);
 
 		Logout.click();
 	}

@@ -12,14 +12,13 @@ import io.restassured.response.Response;
 
 public class CreateFollowUp {
 
-	public static void createFollowUp(String leadID,String API_Key,String ClientID) {
+	public static void createFollowUp(String leadID,String API_Key,String ClientID,String URL) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH");// yyyy/MM/dd
 		LocalDateTime now = LocalDateTime.now();
 		String date = dtf.format(now) + ":59 IST";
 		System.out.println("Date >> " + date);
 
-		//String leadID = "647f332cb08345ab2f35a314";
-		RestAssured.baseURI = "https://v2.sell.do/client/leads/" + leadID + "/followups.json";
+		RestAssured.baseURI = URL+"/client/leads/" + leadID + "/followups.json";
 
 		Followup followup = new Followup();
 		followup.setFollowup_type("email");
@@ -39,6 +38,7 @@ public class CreateFollowUp {
 		String responseBody = response.getBody().asString();
 		System.out.println("Response body: " + responseBody);
 	}
+	
 	public static void main(String[] args) {
 		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH");// yyyy/MM/dd

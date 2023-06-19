@@ -110,6 +110,8 @@ public class AdminDashboardPage extends ReusableUtils {
 	private WebElement enterInGlobalSearch;
 	@FindBy(how = How.CSS, using = "#select2-drop li:nth-child(1)")
 	private WebElement clickOnSearchSuggation;
+	@FindBy(how = How.CSS, using = "#stage-span")
+	private WebElement leadStatus;
 	// ################## Autoforwading On Off ###################
 
 	public void AutoForwading(String admin, Strategy STRATEGY_FOR_LEAD_PUSH_TO_SALES, AutoForwarding flag) {
@@ -227,7 +229,15 @@ public class AdminDashboardPage extends ReusableUtils {
 		waitUntilVisiblity(enterInGlobalSearch).sendKeys(leadId);
 		waitUntilClickable(clickOnSearchSuggation).click();
 	}
-
+	public String getLeadURL_ID(String leadId) {
+		waitUntilClickable(clickOnGlobalSearch).click();
+		waitUntilVisiblity(enterInGlobalSearch).sendKeys(leadId);
+		waitUntilClickable(clickOnSearchSuggation).click();
+		waitUntilVisiblity(leadStatus);
+		String out = driver.getCurrentUrl().split("/")[6];
+		System.out.println("Lead ID > "+out);
+		return out;
+	}
 	public void clickOnDocument() {
 		waitUntilClickable(documentIcon);
 		documentIcon.click();

@@ -69,6 +69,52 @@ public class Update_Lead {
 		System.out.println("Response body: " + responseBody);
 		JsonPath jsnPath = response.jsonPath();
 	}
+	public static void UpdateLead(String leadID,String URL,String APIKey,String ClientID) {
+		ActivitiesData activitiesData = new ActivitiesData();
+		AddressesField addressesField = new AddressesField();
+		LeadProfile leadProfile = new LeadProfile();
+		PrimaryEmail primaryEmail = new PrimaryEmail();
+		PrimaryPhone primaryPhone = new PrimaryPhone();
+		ReceivedFrom receivedFrom = new ReceivedFrom();
+		RemovedIds removedIds = new RemovedIds();
+		Requirement requirement = new Requirement();
+		Lead Lead = new Lead();
+		Root root = new Root();
+		
+        RestAssured.baseURI = URL+"/client/leads/"+leadID+".json";
+
+		root.setApi_key(APIKey);
+		root.setClient_id(ClientID);
+		Lead.setSalutation("mr");
+		Lead.setFirst_name("Aniket");
+		Lead.setLast_name("LastName");
+		Lead.setTime_zone("Asia/Calcutta");
+		Lead.setStage("incoming");
+		Lead.setStatus(null);
+		Lead.setNri(false);
+		receivedFrom.setCampaign_id("");
+		receivedFrom.setProject_id("");
+		receivedFrom.setSource("");
+		Lead.setReceived_from(receivedFrom);
+		primaryEmail.setEmail("i77wgzksysu@sell.do");
+		primaryEmail.setEmail_type("office");
+		Lead.setPrimary_email(primaryEmail);
+		ArrayList<String> project_ids = new ArrayList<String>();
+		project_ids.add("587dec4626300a3aca00001c");
+		Lead.setInterested_project_ids(project_ids);
+		Lead.setSales_id("587ddb2b5a9db31da9000001");
+		root.setLead(Lead);
+		
+		
+		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all()
+				.put();
+		int statusCode = response.getStatusCode();
+		System.out.println("Status code: " + statusCode);
+		String responseBody = response.getBody().asString();
+		System.out.println("Response body: " + responseBody);
+		JsonPath jsnPath = response.jsonPath();
+	}
+	
 	public static void main(String[] args) {
 		UpdateLead();
 	}

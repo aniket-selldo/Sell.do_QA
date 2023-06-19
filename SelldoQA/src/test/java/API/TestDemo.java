@@ -3,7 +3,7 @@ package API;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

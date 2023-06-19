@@ -2,6 +2,8 @@ package API;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import com.github.javafaker.Faker;
+
 import POJO_LeadCreate.AddressesField;
 import POJO_LeadCreate.Form;
 import POJO_LeadCreate.Lead;
@@ -34,7 +36,9 @@ public class CreateLead_POST {
 		Lead lead = new Lead();
 		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
 		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
-		lead.setEmail(RandomStringUtils.randomAlphanumeric(10)+"@sell.do");
+		String emailID = new Faker().internet().emailAddress();
+		String eamilID2 =RandomStringUtils.randomAlphanumeric(10)+"@sell.do";
+		lead.setEmail(emailID);
 		lead.setPhone("123"+RandomStringUtils.randomNumeric(7));
 		lead.setSalutation("mr");
 		lead.setTime_zone("Asia/Calcutta");
@@ -42,7 +46,7 @@ public class CreateLead_POST {
 		lead.setStatus(null);
 		lead.setNri(false);
 		lead.setProject_id("");
-		lead.setSales("642a9b11b083454f959c1b14");
+		lead.setSales("587f196f5a9db39c6e000004");
 
 		Form form = new Form();
 		form.setNote(note);
@@ -52,7 +56,7 @@ public class CreateLead_POST {
 		selldo.setForm(form);
 		Root root = new Root();
 		root.setSell_do(selldo);
-		root.setApi_key("05982fc554c597db3bd1db3a4e6fb9b9");
+		root.setApi_key("fa8d6ca0217e676a7b0e06f51c32568c");
 
 		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all()
 				.post("https://v2.sell.do/api/leads/create");
