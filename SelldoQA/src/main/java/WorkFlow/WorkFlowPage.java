@@ -112,11 +112,15 @@ public class WorkFlowPage extends ReusableUtils {
 	}
 
 	public void selectTamplete(WFEvent we) {
-		enterTampleteNameForSearch.sendKeys(we.toString());
+		enterTampleteNameForSearch.sendKeys(we.toString().split(" ")[0]);
 		wait(1000);
 		waitUntilClickable(driver.findElement(By.xpath("(//button[text()='Choose'])[" + we.toInt() + "]"))).click();
 	}
-
+	public void selectTamplete(String we) {
+		enterTampleteNameForSearch.sendKeys(we.split(" ")[0]);
+		wait(1000);
+		waitUntilClickable(driver.findElement(By.xpath("(//button[text()='Choose'])[" + we + "]"))).click();
+	}
 	public void clickOnAddCondition() {
 		waitUntilClickable(addCondition).click();
 	}

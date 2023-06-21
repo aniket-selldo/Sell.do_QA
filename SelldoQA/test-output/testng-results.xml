@@ -2,32 +2,32 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-06-19T18:36:58 IST" name="Default suite" finished-at="2023-06-19T18:38:10 IST" duration-ms="72636">
+  <suite started-at="2023-06-19T22:43:03 IST" name="Default suite" finished-at="2023-06-19T22:44:19 IST" duration-ms="76096">
     <groups>
     </groups>
-    <test started-at="2023-06-19T18:36:58 IST" name="Default test" finished-at="2023-06-19T18:38:10 IST" duration-ms="72636">
-      <class name="WorkFlowTest.followupTest">
-        <test-method is-config="true" signature="ObjectInvokder()[pri:0, instance:WorkFlowTest.followupTest@533bda92]" started-at="2023-06-19T18:36:58 IST" name="ObjectInvokder" finished-at="2023-06-19T18:36:58 IST" duration-ms="19" status="PASS">
+    <test started-at="2023-06-19T22:43:03 IST" name="Default test" finished-at="2023-06-19T22:44:19 IST" duration-ms="76096">
+      <class name="WorkFlowTest.SiteVisitTest">
+        <test-method is-config="true" signature="ObjectInvokder()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:43:03 IST" name="ObjectInvokder" finished-at="2023-06-19T22:43:03 IST" duration-ms="14" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ObjectInvokder -->
-        <test-method is-config="true" signature="browserConfig()[pri:0, instance:WorkFlowTest.followupTest@533bda92]" started-at="2023-06-19T18:36:58 IST" name="browserConfig" finished-at="2023-06-19T18:37:00 IST" duration-ms="2239" status="PASS">
+        <test-method is-config="true" signature="browserConfig()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:43:03 IST" name="browserConfig" finished-at="2023-06-19T22:43:06 IST" duration-ms="2844" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserConfig -->
-        <test-method signature="test()[pri:0, instance:WorkFlowTest.followupTest@533bda92]" started-at="2023-06-19T18:37:00 IST" name="test" finished-at="2023-06-19T18:38:10 IST" duration-ms="70256" status="PASS">
+        <test-method signature="siteVisitTest()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:43:06 IST" name="siteVisitTest" finished-at="2023-06-19T22:44:19 IST" duration-ms="73121" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- test -->
-        <test-method is-config="true" signature="terminate()[pri:0, instance:WorkFlowTest.followupTest@533bda92]" started-at="2023-06-19T18:38:10 IST" name="terminate" finished-at="2023-06-19T18:38:10 IST" duration-ms="104" status="PASS">
+        </test-method> <!-- siteVisitTest -->
+        <test-method is-config="true" signature="terminate()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:44:19 IST" name="terminate" finished-at="2023-06-19T22:44:19 IST" duration-ms="103" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- terminate -->
-        <test-method is-config="true" signature="ObjectSupressor()[pri:0, instance:WorkFlowTest.followupTest@533bda92]" started-at="2023-06-19T18:38:10 IST" name="ObjectSupressor" finished-at="2023-06-19T18:38:10 IST" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="ObjectSupressor()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:44:19 IST" name="ObjectSupressor" finished-at="2023-06-19T22:44:19 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ObjectSupressor -->
-      </class> <!-- WorkFlowTest.followupTest -->
+      </class> <!-- WorkFlowTest.SiteVisitTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

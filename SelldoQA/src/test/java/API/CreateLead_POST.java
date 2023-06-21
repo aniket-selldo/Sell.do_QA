@@ -36,9 +36,9 @@ public class CreateLead_POST {
 		Lead lead = new Lead();
 		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
 		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
-		String emailID = new Faker().internet().emailAddress();
+		//String emailID = new Faker().internet().emailAddress();
 		String eamilID2 =RandomStringUtils.randomAlphanumeric(10)+"@sell.do";
-		lead.setEmail(emailID);
+		lead.setEmail(eamilID2);
 		lead.setPhone("123"+RandomStringUtils.randomNumeric(7));
 		lead.setSalutation("mr");
 		lead.setTime_zone("Asia/Calcutta");

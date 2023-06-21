@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="WorkFlowTest.followupTest">
+      <class name="WorkFlowTest.SiteVisitTest">
         <methods>
           <include name="browserConfig"/>
-          <include name="test"/>
+          <include name="siteVisitTest"/>
           <include name="ObjectInvokder"/>
           <include name="ObjectSupressor"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- WorkFlowTest.followupTest -->
+      </class> <!-- WorkFlowTest.SiteVisitTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

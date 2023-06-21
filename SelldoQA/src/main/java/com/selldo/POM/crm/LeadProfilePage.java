@@ -592,6 +592,7 @@ public class LeadProfilePage extends ReusableUtils {
 		waitUntilClickable(Note_d).click();
 	}
 	public String getFirstNoteText() {
+		wait(3000);
 		return waitUntilVisiblity(getFirstNoteText).getText().trim();
 	}
 	public void clickOnActionBar() {

@@ -48,22 +48,19 @@ public class ClientLoginPage extends ReusableUtils {
 		// Thread.sleep(3000);
 
 		// Typing Client name in Select a Client Field
-		waitUntilVisiblity(SelectAClientFieldInput);
-		SelectAClientFieldInput.sendKeys(clientName);
+		waitUntilVisiblity(SelectAClientFieldInput).sendKeys(clientName);
 		System.out.println("Typing Client name in Select a Client Field");
 
 		// Thread.sleep(3000);
 
 		// Selecting Client name from dropdown
-		waitUntilClickable(ClientName);
-		ClientName.click();
+		waitUntilClickable(ClientName).click();
 		System.out.println("Selecting Client name from dropdown");
 
 		// Thread.sleep(3000);
 
 		// Clicking on Search button
-		waitUntilClickable(SearchButton);
-		SearchButton.click();
+		waitUntilClickable(SearchButton).click();
 		System.out.println("Clicking on Search button");
 
 		// Thread.sleep(3000);
@@ -72,36 +69,25 @@ public class ClientLoginPage extends ReusableUtils {
 		// ActionBar.click();
 
 		// Clicking on Login link
-		waitUntilClickable(Login);
-		Login.click();
+		waitUntilClickable(Login).click();
 		System.out.println("Clicking on Login link");
 	}
 
 	public void clickOnCreateClientButton() {
-		waitUntilClickable(CreateClientButton);
-
-		CreateClientButton.click();
+		waitUntilClickable(CreateClientButton).click();
 	}
 
 	public void clickOnClientsLink() {
-		waitUntilClickable(Clients);
-
-		Clients.click();
+		waitUntilClickable(Clients).click();
 	}
 
 	public void superAdminlogout() {
-		waitUntilClickable(Logout);
-
-		Logout.click();
+		waitUntilClickable(Logout).click();
 
 	}
 
 	public void logout() {
-		waitUntilClickable(userAccount, 2);
-
-		userAccount.click();
-		waitUntilClickable(Logout, 2);
-
-		Logout.click();
+		waitUntilClickable(userAccount, 0).click();
+		waitUntilClickable(Logout, 0).click();
 	}
 }
