@@ -1,10 +1,7 @@
 package userManagementPack;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
