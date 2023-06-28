@@ -25,7 +25,7 @@ public class TodaysSitevisit_VerificationTest extends BaseTest {
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
 		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
-		adminDashboardPage.searchLead(Integer.parseInt(R('0', '1', '2', '3', '4', '5', '6', '7')), "All Leads");
+		adminDashboardPage.searchLead(Integer.parseInt(R('0', '1', '2', '3', '4', '5', '6', '7')), "incoming");
 
 		extentTest.get().log(Status.INFO, "Getting Lead Id on which Sitevisit is to be scheduled for today.......");
 		String leadId_profileObj = driver.findElement(By.cssSelector("span[name='lead_id']")).getText()
@@ -75,8 +75,9 @@ public class TodaysSitevisit_VerificationTest extends BaseTest {
 		Thread.sleep(2000);
 
 		extentTest.get().log(Status.INFO, "Getting Lead Id from toadys sitevisit bucket......");
+		int leadId_dashboardObj_Size = driver.findElements(By.cssSelector(".navigation.clearfix.todays_stat_show_lead")).size();
 		String leadId_dashboardObj = driver.findElements(By.cssSelector(".navigation.clearfix.todays_stat_show_lead"))
-				.get(1).getText().replaceAll("[^0-9]+", "").trim();
+				.get(leadId_dashboardObj_Size-1).getText().split(" ")[0].replaceAll("[^0-9]+", "").trim();
 		System.out.println("#" + leadId_dashboardObj);
 
 		extentTest.get().log(Status.INFO, "Verifying Sitevisit scheduled for today from dashboard......");

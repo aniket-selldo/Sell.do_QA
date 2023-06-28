@@ -11,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import com.selldo.Utility.ReusableUtils;
 
+import Enums.Project;
+
 public class NewUnitFormPage extends ReusableUtils {
 
 	public WebDriver driver;
@@ -72,52 +74,54 @@ public class NewUnitFormPage extends ReusableUtils {
 	private WebElement saveButton;
 
 	public void enterDeveloperName(String project) throws InterruptedException {
-		developer.click();
-		developerInputField.sendKeys(project);
-		Thread.sleep(2000);
-		developerInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(developer).click();
+		waitUntilVisiblity(developerInputField).sendKeys(project);
+		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
-
+	public void enterDeveloperName(Project project) throws InterruptedException {
+		waitUntilClickable(developer).click();
+		waitUntilVisiblity(developerInputField).sendKeys(project.toString());
+		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
+	}
 	public void enterProjectName(String pro) throws InterruptedException {
-		project.click();
-		projectInputField.sendKeys(pro);
-		Thread.sleep(2000);
-		projectInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(project).click();
+		waitUntilVisiblity(projectInputField).sendKeys(pro);
+		waitUntilVisiblity(projectInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void enterProjectTowerName(String tower) throws InterruptedException {
-		projectTower.click();
+		waitUntilClickable(projectTower).click();
 		// Thread.sleep(2000);
-		projectTowerField.sendKeys(tower);
+		waitUntilVisiblity(projectTowerField).sendKeys(tower);
 		Thread.sleep(2000);
-		projectTowerField.sendKeys(Keys.ENTER);
+		waitUntilVisiblity(projectTowerField).sendKeys(Keys.ENTER);
 	}
 
 	public void enterFloorPlanName(String tower) throws InterruptedException {
-		unitConfiguration.click();
-		unitConfigurationInputField.sendKeys(tower);
+		waitUntilClickable(unitConfiguration).click();
+		waitUntilVisiblity(unitConfigurationInputField).sendKeys(tower);
 		Thread.sleep(2000);
-		unitConfigurationInputField.sendKeys(Keys.ENTER);
+		waitUntilVisiblity(unitConfigurationInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void enterUnitName(String ut) {
-		nameInputField.sendKeys(ut);
+		waitUntilVisiblity(nameInputField).sendKeys(ut);
 	}
 
 	public void enterNumberOfFloors(String cArea) {
 		floorInputField.clear();
-		floorInputField.sendKeys(cArea);
-		floorInputField.sendKeys(Keys.ENTER);
+		waitUntilVisiblity(floorInputField).sendKeys(cArea);
+		waitUntilVisiblity(floorInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void selectNumberOfBedrooms() throws InterruptedException {
-		bedrooms.click();
+		waitUntilClickable(bedrooms).click();
 		List<WebElement> list = bedrooms_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("3")) {
 				Thread.sleep(1000);
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on 3");
 				break;
 			}
@@ -125,13 +129,13 @@ public class NewUnitFormPage extends ReusableUtils {
 	}
 
 	public void selectNumberOfBathrooms() throws InterruptedException {
-		bathrooms.click();
+		waitUntilClickable(bathrooms).click();
 		List<WebElement> list = bathrooms_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("3")) {
 				Thread.sleep(1000);
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on 3");
 				break;
 			}
@@ -139,13 +143,13 @@ public class NewUnitFormPage extends ReusableUtils {
 	}
 
 	public void selectCategory() throws InterruptedException {
-		category.click();
+		waitUntilClickable(category).click();
 		List<WebElement> list = category_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("facing")) {
 				Thread.sleep(1000);
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on facing");
 				break;
 			}
@@ -153,13 +157,13 @@ public class NewUnitFormPage extends ReusableUtils {
 	}
 
 	public void selectType() throws InterruptedException {
-		type.click();
+		waitUntilClickable(type).click();
 		List<WebElement> list = type_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("penthouse")) {
 				Thread.sleep(1000);
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on penthouse");
 				break;
 			}
@@ -167,24 +171,24 @@ public class NewUnitFormPage extends ReusableUtils {
 	}
 
 	public void enterCarpetArea(String cArea) {
-		carpetArea.sendKeys(cArea);
+		waitUntilVisiblity(carpetArea).sendKeys(cArea);
 	}
 
 	public void enterSaleableArea(String sArea) {
-		saleableArea.sendKeys(sArea);
+		waitUntilVisiblity(saleableArea).sendKeys(sArea);
 	}
 
 	/*
-	 * public void enterBaseRate(String base) { baseRateInputField.sendKeys(base); }
+	 * public void enterBaseRate(String base) { baseRateInputField).sendKeys(base); }
 	 */
 
 	public void enterUnitBaseRate(String base) throws Exception {
-		baseRatePlaceHolder.get(0).click();
-		baseRateInputField.sendKeys(base);
+		waitUntilClickable(baseRatePlaceHolder.get(0)).click();
+		waitUntilVisiblity(baseRateInputField).sendKeys(base);
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 }

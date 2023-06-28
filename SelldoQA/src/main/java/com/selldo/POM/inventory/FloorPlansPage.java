@@ -1,5 +1,7 @@
 package com.selldo.POM.inventory;
 
+import java.util.List;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -45,31 +47,36 @@ public class FloorPlansPage extends ReusableUtils {
 	private WebElement actionBar;
 	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::a[text()='Edit'][1]")
 	private WebElement editLink;
+	@FindBy(how = How.XPATH, using = "//table[@class='table table-responsive']/tbody/tr/td[1]")
+	private List<WebElement> getAllDevloperName;
+
+	public String  getAnyFloorPlanName() {
+		return getAllDevloperName.stream().findAny().get().getText();
+	}
 
 	public void clickOnNewFloorPlanButton() {
-		newFloorPlanButton.click();
+		waitUntilClickable(newFloorPlanButton).click();
 	}
 
 	public void clickOnFunnelIcon() {
-		funnelIcon.click();
+		waitUntilClickable(funnelIcon).click();
 	}
 
 	public void enterFloorPlanName(String floor) throws InterruptedException {
-		floorPlanSpan.click();
-		floorPlanInputField.sendKeys(floor);
-		Thread.sleep(2000);
-		floorPlanInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(floorPlanSpan).click();
+		waitUntilVisiblity(floorPlanInputField).sendKeys(floor);
+		waitUntilVisiblity(floorPlanInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void clickOnFilterButton() {
-		filterButton.click();
+		waitUntilClickable(filterButton).click();
 	}
 
 	public void clickOnClearAllLink() {
-		clearAllLink.click();
+		waitUntilClickable(clearAllLink).click();
 	}
 
 	public void clickOnCrossIcon() {
-		crossIcon.click();
+		waitUntilClickable(crossIcon).click();
 	}
 }

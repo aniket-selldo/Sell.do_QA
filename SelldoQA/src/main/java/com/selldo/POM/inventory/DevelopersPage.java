@@ -1,5 +1,7 @@
 package com.selldo.POM.inventory;
 
+import java.util.List;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,37 +40,42 @@ public class DevelopersPage extends ReusableUtils {
 	private WebElement clearAllLink;
 	@FindBy(how = How.XPATH, using = "//input[@value='Apply']/preceding::i[@class='ion-android-close'][1]")
 	private WebElement crossIcon;
+	@FindBy(how = How.XPATH, using = "//table[@class='table table-responsive']/tbody/tr/td[1]")
+	private List<WebElement> getAllDevloperName;
 
+	public String  getAnyDevloperName() {
+		return getAllDevloperName.stream().findAny().get().getText();
+	}
+	
 	public void clickOnNewDevekoperButton() {
-		newDeveloperButton.click();
+		waitUntilClickable(newDeveloperButton).click();
 	}
 
 	public void selectEdit() {
-		actionBar.click();
-		editLink.click();
+		waitUntilClickable(actionBar).click();
+		waitUntilClickable(editLink).click();
 	}
 
 	public void clickOnFunnelIcon() {
-		funnelIcon.click();
+		waitUntilClickable(funnelIcon).click();
 	}
 
 	public void enterDeveloperName(String developer) throws InterruptedException {
-		deveoperSpan.click();
-		developerInputField.sendKeys(developer);
-		Thread.sleep(2000);
-		developerInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(deveoperSpan).click();
+		waitUntilVisiblity(developerInputField).sendKeys(developer);
+		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void clickOnApplyButton() {
-		applyButton.click();
+		waitUntilClickable(applyButton).click();
 	}
 
 	public void clickOnClearAllLink() {
-		clearAllLink.click();
+		waitUntilClickable(clearAllLink).click();
 	}
 
 	public void clickOnCrossIcon() {
-		crossIcon.click();
+		waitUntilClickable(crossIcon).click();
 	}
 
 }

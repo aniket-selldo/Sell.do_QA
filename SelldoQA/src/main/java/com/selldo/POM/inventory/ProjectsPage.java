@@ -1,5 +1,7 @@
 package com.selldo.POM.inventory;
 
+import java.util.List;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -54,32 +56,38 @@ public class ProjectsPage extends ReusableUtils {
 	private WebElement clearAllLink;
 	@FindBy(how = How.XPATH, using = "//input[@value='Apply']/preceding::i[@class='ion-android-close'][1]")
 	private WebElement crossIcon;
+	@FindBy(how = How.XPATH, using = "//table[@class='table table-responsive']/tbody/tr/td[1]")
+	private List<WebElement> getAllDevloperName;
+
+	public String  getAnyProjectName() {
+		return getAllDevloperName.stream().findAny().get().getText();
+	}
 
 	public void clickOnNewProjectButton() {
-		newProjectButton.click();
+		waitUntilClickable(newProjectButton).click();
 	}
 
 	public void clickOnFunnelIcon() {
-		funnelIcon.click();
+		waitUntilClickable(funnelIcon).click();
 	}
 
 	public void enterProjectName(String pro) throws InterruptedException {
-		projectSpan.click();
-		projectInputField.sendKeys(pro);
+		waitUntilClickable(projectSpan).click();
+		waitUntilVisiblity(projectInputField).sendKeys(pro);
 		Thread.sleep(2000);
-		projectInputField.sendKeys(Keys.ENTER);
+		waitUntilVisiblity(projectInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void clickOnFilterButton() {
-		filterButton.click();
+		waitUntilClickable(filterButton).click();
 	}
 
 	public void clickOnClearAllLink() {
-		clearAllLink.click();
+		waitUntilClickable(clearAllLink).click();
 	}
 
 	public void clickOnCrossIcon() {
-		crossIcon.click();
+		waitUntilClickable(crossIcon).click();
 	}
 
 }

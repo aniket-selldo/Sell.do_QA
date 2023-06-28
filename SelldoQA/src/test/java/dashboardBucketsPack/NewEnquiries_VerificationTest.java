@@ -19,7 +19,7 @@ public class NewEnquiries_VerificationTest extends BaseTest {
 	public void newEnquiries_VerificationTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("name"), prop.getProperty("password"));
+		login.login("aniket.khandizod+user033@sell.do", prop.getProperty("password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
 		extentTest.get().log(Status.INFO, "Refreshing the User Dashboard.......");

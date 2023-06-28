@@ -59,12 +59,23 @@ public class NewDeveloperFormPage extends ReusableUtils {
 	private WebElement allDevelopersLink;
 	@FindBy(how = How.XPATH, using = "//body/div[@id='select2-drop']/ul[1]/li[1]/div[1]")
 	private List<WebElement> salutation_textbox;
+	@FindBy(how = How.CSS, using = "label[class='lead']")
+	private WebElement getDevlopersName;
+	@FindBy(how = How.CSS, using = "li[class='breadcrumb-item active']")
+	private WebElement getDevlopersName2;
+
+	public String getDevlopersName() {
+		return waitUntilVisiblity(getDevlopersName).getText().trim();
+	}
+
+	public String getDevlopersName2() {
+		return waitUntilVisiblity(getDevlopersName2).getText().trim();
+	}
 
 	public void enterDeveloperName(String developer) throws InterruptedException {
-		developerName.click();
-		developerNameInputField.sendKeys(developer + generateRandomString());
-		Thread.sleep(2000);
-		developerNameInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(developerName).click();
+		waitUntilVisiblity(developerNameInputField).sendKeys(developer);
+		waitUntilVisiblity(developerNameInputField).sendKeys(Keys.ENTER);
 	}
 
 	public String generateRandomString() {
@@ -92,78 +103,76 @@ public class NewDeveloperFormPage extends ReusableUtils {
 	}
 
 	public void enterDescription(String des) {
-		description.sendKeys(des);
+		waitUntilVisiblity(description).sendKeys(des);
 	}
 
 	public void enterAddress(String add) {
-		address.sendKeys(add);
+		waitUntilVisiblity(address).sendKeys(add);
 	}
 
 	public void enterStreet(String str) {
-		street.sendKeys(str);
+		waitUntilVisiblity(street).sendKeys(str);
 	}
 
 	public void enterCity(String ct) {
-		city.sendKeys(ct);
+		waitUntilVisiblity(city).sendKeys(ct);
 	}
 
 	public void selectState(String state) {
-		selectByVisibleText(stateDropdown,state);
+		selectByVisibleText(stateDropdown, state);
 	}
 
 	public void selectCountry(String country) {
-		selectByVisibleText(countryDropdown,country);
+		selectByVisibleText(countryDropdown, country);
 	}
 
 	public void enterZip(String zp) {
-		zip.sendKeys(zp);
+		waitUntilVisiblity(zip).sendKeys(zp);
 	}
 
 	public void selectSalutation() throws IOException {
 		Properties property = new Properties();
 		FileInputStream fileInputObj = new FileInputStream(
 				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
-		property.load(fileInputObj);		
-		salutation.click();
+		property.load(fileInputObj);
+		waitUntilClickable(salutation).click();
 		List<WebElement> list = salutation_textbox;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
-			if (ele.getAttribute("innerHTML")
-					.contains(property.getProperty("Select_Salutation"))) {
-				ele.click();
+			if (ele.getAttribute("innerHTML").contains(property.getProperty("Select_Salutation"))) {
+				waitUntilClickable(ele).click();
 				System.out.println("Selected");
 				break;
 			}
 		}
-		
-		
-		
-		/*Select oSelect = new Select(salutation));
-		oSelect.selectByVisibleText("Ms."); */
+
+		/*
+		 * Select oSelect = new Select(salutation)); oSelect.selectByVisibleText("Ms.");
+		 */
 	}
 
 	public void enterFirstName(String fName) {
-		firstName.sendKeys(fName);
+		waitUntilVisiblity(firstName).sendKeys(fName);
 	}
 
 	public void enterLastName(String lName) {
-		lastName.sendKeys(lName);
+		waitUntilVisiblity(lastName).sendKeys(lName);
 	}
 
 	public void enterPhoneNumber(String ph) {
-		phone.sendKeys(ph);
+		waitUntilVisiblity(phone).sendKeys(ph);
 	}
 
 	public void enterEmail(String eml) {
-		email.sendKeys(eml);
+		waitUntilVisiblity(email).sendKeys(eml);
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 	public void clickOnAllDevelopersLink() {
-		allDevelopersLink.click();
+		waitUntilClickable(allDevelopersLink).click();
 	}
 
 }

@@ -38,7 +38,7 @@ public class FollowupsPage extends ReusableUtils {
 	private WebElement subjectText;
 	@FindBy(how = How.CSS, using = "[placeholder=\"Notes / Agenda\"]")
 	private WebElement noteText;
-	@FindBy(how = How.CSS, using = "button.btn.btn-primary.pull-right.schedule_followup")
+	@FindBy(how = How.XPATH, using = "//button[text()='Schedule Followup']")
 	private WebElement ScheduleFollowupButton;
 	@FindBy(how = How.CSS, using = "button.close.text-white.lead-index")
 	private WebElement closeButton;
@@ -117,6 +117,9 @@ public class FollowupsPage extends ReusableUtils {
 	public String clickOnScheduleFollowupButton() {
 		jsClick(ScheduleFollowupButton);
 		return waitUntilVisiblity(followupBy).getText().toLowerCase().trim();
+	}
+	public void clickOnScheduleFollowupButton2() {
+		jsClick(ScheduleFollowupButton);
 	}
 	public void clickOnScheduleFollowupButon() {
 		jsClick(ScheduleFollowupButton);

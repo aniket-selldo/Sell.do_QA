@@ -3,6 +3,7 @@ package com.selldo.POM.inventory;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -29,23 +30,38 @@ public class NewProjectTowerFormPage extends ReusableUtils {
 	private WebElement totalFloorsInputField;
 	@FindBy(how = How.XPATH, using = "//input[@value='Save']")
 	private WebElement saveButton;
+	@FindBy(how = How.LINK_TEXT, using = "Project Towers")
+	private WebElement clickOnProjectTower;
+	@FindBy(how = How.CSS, using = "i.ion-cube")
+	private WebElement element;
+	@FindBy(how = How.XPATH, using = "//a[text()='All Project Towers']/following::label[1]")
+	private WebElement getProjectName;
+	
+	public String getProjectName() {
+		return waitUntilVisiblity(getProjectName).getText().trim();
+	}
+
+	public void clickOnProjectTower() {
+		Actions action = new Actions(driver);
+		action.moveToElement(element).build().perform();
+		waitUntilClickable(clickOnProjectTower).click();
+	}
 
 	public void enterProjectTowerName(String pTower) {
-		towerNameInputField.sendKeys(pTower);
+		waitUntilVisiblity(towerNameInputField).sendKeys(pTower);
 	}
 
 	public void enterProjectName(String project) throws InterruptedException {
-		projectSpan.click();
-		projectInputField.sendKeys(project);
-		Thread.sleep(2000);
-		projectInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(projectSpan).click();
+		waitUntilVisiblity(projectInputField).sendKeys(project);
+		waitUntilVisiblity(projectInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void enterTotalFloorsNumber(String floorNumber) {
-		totalFloorsInputField.sendKeys(floorNumber);
+		waitUntilVisiblity(totalFloorsInputField).sendKeys(floorNumber);
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 }

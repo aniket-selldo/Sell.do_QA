@@ -9,6 +9,7 @@ import com.selldo.POM.crm.FollowupsPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
+import com.selldo.POM.crm.SiteVisitPage;
 import com.selldo.Utility.BaseTest;
 
 public class MissedFollowup_VerificationTest extends BaseTest {
@@ -21,6 +22,7 @@ public class MissedFollowup_VerificationTest extends BaseTest {
 		login.login(prop.getProperty("name"), prop.getProperty("password"));
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
+		SiteVisitPage siteVisitPage = new SiteVisitPage(driver);
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
@@ -32,7 +34,7 @@ public class MissedFollowup_VerificationTest extends BaseTest {
 		salesPresalesDashboard.clickOnMissedFollowupBucket();
 
 		extentTest.get().log(Status.INFO, "Opening Lead Deatils Page.......");
-		salesPresalesDashboard.openLeadProfile(3);
+		salesPresalesDashboard.openLeadProfile(0);
 
 		extentTest.get().log(Status.INFO, "Scheduling Followup.......");
 		leadProfilePage.followupLink();
@@ -43,14 +45,14 @@ public class MissedFollowup_VerificationTest extends BaseTest {
 		followupsPage.selectDate();
 
 		extentTest.get().log(Status.INFO, "Clicking on Schedule Followup Button .......");
-		followupsPage.clickOnScheduleFollowupButton();
+		followupsPage.clickOnScheduleFollowupButton2();
 
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 
 		if (!driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty()) {
 
 			extentTest.get().log(Status.INFO, "Clicking on Ignore and schedule button.......");
-			followupsPage.clickOnIgnoreAndSchedule();
+			siteVisitPage.clickOnIgnoreAndSchedule();
 
 		}
 

@@ -188,7 +188,12 @@ public class ReusableUtils {
 		actions.click();
 		actions.build().perform();
 	}
-
+	protected void moveToElemntClick(WebElement we) {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(we);
+		actions.click();
+		actions.build().perform();
+	}
 	protected void move2click(WebElement we, int value) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(we);

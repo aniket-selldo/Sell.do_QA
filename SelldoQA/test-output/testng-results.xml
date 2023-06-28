@@ -2,32 +2,32 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-06-19T22:43:03 IST" name="Default suite" finished-at="2023-06-19T22:44:19 IST" duration-ms="76096">
+  <suite started-at="2023-06-28T18:20:39 IST" name="Suite" finished-at="2023-06-28T18:21:34 IST" duration-ms="54668">
     <groups>
     </groups>
-    <test started-at="2023-06-19T22:43:03 IST" name="Default test" finished-at="2023-06-19T22:44:19 IST" duration-ms="76096">
-      <class name="WorkFlowTest.SiteVisitTest">
-        <test-method is-config="true" signature="ObjectInvokder()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:43:03 IST" name="ObjectInvokder" finished-at="2023-06-19T22:43:03 IST" duration-ms="14" status="PASS">
+    <test started-at="2023-06-28T18:20:39 IST" name="Test" finished-at="2023-06-28T18:21:34 IST" duration-ms="54668">
+      <class name="userManagementPack.CreatingPostsalesUserTest">
+        <test-method is-config="true" signature="ObjectInvokder()[pri:0, instance:userManagementPack.CreatingPostsalesUserTest@304bb45b]" started-at="2023-06-28T18:20:39 IST" name="ObjectInvokder" finished-at="2023-06-28T18:20:39 IST" duration-ms="17" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ObjectInvokder -->
-        <test-method is-config="true" signature="browserConfig()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:43:03 IST" name="browserConfig" finished-at="2023-06-19T22:43:06 IST" duration-ms="2844" status="PASS">
+        <test-method is-config="true" signature="browserConfig()[pri:0, instance:userManagementPack.CreatingPostsalesUserTest@304bb45b]" started-at="2023-06-28T18:20:39 IST" name="browserConfig" finished-at="2023-06-28T18:20:42 IST" duration-ms="2756" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserConfig -->
-        <test-method signature="siteVisitTest()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:43:06 IST" name="siteVisitTest" finished-at="2023-06-19T22:44:19 IST" duration-ms="73121" status="PASS">
+        <test-method signature="creatingPostsalesUserTest()[pri:0, instance:userManagementPack.CreatingPostsalesUserTest@304bb45b]" started-at="2023-06-28T18:20:42 IST" name="creatingPostsalesUserTest" finished-at="2023-06-28T18:21:34 IST" duration-ms="51720" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- siteVisitTest -->
-        <test-method is-config="true" signature="terminate()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:44:19 IST" name="terminate" finished-at="2023-06-19T22:44:19 IST" duration-ms="103" status="PASS">
+        </test-method> <!-- creatingPostsalesUserTest -->
+        <test-method is-config="true" signature="terminate()[pri:0, instance:userManagementPack.CreatingPostsalesUserTest@304bb45b]" started-at="2023-06-28T18:21:34 IST" name="terminate" finished-at="2023-06-28T18:21:34 IST" duration-ms="155" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- terminate -->
-        <test-method is-config="true" signature="ObjectSupressor()[pri:0, instance:WorkFlowTest.SiteVisitTest@45d84a20]" started-at="2023-06-19T22:44:19 IST" name="ObjectSupressor" finished-at="2023-06-19T22:44:19 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="ObjectSupressor()[pri:0, instance:userManagementPack.CreatingPostsalesUserTest@304bb45b]" started-at="2023-06-28T18:21:34 IST" name="ObjectSupressor" finished-at="2023-06-28T18:21:34 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ObjectSupressor -->
-      </class> <!-- WorkFlowTest.SiteVisitTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- userManagementPack.CreatingPostsalesUserTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

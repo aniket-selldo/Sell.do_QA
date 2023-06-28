@@ -56,30 +56,29 @@ public class UnitsPage extends ReusableUtils {
 	private WebElement crossIcon;
 
 	public void clickOnNewUnitButton() {
-		newUnitButton.click();
+		waitUntilClickable(newUnitButton).click();
 	}
 
 	public void clickOnFunnelIcon() {
-		funnelIcon.click();
+		waitUntilClickable(funnelIcon).click();
 	}
 
 	public void enterUnitName(String unt) throws InterruptedException {
-		unit.click();
-		unitInputField.sendKeys(unt);
-		Thread.sleep(2000);
-		unitInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(unit).click();
+		waitUntilVisiblity(unitInputField).sendKeys(unt);
+		waitUntilVisiblity(unitInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void clickOnApplyButton() {
-		applyButton.click();
+		waitUntilClickable(applyButton).click();
 	}
 
 	public void clickOnClearAllLink() {
-		clearAllLink.click();
+		waitUntilClickable(clearAllLink).click();
 	}
 
 	public void clickOnCrossIcon() {
-		crossIcon.click();
+		waitUntilClickable(crossIcon).click();
 	}
 
 }

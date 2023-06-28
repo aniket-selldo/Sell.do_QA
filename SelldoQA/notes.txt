@@ -8,4 +8,12 @@ DevTools devTool = driver.getDevTools();
 			devTool.send(
 					Emulation.setGeolocationOverride(Optional.of(latitude), Optional.of(longitude), Optional.of(1)));
 			devTool.send(Emulation.setScriptExecutionDisabled(false));
-			----------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------
+
+			
+ elements.stream().filter(e -> e.getText().equalsIgnoreCase("24")).findAny().get().click();
+ 
+ 
+--------------------------------------------------------------------------------------------------------------------------------
+ 
+ 

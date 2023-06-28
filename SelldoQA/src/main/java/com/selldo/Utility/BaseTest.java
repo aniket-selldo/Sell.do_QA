@@ -286,4 +286,24 @@ public class BaseTest {
 	public String Random(int size) {
 		return RandomStringUtils.randomAlphabetic(size);
 	}
+	public String Random(String type ,int size) {
+		String Return = "";
+		switch (type) {
+		case "AN":
+			Return = RandomStringUtils.randomAlphanumeric(size);
+			break;// pX4Mv3KsJU
+		case "A":
+			Return = RandomStringUtils.randomAlphabetic(size);
+			break;// ZLTRqGyuXk
+		case "R":
+			Return = RandomStringUtils.random(size);
+			break;// 嚰险걻鯨贚䵧縓
+		case "N":
+			Return = RandomStringUtils.randomNumeric(size);
+			break;// 3511779161
+		default:
+			break;
+		}
+		return Return;
+	}
 }

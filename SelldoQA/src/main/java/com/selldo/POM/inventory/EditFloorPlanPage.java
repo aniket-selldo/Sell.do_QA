@@ -1,5 +1,7 @@
 package com.selldo.POM.inventory;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -62,54 +64,60 @@ public class EditFloorPlanPage extends ReusableUtils {
 	private WebElement allFloorPlans;
 	@FindBy(how = How.XPATH, using = "//a[text()='Add Floor Plan']")
 	private WebElement addFloorPlan;
+	@FindBy(how = How.XPATH, using = "//table[@class='table table-responsive']/tbody/tr/td[1]")
+	private List<WebElement> getAllFloorPlanName;
+	
+	public String  getAllFloorPlanName() {
+		return getAllFloorPlanName.stream().findAny().get().getText();
+	}
 
 	public void changeProjectTowerName(String project) throws InterruptedException {
-		floorPlanNameInputField.clear();
-		floorPlanNameInputField.sendKeys(project);
+		waitUntilVisiblity(floorPlanNameInputField).clear();
+		waitUntilVisiblity(floorPlanNameInputField).sendKeys(project);
 	}
 
 	public void clickOnAreaAndCostingLink() {
-		areaAndCostingLink.click();
+		waitUntilClickable(areaAndCostingLink).click();
 	}
 
 	public void clickOnExtrasLink() {
-		extrasLink.click();
+		waitUntilClickable(extrasLink).click();
 	}
 
 	public void clickOnFloorPlanImagesLink() {
-		floorPlanImagesLink.click();
+		waitUntilClickable(floorPlanImagesLink).click();
 	}
 
 	public void clickOnPriceQuotesAndBrochureLink() {
-		priceQuotesAndBrochureLink.click();
+		waitUntilClickable(priceQuotesAndBrochureLink).click();
 	}
 
 	public void clickOnRegionsLink() {
-		regionsLink.click();
+		waitUntilClickable(regionsLink).click();
 	}
 
 	public void clickOnCostTemplateLink() {
-		costTemplateLink.click();
+		waitUntilClickable(costTemplateLink).click();
 	}
 
 	public void clickOnViewUnitsLink() {
-		viewUnitsLink.click();
+		waitUntilClickable(viewUnitsLink).click();
 	}
 
 	public void clickOnAddUnitLink() {
-		addUnitLink.click();
+		waitUntilClickable(addUnitLink).click();
 	}
 
 	public void clickOnAllFloorPlans() {
-		allFloorPlans.click();
+		waitUntilClickable(allFloorPlans).click();
 	}
 
 	public void clickOnAddFloorPlan() {
 		scrollHeight() ;
-		addFloorPlan.click();
+		waitUntilClickable(addFloorPlan).click();
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 }

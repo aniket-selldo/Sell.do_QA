@@ -55,70 +55,70 @@ public class EditProjectFormPage extends ReusableUtils {
 	private WebElement viewAvailableFloorPlansLink;
 
 	public void changeProjectName(String project) throws InterruptedException {
-		projectNameSpan.click();
-		projectNameInputField.sendKeys(project);
-		Thread.sleep(2000);
-		projectNameInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(projectNameSpan).click();
+		waitUntilVisiblity(projectNameInputField).sendKeys(project);
+		wait(500);
+		waitUntilVisiblity(projectNameInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void clickOnAddressLink() {
-		addressLink.click();
+		waitUntilClickable(addressLink).click();
 	}
 
 	public void clickOnVirtualWalkThroughLink() {
-		virtualWalkthroughLink.click();
+		waitUntilClickable(virtualWalkthroughLink).click();
 	}
 
 	public void clickOnDetailsLink() {
-		detailsLink.click();
+		waitUntilClickable(detailsLink).click();
 	}
 
 	public void clickOnSpecificationAndAmenitiesLink() {
-		specificationsAndAmeneties.click();
+		waitUntilClickable(specificationsAndAmeneties).click();
 	}
 
 	public void clickOnEditPriceQuotesAndBrochureLink() {
-		editPriceQuotesAndBrochureLink.click();
+		waitUntilClickable(editPriceQuotesAndBrochureLink).click();
 	}
 
 	public void clickOnUploadImagesLink() {
-		uploadImageLink.click();
+		waitUntilClickable(uploadImageLink).click();
 	}
 
 	public void clickOnPortalIntegrationCodesLink() {
-		portalIntegrationCodesLink.click();
+		waitUntilClickable(portalIntegrationCodesLink).click();
 	}
 
 	public void clickOnCostTemplateLink() {
-		costTemplateLink.click();
+		waitUntilClickable(costTemplateLink).click();
 	}
 
 	public void clickOnEmailTemplateLink() {
-		emailTemplatesLink.click();
+		waitUntilClickable(emailTemplatesLink).click();
 	}
 
 	public void clickOnSmsTemplateLink() {
-		smsTemplatesLink.click();
+		waitUntilClickable(smsTemplatesLink).click();
 	}
 
 	public void clickOnPreviousDemandLettersLink() {
-		previousDemandLettersLink.click();
+		waitUntilClickable(previousDemandLettersLink).click();
 	}
 
 	public void clickOnViewDeveloperLink() {
-		viewDeveloperLink.click();
+		waitUntilClickable(viewDeveloperLink).click();
 	}
 
 	public void clickOnViewAvailableProjectTowersLink() {
-		viewAvailableProjectTowersLink.click();
+		waitUntilClickable(viewAvailableProjectTowersLink).click();
 	}
 
 	public void clickOnViewAvailableFloorPlansLink() {
-		viewAvailableFloorPlansLink.click();
+		waitUntilClickable(viewAvailableFloorPlansLink).click();
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 }

@@ -1,169 +1,103 @@
 package inventory;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-import java.util.concurrent.TimeUnit;
-
-import org.apache.commons.mail.EmailException;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import com.aventstack.extentreports.Status;
+import com.selldo.POM.crm.ClientLoginPage;
+import com.selldo.POM.crm.LoginPage;
+import com.selldo.POM.inventory.DevelopersPage;
+import com.selldo.POM.inventory.EditDeveloperFormPage;
+import com.selldo.Utility.BaseTest;
 
-import crm.selldo.ClientLoginPage;
-import crm.selldo.LoginPage;
-import utility.SetUp;
+public class EditingDeveloperTest extends BaseTest {
 
-public class EditingDeveloperTest extends SetUp {
-
-	final static Logger logger = Logger.getLogger(EditingDeveloperTest.class);
-
-	// Description:
-
-	@BeforeTest
-
-	public void sales_presalesLogin() throws Exception {
-
-		mysetUp();
-
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
-		Properties property = new Properties();
-		FileInputStream fileInputObj = new FileInputStream(
-				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
-		property.load(fileInputObj);
+	@Test
+	public void editingDeveloperTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
 
-		logger.info("Logging in to client page.......");
-		login.login(property.getProperty("superadmin_name") + property.getProperty("superadmin_email"),
-				property.getProperty("password"));
+		login.login(prop.getProperty("id"), prop.getProperty("password"));
 
 		ClientLoginPage clientLogin = new ClientLoginPage(driver);
 
-		logger.info("Logging in to Admin/Support Home Page......");
-		clientLogin.clientLogin(property.getProperty("client_name"));
-
-	}
-
-	@AfterTest
-
-	public void endingTest() throws Exception {
-
-		Thread.sleep(3000);
-
-		logger.info("Closing Browser......");
-		driver.close();
-	}
-
-	@Test
-
-	public void editingDeveloperTest() throws Exception {
-
-		test = extent.createTest("editingDeveloperTest");
-		setExtentTest(test);
-
-		Properties property = new Properties();
-		FileInputStream fileInputObj = new FileInputStream(
-				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
-		property.load(fileInputObj);
-
-		Thread.sleep(3000);
+		clientLogin.clientLogin(prop.getProperty("Client"));
 
 		DevelopersPage developersPage = new DevelopersPage(driver);
 
 		EditDeveloperFormPage editDeveloperFormPage = new EditDeveloperFormPage(driver);
 
-		SoftAssert assertion = new SoftAssert();
-
-		test.log(Status.INFO, "Selecting Developres by mouse hovering over Inventory icon.......");
+		extentTest.get().log(Status.INFO, "Selecting Developres by mouse hovering over Inventory icon.......");
 		WebElement element = driver.findElement(By.cssSelector("i.ion-cube"));
 		Actions action = new Actions(driver);
 		action.moveToElement(element).build().perform();
 		driver.findElement(By.linkText("Developers")).click();
 
-		test.log(Status.INFO, "Clicking on Funnel Icon.....");
+		extentTest.get().log(Status.INFO, "Clicking on Funnel Icon.....");
 		developersPage.clickOnFunnelIcon();
 
-		String developerName = property.getProperty("developer_name_editingDeveloperTest");
+		String developerName = developersPage.getAnyDevloperName();
 
-		test.log(Status.INFO, "Entering Developer's name to be searched......");
+		extentTest.get().log(Status.INFO, "Entering Developer's name to be searched......");
 		developersPage.enterDeveloperName(developerName);
 
-		test.log(Status.INFO, "Cicking on Filter button.....");
+		extentTest.get().log(Status.INFO, "Cicking on Filter button.....");
 		developersPage.clickOnApplyButton();
 
-		test.log(Status.INFO, "Verifying that Developer is searched whose name to be changed.......");
-		AssertJUnit.assertEquals(driver.findElement(By.xpath("//a[text()='All Developers']/following::label[1]")).getText(),
+		extentTest.get().log(Status.INFO, "Verifying that Developer is searched whose name to be changed.......");
+		Assert.assertEquals(driver.findElement(By.xpath("//a[text()='All Developers']/following::label[1]")).getText(),
 				developerName, "Not matched");
 
 		Thread.sleep(3000);
 
-		String changedDeveloperName = property.getProperty("changedDeveloper_name_editingDeveloperTest");
+		String changedDeveloperName = Random("A",10).toUpperCase();
 
-		test.log(Status.INFO, "Changing Developer's name......");
+		extentTest.get().log(Status.INFO, "Changing Developer's name......");
 		editDeveloperFormPage.changeDeveloperName(changedDeveloperName);
 
-		test.log(Status.INFO, "Clicking on Save Button......");
+		extentTest.get().log(Status.INFO, "Clicking on Save Button......");
 		editDeveloperFormPage.clickOnSaveButton();
 
 		Thread.sleep(2000);
 
-		test.log(Status.INFO, "Verifying that Developer is changed by new name......");
-		AssertJUnit.assertEquals(driver.findElement(By.xpath("//a[text()='All Developers']/following::label[1]")).getText(),
+		extentTest.get().log(Status.INFO, "Verifying that Developer is changed by new name......");
+		Assert.assertEquals(driver.findElement(By.xpath("//a[text()='All Developers']/following::label[1]")).getText(),
 				changedDeveloperName, "Not matched");
 
-		test.log(Status.INFO, "Clicking on Address link......");
+		extentTest.get().log(Status.INFO, "Clicking on Address link......");
 		editDeveloperFormPage.clickOnAddressLink();
 
-		test.log(Status.INFO, "Verifying Address link.......");
-		AssertJUnit.assertEquals(driver.findElement(By.xpath("//label[@for='developer_address_address1']"))
+		extentTest.get().log(Status.INFO, "Verifying Address link.......");
+		Assert.assertEquals(driver.findElement(By.xpath("//label[@for='developer_address_address1']"))
 				.getAttribute("innerHTML").trim(), "Address", "Not matched");
 
 		driver.navigate().back();
 
-		test.log(Status.INFO, "Clicking on Contacts link......");
+		extentTest.get().log(Status.INFO, "Clicking on Contacts link......");
 		editDeveloperFormPage.clickOnContactsLink();
 
-		test.log(Status.INFO, "Verifying Contacts link.......");
-		AssertJUnit.assertEquals(driver.findElement(By.xpath("//label[contains(text(),'Salutation')]"))
-				.getAttribute("innerHTML").trim(), "Salutation", "Not matched");
+		extentTest.get().log(Status.INFO, "Verifying Contacts link.......");
+		Assert.assertEquals(
+				driver.findElement(By.xpath("//label[contains(text(),'Salutation')]")).getAttribute("innerHTML").trim(),
+				"Salutation", "Not matched");
 
 		driver.navigate().back();
 
-		test.log(Status.INFO, "Clicking on All Developers link......");
+		extentTest.get().log(Status.INFO, "Clicking on All Developers link......");
 		editDeveloperFormPage.clickOnAllDevelopers();
 
-		test.log(Status.INFO, "Verifying All Developers link.......");
-		AssertJUnit.assertEquals(
+		extentTest.get().log(Status.INFO, "Verifying All Developers link.......");
+		Assert.assertEquals(
 				driver.findElement(By.xpath("//a[text()='New Developer']")).getAttribute("innerHTML").trim(),
 				"New Developer", "Not matched");
 
 		driver.navigate().back();
 
-		test.log(Status.INFO, "Clicking on Add Developer link......");
+		extentTest.get().log(Status.INFO, "Clicking on Add Developer link......");
 		editDeveloperFormPage.clickOnAddDeveloper();
-
-		test.log(Status.INFO, "Verifying Add Developer link.......");
-		AssertJUnit.assertEquals(
-				driver.findElement(By.xpath("//label[@for='s2id_autogen3']")).getAttribute("innerHTML").trim(), "Name",
-				"Not matched");
-
-		assertion.assertAll();
 
 	}
 

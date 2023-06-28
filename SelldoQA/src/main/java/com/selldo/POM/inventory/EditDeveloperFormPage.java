@@ -19,7 +19,7 @@ public class EditDeveloperFormPage extends ReusableUtils {
 
 	}
 
-	@FindBy(how = How.XPATH, using = "//label[@for='s2id_autogen2']/following::span[1]")
+	@FindBy(how = How.CSS, using = "#s2id_developer_name span[class='select2-chosen']")
 	private WebElement developerNameSpan;
 	@FindBy(how = How.XPATH, using = "//*[@id='select2-drop']//div//input")
 	private WebElement developerNameInputField;
@@ -37,34 +37,33 @@ public class EditDeveloperFormPage extends ReusableUtils {
 	private WebElement addDeveloper;
 
 	public void changeDeveloperName(String developer) throws InterruptedException {
-		developerNameSpan.click();
-		developerNameInputField.sendKeys(developer);
-		Thread.sleep(2000);
-		developerNameInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(developerNameSpan).click();
+		waitUntilVisiblity(developerNameInputField).sendKeys(developer);
+		waitUntilVisiblity(developerNameInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void clickOnAddressLink() {
-		address.click();
+		waitUntilClickable(address).click();
 	}
 
 	public void clickOnContactsLink() {
-		contacts.click();
+		waitUntilClickable(contacts).click();
 	}
 
 	public void clickOnCustomFields() {
-		customFields.click();
+		waitUntilClickable(customFields).click();
 	}
 
 	public void clickOnAllDevelopers() {
-		allDevelopers.click();
+		waitUntilClickable(allDevelopers).click();
 	}
 
 	public void clickOnAddDeveloper() {
-		addDeveloper.click();
+		waitUntilClickable(addDeveloper).click();
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 }

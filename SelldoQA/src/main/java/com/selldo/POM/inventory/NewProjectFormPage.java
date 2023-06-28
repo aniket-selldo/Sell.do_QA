@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -33,11 +34,11 @@ public class NewProjectFormPage extends ReusableUtils {
 	private WebElement descriptionTextArea;
 	@FindBy(how = How.XPATH, using = "//label[text()='Sales']/following::input[1]")
 	private WebElement salesSpan;
-	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
+	@FindBy(how = How.CSS, using = "#select2-drop li[class='select2-results-dept-0 select2-result select2-result-selectable']")
 	private List<WebElement> sales_All;
 	@FindBy(how = How.XPATH, using = "//label[text()='Pre Sales']/following::input[1]")
 	private WebElement presalesSpan;
-	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
+	@FindBy(how = How.CSS, using = "#select2-drop li[class='select2-results-dept-0 select2-result select2-result-selectable']")
 	private List<WebElement> presales_All;
 	@FindBy(how = How.XPATH, using = "//label[@for='project_project_post_sales']/following::input[1]")
 	private WebElement postsalesSpan;
@@ -75,62 +76,59 @@ public class NewProjectFormPage extends ReusableUtils {
 	private WebElement allProjectsLink;
 	@FindBy(how = How.CSS, using = "div.datepicker-days > table > tbody > tr > td.active.day")
 	private WebElement selectToday;
+	@FindBy(how = How.LINK_TEXT, using = "Projects")
+	private WebElement Project;
+	@FindBy(how = How.CSS, using = "i.ion-cube")
+	private WebElement element;
+	@FindBy(how = How.CSS, using = "label[class='lead']")
+	private WebElement getProjectName;
+	
+	public String getProjectName() {
+		return waitUntilVisiblity(getProjectName).getText().trim();
+	}
+
+	public void clickOnProject() {
+		waitUntilVisiblity(element);
+		Actions action = new Actions(driver);
+		action.moveToElement(element).build().perform();
+		waitUntilClickable(Project).click();
+	}
 
 	public void enterProjectName(String project) throws InterruptedException {
 
-		projectNameSpan.click();
-		projectNameInputField.sendKeys(project);
-		Thread.sleep(2000);
-		projectNameInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(projectNameSpan).click();
+		waitUntilVisiblity(projectNameInputField).sendKeys(project);
+		waitUntilVisiblity(projectNameInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void enterDeveloperName(String project) throws InterruptedException {
-		developerSpan.click();
-		developerInputField.sendKeys(project);
-		Thread.sleep(2000);
-		developerInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(developerSpan).click();
+		waitUntilVisiblity(developerInputField).sendKeys(project);
+		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void enterDescription(String des) {
-		descriptionTextArea.sendKeys(des);
+		waitUntilVisiblity(descriptionTextArea).sendKeys(des);
 	}
 
 	public void selectSales() throws InterruptedException {
-		salesSpan.click();
-		List<WebElement> list = sales_All;
-		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
-			if (ele.getAttribute("innerHTML").contains("Tanmay Ghawate")) {
-				Thread.sleep(1000);
-				ele.click();
-				System.out.println("Clicked on Tanmay Ghawate");
-				break;
-			}
-		}
+		waitUntilClickable(salesSpan).click();
+		waitUntilClickable(sales_All.get(0)).click();		
 	}
 
 	public void selectPresales() throws InterruptedException {
-		presalesSpan.click();
-		List<WebElement> list = presales_All;
-		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
-			if (ele.getAttribute("innerHTML").contains("Bhushan Authankar")) {
-				Thread.sleep(1000);
-				ele.click();
-				System.out.println("Clicked on Bhushan Authankar");
-				break;
-			}
-		}
+		waitUntilClickable(presalesSpan).click();
+		waitUntilClickable(presales_All.get(0)).click();	
 	}
 
 	public void selectPostsales() throws InterruptedException {
-		postsalesSpan.click();
+		waitUntilClickable(postsalesSpan).click();
 		List<WebElement> list = postsales_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Srinath Post Sales")) {
 				Thread.sleep(1000);
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on Srinath Post Sales");
 				break;
 			}
@@ -138,47 +136,40 @@ public class NewProjectFormPage extends ReusableUtils {
 	}
 
 	public void selectPossessionDate() throws Exception {
-		Thread.sleep(3000);
-		possession.click();
-		selectToday.click();
+		scrollIntoView(salesSpan);
+		waitUntilClickable(possession).click();
+		waitUntilClickable(selectToday).click();
 	}
 
 	public void selectProjectType() throws InterruptedException {
-		projectTypeSpan.click();
-		List<WebElement> list = projectType_All;
-		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
-			if (ele.getAttribute("innerHTML").contains("apartments")) {
-				Thread.sleep(1000);
-				ele.click();
-				System.out.println("Clicked on apartments");
-				break;
-			}
-		}
+		waitUntilClickable(projectTypeSpan).click();
+		jsClick(projectType_All.get(0));
+		projectType_All.get(0).click();
 	}
+	
 
 	public void enterLocality(String loc) {
-		localityInputField.sendKeys(loc);
+		waitUntilVisiblity(localityInputField).sendKeys(loc);
 	}
 
 	public void enterLatitude(String lat) {
-		latitudeInptField.sendKeys(lat);
+		waitUntilVisiblity(latitudeInptField).sendKeys(lat);
 	}
 
 	public void enterLongitude(String lon) {
-		longitudeInputField.sendKeys(lon);
+		waitUntilVisiblity(longitudeInputField).sendKeys(lon);
 	}
 
 	public void enterAddress(String address) {
-		addressInputField.sendKeys(address);
+		waitUntilVisiblity(addressInputField).sendKeys(address);
 	}
 
 	public void enterStreet(String street) {
-		streetInputField.sendKeys(street);
+		waitUntilVisiblity(streetInputField).sendKeys(street);
 	}
 
 	public void enterCity(String city) {
-		cityInputField.sendKeys(city);
+		waitUntilVisiblity(cityInputField).sendKeys(city);
 	}
 
 	public void selectState(String state) {
@@ -190,14 +181,14 @@ public class NewProjectFormPage extends ReusableUtils {
 	}
 
 	public void enterZip(String zp) {
-		zipInputField.sendKeys(zp);
+		waitUntilVisiblity(zipInputField).sendKeys(zp);
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 	public void clickOnAllProjectsLink() {
-		allProjectsLink.click();
+		waitUntilClickable(allProjectsLink).click();
 	}
 }
