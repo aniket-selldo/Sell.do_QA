@@ -87,7 +87,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private WebElement refreshIcon;
 	@FindBy(how = How.XPATH, using = "//span[text()='missed Followups']/following::div[1]")
 	private WebElement missedFollowups;
-	@FindBy(how = How.XPATH, using = "//a[@href='#open_tasks']")
+	@FindBy(how = How.PARTIAL_LINK_TEXT, using = "Open Tasks")
 	private WebElement openTasksLink;
 	@FindBy(how = How.XPATH, using = "//span[text()='missed Site visits']/following::div[1]")
 	private WebElement missedSiteVisits;
@@ -159,7 +159,9 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	}
 
 	public void clickOnOpenTasksLink() {
-		waitUntilClickable(openTasksLink).click();
+		
+		jsClick(openTasksLink);
+		wait(5000);
 	}
 
 	public void clickOnReenggegeBucket() {
@@ -369,7 +371,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	}
 
 	public void clickOnMissedFollowupBucket() {
-		waitUntilClickable(openTasksLink).click();
+	//	waitUntilClickable(openTasksLink).click();
 		waitUntilClickable(missedFollowups).click();
 	}
 

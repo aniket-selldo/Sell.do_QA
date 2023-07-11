@@ -82,7 +82,7 @@ public class NewProjectFormPage extends ReusableUtils {
 	private WebElement element;
 	@FindBy(how = How.CSS, using = "label[class='lead']")
 	private WebElement getProjectName;
-	
+
 	public String getProjectName() {
 		return waitUntilVisiblity(getProjectName).getText().trim();
 	}
@@ -98,12 +98,14 @@ public class NewProjectFormPage extends ReusableUtils {
 
 		waitUntilClickable(projectNameSpan).click();
 		waitUntilVisiblity(projectNameInputField).sendKeys(project);
+		wait(1000);
 		waitUntilVisiblity(projectNameInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void enterDeveloperName(String project) throws InterruptedException {
 		waitUntilClickable(developerSpan).click();
 		waitUntilVisiblity(developerInputField).sendKeys(project);
+		wait(1000);
 		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
 
@@ -113,26 +115,18 @@ public class NewProjectFormPage extends ReusableUtils {
 
 	public void selectSales() throws InterruptedException {
 		waitUntilClickable(salesSpan).click();
-		waitUntilClickable(sales_All.get(0)).click();		
+		waitUntilClickable(sales_All.get(0)).click();
 	}
 
 	public void selectPresales() throws InterruptedException {
 		waitUntilClickable(presalesSpan).click();
-		waitUntilClickable(presales_All.get(0)).click();	
+		waitUntilClickable(presales_All.get(0)).click();
 	}
 
 	public void selectPostsales() throws InterruptedException {
 		waitUntilClickable(postsalesSpan).click();
-		List<WebElement> list = postsales_All;
-		for (WebElement ele : list) {
-			System.out.println("Values " + ele.getAttribute("innerHTML"));
-			if (ele.getAttribute("innerHTML").contains("Srinath Post Sales")) {
-				Thread.sleep(1000);
-				waitUntilClickable(ele).click();
-				System.out.println("Clicked on Srinath Post Sales");
-				break;
-			}
-		}
+		waitUntilClickable(postsales_All.stream().filter(S -> S.getText().equalsIgnoreCase("Srinath Post Sales"))
+				.findFirst().get()).click();
 	}
 
 	public void selectPossessionDate() throws Exception {
@@ -146,7 +140,6 @@ public class NewProjectFormPage extends ReusableUtils {
 		jsClick(projectType_All.get(0));
 		projectType_All.get(0).click();
 	}
-	
 
 	public void enterLocality(String loc) {
 		waitUntilVisiblity(localityInputField).sendKeys(loc);

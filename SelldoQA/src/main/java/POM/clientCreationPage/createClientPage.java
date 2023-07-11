@@ -23,7 +23,7 @@ public class createClientPage extends ReusableUtils {
 
 	}
 
-	@FindBy(how = How.ID, using = "btn-add-client")
+	@FindBy(how = How.LINK_TEXT, using = "Add a Client")
 	private WebElement addClientButton;
 	@FindBy(how = How.ID, using = "client_first_name")
 	private WebElement firstName;
@@ -122,211 +122,175 @@ public class createClientPage extends ReusableUtils {
 	private WebElement succesPopup;
 
 	public void clickOnClientButton() {
-		Square(addClientButton);
-		jsClick(addClientButton);
+		waitUntilClickable(addClientButton).click();
+		;
 
 	}
 
 	public void enterFirstName(String name) {
-		waitUntilVisiblity(firstName);
-		Square(firstName);
-		firstName.sendKeys(random("firstName", "AN", 7));
+		waitUntilVisiblity(firstName).sendKeys(random("firstName", "AN", 7));
 	}
 
 	public void enterLastName(String name) {
-		Square(lastName);
-		lastName.sendKeys(name);
+		waitUntilVisiblity(lastName).sendKeys(name);
 	}
 
 	public void enterBuisnessName(String name) {
-		Square(buisnessName);
-		buisnessName.sendKeys(name);
+		waitUntilVisiblity(buisnessName).sendKeys(name);
 	}
 
 	public void selectBuisnessType() {
-		Square(buisnessType);
-		buisnessType.click();
-		selectbuisnessType.click();
+		waitUntilClickable(buisnessType).click();
+		waitUntilClickable(selectbuisnessType).click();
 	}
 
 	public void shortName(String name) {
-		Square(shortName);
-		shortName.sendKeys(name);
+		waitUntilVisiblity(shortName).sendKeys(name);
 	}
 
 	public void enterClientWebsite(String name) {
-		Square(clientWebsite);
-		clientWebsite.sendKeys("https://www." + name + ".com");
+		waitUntilVisiblity(clientWebsite).sendKeys("https://www." + name + ".com");
 	}
 
 	public void enterclinetEmail(String name) {
-		Square(clientEmail);
-		clientEmail.sendKeys("aniket.khandizodC+" + name + "@sell.do");
+		waitUntilVisiblity(clientEmail).sendKeys(name);
 	}
 
 	public void uploadFile(String fileName) {
-		Square(uploadFile);
-		uploadFile.sendKeys(System.getProperty("user.dir") + "/DataFile/" + fileName + ".jpg");// nun
+		waitUntilVisiblity(uploadFile).sendKeys(System.getProperty("user.dir") + "/DataFile/" + fileName + ".jpg");// nun
 	}
 
 	public void enterClientPhone(String number) {
-		Square(clientPhone);
-		clientPhone.sendKeys("+91 " + "9" + number + "");
+		waitUntilVisiblity(clientPhone).sendKeys(number);
 	}
 
 	public void enterMask(String Mask) {
-		Square(mask);
-		mask.sendKeys(Mask);
+		waitUntilVisiblity(mask).sendKeys(Mask);
 	}
+
 	public void selectIndustry(int index) {
-		Square(clickIndustryType);
-		clickIndustryType.click();
+		waitUntilClickable(clickIndustryType).click();
 		waitUntilVisibilityOfElements(clickOnIndustryType);
-		Square(clickOnIndustryType.get(index));
-		clickOnIndustryType.get(index).click();
-		
+		waitUntilClickable(clickOnIndustryType.get(index)).click();
+
 	}
 
 	public void enterAddres(String address) {
-		Square(clientAddress);
-		clientAddress.sendKeys(address);
+		waitUntilVisiblity(clientAddress).sendKeys(address);
 	}
 
 	public void enterCountry(int country) {
-		Square(clientCountry);
 		selectByIndex(clientCountry, country);
 	}
 
 	public void enterState(int state) {
-		Square(clientState);
 		selectByIndex(clientState, state);
 	}
 
 	public void enterCity(String city) {
-		Square(clientCity);
-		clientCity.sendKeys(city);
+		waitUntilVisiblity(clientCity).sendKeys(city);
 	}
 
 	public void enterZip(int zip) {
-		Square(clientZip);
-		clientZip.sendKeys(String.valueOf(zip));
+		waitUntilVisiblity(clientZip).sendKeys(String.valueOf(zip));
 	}
 
 	public void enterUserFirstName(String name) {
-		Square(userFirstName);
-		userFirstName.sendKeys(name);
+		waitUntilVisiblity(userFirstName).sendKeys(name);
 
 	}
 
 	public void enterUserLasttName(String name) {
-		Square(userLastName);
-		userLastName.sendKeys(name);
+		waitUntilVisiblity(userLastName).sendKeys(name);
 
 	}
 
 	public void enterUserPhone(String number) {
-		Square(userPhone);
-		userPhone.sendKeys("+91 " + "9" + number + "");
+		waitUntilVisiblity(userPhone).sendKeys(number);
 
 	}
 
 	public void enterEmail(String email) {
-		Square(userEmail);
-		userEmail.sendKeys("aniket.khandizod+U" + email + "@sell.do");
+		waitUntilVisiblity(userEmail).sendKeys(email);
 
 	}
 
 	public void enterUserTeam(String team) {
-		Square(userTeam);
-		userTeam.sendKeys(team);
+		waitUntilVisiblity(userTeam).sendKeys(team);
 		scrollIntoView(driver.findElement(By.cssSelector("[class='btn btn-primary']")));
 	}
 
 	public void selectVendores() {
-		Square(selectvendor1);
-		selectvendor1.click();
-		selectvendor.click();
-		Square(selectvendor2);
-		selectvendor2.click();
-		selectvendor.click();
-		Square(selectvendor3);
-		selectvendor3.click();
-		selectvendor.click();
-		Square(selectvendor4);
-		selectvendor4.click();
-		selectvendor.click();
-		Square(selectMarketingDomain);
-		selectMarketingDomain.click();
-		selectvendor.click();
+		waitUntilClickable(selectvendor1).click();
+		waitUntilClickable(selectvendor).click();
+		waitUntilClickable(selectvendor2).click();
+		waitUntilClickable(selectvendor).click();
+		waitUntilClickable(selectvendor3).click();
+		waitUntilClickable(selectvendor).click();
+		waitUntilClickable(selectvendor4).click();
+		waitUntilClickable(selectvendor).click();
+		waitUntilClickable(selectMarketingDomain).click();
+		waitUntilClickable(selectvendor).click();
 	}
 
 	public String clickOnsave() {
-		Square(clickOnSave);
-		clickOnSave.click();
+		scrollIntoView(clickOnSave);
+		waitUntilClickable(clickOnSave).click();
 		System.out.println(succesPopup.getText());
 		return succesPopup.getText();
 	}
+
 //--------------------------PrePaid--------------------------------------
 	public void landOnPrepidpage() {
 		driver.get(getGobalData().getProperty("PrepaidClient"));
 	}
 
 	public void enterfirstNamePrePaid(String firstName) {
-		Square(enterFirstName);
-		enterFirstName.sendKeys(firstName);
+		waitUntilVisiblity(enterFirstName).sendKeys(firstName);
 	}
 
 	public void enterLastNamePrePaid(String lastName) {
-		Square(enterLastName);
-		enterLastName.sendKeys(lastName);
+		waitUntilVisiblity(enterLastName).sendKeys(lastName);
 	}
 
 	public void enterPasswordPrePaid(String phone) {
-		Square(enterPassword);
-		enterPassword.sendKeys(phone);
+		waitUntilVisiblity(enterPassword).sendKeys(phone);
 	}
 
 	public void enterEmaillPrePaid(String email) {
-		Square(enterEmail);
-		enterEmail.sendKeys("" + email + "@sell.do");
+		waitUntilVisiblity(enterEmail).sendKeys("" + email + "@sell.do");
 	}
 
 	public void enterMobilePrePaid(String mobile) {
-		Square(enterMobile);
-		enterMobile.sendKeys("+91 " + "9" + mobile + "");
+		waitUntilVisiblity(enterMobile).sendKeys("+91 " + "9" + mobile + "");
 	}
 
 	public void landOnPrepidpagePrePaid(String enterBuisnessNamee) {
 		scrollIntoView(enterBuisnessName);
-		Square(enterBuisnessName);
-		enterBuisnessName.sendKeys(enterBuisnessNamee);
+		waitUntilVisiblity(enterBuisnessName).sendKeys(enterBuisnessNamee);
 	}
 
 	public void selectBuisnessTypeePrePaid(int index) {
-		Square(selectBuisnessType);
-		(selectBuisnessType).click();
-		(selectDropdown.get(index)).click();
+		waitUntilClickable(selectBuisnessType).click();
+		waitUntilClickable(selectDropdown.get(index)).click();
 
 	}
 
 	public void selectIndustryPrePaid(int index) {
-		Square(selectIndustry);
-		(selectIndustry).click();
-		(selectDropdown.get(index)).click();
+		waitUntilClickable(selectIndustry).click();
+		waitUntilClickable(selectDropdown.get(index)).click();
 	}
 
 	public void selectWebsitePrePaid(String email) {
-		Square(enterWebsite);
-		enterWebsite.sendKeys("https://" + email + ".com");
+		waitUntilVisiblity(enterWebsite).sendKeys("https://" + email + ".com");
 
 	}
 
 	public void clickOnSignupPrePaid() {
 		frameSwitch(frameSwitch);
-		Assert.assertFalse(driver.findElement(By.id("rc-anchor-container")).isDisplayed(),"CAPTCHA is disabled");
+		Assert.assertFalse(driver.findElement(By.id("rc-anchor-container")).isDisplayed(), "CAPTCHA is disabled");
 		defaultContentSwitch();
-		Square(clickOnSignup);
-		(clickOnSignup).click();
+		waitUntilClickable(clickOnSignup).click();
 	}
 
 }

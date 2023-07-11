@@ -3,6 +3,7 @@ package API;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import Enums.APIKeys;
 import POJO_CreateFollowup.Followup;
 import POJO_CreateFollowup.Root;
 import io.restassured.RestAssured;
@@ -12,7 +13,7 @@ import io.restassured.response.Response;
 
 public class CreateFollowUp {
 
-	public static void createFollowUp(String leadID,String API_Key,String ClientID,String URL) {
+	public static void createFollowUp(String leadID,APIKeys API_Key,APIKeys ClientID,String URL) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH");// yyyy/MM/dd
 		LocalDateTime now = LocalDateTime.now();
 		String date = dtf.format(now) + ":59 IST";
@@ -30,8 +31,8 @@ public class CreateFollowUp {
 		followup.setType("followup");
 
 		Root root = new Root();
-		root.setApi_key(API_Key);
-		root.setClient_id(ClientID);
+		root.setApi_key(API_Key.toString());
+		root.setClient_id(ClientID.toString());
 		root.setFollowup(followup);
 
 		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all().post();

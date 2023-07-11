@@ -5,7 +5,7 @@
 		<listener class-name="com.selldo.Utility.Listneers"></listener>
 		<listener class-name="com.selldo.Utility.AnnotationTransformer"></listener>
 		</listeners>
-  <test thread-count="5" name="Test">
+  <test thread-count="5" parallel="classes" name="Test">
     <classes>
       <class name="dashboardBucketsPack.ReengagedLeads_VerificationTest"/>
       <class name="dashboardBucketsPack.TodaysSitevisit_VerificationTest"/>

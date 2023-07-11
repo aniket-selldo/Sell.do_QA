@@ -8,15 +8,11 @@ import java.util.Map;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
-
-import com.selldo.Utility.BaseTest;
-import com.selldo.Utility.XLUtils;
 
 public class demo extends BaseTest{
 	Map<String,String> map ;
 
-	public static  void M1() throws IOException {
+	public   void M1() throws IOException {
 		driver.get("https://www.computerhope.com/htmcolor.htm");
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");

@@ -3,6 +3,7 @@ package API;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import Enums.APIKeys;
 import Enums.Project;
 import POJO_SiteVisit.Root;
 import POJO_SiteVisit.SiteVisit;
@@ -11,7 +12,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class CreateSiteVisit {
-public static void createSiteVisit(String leadId,String leadID,String API_Key,String ClientID,String SalesID,Project ProjectID,String URL) {
+public static void createSiteVisit(String leadId,String leadID,APIKeys API_Key,APIKeys ClientID,APIKeys SalesID,Project ProjectID,String URL) {
 		
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH");// yyyy/MM/dd
 		LocalDateTime now = LocalDateTime.now();
@@ -25,7 +26,7 @@ public static void createSiteVisit(String leadId,String leadID,String API_Key,St
 		siteVisit.setProject_id(ProjectID.toString());
 		siteVisit.setScheduled_on(date);
 		siteVisit.setEnds_on(dtf.format(now)+" 23:59");
-		siteVisit.setSales_id(SalesID);
+		siteVisit.setSales_id(SalesID.toString());
 		siteVisit.setSitevisit_type("visit");// visit | home_visit | online_walkthrough
 		siteVisit.setAgenda("Agenda By Rest Assured");
 		siteVisit.setConfirmed(true);
@@ -33,8 +34,8 @@ public static void createSiteVisit(String leadId,String leadID,String API_Key,St
 		siteVisit.setRating("4");
 		siteVisit.setTest("test");
 		
-		root.setApi_key(API_Key);
-		root.setClient_id(ClientID);
+		root.setApi_key(API_Key.toString());
+		root.setClient_id(ClientID.toString());
 		root.setSite_visit(siteVisit);
 		
 		RestAssured.baseURI = URL+"/client/leads/" + leadID + "/site_visits.json";

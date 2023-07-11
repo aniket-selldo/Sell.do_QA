@@ -30,49 +30,41 @@ public class MissedFollowup_VerificationTest extends BaseTest {
 		String count_missedFollowupBefore = salesPresalesDashboard.getMissedFollowups();
 		System.out.println(count_missedFollowupBefore);
 
-		extentTest.get().log(Status.INFO, "Clicking on Missed Followup bucket......");
 		salesPresalesDashboard.clickOnMissedFollowupBucket();
 
-		extentTest.get().log(Status.INFO, "Opening Lead Deatils Page.......");
+		Thread.sleep(5000);
 		salesPresalesDashboard.openLeadProfile(0);
 
-		extentTest.get().log(Status.INFO, "Scheduling Followup.......");
 		leadProfilePage.followupLink();
 
 		FollowupsPage followupsPage = new FollowupsPage(driver);
 
-		extentTest.get().log(Status.INFO, "Selecting Date.......");
 		followupsPage.selectDate();
 
-		extentTest.get().log(Status.INFO, "Clicking on Schedule Followup Button .......");
 		followupsPage.clickOnScheduleFollowupButton2();
 
 		Thread.sleep(2000);
 
 		if (!driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty()) {
 
-			extentTest.get().log(Status.INFO, "Clicking on Ignore and schedule button.......");
 			siteVisitPage.clickOnIgnoreAndSchedule();
 
 		}
 
 		Thread.sleep(1000);
 
-		extentTest.get().log(Status.INFO, "Going back to dsahboard.......");
 		salesPresalesDashboard.selectLeadActions(2);
 
 		Thread.sleep(1000);
 
-		extentTest.get().log(Status.INFO, "Refreshing the User Dashboard.......");
 		salesPresalesDashboard.clickOnOpenTasksLink();
 		salesPresalesDashboard.refreshDashboardStats();
 
 		Thread.sleep(5000);
 		salesPresalesDashboard.clickOnOpenTasksLink();
-		String count_missedFollowupAfter =salesPresalesDashboard.getMissedFollowups();
+		String count_missedFollowupAfter = salesPresalesDashboard.getMissedFollowups();
 		System.out.println(count_missedFollowupAfter);
 
-		extentTest.get().log(Status.INFO, "Validating count is not same after scheduling Followup.......");
 		Assert.assertNotEquals(count_missedFollowupAfter, count_missedFollowupBefore,
 				"Count is same as before scheduling Followup");
 

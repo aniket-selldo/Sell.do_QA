@@ -586,10 +586,15 @@ public class LeadProfilePage extends ReusableUtils {
 		waitUntilClickable(followUp_d).click();
 	}
 	public void clickFeedTabNote() {
+		zoom("80%");
+		wait(1000);
 		scrollIntoViewUp(more_d);
-		waitUntilClickable(more_d).click();
+		wait(1000);
+		jsClick(more_d);
+		wait(1000);
 		scrollIntoViewUp(Note_d);
-		waitUntilClickable(Note_d).click();
+		wait(1000);
+		jsClick(Note_d);
 	}
 	public String getFirstNoteText() {
 		wait(3000);

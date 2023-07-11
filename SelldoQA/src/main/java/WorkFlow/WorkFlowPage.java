@@ -78,11 +78,14 @@ public class WorkFlowPage extends ReusableUtils {
 	private WebElement enterCondition;
 
 	public void goToWF() {
+		wait(1000);
 		waitUntilClickable(clickOnAutomation).click();
+		wait(1000);
 		waitUntilClickable(clickOnWorkFlow).click();
 	}
 
 	public void clickOnNewWF() {
+		wait(1000);
 		waitUntilClickable(clickOnNewWorkFlow).click();
 	}
 	public void clickOnSaveAllButton() {
@@ -90,6 +93,7 @@ public class WorkFlowPage extends ReusableUtils {
 		waitUntilClickable(clickOnSaveAllButton).click();
 	}
 	public void clickOnAddActionButton() {
+		wait(1000);
 		waitUntilClickable(clickOnAddActionButton).click();
 	}
 	public void enterValue(String str) {

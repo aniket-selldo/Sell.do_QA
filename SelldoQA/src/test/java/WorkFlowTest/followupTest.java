@@ -10,6 +10,7 @@ import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
 import API.CreateFollowUp;
+import Enums.APIKeys;
 import Enums.WFEvent;
 import WorkFlow.WorkFlowListPage;
 import WorkFlow.WorkFlowPage;
@@ -57,7 +58,7 @@ public class followupTest extends BaseTest {
 				.searchLead(Integer.parseInt(R('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')), "Unscheduled Leads");
 
 		String leadID = adminDashboardPage.getLeadURL_ID(leadId);
-		CreateFollowUp.createFollowUp(leadID, APIKeyFullAccess, ClientID, prop.getProperty("URL"));
+		CreateFollowUp.createFollowUp(leadID, APIKeys.APIKeyFullAccess, APIKeys.ClientID, prop.getProperty("URL"));
 
 		LeadProfilePage lpp = new LeadProfilePage(driver);
 		lpp.clickFeedTabNote();

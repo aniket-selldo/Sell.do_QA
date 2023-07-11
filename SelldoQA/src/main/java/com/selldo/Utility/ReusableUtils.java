@@ -30,6 +30,7 @@ public class ReusableUtils {
 	private FileWriter writer;
 	private BufferedWriter buffer;
 	private final static int waitingTime_Sec = 5;
+	private static int zoom; 
 
 	public ReusableUtils(WebDriver driver) {
 		this.driver = driver;
@@ -75,6 +76,13 @@ public class ReusableUtils {
 	protected WebElement waitUntilClickable(WebElement we) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
 		wait.until(ExpectedConditions.elementToBeClickable(we));
+		System.out.println("Clicked Element -> " + we.getText().trim());
+		Square(we);
+		return we;
+	}
+	protected WebElement waitUntilAttributeValue(WebElement we,String attribute,String Value,int time) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
+		wait.until(ExpectedConditions.attributeContains(we,attribute,Value));
 		System.out.println("Clicked Element -> " + we.getText().trim());
 		Square(we);
 		return we;
@@ -230,10 +238,10 @@ public class ReusableUtils {
 	protected void jsClick(WebElement we) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
 		wait.until(ExpectedConditions.elementToBeClickable(we));
-		Square(we);
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		System.out.println("jsClicked Element -> " + we.getText().trim());
 		executor.executeScript("arguments[0].click();", we);
+		Square(we);
 	}
 
 	protected void scrollHeight() {
@@ -242,10 +250,16 @@ public class ReusableUtils {
 	}
 
 	protected WebElement Square(WebElement we) {
-		wait(500);
+		//wait(500);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
+		zoom = 80;
+		//js.executeScript("document.body.style.zoom='"+(zoom+0.10)+"%'");
 		js.executeScript("arguments[0].style.border='5px solid Red'", we);
 		return we;
+	}
+	protected void deZoom() {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("document.body.style.zoom='80%'");
 	}
 
 	protected WebElement jsSendKey(WebElement we, String txt) {
@@ -260,6 +274,10 @@ public class ReusableUtils {
 		Square(we);
 		return (String) js.executeScript("return arguments[0].text;", we);
 
+	}
+	protected void zoom(String zoom) {
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("document.body.style.zoom = '"+zoom+"'");
 	}
 
 // ----------------Select ------------------

@@ -3,15 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="adminPack.BookingALead_ConfirmedTest">
+      <class name="inventory.AddingNewProjectTowerTest">
         <methods>
           <include name="browserConfig"/>
-          <include name="ObjectInvokder"/>
-          <include name="ObjectSupressor"/>
-          <include name="bookingALead_ConfirmedTest"/>
+          <include name="addingNewProjectTowerTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- adminPack.BookingALead_ConfirmedTest -->
+      </class> <!-- inventory.AddingNewProjectTowerTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

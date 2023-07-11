@@ -21,26 +21,20 @@ public class UnreadEmail_VerificationTest extends BaseTest {
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
-		extentTest.get().log(Status.INFO, "Refreshing the User Dashboard.......");
 		salesPresalesDashboard.refreshDashboardStats();
 
 		Thread.sleep(3000);
 
-		extentTest.get().log(Status.INFO, "Getting count of Unread Email bucket......");
 		WebElement count_unreadEmailBucket = driver
 				.findElement(By.cssSelector("div[id='pending-emails'] span[class='title-item-body-count']"));
 		String leadCount_unreadEmailBucket = count_unreadEmailBucket.getText();
 		System.out.println(leadCount_unreadEmailBucket);
 
-		extentTest.get().log(Status.INFO, "Going to All Lead List.......");
 		salesPresalesDashboard.goToAllLeadsList();
 
-		extentTest.get().log(Status.INFO, "Selecting Pending Emails list......");
 		adminDashboardPage.SelectList("Pending Emails");
 
 		Thread.sleep(3000);
-
-		extentTest.get().log(Status.INFO, "Getting count of leads under pending email list......");
 
 		String leadCount_pendingEmail = salesPresalesDashboard.getLeadHash();
 		Assert.assertEquals(leadCount_unreadEmailBucket, leadCount_pendingEmail, "Counts are different");

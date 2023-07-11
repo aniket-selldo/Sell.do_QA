@@ -5,10 +5,9 @@
 		<listener class-name="com.selldo.Utility.Listneers"></listener>
 		<listener class-name="com.selldo.Utility.AnnotationTransformer"></listener>
 		</listeners>
-<test name="Test">
+ <test thread-count="5" parallel="classes" name="Test">
     <classes>
-    <!--  <class name="otherLeadActivitiesPack.SendingBrochure_WithTemplateTest"/>-->
-       <class name="userManagementPack.CreatingPostsalesUserTest"/>
+       <class name="dashboardBucketsPack.MissedFollowup_VerificationTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite --><!--

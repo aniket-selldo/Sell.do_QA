@@ -28,27 +28,20 @@ public class AddingNewProjectTowerTest extends BaseTest {
 
 		NewProjectTowerFormPage newProjectTowerFormPage = new NewProjectTowerFormPage(driver);
 
-		extentTest.get().log(Status.INFO, "Selecting Project Towers by mouse hovering over Inventory icon.......");
 		newProjectTowerFormPage.clickOnProjectTower();
 
-		extentTest.get().log(Status.INFO, "Cicking on New Project Tower button......");
 		projectTowersPage.clickOnNewTower();
 
 		String projectTowerName = Random("A", 10).toUpperCase();
 
-		extentTest.get().log(Status.INFO, "Entering Project Tower name......");
 		newProjectTowerFormPage.enterProjectTowerName(projectTowerName);
 
-		extentTest.get().log(Status.INFO, "Entering Project name......");
 		newProjectTowerFormPage.enterProjectName("aniket project 02");
 
-		extentTest.get().log(Status.INFO, "Entering total floors number......");
 		newProjectTowerFormPage.enterTotalFloorsNumber("8");
 
-		extentTest.get().log(Status.INFO, "Clicking on Save button.....");
 		newProjectTowerFormPage.clickOnSaveButton();
 
-		extentTest.get().log(Status.INFO, "Verifying that project is added.......");
 		Assert.assertEquals(newProjectTowerFormPage.getProjectName(), projectTowerName, "Not matched");
 
 	}

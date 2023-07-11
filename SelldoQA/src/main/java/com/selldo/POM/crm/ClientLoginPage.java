@@ -87,7 +87,9 @@ public class ClientLoginPage extends ReusableUtils {
 	}
 
 	public void logout() {
+		wait(1000);
 		waitUntilClickable(userAccount, 0).click();
+		wait(1000);
 		waitUntilClickable(Logout, 0).click();
 	}
 }

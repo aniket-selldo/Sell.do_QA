@@ -26,10 +26,8 @@ public class TodaysFollowup_VerificationTest extends BaseTest {
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
-		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
 		adminDashboardPage.searchLead(Integer.parseInt(R('0', '1', '2', '3', '4', '5', '6', '7')), "All Leads");
 
-		extentTest.get().log(Status.INFO, "Getting Lead Id on which followup is to be scheduled for today.......");
 		String leadId_profileObj = driver.findElement(By.cssSelector("span[name='lead_id']")).getText()
 				.replaceAll("\\s+", "");
 		System.out.println(leadId_profileObj);
@@ -38,16 +36,12 @@ public class TodaysFollowup_VerificationTest extends BaseTest {
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
-		extentTest.get().log(Status.INFO, "Clicking on Followup link......");
 		leadProfilePage.followupLink();
-		
 
 		FollowupsPage followupsPage = new FollowupsPage(driver);
 
-		extentTest.get().log(Status.INFO, "Selecting today's Date from calander......");
 		followupsPage.selectDate();
 
-		extentTest.get().log(Status.INFO, "Clicking on Schedule Followup Button .......");
 		followupsPage.clickOnScheduleFollowupButon();
 
 		Thread.sleep(2000);
@@ -55,13 +49,11 @@ public class TodaysFollowup_VerificationTest extends BaseTest {
 		if (!driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty()) {
 
 			try {
-				extentTest.get().log(Status.INFO, "Clicking on Ignore and schedule button.......");
 				followupsPage.clickOnIgnoreAndSchedule();
 			} catch (Exception e) {
 			}
 		}
 
-		extentTest.get().log(Status.INFO, "Validation for Scheduled followup .......");
 		Thread.sleep(5000);
 
 		String expectedText = prop.getProperty("scheduleExpectedText");
@@ -74,26 +66,21 @@ public class TodaysFollowup_VerificationTest extends BaseTest {
 
 		Thread.sleep(3000);
 
-		extentTest.get().log(Status.INFO, "Going back to dashboard......");
 		salesPresalesDashboard.selectLeadActions(2);
 		Thread.sleep(2000);
 
-		extentTest.get().log(Status.INFO, "Refreshing the User Dashboard.......");
 		salesPresalesDashboard.refreshDashboardStats();
 		Thread.sleep(2000);
 
-		extentTest.get().log(Status.INFO, "Filter scheduled Followups.......");
 		salesPresalesDashboard.applyFollowupFilter();
 
 		Thread.sleep(2000);
 
-		extentTest.get().log(Status.INFO, "Getting Lead Id from toadys followup bucket......");
 		String leadId_dashboardObj = driver
 				.findElement(By.xpath("//a[@class='navigation clearfix todays_stat_show_lead']")).getText()
 				.replaceAll("[^0-9]+", "").trim();
 		System.out.println("#" + leadId_dashboardObj);
 
-		extentTest.get().log(Status.INFO, "Verifying followup scheduled for today from dashboard......");
 		Assert.assertTrue(followupsPage.validateIDInActivity(leadId_dashboardObj), "Leads are not matching");
 
 	}

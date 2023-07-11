@@ -51,7 +51,8 @@ public class FloorPlansPage extends ReusableUtils {
 	private List<WebElement> getAllDevloperName;
 
 	public String  getAnyFloorPlanName() {
-		return getAllDevloperName.stream().findAny().get().getText();
+		 int index = (int)(Math.random() * getAllDevloperName.size());
+			return waitUntilVisiblity(getAllDevloperName.get(index)).getText().trim();
 	}
 
 	public void clickOnNewFloorPlanButton() {

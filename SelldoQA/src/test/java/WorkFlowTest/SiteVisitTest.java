@@ -10,6 +10,7 @@ import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
 import API.CreateSiteVisit;
+import Enums.APIKeys;
 import Enums.Project;
 import Enums.WFEvent;
 import WorkFlow.WorkFlowListPage;
@@ -57,7 +58,7 @@ public class SiteVisitTest extends BaseTest {
 				.searchLead(Integer.parseInt(R('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')), "Unscheduled Leads");
 
 		String leadID = adminDashboardPage.getLeadURL_ID(leadId);
-		CreateSiteVisit.createSiteVisit(leadId, leadID,APIKeyFullAccess, ClientID,PreSalesUserID,Project.Aniket_Project_02, prop.getProperty("URL"));
+		CreateSiteVisit.createSiteVisit(leadId, leadID,APIKeys.APIKeyFullAccess,APIKeys. ClientID,APIKeys.PreSalesUserID,Project.Aniket_Project_02, prop.getProperty("URL"));
 
 		LeadProfilePage lpp = new LeadProfilePage(driver);
 		lpp.clickFeedTabNote();

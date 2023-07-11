@@ -63,6 +63,25 @@ public class NewDeveloperFormPage extends ReusableUtils {
 	private WebElement getDevlopersName;
 	@FindBy(how = How.CSS, using = "li[class='breadcrumb-item active']")
 	private WebElement getDevlopersName2;
+	@FindBy(how = How.XPATH, using = "(//input[@placeholder='Phone'])[1]")
+	private WebElement enterPhone;
+	@FindBy(how = How.XPATH, using = "(//input[@placeholder='Phone'])[2]")
+	private WebElement enterAlterNateNumber;
+	@FindBy(how = How.CSS, using = "input#developer_contact_email")
+	private WebElement enterEmail;
+	@FindBy(how = How.CSS, using = "input#developer_contact_alternate_email")
+	private WebElement alternateEmail;
+	@FindBy(how = How.CSS, using = "input#developer_contact_designation")
+	private WebElement designation;
+	@FindBy(how = How.CSS, using = "input#developer_contact_pan")
+	private WebElement PAN;
+	@FindBy(how = How.XPATH, using = "//tbody/tr/td/a")
+	private List<WebElement> getAnyDevloperName;
+	
+	public String getAnyDevloperName() {
+        int index = (int)(Math.random() * getAnyDevloperName.size());
+		return waitUntilVisiblity(getAnyDevloperName.get(index)).getText().trim();
+	}
 
 	public String getDevlopersName() {
 		return waitUntilVisiblity(getDevlopersName).getText().trim();
@@ -75,6 +94,7 @@ public class NewDeveloperFormPage extends ReusableUtils {
 	public void enterDeveloperName(String developer) throws InterruptedException {
 		waitUntilClickable(developerName).click();
 		waitUntilVisiblity(developerNameInputField).sendKeys(developer);
+		wait(2000);
 		waitUntilVisiblity(developerNameInputField).sendKeys(Keys.ENTER);
 	}
 
@@ -131,6 +151,8 @@ public class NewDeveloperFormPage extends ReusableUtils {
 	}
 
 	public void selectSalutation() throws IOException {
+		
+		wait(500);
 		Properties property = new Properties();
 		FileInputStream fileInputObj = new FileInputStream(
 				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
@@ -173,6 +195,19 @@ public class NewDeveloperFormPage extends ReusableUtils {
 
 	public void clickOnAllDevelopersLink() {
 		waitUntilClickable(allDevelopersLink).click();
+	}
+	
+	public void alternateEmail(String eml) {
+		waitUntilVisiblity(alternateEmail).sendKeys(eml);
+	}
+	public void PAN(String eml) {
+		waitUntilVisiblity(PAN).sendKeys(eml);
+	}
+	public void enterAlternateNumber(String eml) {
+		waitUntilVisiblity(enterAlterNateNumber).sendKeys(eml);
+	}
+	public void designation(String eml) {
+		waitUntilVisiblity(designation).sendKeys(eml);
 	}
 
 }
