@@ -70,6 +70,8 @@ public class AddingNewUnitTest extends BaseTest {
 		newUnitFormPage.enterNumberOfFloors(Random("N",1));
 
 		newUnitFormPage.clickOnSaveButton();
+		
+		
 
 		
 	}
