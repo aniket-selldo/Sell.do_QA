@@ -33,17 +33,16 @@ public class Update_Lead {
 		Requirement requirement = new Requirement();
 		Lead Lead = new Lead();
 		Root root = new Root();
-		
-		String leadID = "647f371cb08345ab2f35a36a";
+		String leadID = "64b0d852b08345f63030c525";
         RestAssured.baseURI = "https://v2.sell.do/client/leads/"+leadID+".json";
 
-		root.setApi_key("99c4b48c7732b5183000999d1200d520");
-		root.setClient_id("642a8145b083453f914ce854");
+		root.setApi_key("c4d649781e5451ce2903b34b02496e2c");
+		root.setClient_id("64a2be1db0834560eaa19563");
 		Lead.setSalutation("mr");
 		Lead.setFirst_name("Aniket");
 		Lead.setLast_name("LastName");
 		Lead.setTime_zone("Asia/Calcutta");
-		Lead.setStage("incoming");
+		Lead.setStage("prospect");
 		Lead.setStatus(null);
 		Lead.setNri(false);
 		receivedFrom.setCampaign_id("");
@@ -54,7 +53,7 @@ public class Update_Lead {
 		primaryEmail.setEmail_type("office");
 		Lead.setPrimary_email(primaryEmail);
 		ArrayList<String> project_ids = new ArrayList<String>();
-		project_ids.add("587dec4626300a3aca00001c");
+		project_ids.add("5886efb35a9db35df300000a");
 		Lead.setInterested_project_ids(project_ids);
 		Lead.setSales_id("587ddb2b5a9db31da9000001");
 		root.setLead(Lead);
@@ -100,7 +99,7 @@ public class Update_Lead {
 		primaryEmail.setEmail_type("office");
 		Lead.setPrimary_email(primaryEmail);
 		ArrayList<String> project_ids = new ArrayList<String>();
-		project_ids.add("587dec4626300a3aca00001c");
+		project_ids.add("64b0dbb8b08345f63030cd4c");
 		Lead.setInterested_project_ids(project_ids);
 		Lead.setSales_id("587ddb2b5a9db31da9000001");
 		root.setLead(Lead);

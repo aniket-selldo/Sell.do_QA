@@ -5,9 +5,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -57,8 +59,10 @@ public class BaseTest {
 		if (browser.equalsIgnoreCase("chrome")) {
 			ChromeOptions options = new ChromeOptions();
 			// ================Add Extension==========
-			//options.addExtensions(new File(System.getProperty("user.dir") +"/AdBlock-—-best-ad-blocker.crx"));
-			options.addExtensions(new File(System.getProperty("user.dir") +"/When-the-Night-Falls-1;-rainbow;-1080p.crx"));
+			// options.addExtensions(new File(System.getProperty("user.dir")
+			// +"/AdBlock-—-best-ad-blocker.crx"));
+			options.addExtensions(
+					new File(System.getProperty("user.dir") + "/When-the-Night-Falls-1;-rainbow;-1080p.crx"));
 
 			// ================To disable Automation name==========
 			options.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
@@ -99,11 +103,11 @@ public class BaseTest {
 		driver.manage().deleteAllCookies();
 		driver.get(prop.getProperty("URL"));
 
-
 		// -------------------Delay Management-------------------//
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 	}
+
 	@AfterMethod(alwaysRun = true)
 	protected void terminate() throws InterruptedException {
 
@@ -179,8 +183,9 @@ public class BaseTest {
 	public String randomEmail(String str) {
 		return str + "+" + Random("AN", 10) + "@sell.do";
 	}
+
 	public String randomPAN() {
-		return ""+Random("A",5)+Random("N",4)+Random("A",1);
+		return "" + Random("A", 5) + Random("N", 4) + Random("A", 1);
 	}
 
 	public String randomPhone() {
@@ -219,5 +224,26 @@ public class BaseTest {
 	protected void deZoom(WebDriver driver) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("document.body.style.zoom='80%'");
+	}
+
+	protected String getDate(int a, String of) {
+
+		String s = "";
+		switch (of) {
+		case "D":
+			s = new SimpleDateFormat("dd").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;
+		case "M":
+			s = new SimpleDateFormat("M").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;
+		case "Y":
+			s = new SimpleDateFormat("YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;
+
+		default:
+			System.out.println("please select valid input");
+			break;
+		}
+		return s;
 	}
 }

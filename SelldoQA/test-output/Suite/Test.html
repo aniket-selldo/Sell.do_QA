@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>8/1/3</td>
+<td>Tests passed/Failed/Skipped:</td><td>4/5/7</td>
 </tr><tr>
-<td>Started on:</td><td>Sun Jul 09 17:11:11 IST 2023</td>
+<td>Started on:</td><td>Tue Jul 11 18:32:32 IST 2023</td>
 </tr>
-<tr><td>Total time:</td><td>113 seconds (113211 ms)</td>
+<tr><td>Total time:</td><td>172 seconds (172957 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,33 +76,34 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest()'><b>missedSitevisit_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedSitevisit_VerificationTest</td>
-<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on linux (528f53582095384bba7964812a5b03ae)] -&gt; xpath: //span[text()=&apos;Sub filter&apos;]] (tried for 5 second(s) with 500 milliseconds interval)
-Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.RlDAPX}, goog:chromeOptions: {debuggerAddress: localhost:35013}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35013/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 528f53582095384bba7964812a5b03ae
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at com.selldo.Utility.ReusableUtils.waitUntilClickable(ReusableUtils.java:78)
-	at com.selldo.POM.crm.LeadProfilePage.selectPending_Sitevisit(LeadProfilePage.java:539)
-	at dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest(MissedSitevisit_VerificationTest.java:37)
+<td title='dashboardBucketsPack.NewEnquiries_VerificationTest.newEnquiries_VerificationTest()'><b>newEnquiries_VerificationTest</b><br>Test class: dashboardBucketsPack.NewEnquiries_VerificationTest</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+	at java.base/java.util.Objects.checkIndex(Objects.java:359)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:40)
+	at jdk.proxy2/jdk.proxy2.$Proxy18.get(Unknown Source)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.openLeadProfile(SalesPresalesDashboardPage.java:245)
+	at dashboardBucketsPack.NewEnquiries_VerificationTest.newEnquiries_VerificationTest(NewEnquiries_VerificationTest.java:34)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2032070614", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace2032070614'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: [[ChromeDriver: chrome on linux (528f53582095384bba7964812a5b03ae)] -&gt; xpath: //span[text()=&apos;Sub filter&apos;]] (tried for 5 second(s) with 500 milliseconds interval)
-Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.RlDAPX}, goog:chromeOptions: {debuggerAddress: localhost:35013}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35013/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 528f53582095384bba7964812a5b03ae
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at com.selldo.Utility.ReusableUtils.waitUntilClickable(ReusableUtils.java:78)
-	at com.selldo.POM.crm.LeadProfilePage.selectPending_Sitevisit(LeadProfilePage.java:539)
-	at dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest(MissedSitevisit_VerificationTest.java:37)
+... Removed 15 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1219485946", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1219485946'><pre>java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+	at java.base/java.util.Objects.checkIndex(Objects.java:359)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at java.base/jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:40)
+	at jdk.proxy2/jdk.proxy2.$Proxy18.get(Unknown Source)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.openLeadProfile(SalesPresalesDashboardPage.java:245)
+	at dashboardBucketsPack.NewEnquiries_VerificationTest.newEnquiries_VerificationTest(NewEnquiries_VerificationTest.java:34)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -119,123 +120,28 @@ Session ID: 528f53582095384bba7964812a5b03ae
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 </pre></div></td>
-<td>20</td>
-<td>dashboardBucketsPack.MissedSitevisit_VerificationTest@6f53b8a</td></tr>
-</table><p>
-<table width='100%' border='1' class='invocation-passed'>
-<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
-<tr><td><b>Test method</b></td>
-<td><b>Attribute(s)</b></td>
-<td width="30%"><b>Exception</b></td>
-<td width="10%"><b>Time (seconds)</b></td>
-<td><b>Instance</b></td>
-</tr>
-<tr>
-<td title='dashboardBucketsPack.NewEnquiries_VerificationTest.newEnquiries_VerificationTest()'><b>newEnquiries_VerificationTest</b><br>Test class: dashboardBucketsPack.NewEnquiries_VerificationTest</td>
-<td></td>
-<td>36</td>
-<td>dashboardBucketsPack.NewEnquiries_VerificationTest@7d900ecf</td></tr>
-<tr>
-<td title='dashboardBucketsPack.TodaysSitevisit_VerificationTest.todaysSitevisit_VerificationTest()'><b>todaysSitevisit_VerificationTest</b><br>Test class: dashboardBucketsPack.TodaysSitevisit_VerificationTest</td>
-<td></td>
-<td>52</td>
-<td>dashboardBucketsPack.TodaysSitevisit_VerificationTest@4d1bf319</td></tr>
+<td>25</td>
+<td>dashboardBucketsPack.NewEnquiries_VerificationTest@6f01b95f</td></tr>
 <tr>
 <td title='dashboardBucketsPack.ReengagedLeads_VerificationTest.reengagedLeads_VerificationTest()'><b>reengagedLeads_VerificationTest</b><br>Test class: dashboardBucketsPack.ReengagedLeads_VerificationTest</td>
-<td></td>
-<td>22</td>
-<td>dashboardBucketsPack.ReengagedLeads_VerificationTest@43df23d3</td></tr>
-<tr>
-<td title='dashboardBucketsPack.MissedFollowup_VerificationTest.missedFollowup_VerificationTest()'><b>missedFollowup_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedFollowup_VerificationTest</td>
-<td></td>
-<td>73</td>
-<td>dashboardBucketsPack.MissedFollowup_VerificationTest@5c80cf32</td></tr>
-<tr>
-<td title='dashboardBucketsPack.NFA_VerificationTest.nFA_VerificationTest()'><b>nFA_VerificationTest</b><br>Test class: dashboardBucketsPack.NFA_VerificationTest</td>
-<td></td>
-<td>56</td>
-<td>dashboardBucketsPack.NFA_VerificationTest@1a245833</td></tr>
-<tr>
-<td title='dashboardBucketsPack.MissedCalls_VerificationTest.missedCalls_VerificationTest()'><b>missedCalls_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedCalls_VerificationTest</td>
-<td></td>
-<td>20</td>
-<td>dashboardBucketsPack.MissedCalls_VerificationTest@6f01b95f</td></tr>
-<tr>
-<td title='dashboardBucketsPack.TodaysFollowup_VerificationTest.todaysFollowup_VerificationTest()'><b>todaysFollowup_VerificationTest</b><br>Test class: dashboardBucketsPack.TodaysFollowup_VerificationTest</td>
-<td></td>
-<td>53</td>
-<td>dashboardBucketsPack.TodaysFollowup_VerificationTest@4007f65e</td></tr>
-<tr>
-<td title='dashboardBucketsPack.UnreadEmail_VerificationTest.unreadEmail_VerificationTest()'><b>unreadEmail_VerificationTest</b><br>Test class: dashboardBucketsPack.UnreadEmail_VerificationTest</td>
-<td></td>
-<td>20</td>
-<td>dashboardBucketsPack.UnreadEmail_VerificationTest@673fdbce</td></tr>
-</table><p>
-<table width='100%' border='1' class='invocation-skipped'>
-<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
-<tr><td><b>Test method</b></td>
-<td><b>Attribute(s)</b></td>
-<td width="30%"><b>Exception</b></td>
-<td width="10%"><b>Time (seconds)</b></td>
-<td><b>Instance</b></td>
-</tr>
-<tr>
-<td title='dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest()'><b>missedSitevisit_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedSitevisit_VerificationTest</td>
-<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (81d5117d9bec0df2db163b0487be9f57)] -&gt; xpath: //span[text()=&apos;missed Site visits&apos;]/following::div[1]] (tried for 5 second(s) with 500 milliseconds interval)
-Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.JjJEn7}, goog:chromeOptions: {debuggerAddress: localhost:33477}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33477/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 81d5117d9bec0df2db163b0487be9f57
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator &apos;By.cssSelector: #get_leads_count&apos; (tried for 5 second(s) with 500 milliseconds interval)
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:53)
-	at com.selldo.POM.crm.SalesPresalesDashboardPage.getMissedSiteVisits(SalesPresalesDashboardPage.java:196)
-	at dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest(MissedSitevisit_VerificationTest.java:28)
+	at com.selldo.Utility.ReusableUtils.jsClick(ReusableUtils.java:247)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.getLeadHash(SalesPresalesDashboardPage.java:156)
+	at dashboardBucketsPack.ReengagedLeads_VerificationTest.reengagedLeads_VerificationTest(ReengagedLeads_VerificationTest.java:25)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1862965699", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1862965699'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (81d5117d9bec0df2db163b0487be9f57)] -&gt; xpath: //span[text()=&apos;missed Site visits&apos;]/following::div[1]] (tried for 5 second(s) with 500 milliseconds interval)
-Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.JjJEn7}, goog:chromeOptions: {debuggerAddress: localhost:33477}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33477/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 81d5117d9bec0df2db163b0487be9f57
-	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:53)
-	at com.selldo.POM.crm.SalesPresalesDashboardPage.getMissedSiteVisits(SalesPresalesDashboardPage.java:196)
-	at dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest(MissedSitevisit_VerificationTest.java:28)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:833)
-</pre></div></td>
-<td>16</td>
-<td>dashboardBucketsPack.MissedSitevisit_VerificationTest@6f53b8a</td></tr>
-<tr>
-<td title='dashboardBucketsPack.TodaysFollowup_VerificationTest.todaysFollowup_VerificationTest()'><b>todaysFollowup_VerificationTest</b><br>Test class: dashboardBucketsPack.TodaysFollowup_VerificationTest</td>
-<td><div><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;div class=&quot;select2-container form-control select2 clean-select2 lead-list&quot; id=&quot;s2id_autogen3&quot; style=&quot;border: 5px solid red;&quot;&gt;...&lt;/div&gt; is not clickable at point (218, 143). Other element would receive the click: &lt;div class=&quot;block_ui&quot;&gt;...&lt;/div&gt;
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;#get_leads_count&quot;}
   (Session info: chrome=111.0.5563.146)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
 System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [2e313a423e9b5c4256d62d251f6f5742, clickElement {id=3c1d2c55-1f45-4370-ac79-eb97397766fd}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.ZHON7o}, goog:chromeOptions: {debuggerAddress: localhost:43459}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:43459/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on linux (2e313a423e9b5c4256d62d251f6f5742)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]]
-Session ID: 2e313a423e9b5c4256d62d251f6f5742
+Command: [c93974c203a4c35b6b00da2e4bb04c54, findElement {using=css selector, value=#get_leads_count}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.J3L5q1}, goog:chromeOptions: {debuggerAddress: localhost:33341}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33341/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: c93974c203a4c35b6b00da2e4bb04c54
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
@@ -243,23 +149,52 @@ Session ID: 2e313a423e9b5c4256d62d251f6f5742
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
-	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:188)
-	at dashboardBucketsPack.TodaysFollowup_VerificationTest.todaysFollowup_VerificationTest(TodaysFollowup_VerificationTest.java:29)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
+	at jdk.proxy2/jdk.proxy2.$Proxy17.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:660)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:656)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	... 18 more
+... Removed 17 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1854612012", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1854612012'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator &apos;By.cssSelector: #get_leads_count&apos; (tried for 5 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.selldo.Utility.ReusableUtils.jsClick(ReusableUtils.java:247)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.getLeadHash(SalesPresalesDashboardPage.java:156)
+	at dashboardBucketsPack.ReengagedLeads_VerificationTest.reengagedLeads_VerificationTest(ReengagedLeads_VerificationTest.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:263)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:62)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-... Removed 17 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1153725038", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1153725038'><pre>org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;div class=&quot;select2-container form-control select2 clean-select2 lead-list&quot; id=&quot;s2id_autogen3&quot; style=&quot;border: 5px solid red;&quot;&gt;...&lt;/div&gt; is not clickable at point (218, 143). Other element would receive the click: &lt;div class=&quot;block_ui&quot;&gt;...&lt;/div&gt;
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;#get_leads_count&quot;}
   (Session info: chrome=111.0.5563.146)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
 System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [2e313a423e9b5c4256d62d251f6f5742, clickElement {id=3c1d2c55-1f45-4370-ac79-eb97397766fd}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.ZHON7o}, goog:chromeOptions: {debuggerAddress: localhost:43459}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:43459/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on linux (2e313a423e9b5c4256d62d251f6f5742)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]]
-Session ID: 2e313a423e9b5c4256d62d251f6f5742
+Command: [c93974c203a4c35b6b00da2e4bb04c54, findElement {using=css selector, value=#get_leads_count}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.J3L5q1}, goog:chromeOptions: {debuggerAddress: localhost:33341}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33341/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: c93974c203a4c35b6b00da2e4bb04c54
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -272,9 +207,474 @@ Session ID: 2e313a423e9b5c4256d62d251f6f5742
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
-	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:188)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
+	at jdk.proxy2/jdk.proxy2.$Proxy17.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:660)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:656)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	... 18 more
+</pre></div></td>
+<td>31</td>
+<td>dashboardBucketsPack.ReengagedLeads_VerificationTest@6d60fe40</td></tr>
+<tr>
+<td title='dashboardBucketsPack.TodaysFollowup_VerificationTest.todaysFollowup_VerificationTest()'><b>todaysFollowup_VerificationTest</b><br>Test class: dashboardBucketsPack.TodaysFollowup_VerificationTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (ea82137fcfbb4deac5ca84c50fd9bd7d)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]] (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.xXZQlR}, goog:chromeOptions: {debuggerAddress: localhost:34439}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:34439/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ea82137fcfbb4deac5ca84c50fd9bd7d
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:55)
+	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:186)
+	at dashboardBucketsPack.TodaysFollowup_VerificationTest.todaysFollowup_VerificationTest(TodaysFollowup_VerificationTest.java:29)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1020838738", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1020838738'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (ea82137fcfbb4deac5ca84c50fd9bd7d)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]] (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.xXZQlR}, goog:chromeOptions: {debuggerAddress: localhost:34439}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:34439/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: ea82137fcfbb4deac5ca84c50fd9bd7d
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:55)
+	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:186)
+	at dashboardBucketsPack.TodaysFollowup_VerificationTest.todaysFollowup_VerificationTest(TodaysFollowup_VerificationTest.java:29)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:263)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:62)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+</pre></div></td>
+<td>11</td>
+<td>dashboardBucketsPack.TodaysFollowup_VerificationTest@1a245833</td></tr>
+<tr>
+<td title='dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest()'><b>missedSitevisit_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedSitevisit_VerificationTest</td>
+<td><div><pre>java.lang.AssertionError: Count is same as before scheduling site visit did not expect [39] but found [39]
+	at dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest(MissedSitevisit_VerificationTest.java:60)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+... Removed 16 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1484012238", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1484012238'><pre>java.lang.AssertionError: Count is same as before scheduling site visit did not expect [39] but found [39]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failEquals(Assert.java:1581)
+	at org.testng.Assert.assertNotEqualsImpl(Assert.java:156)
+	at org.testng.Assert.assertNotEquals(Assert.java:2197)
+	at dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest(MissedSitevisit_VerificationTest.java:60)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:263)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:62)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+</pre></div></td>
+<td>43</td>
+<td>dashboardBucketsPack.MissedSitevisit_VerificationTest@5c80cf32</td></tr>
+<tr>
+<td title='dashboardBucketsPack.TodaysSitevisit_VerificationTest.todaysSitevisit_VerificationTest()'><b>todaysSitevisit_VerificationTest</b><br>Test class: dashboardBucketsPack.TodaysSitevisit_VerificationTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (34cf65c6d0614f52fba5388439429977)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]] (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.pZ4lcL}, goog:chromeOptions: {debuggerAddress: localhost:34847}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:34847/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 34cf65c6d0614f52fba5388439429977
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:55)
+	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:186)
+	at dashboardBucketsPack.TodaysSitevisit_VerificationTest.todaysSitevisit_VerificationTest(TodaysSitevisit_VerificationTest.java:27)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace716976547", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace716976547'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (34cf65c6d0614f52fba5388439429977)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]] (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.pZ4lcL}, goog:chromeOptions: {debuggerAddress: localhost:34847}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:34847/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 34cf65c6d0614f52fba5388439429977
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:55)
+	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:186)
+	at dashboardBucketsPack.TodaysSitevisit_VerificationTest.todaysSitevisit_VerificationTest(TodaysSitevisit_VerificationTest.java:27)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:263)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:62)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+</pre></div></td>
+<td>11</td>
+<td>dashboardBucketsPack.TodaysSitevisit_VerificationTest@6f53b8a</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='dashboardBucketsPack.MissedFollowup_VerificationTest.missedFollowup_VerificationTest()'><b>missedFollowup_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedFollowup_VerificationTest</td>
+<td></td>
+<td>73</td>
+<td>dashboardBucketsPack.MissedFollowup_VerificationTest@7d900ecf</td></tr>
+<tr>
+<td title='dashboardBucketsPack.UnreadEmail_VerificationTest.unreadEmail_VerificationTest()'><b>unreadEmail_VerificationTest</b><br>Test class: dashboardBucketsPack.UnreadEmail_VerificationTest</td>
+<td></td>
+<td>21</td>
+<td>dashboardBucketsPack.UnreadEmail_VerificationTest@5965d37</td></tr>
+<tr>
+<td title='dashboardBucketsPack.MissedCalls_VerificationTest.missedCalls_VerificationTest()'><b>missedCalls_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedCalls_VerificationTest</td>
+<td></td>
+<td>22</td>
+<td>dashboardBucketsPack.MissedCalls_VerificationTest@4007f65e</td></tr>
+<tr>
+<td title='dashboardBucketsPack.NFA_VerificationTest.nFA_VerificationTest()'><b>nFA_VerificationTest</b><br>Test class: dashboardBucketsPack.NFA_VerificationTest</td>
+<td></td>
+<td>48</td>
+<td>dashboardBucketsPack.NFA_VerificationTest@673fdbce</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-skipped'>
+<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='dashboardBucketsPack.MissedFollowup_VerificationTest.missedFollowup_VerificationTest()'><b>missedFollowup_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedFollowup_VerificationTest</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+	at java.base/java.util.Objects.checkIndex(Objects.java:359)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:40)
+	at jdk.proxy2/jdk.proxy2.$Proxy18.get(Unknown Source)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.openLeadProfile(SalesPresalesDashboardPage.java:245)
+	at dashboardBucketsPack.MissedFollowup_VerificationTest.missedFollowup_VerificationTest(MissedFollowup_VerificationTest.java:36)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+... Removed 15 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1892032260", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1892032260'><pre>java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+	at java.base/java.util.Objects.checkIndex(Objects.java:359)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at java.base/jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:40)
+	at jdk.proxy2/jdk.proxy2.$Proxy18.get(Unknown Source)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.openLeadProfile(SalesPresalesDashboardPage.java:245)
+	at dashboardBucketsPack.MissedFollowup_VerificationTest.missedFollowup_VerificationTest(MissedFollowup_VerificationTest.java:36)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+</pre></div></td>
+<td>33</td>
+<td>dashboardBucketsPack.MissedFollowup_VerificationTest@7d900ecf</td></tr>
+<tr>
+<td title='dashboardBucketsPack.NewEnquiries_VerificationTest.newEnquiries_VerificationTest()'><b>newEnquiries_VerificationTest</b><br>Test class: dashboardBucketsPack.NewEnquiries_VerificationTest</td>
+<td><div><pre>java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+	at java.base/java.util.Objects.checkIndex(Objects.java:359)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:40)
+	at jdk.proxy2/jdk.proxy2.$Proxy18.get(Unknown Source)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.openLeadProfile(SalesPresalesDashboardPage.java:245)
+	at dashboardBucketsPack.NewEnquiries_VerificationTest.newEnquiries_VerificationTest(NewEnquiries_VerificationTest.java:34)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+... Removed 15 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2066584857", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2066584857'><pre>java.lang.IndexOutOfBoundsException: Index 1 out of bounds for length 0
+	at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64)
+	at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70)
+	at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:266)
+	at java.base/java.util.Objects.checkIndex(Objects.java:359)
+	at java.base/java.util.ArrayList.get(ArrayList.java:427)
+	at java.base/jdk.internal.reflect.GeneratedMethodAccessor4.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:40)
+	at jdk.proxy2/jdk.proxy2.$Proxy18.get(Unknown Source)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.openLeadProfile(SalesPresalesDashboardPage.java:245)
+	at dashboardBucketsPack.NewEnquiries_VerificationTest.newEnquiries_VerificationTest(NewEnquiries_VerificationTest.java:34)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+</pre></div></td>
+<td>35</td>
+<td>dashboardBucketsPack.NewEnquiries_VerificationTest@6f01b95f</td></tr>
+<tr>
+<td title='dashboardBucketsPack.ReengagedLeads_VerificationTest.reengagedLeads_VerificationTest()'><b>reengagedLeads_VerificationTest</b><br>Test class: dashboardBucketsPack.ReengagedLeads_VerificationTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator &apos;By.cssSelector: #get_leads_count&apos; (tried for 5 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.selldo.Utility.ReusableUtils.jsClick(ReusableUtils.java:247)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.getLeadHash(SalesPresalesDashboardPage.java:156)
+	at dashboardBucketsPack.ReengagedLeads_VerificationTest.reengagedLeads_VerificationTest(ReengagedLeads_VerificationTest.java:25)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;#get_leads_count&quot;}
+  (Session info: chrome=111.0.5563.146)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [1d69e116d847fb85c23f8baa00a47a91, findElement {using=css selector, value=#get_leads_count}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.mIC0kW}, goog:chromeOptions: {debuggerAddress: localhost:38861}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:38861/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1d69e116d847fb85c23f8baa00a47a91
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
+	at jdk.proxy2/jdk.proxy2.$Proxy17.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:660)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:656)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	... 18 more
+... Removed 17 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace216610700", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace216610700'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: Proxy element for: DefaultElementLocator &apos;By.cssSelector: #get_leads_count&apos; (tried for 5 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.selldo.Utility.ReusableUtils.jsClick(ReusableUtils.java:247)
+	at com.selldo.POM.crm.SalesPresalesDashboardPage.getLeadHash(SalesPresalesDashboardPage.java:156)
+	at dashboardBucketsPack.ReengagedLeads_VerificationTest.reengagedLeads_VerificationTest(ReengagedLeads_VerificationTest.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;#get_leads_count&quot;}
+  (Session info: chrome=111.0.5563.146)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [1d69e116d847fb85c23f8baa00a47a91, findElement {using=css selector, value=#get_leads_count}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.mIC0kW}, goog:chromeOptions: {debuggerAddress: localhost:38861}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:38861/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 1d69e116d847fb85c23f8baa00a47a91
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
+	at jdk.proxy2/jdk.proxy2.$Proxy17.isDisplayed(Unknown Source)
+	at org.openqa.selenium.support.ui.ExpectedConditions.elementIfVisible(ExpectedConditions.java:307)
+	at org.openqa.selenium.support.ui.ExpectedConditions.access$000(ExpectedConditions.java:40)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:293)
+	at org.openqa.selenium.support.ui.ExpectedConditions$10.apply(ExpectedConditions.java:290)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:660)
+	at org.openqa.selenium.support.ui.ExpectedConditions$23.apply(ExpectedConditions.java:656)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:208)
+	... 18 more
+</pre></div></td>
+<td>42</td>
+<td>dashboardBucketsPack.ReengagedLeads_VerificationTest@6d60fe40</td></tr>
+<tr>
+<td title='dashboardBucketsPack.NFA_VerificationTest.nFA_VerificationTest()'><b>nFA_VerificationTest</b><br>Test class: dashboardBucketsPack.NFA_VerificationTest</td>
+<td><div><pre>java.lang.AssertionError: Count is same as before scheduling site visit did not expect [56] but found [56]
+	at dashboardBucketsPack.NFA_VerificationTest.nFA_VerificationTest(NFA_VerificationTest.java:85)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+... Removed 16 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1361707280", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1361707280'><pre>java.lang.AssertionError: Count is same as before scheduling site visit did not expect [56] but found [56]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failEquals(Assert.java:1581)
+	at org.testng.Assert.assertNotEqualsImpl(Assert.java:156)
+	at org.testng.Assert.assertNotEquals(Assert.java:2197)
+	at dashboardBucketsPack.NFA_VerificationTest.nFA_VerificationTest(NFA_VerificationTest.java:85)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+</pre></div></td>
+<td>53</td>
+<td>dashboardBucketsPack.NFA_VerificationTest@673fdbce</td></tr>
+<tr>
+<td title='dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest()'><b>missedSitevisit_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedSitevisit_VerificationTest</td>
+<td><div><pre>java.lang.AssertionError: Count is same as before scheduling site visit did not expect [40] but found [40]
+	at dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest(MissedSitevisit_VerificationTest.java:60)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+... Removed 16 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1247078463", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1247078463'><pre>java.lang.AssertionError: Count is same as before scheduling site visit did not expect [40] but found [40]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failEquals(Assert.java:1581)
+	at org.testng.Assert.assertNotEqualsImpl(Assert.java:156)
+	at org.testng.Assert.assertNotEquals(Assert.java:2197)
+	at dashboardBucketsPack.MissedSitevisit_VerificationTest.missedSitevisit_VerificationTest(MissedSitevisit_VerificationTest.java:60)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:969)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+</pre></div></td>
+<td>53</td>
+<td>dashboardBucketsPack.MissedSitevisit_VerificationTest@5c80cf32</td></tr>
+<tr>
+<td title='dashboardBucketsPack.TodaysFollowup_VerificationTest.todaysFollowup_VerificationTest()'><b>todaysFollowup_VerificationTest</b><br>Test class: dashboardBucketsPack.TodaysFollowup_VerificationTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (d48ff2ef05dbf1f659a89eb9e7d0fa8d)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]] (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.t9jCz2}, goog:chromeOptions: {debuggerAddress: localhost:46161}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:46161/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d48ff2ef05dbf1f659a89eb9e7d0fa8d
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:55)
+	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:186)
+	at dashboardBucketsPack.TodaysFollowup_VerificationTest.todaysFollowup_VerificationTest(TodaysFollowup_VerificationTest.java:29)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1049412240", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1049412240'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (d48ff2ef05dbf1f659a89eb9e7d0fa8d)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]] (tried for 5 second(s) with 500 milliseconds interval)
+Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
+System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.t9jCz2}, goog:chromeOptions: {debuggerAddress: localhost:46161}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:46161/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d48ff2ef05dbf1f659a89eb9e7d0fa8d
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
+	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:55)
+	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:186)
 	at dashboardBucketsPack.TodaysFollowup_VerificationTest.todaysFollowup_VerificationTest(TodaysFollowup_VerificationTest.java:29)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -292,36 +692,36 @@ Session ID: 2e313a423e9b5c4256d62d251f6f5742
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 </pre></div></td>
-<td>10</td>
-<td>dashboardBucketsPack.TodaysFollowup_VerificationTest@4007f65e</td></tr>
+<td>11</td>
+<td>dashboardBucketsPack.TodaysFollowup_VerificationTest@1a245833</td></tr>
 <tr>
-<td title='dashboardBucketsPack.MissedFollowup_VerificationTest.missedFollowup_VerificationTest()'><b>missedFollowup_VerificationTest</b><br>Test class: dashboardBucketsPack.MissedFollowup_VerificationTest</td>
-<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (804d412529cacfd1bd245b6233fc1554)] -&gt; xpath: //span[text()=&apos;missed Followups&apos;]/following::div[1]] (tried for 5 second(s) with 500 milliseconds interval)
+<td title='dashboardBucketsPack.TodaysSitevisit_VerificationTest.todaysSitevisit_VerificationTest()'><b>todaysSitevisit_VerificationTest</b><br>Test class: dashboardBucketsPack.TodaysSitevisit_VerificationTest</td>
+<td><div><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (a5395abd96313edc93a820027ba168bf)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]] (tried for 5 second(s) with 500 milliseconds interval)
 Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
 System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.hlnYdk}, goog:chromeOptions: {debuggerAddress: localhost:39447}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39447/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 804d412529cacfd1bd245b6233fc1554
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.0oXFwX}, goog:chromeOptions: {debuggerAddress: localhost:36139}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36139/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a5395abd96313edc93a820027ba168bf
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:53)
-	at com.selldo.POM.crm.SalesPresalesDashboardPage.getMissedFollowups(SalesPresalesDashboardPage.java:192)
-	at dashboardBucketsPack.MissedFollowup_VerificationTest.missedFollowup_VerificationTest(MissedFollowup_VerificationTest.java:30)
+	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:55)
+	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:186)
+	at dashboardBucketsPack.TodaysSitevisit_VerificationTest.todaysSitevisit_VerificationTest(TodaysSitevisit_VerificationTest.java:27)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
-... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1923401225", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1923401225'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (804d412529cacfd1bd245b6233fc1554)] -&gt; xpath: //span[text()=&apos;missed Followups&apos;]/following::div[1]] (tried for 5 second(s) with 500 milliseconds interval)
+... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace282022480", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace282022480'><pre>org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of [[ChromeDriver: chrome on linux (a5395abd96313edc93a820027ba168bf)] -&gt; xpath: //*[contains(@class,&apos;select2-container form-control select2 cl&apos;)]] (tried for 5 second(s) with 500 milliseconds interval)
 Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
 System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.hlnYdk}, goog:chromeOptions: {debuggerAddress: localhost:39447}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39447/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 804d412529cacfd1bd245b6233fc1554
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.0oXFwX}, goog:chromeOptions: {debuggerAddress: localhost:36139}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:36139/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: a5395abd96313edc93a820027ba168bf
 	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:87)
 	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:231)
-	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:53)
-	at com.selldo.POM.crm.SalesPresalesDashboardPage.getMissedFollowups(SalesPresalesDashboardPage.java:192)
-	at dashboardBucketsPack.MissedFollowup_VerificationTest.missedFollowup_VerificationTest(MissedFollowup_VerificationTest.java:30)
+	at com.selldo.Utility.ReusableUtils.waitUntilVisiblity(ReusableUtils.java:55)
+	at com.selldo.POM.adminPages.AdminDashboardPage.searchLead(AdminDashboardPage.java:186)
+	at dashboardBucketsPack.TodaysSitevisit_VerificationTest.todaysSitevisit_VerificationTest(TodaysSitevisit_VerificationTest.java:27)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -338,8 +738,8 @@ Session ID: 804d412529cacfd1bd245b6233fc1554
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 </pre></div></td>
-<td>16</td>
-<td>dashboardBucketsPack.MissedFollowup_VerificationTest@5c80cf32</td></tr>
+<td>22</td>
+<td>dashboardBucketsPack.TodaysSitevisit_VerificationTest@6f53b8a</td></tr>
 </table><p>
 </body>
 </html>

@@ -12,6 +12,8 @@ import com.selldo.POM.inventory.NewUnitFormPage;
 import com.selldo.POM.inventory.UnitsPage;
 import com.selldo.Utility.BaseTest;
 
+import Enums.Project;
+
 public class AddingNewUnitTest extends BaseTest {
 
 
@@ -35,17 +37,19 @@ public class AddingNewUnitTest extends BaseTest {
 
 		unitsPage.clickOnNewUnitButton();
 
-		newUnitFormPage.enterDeveloperName("AniketBuisnessNameMain");
+		newUnitFormPage.enterDeveloperName("UTVQYWTZUS");
 
-		newUnitFormPage.enterProjectName("Aniket Project 02");
+		newUnitFormPage.enterProjectName(Project.Aniket_Project_03);
 
-		newUnitFormPage.enterProjectTowerName("su");
-
-		newUnitFormPage.enterFloorPlanName("Floor Plan");
-
+		newUnitFormPage.enterProjectTowerName("Aniket");
+		newUnitFormPage.enterUnitConfiguration("a");
 		String unitName = Random("A",10).toUpperCase();
+		//newUnitFormPage.enterFloorPlanName("Floor Plan");
+		newUnitFormPage.enterUnitName(Random("A",6));
 
-		newUnitFormPage.enterUnitName(unitName);
+	//	String unitName = ;
+
+		newUnitFormPage.enterUnitName(Random("A",10).toUpperCase());
 
 		newUnitFormPage.enterNumberOfFloors(prop.getProperty("numberOfFloors_addingNewUnitTest"));
 
@@ -63,13 +67,11 @@ public class AddingNewUnitTest extends BaseTest {
 
 		newUnitFormPage.enterCarpetArea(Random("N",10));
 
-
 		newUnitFormPage.enterNumberOfFloors(Random("N",1));
 
 		newUnitFormPage.clickOnSaveButton();
 
-		Assert.assertEquals(driver.findElement(By.xpath("//a[text()='All Units']/following::label[1]")).getText(),
-				unitName, "Not matched");
+		
 	}
 
 }

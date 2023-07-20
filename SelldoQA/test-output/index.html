@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="inventory.AddingNewProjectTowerTest" class="method navigator-link" hash-for-method="addingNewProjectTowerTest">addingNewProjectTowerTest</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="inventory.AddingNewUnitTest" class="method navigator-link" hash-for-method="addingNewUnitTest">addingNewUnitTest</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,45 +121,21 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">inventory.AddingNewProjectTowerTest</span>
+              <span class="class-name">inventory.AddingNewUnitTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="addingNewProjectTowerTest">
-                  </a> <!-- addingNewProjectTowerTest -->
-                  <span class="method-name">addingNewProjectTowerTest</span>
-                  <div class="stack-trace">org.openqa.selenium.ElementClickInterceptedException: element click intercepted: Element &lt;input type=&quot;submit&quot; name=&quot;commit&quot; value=&quot;Save&quot; class=&quot;btn btn-primary save&quot; data-disable-with=&quot;Save&quot; style=&quot;border: 5px solid red;&quot;&gt; is not clickable at point (315, 329). Other element would receive the click: &lt;div id=&quot;select2-drop-mask&quot; class=&quot;select2-drop-mask&quot; style=&quot;&quot;&gt;&lt;/div&gt;
-  (Session info: chrome=111.0.5563.146)
-Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
-System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;5.19.0-46-generic&apos;, java.version: &apos;17.0.6&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [2716afb61434ecd4f18c81c1e85db0cf, clickElement {id=b2d82d61-07fb-47cc-94cf-935b1202c8df}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 111.0.5563.146, chrome: {chromedriverVersion: 111.0.5563.64 (c710e93d5b63..., userDataDir: /tmp/.com.google.Chrome.jwlg6J}, goog:chromeOptions: {debuggerAddress: localhost:35477}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:35477/devtoo..., se:cdpVersion: 111.0.5563.146, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[ChromeDriver: chrome on linux (2716afb61434ecd4f18c81c1e85db0cf)] -&gt; xpath: //input[@value=&apos;Save&apos;]]
-Session ID: 2716afb61434ecd4f18c81c1e85db0cf
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:193)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:183)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:158)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:257)
-	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:78)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:52)
-	at jdk.proxy2/jdk.proxy2.$Proxy16.click(Unknown Source)
-	at com.selldo.POM.inventory.NewProjectTowerFormPage.clickOnSaveButton(NewProjectTowerFormPage.java:65)
-	at inventory.AddingNewProjectTowerTest.addingNewProjectTowerTest(AddingNewProjectTowerTest.java:43)
+                  <a name="addingNewUnitTest">
+                  </a> <!-- addingNewUnitTest -->
+                  <span class="method-name">addingNewUnitTest</span>
+                  <div class="stack-trace">java.lang.AssertionError: Not matched expected [VSTJMEWTHK] but found [OuCbMoPKFFKUUAYU]
+	at org.testng.Assert.fail(Assert.java:110)
+	at org.testng.Assert.failNotEquals(Assert.java:1577)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:149)
+	at org.testng.Assert.assertEquals(Assert.java:131)
+	at org.testng.Assert.assertEquals(Assert.java:655)
+	at inventory.AddingNewUnitTest.addingNewUnitTest(AddingNewUnitTest.java:75)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -197,7 +173,7 @@ Session ID: 2716afb61434ecd4f18c81c1e85db0cf
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/tmp/testng-eclipse--1908532730/testng-customsuite.xml</span>
+            <span class="header-content">/tmp/testng-eclipse-1886053004/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -206,11 +182,7 @@ Session ID: 2716afb61434ecd4f18c81c1e85db0cf
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;inventory.AddingNewProjectTowerTest&quot;&gt;
-        &lt;methods&gt;
-          &lt;include name=&quot;addingNewProjectTowerTest&quot;/&gt;
-        &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- inventory.AddingNewProjectTowerTest --&gt;
+      &lt;class name=&quot;inventory.AddingNewUnitTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -252,14 +224,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'addingNewProjectTowerTest')
-data.setCell(0, 2, 'inventory.AddingNewProjectTowerTest')
-data.setCell(0, 3, 9575);
+data.setCell(0, 1, 'addingNewUnitTest')
+data.setCell(0, 2, 'inventory.AddingNewUnitTest')
+data.setCell(0, 3, 19748);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 9 seconds</span>
+              <span class="suite-total-time">Total running time: 19 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -285,7 +257,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">inventory.AddingNewProjectTowerTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">inventory.AddingNewUnitTest</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">browserConfig</span>
                 <span class="method-start">0 ms</span>
@@ -293,12 +265,12 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">addingNewProjectTowerTest</span>
-                <span class="method-start">3031 ms</span>
+                <span class="method-name">addingNewUnitTest</span>
+                <span class="method-start">1938 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">terminate</span>
-                <span class="method-start">12610 ms</span>
+                <span class="method-start">21688 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -28,25 +28,18 @@ public class ExportSitevisitsTest extends BaseTest {
 
 		ExportPage exportPage = new ExportPage(driver);
 
-		extentTest.get().log(Status.INFO, "Clicking on Export tab.......");
 		settingsPage.clickOnExportab();
 
-		extentTest.get().log(Status.INFO, "Clicking on Export Site Visits tab.......");
 		exportPage.clickOnExportSiteVisitsTab();
 
-		extentTest.get().log(Status.INFO, "Selecting duration.......");
 		exportPage.selectDuration();
 
 		String emailToWhichExported = prop.getProperty("export_email");
 
-		extentTest.get().log(Status.INFO, "Entering Email.......");
 		exportPage.enterEmail(emailToWhichExported);
 		exportPage.clickOnNextButton();
 
-		extentTest.get().log(Status.INFO, "Clicking on Export Button.......");
 		exportPage.clickOnExportButton();
-
-		// Thread.sleep(2000);
 
 		exportPage.clickOnExportCrossIcon();
 		Assert.assertEquals(getSuccessMSG(),
@@ -55,46 +48,30 @@ public class ExportSitevisitsTest extends BaseTest {
 
 		exportPage.scrollToBottom();
 
-		extentTest.get().log(Status.INFO, "Clicking on Export History tab.......");
 		exportPage.clickOnExportHistoryTab();
 
-		extentTest.get().log(Status.INFO, "Clicking on Funnel icon.......");
 		exportPage.clickOnFunnelIcon();
 
-		extentTest.get().log(Status.INFO, "Selecting Created at date range.......");
 		exportPage.selectCreatedAtDateRange();
 
-		extentTest.get().log(Status.INFO, "Selecting Export type as Site Visits.......");
 		exportPage.selectExportType_ExportSiteVisits();
 
-		extentTest.get().log(Status.INFO, "Clicking on Apply button.......");
 		exportPage.clickOnApplyButton();
 
-		extentTest.get().log(Status.INFO, "Capturing text of the export at top left corner of list.......");
 		String sitevisits = exportPage.getExportLabel();
 		System.out.println(sitevisits);
 
-		extentTest.get().log(Status.INFO, "Validating that the latest export is made for Site Visits.......");
-		// Assert.assertEquals(sitevisits, "Site Visits - Export 1", "Not matched");
 		Assert.assertTrue(
 				driver.findElements(By.cssSelector("#export_type")).get(0).getText().contains("Site Visits - Export"),
 				"Not matched");
 		exportPage.refreshExport();
 		String exportStatus = exportPage.getExportStatus();
-		// wait.until(ExpectedConditions.visibilityOfElementLocated(exportPage.exportStatus));
 
-		extentTest.get().log(Status.INFO, "Validating that export completed successfully.......");
 		Assert.assertEquals(exportStatus, "completed", "Export is not completed successfully");
 
-		extentTest.get().log(Status.INFO, "Exiting from filter form......");
-		// exportPage.clickOnFilterCrossIcon();
-
-		extentTest.get().log(Status.INFO, "Capturing email under the export details to which export is made.......");
 		String emailInHistory = exportPage.getEmailAttribute();
 		System.out.println(emailInHistory);
 
-		extentTest.get().log(Status.INFO,
-				"Validating that the email to which export is made is same as what shown in history.......");
 		Assert.assertEquals(emailInHistory, emailToWhichExported, "Not matched");
 
 		Assert.assertEquals(emailInHistory, emailToWhichExported, "Not matched");

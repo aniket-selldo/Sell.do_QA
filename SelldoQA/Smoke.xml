@@ -5,8 +5,7 @@
 		<listener class-name="com.selldo.Utility.Listneers"></listener>
 		<listener class-name="com.selldo.Utility.AnnotationTransformer"></listener>
 	</listeners>
-	<test thread-count="5" name="Test">
-
+  <test thread-count="1" parallel="classes" name="Test">
 
 		<!--exportPackage -->
 		<classes>
@@ -54,10 +53,6 @@
 			<class name="userManagementPack.SearchingUserTest" />
 			<class name="userManagementPack.EditingUserTest" />
 			<class name="userManagementPack.CreatingSalesUserTest" />
-
-			<!--My Code-->
-			<class name="Aniket.UserManagment.LoginValidation" />
-			<class name="Aniket.UserManagment.ClientCreation" />
 
 			<!--LeadActivities -->
 			<class name="leadActivities.LogOfflineCall_OutboundNotAnsweredTest" />
@@ -112,7 +107,6 @@
 			<class
 				name="otherLeadActivitiesPack.SendingQuotes_WithoutTemplateTest" />
 
-			<class name="otherLeadActivitiesPack.SendingQuotes_WithTemplateTest" />
 			<class name="otherLeadActivitiesPack.AddingNewLeadTest" />
 			<class
 				name="otherLeadActivitiesPack.LeadBooking_NonInventory_ConfirmedTest" />

@@ -1,5 +1,10 @@
 package API;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
 import com.github.javafaker.Faker;
@@ -72,6 +77,16 @@ public class CreateLead_POST {
 	}
 	public static String createLeadByAPI(String APIKey,String User) {
 
+		Properties prop = new Properties();
+		try {
+			prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Note note = new Note();
 		note.setContent("Note By Rest Assured");
 
@@ -106,7 +121,7 @@ public class CreateLead_POST {
 		root.setApi_key(APIKey);
 
 		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all()
-				.post("https://v2.sell.do/api/leads/create");
+				.post(prop.getProperty("URL")+"/api/leads/create");
 
 		int statusCode = response.getStatusCode();
 		System.out.println("Status code: " + statusCode);

@@ -11,11 +11,11 @@ public class CreateClinet extends BaseTest {
 
 	//@Test
 	public void createPostpaidClient() {
-		String ClientName = Random("A",10).toUpperCase();
+		String ClientName = "19july2023_PostPaid";
 		String Email ="aniket.khandizod";
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);
-		loginPage.login();
+		loginPage.login_suppoort();
 		page.clickOnClientButton();
 		page.enterFirstName(Random("A", 7));
 		page.enterLastName(Random("A", 7));
@@ -38,19 +38,19 @@ public class CreateClinet extends BaseTest {
 		page.enterUserPhone(randomPhone());
 		page.enterEmail(randomEmail(Email));
 		page.enterUserTeam(Random("A", 7));
-		page.selectVendores();
+	//	page.selectVendores();
 		String respone = page.clickOnsave();
 		Assert.assertEquals(respone, "", "Success massage not as expected");
 	}
 	@Test
 	public void createPrepaidClient() throws InterruptedException {
-		String BuisnessName=Random("A",10).toUpperCase();
+		String BuisnessName="19july2023_PrePaid";
 		String Email ="aniket.khandizod";
 		driver.get(prop.getProperty("URL")+"/signup?plan=selection");
 		PrepaidClientCreation page = new PrepaidClientCreation(driver);
 		page.enterClientFirstName(Random("A",10));
 		page.enterClientLastName(Random("A",10));
-		page.enterPassword("Amura@123");
+		page.enterPassword("amura@123");
 		page.enterClientEmail(randomEmail(Email));
 		page.enterClientPhone(randomPhone());
 		page.enterBuisnessName(BuisnessName);

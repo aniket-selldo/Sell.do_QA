@@ -35,6 +35,15 @@ public class loginPage extends ReusableUtils {
 		jsClick(signIn);
 		return new LoginAsClient(driver);
 	}
+	public LoginAsClient login_suppoort(){
+		Square(userName);
+		userName.sendKeys(getGobalData().getProperty("SM"));
+		Square(password);
+		password.sendKeys(getGobalData().getProperty("pswd"));
+		Square(signIn);
+		jsClick(signIn);
+		return new LoginAsClient(driver);
+	}
 	
 }
 

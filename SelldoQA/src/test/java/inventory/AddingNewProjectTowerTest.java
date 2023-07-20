@@ -10,6 +10,8 @@ import com.selldo.POM.inventory.NewProjectTowerFormPage;
 import com.selldo.POM.inventory.ProjectTowersPage;
 import com.selldo.Utility.BaseTest;
 
+import Enums.Project;
+
 public class AddingNewProjectTowerTest extends BaseTest {
 
 	@Test
@@ -36,7 +38,7 @@ public class AddingNewProjectTowerTest extends BaseTest {
 
 		newProjectTowerFormPage.enterProjectTowerName(projectTowerName);
 
-		newProjectTowerFormPage.enterProjectName("aniket project 02");
+		newProjectTowerFormPage.enterProjectName(Project.Aniket_Project_03);
 
 		newProjectTowerFormPage.enterTotalFloorsNumber("8");
 

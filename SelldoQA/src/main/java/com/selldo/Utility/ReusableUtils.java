@@ -6,9 +6,11 @@ import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -30,7 +32,7 @@ public class ReusableUtils {
 	private FileWriter writer;
 	private BufferedWriter buffer;
 	private final static int waitingTime_Sec = 5;
-	private static int zoom; 
+	private static int zoom;
 
 	public ReusableUtils(WebDriver driver) {
 		this.driver = driver;
@@ -54,12 +56,14 @@ public class ReusableUtils {
 		Square(we);
 		return we;
 	}
+
 	protected WebElement waitUntilVisiblity(WebElement we, long delay) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(delay));
 		wait.until(ExpectedConditions.visibilityOf(we));
 		Square(we);
 		return we;
 	}
+
 	protected List<WebElement> invisibilityOfAllElements(List<WebElement> we) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
 		wait.until(ExpectedConditions.invisibilityOfAllElements(we));
@@ -80,9 +84,10 @@ public class ReusableUtils {
 		Square(we);
 		return we;
 	}
-	protected WebElement waitUntilAttributeValue(WebElement we,String attribute,String Value,int time) {
+
+	protected WebElement waitUntilAttributeValue(WebElement we, String attribute, String Value, int time) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
-		wait.until(ExpectedConditions.attributeContains(we,attribute,Value));
+		wait.until(ExpectedConditions.attributeContains(we, attribute, Value));
 		System.out.println("Clicked Element -> " + we.getText().trim());
 		Square(we);
 		return we;
@@ -196,12 +201,14 @@ public class ReusableUtils {
 		actions.click();
 		actions.build().perform();
 	}
+
 	protected void moveToElemntClick(WebElement we) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(we);
 		actions.click();
 		actions.build().perform();
 	}
+
 	protected void move2click(WebElement we, int value) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(we);
@@ -250,13 +257,14 @@ public class ReusableUtils {
 	}
 
 	protected WebElement Square(WebElement we) {
-		//wait(500);
+		// wait(500);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		zoom = 80;
-		//js.executeScript("document.body.style.zoom='"+(zoom+0.10)+"%'");
+		// js.executeScript("document.body.style.zoom='"+(zoom+0.10)+"%'");
 		js.executeScript("arguments[0].style.border='5px solid Red'", we);
 		return we;
 	}
+
 	protected void deZoom() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("document.body.style.zoom='80%'");
@@ -275,9 +283,10 @@ public class ReusableUtils {
 		return (String) js.executeScript("return arguments[0].text;", we);
 
 	}
+
 	protected void zoom(String zoom) {
-		JavascriptExecutor executor = (JavascriptExecutor)driver;
-		executor.executeScript("document.body.style.zoom = '"+zoom+"'");
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		executor.executeScript("document.body.style.zoom = '" + zoom + "'");
 	}
 
 // ----------------Select ------------------
@@ -407,11 +416,33 @@ public class ReusableUtils {
 		return Noty;
 	}
 
+	protected String getDate(int a, String of) {
+
+		String s = "";
+		switch (of) {
+		case "D":
+			s = new SimpleDateFormat("dd").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;
+		case "M":
+			s = new SimpleDateFormat("M").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;
+		case "Y":
+			s = new SimpleDateFormat("YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;
+
+		default:
+			System.out.println("please select valid input");
+			break;
+		}
+		return s;
+	}
+
 	public String randomEmail() {
 		return "aniket.khandizod+" + random("", "AN", 10) + "@sell.do";
 	}
+
 	public String randomPhone() {
-		return " 12345"+random("","N",5);
+		return " 12345" + random("", "N", 5);
 	}
 
 }

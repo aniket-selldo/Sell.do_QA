@@ -40,7 +40,7 @@ public class NewUnitFormPage extends ReusableUtils {
 	private WebElement unitConfiguration;
 	@FindBy(how = How.XPATH, using = "//*[@id='select2-drop']//div//input")
 	private WebElement unitConfigurationInputField;
-	@FindBy(how = How.XPATH, using = "//input[@id='project_unit_name']")
+	@FindBy(how = How.CSS, using = "#project_unit_name")
 	private WebElement nameInputField;
 	@FindBy(how = How.XPATH, using = "//input[@id='project_unit_floor']")
 	private WebElement floorInputField;
@@ -72,20 +72,35 @@ public class NewUnitFormPage extends ReusableUtils {
 	private WebElement carpetArea;
 	@FindBy(how = How.XPATH, using = "//input[@type='submit']")
 	private WebElement saveButton;
+	@FindBy(how = How.CSS, using = "#s2id_project_unit_unit_configuration_id")
+	private WebElement UnitConfig;
+	@FindBy(how = How.CSS, using = "//td[@scope='col'][2]//a")
+	private List<WebElement> allUnitName;
+	
+	
 
 	public void enterDeveloperName(String project) throws InterruptedException {
 		waitUntilClickable(developer).click();
 		waitUntilVisiblity(developerInputField).sendKeys(project);
+		wait(1000);
+		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
+	}
+	public void enterUnitConfiguration(String project) throws InterruptedException {
+		waitUntilClickable(UnitConfig).click();
+		waitUntilVisiblity(developerInputField).sendKeys(project);
+		wait(1000);
 		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
 	public void enterDeveloperName(Project project) throws InterruptedException {
 		waitUntilClickable(developer).click();
 		waitUntilVisiblity(developerInputField).sendKeys(project.toString());
+		wait(1000);
 		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
-	public void enterProjectName(String pro) throws InterruptedException {
+	public void enterProjectName(Project pro) throws InterruptedException {
 		waitUntilClickable(project).click();
-		waitUntilVisiblity(projectInputField).sendKeys(pro);
+		waitUntilVisiblity(projectInputField).sendKeys(pro.getName().replaceAll("[^A-Za-z0-9]", " "));
+		wait(1000);
 		waitUntilVisiblity(projectInputField).sendKeys(Keys.ENTER);
 	}
 
@@ -93,14 +108,14 @@ public class NewUnitFormPage extends ReusableUtils {
 		waitUntilClickable(projectTower).click();
 		// Thread.sleep(2000);
 		waitUntilVisiblity(projectTowerField).sendKeys(tower);
-		Thread.sleep(2000);
+		wait(1000);
 		waitUntilVisiblity(projectTowerField).sendKeys(Keys.ENTER);
 	}
 
 	public void enterFloorPlanName(String tower) throws InterruptedException {
 		waitUntilClickable(unitConfiguration).click();
 		waitUntilVisiblity(unitConfigurationInputField).sendKeys(tower);
-		Thread.sleep(2000);
+		wait(1000);
 		waitUntilVisiblity(unitConfigurationInputField).sendKeys(Keys.ENTER);
 	}
 
@@ -111,6 +126,7 @@ public class NewUnitFormPage extends ReusableUtils {
 	public void enterNumberOfFloors(String cArea) {
 		floorInputField.clear();
 		waitUntilVisiblity(floorInputField).sendKeys(cArea);
+		wait(1000);
 		waitUntilVisiblity(floorInputField).sendKeys(Keys.ENTER);
 	}
 

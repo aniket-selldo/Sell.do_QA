@@ -1,5 +1,7 @@
 package com.selldo.POM.inventory;
 
+import java.util.List;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +11,8 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 import com.selldo.Utility.ReusableUtils;
+
+import Enums.Project;
 
 public class NewProjectTowerFormPage extends ReusableUtils {
 	public WebDriver driver;
@@ -36,6 +40,8 @@ public class NewProjectTowerFormPage extends ReusableUtils {
 	private WebElement element;
 	@FindBy(how = How.XPATH, using = "//a[text()='All Project Towers']/following::label[1]")
 	private WebElement getProjectName;
+	@FindBy(how = How.CSS, using = "#select2-drop li")
+	private List<WebElement> selectFromDropdown;
 	
 	public String getProjectName() {
 		return waitUntilVisiblity(getProjectName).getText().trim();
@@ -51,10 +57,13 @@ public class NewProjectTowerFormPage extends ReusableUtils {
 		waitUntilVisiblity(towerNameInputField).sendKeys(pTower);
 	}
 
-	public void enterProjectName(String project) throws InterruptedException {
+	public void enterProjectName(Project project) throws InterruptedException {
 		waitUntilClickable(projectSpan).click();
-		waitUntilVisiblity(projectInputField).sendKeys(project);
+		System.out.println(project.getName().replaceAll("[^A-Za-z0-9]", " ").trim());
+		waitUntilVisiblity(projectInputField).sendKeys(project.getName().replaceAll("[^A-Za-z0-9]", " ").trim());
+		wait(1000);
 		waitUntilVisiblity(projectInputField).sendKeys(Keys.ENTER);
+		
 	}
 
 	public void enterTotalFloorsNumber(String floorNumber) {
