@@ -1,5 +1,7 @@
 package com.selldo.POM.inventory;
 
+import java.util.List;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -54,6 +56,13 @@ public class UnitsPage extends ReusableUtils {
 	private WebElement clearAllLink;
 	@FindBy(how = How.XPATH, using = "//input[@value='Apply']/preceding::i[@class='ion-android-close'][1]")
 	private WebElement crossIcon;
+	@FindBy(how = How.XPATH, using = "//td[@scope='col'][2]/span[1]")
+	private List<WebElement> getAllDevloperName;
+
+	public String  getAnyUnitName() {
+		int index = (int)(Math.random() * getAllDevloperName.size());
+		return waitUntilVisiblity(getAllDevloperName.get(index)).getText().split(" ")[0].trim();
+	}
 
 	public void clickOnNewUnitButton() {
 		waitUntilClickable(newUnitButton).click();
@@ -66,6 +75,7 @@ public class UnitsPage extends ReusableUtils {
 	public void enterUnitName(String unt) throws InterruptedException {
 		waitUntilClickable(unit).click();
 		waitUntilVisiblity(unitInputField).sendKeys(unt);
+		wait(2000);
 		waitUntilVisiblity(unitInputField).sendKeys(Keys.ENTER);
 	}
 

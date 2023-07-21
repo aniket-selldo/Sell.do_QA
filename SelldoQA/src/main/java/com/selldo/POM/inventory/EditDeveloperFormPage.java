@@ -39,6 +39,7 @@ public class EditDeveloperFormPage extends ReusableUtils {
 	public void changeDeveloperName(String developer) throws InterruptedException {
 		waitUntilClickable(developerNameSpan).click();
 		waitUntilVisiblity(developerNameInputField).sendKeys(developer);
+		wait(2000);
 		waitUntilVisiblity(developerNameInputField).sendKeys(Keys.ENTER);
 	}
 
@@ -63,6 +64,8 @@ public class EditDeveloperFormPage extends ReusableUtils {
 	}
 
 	public void clickOnSaveButton() {
+		scrollIntoView(saveButton);
+		wait(1000);
 		waitUntilClickable(saveButton).click();
 	}
 

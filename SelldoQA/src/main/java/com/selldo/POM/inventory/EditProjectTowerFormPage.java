@@ -40,43 +40,43 @@ public class EditProjectTowerFormPage extends ReusableUtils {
 	private WebElement addProjectTowersLink;
 
 	public void changeProjectTowerName(String project) throws InterruptedException {
-		projectTower.clear();
+		waitUntilVisiblity(projectTower).clear();
 		projectTower.sendKeys(project);
 	}
 
 	public void clickOnAreaAndCostingLink() {
-		areaAndCostingLink.click();
+		waitUntilClickable(areaAndCostingLink).click();
 	}
 
 	public void clickOnOtherDetailsLink() {
-		otherDetailsLink.click();
+		waitUntilClickable(otherDetailsLink).click();
 	}
 
 	public void clickOnCostTemplateLink() {
-		costTemplateLink.click();
+		waitUntilClickable(costTemplateLink).click();
 	}
 
 	public void clickOnPaymentScheduleLink() {
-		paymentScheduleLink.click();
+		waitUntilClickable(paymentScheduleLink).click();
 	}
 
 	public void clickOnDemandLettersLink() {
-		demandLettersLink.click();
+		waitUntilClickable(demandLettersLink).click();
 	}
 
 	public void clickOnViewAvailableFloorPlansLink() {
-		viewAvailableFloorPlansLink.click();
+		waitUntilClickable(viewAvailableFloorPlansLink).click();
 	}
 
 	public void clickOnviewAvailableProjectTowersLink() {
-		viewAvailableProjectTowersLink.click();
+		waitUntilClickable(viewAvailableProjectTowersLink).click();
 	}
 
 	public void clickOnAddProjectTowersLink() {
-		addProjectTowersLink.click();
+		waitUntilClickable(addProjectTowersLink).click();
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 }

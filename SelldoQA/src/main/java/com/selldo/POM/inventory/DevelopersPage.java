@@ -63,6 +63,7 @@ public class DevelopersPage extends ReusableUtils {
 	public void enterDeveloperName(String developer) throws InterruptedException {
 		waitUntilClickable(deveoperSpan).click();
 		waitUntilVisiblity(developerInputField).sendKeys(developer);
+		wait(2000);
 		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
 

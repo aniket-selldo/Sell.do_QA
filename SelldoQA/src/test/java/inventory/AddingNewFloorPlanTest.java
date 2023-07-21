@@ -6,11 +6,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.inventory.FloorPlansPage;
-import com.selldo.POM.inventory.NewDeveloperFormPage;
 import com.selldo.POM.inventory.NewFloorPlanFormPage;
 import com.selldo.Utility.BaseTest;
 
@@ -26,7 +24,6 @@ public class AddingNewFloorPlanTest extends BaseTest {
 		ClientLoginPage clientLogin = new ClientLoginPage(driver);
 		FloorPlansPage floorPlansPage = new FloorPlansPage(driver);
 		NewFloorPlanFormPage newFloorPlanFormPage = new NewFloorPlanFormPage(driver);
-		NewDeveloperFormPage newDeveloperFormPage = new NewDeveloperFormPage(driver);
 
 		login.login(prop.getProperty("id"), prop.getProperty("password"));
 		clientLogin.clientLogin(prop.getProperty("Client"));

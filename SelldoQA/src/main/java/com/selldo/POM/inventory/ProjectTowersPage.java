@@ -1,5 +1,7 @@
 package com.selldo.POM.inventory;
 
+import java.util.List;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -42,31 +44,38 @@ public class ProjectTowersPage extends ReusableUtils {
 	private WebElement clearAllLink;
 	@FindBy(how = How.XPATH, using = "//input[@value='Apply']/preceding::i[@class='ion-android-close'][1]")
 	private WebElement crossIcon;
+	@FindBy(how = How.XPATH, using = "//table[@class='table table-responsive']/tbody/tr/td[1]")
+	private List<WebElement> getAllDevloperName;
+
+	public String getAnyprojectTowerName() {
+		int index = (int) (Math.random() * getAllDevloperName.size());
+		return waitUntilVisiblity(getAllDevloperName.get(index)).getText().trim();
+	}
 
 	public void clickOnNewTower() {
-		newTower.click();
+		waitUntilClickable(newTower).click();
 	}
 
 	public void clickOnFunnelIcon() {
-		funnelIcon.click();
+		waitUntilClickable(funnelIcon).click();
 	}
 
 	public void enterProjectTowerName(String tower) throws InterruptedException {
-		projectTowerSpan.click();
-		projectTowerInputField.sendKeys(tower);
-		Thread.sleep(2000);
-		projectTowerInputField.sendKeys(Keys.ENTER);
+		waitUntilClickable(projectTowerSpan).click();
+		waitUntilVisiblity(projectTowerInputField).sendKeys(tower);
+		wait(1000);
+		waitUntilVisiblity(projectTowerInputField).sendKeys(Keys.ENTER);
 	}
 
 	public void clickOnApplyButton() {
-		applyButton.click();
+		waitUntilClickable(applyButton).click();
 	}
 
 	public void clickOnClearAllLink() {
-		clearAllLink.click();
+		waitUntilClickable(clearAllLink).click();
 	}
 
 	public void clickOnCrossIcon() {
-		crossIcon.click();
+		waitUntilClickable(crossIcon).click();
 	}
 }

@@ -2,9 +2,11 @@ package com.selldo.POM.inventory;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -57,7 +59,7 @@ public class NewUnitFormPage extends ReusableUtils {
 	@FindBy(how = How.XPATH, using = "//div[@id='s2id_project_unit_bathrooms']")
 	private WebElement bathrooms;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
-	private List< WebElement> bathrooms_All;
+	private List<WebElement> bathrooms_All;
 	@FindBy(how = How.XPATH, using = "//div[@id='s2id_project_unit_category']")
 	private WebElement category;
 	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li")
@@ -74,10 +76,35 @@ public class NewUnitFormPage extends ReusableUtils {
 	private WebElement saveButton;
 	@FindBy(how = How.CSS, using = "#s2id_project_unit_unit_configuration_id")
 	private WebElement UnitConfig;
-	@FindBy(how = How.CSS, using = "//td[@scope='col'][2]//a")
+	@FindBy(how = How.XPATH, using = "//td[@scope='col'][2]//a") // td[@scope="col"][2]/span/text()[2]
 	private List<WebElement> allUnitName;
-	
-	
+	@FindBy(how = How.XPATH, using = "//button[@class='btn btn-light btn-icon toggle-filters']")
+	private WebElement clickOnFilter;
+	@FindBy(how = How.XPATH, using = "//span[text()='Select Unit']")
+	private WebElement clickOnUnit;
+	@FindBy(how = How.XPATH, using = "//*[@id='select2-drop']/div/input")
+	private WebElement enterUnitName;
+	@FindBy(how = How.CSS, using = "li[class='select2-results-dept-0 select2-result select2-result-selectable select2-highlighted']")
+	private WebElement isNamePresent;
+
+	public boolean checkUnitIsCreated(String str) {
+		return allUnitName.contains(str);
+	}
+
+	public boolean FindUnit(String str) {
+		WebElement element = driver.findElement(By.cssSelector("i.ion-cube"));
+		Actions action = new Actions(driver);
+		action.moveToElement(element).build().perform();
+		driver.findElement(By.linkText("Units")).click();
+
+		jsClick(clickOnFilter);
+		waitUntilClickable(clickOnUnit).click();
+		wait(1000);
+		(enterUnitName).click();
+		enterUnitName.sendKeys(str);
+		return waitUntilVisiblity(isNamePresent).getText().split("-")[0].trim().equalsIgnoreCase(str);
+
+	}
 
 	public void enterDeveloperName(String project) throws InterruptedException {
 		waitUntilClickable(developer).click();
@@ -85,18 +112,21 @@ public class NewUnitFormPage extends ReusableUtils {
 		wait(1000);
 		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
+
 	public void enterUnitConfiguration(String project) throws InterruptedException {
 		waitUntilClickable(UnitConfig).click();
 		waitUntilVisiblity(developerInputField).sendKeys(project);
 		wait(1000);
 		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
+
 	public void enterDeveloperName(Project project) throws InterruptedException {
 		waitUntilClickable(developer).click();
 		waitUntilVisiblity(developerInputField).sendKeys(project.toString());
 		wait(1000);
 		waitUntilVisiblity(developerInputField).sendKeys(Keys.ENTER);
 	}
+
 	public void enterProjectName(Project pro) throws InterruptedException {
 		waitUntilClickable(project).click();
 		waitUntilVisiblity(projectInputField).sendKeys(pro.getName().replaceAll("[^A-Za-z0-9]", " "));
@@ -195,7 +225,8 @@ public class NewUnitFormPage extends ReusableUtils {
 	}
 
 	/*
-	 * public void enterBaseRate(String base) { baseRateInputField).sendKeys(base); }
+	 * public void enterBaseRate(String base) { baseRateInputField).sendKeys(base);
+	 * }
 	 */
 
 	public void enterUnitBaseRate(String base) throws Exception {

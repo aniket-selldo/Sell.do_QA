@@ -66,6 +66,7 @@ public class FloorPlansPage extends ReusableUtils {
 	public void enterFloorPlanName(String floor) throws InterruptedException {
 		waitUntilClickable(floorPlanSpan).click();
 		waitUntilVisiblity(floorPlanInputField).sendKeys(floor);
+		wait(2000);
 		waitUntilVisiblity(floorPlanInputField).sendKeys(Keys.ENTER);
 	}
 

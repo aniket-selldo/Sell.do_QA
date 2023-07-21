@@ -60,7 +60,8 @@ public class ProjectsPage extends ReusableUtils {
 	private List<WebElement> getAllDevloperName;
 
 	public String  getAnyProjectName() {
-		return getAllDevloperName.stream().findAny().get().getText();
+		int index = (int)(Math.random() * getAllDevloperName.size());
+		return waitUntilVisiblity(getAllDevloperName.get(index)).getText().trim();
 	}
 
 	public void clickOnNewProjectButton() {

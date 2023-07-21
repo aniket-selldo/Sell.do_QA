@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="inventory.AddingNewUnitTest">
+      <class name="inventory.EditingUnitTest">
         <methods>
           <include name="browserConfig"/>
-          <include name="addingNewUnitTest"/>
+          <include name="editingUnitTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- inventory.AddingNewUnitTest -->
+      </class> <!-- inventory.EditingUnitTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

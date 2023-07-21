@@ -1,3 +1,4 @@
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -8,14 +9,14 @@ import POM.clientCreationPage.createClientPage;
 import myPom.loginPage;
 
 public class CreateClinet extends BaseTest {
-
+	
 	//@Test
 	public void createPostpaidClient() {
-		String ClientName = "19july2023_PostPaid";
-		String Email ="aniket.khandizod";
+		String ClientName = "MUSH_CLIENT";
+		String Email ="musharraf.mulla";
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);
-		loginPage.login_suppoort();
+		loginPage.login();
 		page.clickOnClientButton();
 		page.enterFirstName(Random("A", 7));
 		page.enterLastName(Random("A", 7));
@@ -38,11 +39,11 @@ public class CreateClinet extends BaseTest {
 		page.enterUserPhone(randomPhone());
 		page.enterEmail(randomEmail(Email));
 		page.enterUserTeam(Random("A", 7));
-	//	page.selectVendores();
+		page.selectVendores();
 		String respone = page.clickOnsave();
 		Assert.assertEquals(respone, "", "Success massage not as expected");
 	}
-	@Test
+	//@Test
 	public void createPrepaidClient() throws InterruptedException {
 		String BuisnessName="19july2023_PrePaid";
 		String Email ="aniket.khandizod";
