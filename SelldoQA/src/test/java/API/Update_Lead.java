@@ -1,7 +1,10 @@
 package API;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Properties;
 
 import POJO_LeadUpdate.ActivitiesData;
 import POJO_LeadUpdate.AddressesField;
@@ -20,9 +23,10 @@ import io.restassured.response.Response;
 
 public class Update_Lead {
 
-	
-	
-	public static void UpdateLead() {
+	public static void UpdateLead() throws FileNotFoundException, IOException {
+		Properties prop = new Properties();
+		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
+
 		ActivitiesData activitiesData = new ActivitiesData();
 		AddressesField addressesField = new AddressesField();
 		LeadProfile leadProfile = new LeadProfile();
@@ -34,7 +38,7 @@ public class Update_Lead {
 		Lead Lead = new Lead();
 		Root root = new Root();
 		String leadID = "64b0d852b08345f63030c525";
-        RestAssured.baseURI = "https://v2.sell.do/client/leads/"+leadID+".json";
+		RestAssured.baseURI = prop.getProperty("URL") + "/client/leads/" + leadID + ".json";
 
 		root.setApi_key("c4d649781e5451ce2903b34b02496e2c");
 		root.setClient_id("64a2be1db0834560eaa19563");
@@ -57,10 +61,8 @@ public class Update_Lead {
 		Lead.setInterested_project_ids(project_ids);
 		Lead.setSales_id("587ddb2b5a9db31da9000001");
 		root.setLead(Lead);
-		
-		
-		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all()
-				.put();
+
+		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all().put();
 
 		int statusCode = response.getStatusCode();
 		System.out.println("Status code: " + statusCode);
@@ -68,7 +70,12 @@ public class Update_Lead {
 		System.out.println("Response body: " + responseBody);
 		JsonPath jsnPath = response.jsonPath();
 	}
-	public static void UpdateLead(String leadID,String URL,String APIKey,String ClientID) {
+
+	public static void UpdateLead(String leadID, String URL, String APIKey, String ClientID)
+			throws FileNotFoundException, IOException {
+
+		Properties prop = new Properties();
+		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
 		ActivitiesData activitiesData = new ActivitiesData();
 		AddressesField addressesField = new AddressesField();
 		LeadProfile leadProfile = new LeadProfile();
@@ -79,8 +86,8 @@ public class Update_Lead {
 		Requirement requirement = new Requirement();
 		Lead Lead = new Lead();
 		Root root = new Root();
-		
-        RestAssured.baseURI = URL+"/client/leads/"+leadID+".json";
+
+		RestAssured.baseURI = prop.getProperty("URL") + "/client/leads/" + leadID + ".json";
 
 		root.setApi_key(APIKey);
 		root.setClient_id(ClientID);
@@ -103,18 +110,16 @@ public class Update_Lead {
 		Lead.setInterested_project_ids(project_ids);
 		Lead.setSales_id("587ddb2b5a9db31da9000001");
 		root.setLead(Lead);
-		
-		
-		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all()
-				.put();
+
+		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all().put();
 		int statusCode = response.getStatusCode();
 		System.out.println("Status code: " + statusCode);
 		String responseBody = response.getBody().asString();
 		System.out.println("Response body: " + responseBody);
 		JsonPath jsnPath = response.jsonPath();
 	}
-	
-	public static void main(String[] args) {
-		UpdateLead();
+
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		
 	}
 }

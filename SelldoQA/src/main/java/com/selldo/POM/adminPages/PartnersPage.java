@@ -1,5 +1,6 @@
 package com.selldo.POM.adminPages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -38,30 +39,33 @@ public class PartnersPage extends ReusableUtils {
 	private WebElement closeFilter;
 
 	public void clickOnManagePartnerstTab() {
-		managePartners.click();
+		waitUntilClickable(managePartners).click();
 	}
 
 	public void clickOnNewPartnerButton() {
-		newPartner.click();
+		waitUntilClickable(newPartner).click();
+		wait(1000);
 	}
 
-	public void searchPartner(String partner) throws Exception {
+	public String searchPartner(String partner) throws Exception {
 		Thread.sleep(1000);
-		funnelIcon.click();
+		waitUntilClickable(funnelIcon).click();
 		searchField.clear();
 		searchField.sendKeys(partner);
-		applyButton.click();
-		// closeFilter.click();
+		waitUntilClickable(applyButton).click();
+		// closeFilter).click();
+		return driver
+				.findElement(By.xpath("//th[text()='Channel Partner']/following::td[1]")).getAttribute("innerHTML");
 
 	}
 
 	public void clearFilter() {
-		clearAllLink.click();
+		waitUntilClickable(clearAllLink).click();
 	}
 
 	public void selectEdit() {
-		actionBar.click();
-		edit.click();
+		waitUntilClickable(actionBar).click();
+		waitUntilClickable(edit).click();
 	}
 
 }

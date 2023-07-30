@@ -1,0 +1,66 @@
+SV -> 
+1. You can add pending sv just by putting privious time
+2. If you want to add tentative SV then just add false flag
+3. use -> parser("text/html", Parser.JSON) -> if response not it json
+========================================================================
+
+https://v2.sell.do/client/leads/64c25453b08345383aacae3b/site_visits
+
+PayLoad -> 
+{"site_visit":{"lead_id":"64c25453b08345383aacae3b","scheduled_on":"2023-07-29 18:35","ends_on":"2023-07-29 18:50","participants":"","asset_ids":"647992a1b08345ac7a3c32dd","sitevisit_type":"visit","agenda":"aggenaad","channel_partner_id":"5ad5bd8c8e7b6d378c2df63c","project_id":"587dec4626300a3aca00001c","confirmed":"true","pickup":false,"custom_rating":"","custom_test":"","custom_cgggcgf":"","custom_datefield_data":""}}
+
+Response -> 
+{"site_visit":{"_id":"64c55705b083455200caa239","agenda":"Agenda By Rest Assured","booking_detail_id":null,"campaign_info":{"name":"campaign flow","id":"5a2538a98e7b6d226ae5b887","medium_type":"SmsShortcode","medium_value":"amuras||588885","source":"99acres","sub_source":"","when":"2019/11/20 14:06:47 +0000","form_id":null,"mcid":null,"uuid":null,"suid":null,"rule_id":null,"project_id":"587decc426300a3aca00001f","routing_request_id":null,"forced_assigment":null,"project_names":"newdemoproject2"},"conducted_on":null,"confirmed":true,"created_at":"2023-07-29T18:14:29.674Z","custom_cgggcgf":null,"custom_datefield_data":null,"custom_rating":null,"custom_test":null,"ends_on":"2023-07-29T23:59:00.000+00:00","external_calendar_reference":{},"external_participants":[],"gps_tracking":{},"initiated_by":"587de77426300a3aca000003","interested_property_id":null,"lead_crm_id":10219,"lead_id":"5dd548770c739249e6def473","notes":null,"participants":[],"pickup":false,"pickup_location":null,"pickup_time":null,"project_id":"587dec4626300a3aca00001c","sales_id":"587de77426300a3aca000003","scheduled_on":"2023-07-29T23:00:00.000+00:00","sitevisit_type":"visit","status":"scheduled","team_id":"642427a2b08345ab74e0d92f","updated_at":"2023-07-29T18:14:29.674Z","google_calendar_invite":"","ms365_calendar_invite":"","zoom_calendar_invite":"","extras":{"channel_partner":{"id":"","text":"NA"},"sitevisit_type":{"id":"visit","text":"Site Visit"},"sales_id":{"id":"587de77426300a3aca000003","text":"Preetam S"},"team_id":{"id":"642427a2b08345ab74e0d92f","text":"Mar 299"}},"allow_calendar_resync":null}}
+========================================================================
+
+Reschedule SV -> 
+https://v2.sell.do/client/leads/64c25453b08345383aacae3b/site_visits/64c3c10cb0834556caab773f
+
+PayLoad -> 
+{"site_visit":{"lead_id":"64c25453b08345383aacae3b","_id":"64c3c10cb0834556caab773f","scheduled_on":"2023-07-30 14:21","ends_on":"2023-07-30 14:36","agenda":"jhbkchbasc","booking_detail_id":null,"campaign_info":{"name":"organic","id":"587ddb375a9db31da9000183","medium_type":"ApiClient","medium_value":"website","source":null,"sub_source":null,"when":"2023/07/27 11:26:11 +0000","form_id":null,"mcid":null,"uuid":null,"suid":null,"rule_id":null,"project_id":"{{project_id}}","routing_request_id":null,"forced_assigment":null,"project_names":"-"},"confirmed":true,"created_at":"2023-07-28T13:22:20.329Z","custom_cgggcgf":"","custom_datefield_data":"","custom_rating":"","custom_test":"","external_calendar_reference":{},"external_participants":[],"gps_tracking":{},"initiated_by":"587de77426300a3aca000003","interested_property_id":null,"lead_crm_id":89471,"notes":null,"participants":"","pickup":false,"pickup_location":null,"pickup_time":null,"project_id":"58ad35d45a9db3cd8f000004","sales_id":"587de77426300a3aca000003","sitevisit_type":"home_visit","status":"scheduled","updated_at":"2023-07-28T13:22:36.766Z","google_calendar_invite":"","ms365_calendar_invite":"","zoom_calendar_invite":"","allow_calendar_resync":null,"type":"site_visit","asset_ids":"","channel_partner_id":""}}
+
+========================================================================
+
+Mark did not visit ->
+https://v2.sell.do/client/leads/64c25453b08345383aacae3b/site_visits/64c54e47b083455200caa22c
+
+PayLoad -> 
+{"site_visit":{"lead_id":"64c25453b08345383aacae3b","_id":"64c54e47b083455200caa22c","scheduled_on":"2023-07-29 18:35","ends_on":"2023-07-29 18:50","participants":"","asset_ids":"","sitevisit_type":"visit","agenda":"aggenaad","channel_partner_id":"5ad5bd8c8e7b6d378c2df63c","project_id":"587dec4626300a3aca00001c","confirmed":true,"pickup":false,"custom_rating":"","custom_test":"","custom_cgggcgf":"","custom_datefield_data":"","booking_detail_id":null,"campaign_info":{"name":"organic","id":"587ddb375a9db31da9000183","medium_type":"ApiClient","medium_value":"website","source":null,"sub_source":null,"when":"2023/07/27 11:26:11 +0000","form_id":null,"mcid":null,"uuid":null,"suid":null,"rule_id":null,"project_id":"{{project_id}}","routing_request_id":null,"forced_assigment":null,"project_names":"-"},"created_at":"2023-07-29T17:37:11.423Z","external_calendar_reference":{},"external_participants":[],"gps_tracking":{},"initiated_by":"587de77426300a3aca000003","interested_property_id":null,"lead_crm_id":89471,"notes":"Notesssss","pickup_location":null,"pickup_time":null,"sales_id":"587de77426300a3aca000003","status":"missed","updated_at":"2023-07-29T17:37:11.423Z","google_calendar_invite":"","ms365_calendar_invite":"","zoom_calendar_invite":"","asset_info":[{"id":"647992a1b08345ac7a3c32dd","url":"https://nyc3.digitaloceanspaces.com/selldo-private-staging/do/587ddb2b5a9db31da9000002/uploads/asset/attachment/647992a1b08345ac7a3c32dd/Elevation_-_Front.JPG","content_type":"image/jpeg","name":"Elevation - Front.JPG","remote_url":"/client/assets/647992a1b08345ac7a3c32dd"}],"allow_calendar_resync":null,"type":"site_visit"}}
+
+========================================================================
+
+Mark not interested
+https://v2.sell.do/client/leads/64c25453b08345383aacae3b/site_visits/64c54e47b083455200caa22c
+
+PayLoad -> 
+{"site_visit":{"lead_id":"64c25453b08345383aacae3b","_id":"64c54e47b083455200caa22c","scheduled_on":"2023-07-29 18:35","ends_on":"2023-07-29 18:50","participants":"","asset_ids":"","sitevisit_type":"visit","agenda":"aggenaad","channel_partner_id":"5ad5bd8c8e7b6d378c2df63c","project_id":"587dec4626300a3aca00001c","confirmed":true,"pickup":false,"custom_rating":"","custom_test":"","custom_cgggcgf":"","custom_datefield_data":"","booking_detail_id":null,"campaign_info":{"name":"organic","id":"587ddb375a9db31da9000183","medium_type":"ApiClient","medium_value":"website","source":null,"sub_source":null,"when":"2023/07/27 11:26:11 +0000","form_id":null,"mcid":null,"uuid":null,"suid":null,"rule_id":null,"project_id":"{{project_id}}","routing_request_id":null,"forced_assigment":null,"project_names":"-"},"created_at":"2023-07-29T17:37:11.423Z","external_calendar_reference":{},"external_participants":[],"gps_tracking":{},"initiated_by":"587de77426300a3aca000003","interested_property_id":null,"lead_crm_id":89471,"notes":"Notesssss","pickup_location":null,"pickup_time":null,"sales_id":"587de77426300a3aca000003","status":"missed","updated_at":"2023-07-29T17:37:11.423Z","google_calendar_invite":"","ms365_calendar_invite":"","zoom_calendar_invite":"","asset_info":[{"id":"647992a1b08345ac7a3c32dd","url":"https://nyc3.digitaloceanspaces.com/selldo-private-staging/do/587ddb2b5a9db31da9000002/uploads/asset/attachment/647992a1b08345ac7a3c32dd/Elevation_-_Front.JPG","content_type":"image/jpeg","name":"Elevation - Front.JPG","remote_url":"/client/assets/647992a1b08345ac7a3c32dd"}],"allow_calendar_resync":null,"type":"site_visit"}}
+
+========================================================================
+
+Conducted  ->
+https://v2.sell.do/client/leads/64c25453b08345383aacae3b/site_visits/64c55092b083455200caa234
+
+PayLoad -> 
+{"site_visit":{"lead_id":"64c25453b08345383aacae3b","_id":"64c55092b083455200caa234","scheduled_on":"2023-07-29 18:46","ends_on":"2023-07-29 19:01","participants":"","asset_ids":"","sitevisit_type":"visit","agenda":"","channel_partner_id":"","project_id":"587dec4626300a3aca00001c","confirmed":"true","pickup":false,"custom_rating":"","custom_test":"","custom_cgggcgf":"","custom_datefield_data":"","booking_detail_id":null,"campaign_info":{"name":"organic","id":"587ddb375a9db31da9000183","medium_type":"ApiClient","medium_value":"website","source":null,"sub_source":null,"when":"2023/07/27 11:26:11 +0000","form_id":null,"mcid":null,"uuid":null,"suid":null,"rule_id":null,"project_id":"{{project_id}}","routing_request_id":null,"forced_assigment":null,"project_names":"-"},"conducted_on":"2023-07-29T17:46:00.000Z","created_at":"2023-07-29T17:46:58.241Z","external_calendar_reference":{},"external_participants":[],"gps_tracking":{},"initiated_by":"587de77426300a3aca000003","interested_property_id":null,"lead_crm_id":89471,"notes":null,"pickup_location":null,"pickup_time":null,"sales_id":"587de77426300a3aca000003","status":"conducted","updated_at":"2023-07-29T17:46:58.241Z","google_calendar_invite":"","ms365_calendar_invite":"","zoom_calendar_invite":"","allow_calendar_resync":null,"type":"site_visit"}}
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,11 +1,15 @@
 package API;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Properties;
 
 import Enums.APIKeys;
 import POJO_CreateFollowup.Followup;
-import POJO_CreateFollowup.Root;
+import POJO_CreateFollowup.RootFolloup;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -13,13 +17,15 @@ import io.restassured.response.Response;
 
 public class CreateFollowUp {
 
-	public static void createFollowUp(String leadID,APIKeys API_Key,APIKeys ClientID,String URL) {
+	public static void createFollowUp(APIKeys API_Key,APIKeys ClientID,String leadID) throws FileNotFoundException, IOException {
+		Properties prop = new Properties();
+		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH");// yyyy/MM/dd
 		LocalDateTime now = LocalDateTime.now();
 		String date = dtf.format(now) + ":59 IST";
 		System.out.println("Date >> " + date);
 
-		RestAssured.baseURI = URL+"/client/leads/" + leadID + "/followups.json";
+		RestAssured.baseURI = prop.getProperty("URL")+"/client/leads/" + leadID + "/followups.json";
 
 		Followup followup = new Followup();
 		followup.setFollowup_type("email");
@@ -30,7 +36,7 @@ public class CreateFollowUp {
 		followup.setAgenda("agenda");
 		followup.setType("followup");
 
-		Root root = new Root();
+		RootFolloup root = new RootFolloup();
 		root.setApi_key(API_Key.toString());
 		root.setClient_id(ClientID.toString());
 		root.setFollowup(followup);
@@ -59,7 +65,7 @@ public class CreateFollowUp {
 		followup.setAgenda("agenda");
 		followup.setType("followup");
 
-		Root root = new Root();
+		RootFolloup root = new RootFolloup();
 		root.setApi_key("99c4b48c7732b5183000999d1200d520");
 		root.setClient_id("642a8145b083453f914ce854");
 		root.setFollowup(followup);

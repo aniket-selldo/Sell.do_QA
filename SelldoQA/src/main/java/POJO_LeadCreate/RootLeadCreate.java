@@ -1,6 +1,6 @@
 package POJO_LeadCreate;
 
-public class Root {
+public class RootLeadCreate {
 	private SellDo sell_do;
 	private String api_key;
 

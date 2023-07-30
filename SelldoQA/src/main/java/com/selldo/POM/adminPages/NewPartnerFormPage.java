@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
 
 import com.selldo.Utility.ReusableUtils;
 
@@ -67,6 +66,20 @@ public class NewPartnerFormPage extends ReusableUtils {
 	private WebElement maxBudget;
 	@FindBy(how = How.XPATH, using = "//input[@data-disable-with='Saving']")
 	private WebElement saveButton;
+	@FindBy(how = How.CSS, using = "#channel_partner_address_address1")
+	private WebElement EnterAddress;
+	@FindBy(how = How.CSS, using = "#channel_partner_address_address2")
+	private WebElement EnterStreet;
+	@FindBy(how = How.CSS, using = "#channel_partner_address_country")
+	private WebElement selectCountry;
+	@FindBy(how = How.CSS, using = "#crs_state")
+	private WebElement selectState;
+	@FindBy(how = How.CSS, using = "#channel_partner_address_city")
+	private WebElement enterCity;
+	@FindBy(how = How.CSS, using = "#channel_partner_address_zip")
+	private WebElement enterZip;
+	@FindBy(how = How.CSS, using = "#select2-drop li")
+	private List<WebElement> getAllSalutation;
 
 	public void enterPartnerName(String partner) {
 		waitUntilVisiblity(name).sendKeys(partner);
@@ -93,10 +106,12 @@ public class NewPartnerFormPage extends ReusableUtils {
 		waitUntilClickable(contactDetails).click();
 	}
 
-	public void selectSalutation() {
-		waitUntilClickable(salutation);
-		Select oSelect = new Select(salutation);
-		oSelect.selectByIndex(1);
+	public void selectSalutation(String salutatio) {
+		waitUntilClickable(salutation).click();
+		wait(1000);
+		waitUntilClickable(
+				getAllSalutation.stream().filter(S -> S.getText().equalsIgnoreCase(salutatio)).findFirst().get())
+				.click();
 	}
 
 	public void enterFirstName(String fName) {
@@ -131,7 +146,32 @@ public class NewPartnerFormPage extends ReusableUtils {
 		waitUntilVisiblity(panNumber).sendKeys(pan);
 	}
 
+	public void enterAddress(String address) {
+		waitUntilVisiblity(EnterAddress).sendKeys(address);
+	}
+
+	public void enterStreet(String street) {
+		waitUntilVisiblity(EnterStreet).sendKeys(street);
+	}
+	public void entercity(String city) {
+		waitUntilVisiblity(enterCity).sendKeys(city);
+	}
+
+	public void selectCountry(String country) {
+		selectByVisibleText(selectCountry, country);
+	}
+
+	public void selectState(String state) {
+		selectByVisibleText(selectState, state);
+	}
+
+	public void enterZip(String zip) {
+		waitUntilVisiblity(enterZip).sendKeys(zip);
+	}
+
 	public void clickOnSpecialization() {
+		scrollIntoViewUp(specialization);
+		wait(1000);
 		waitUntilClickable(specialization).click();
 	}
 
@@ -174,7 +214,9 @@ public class NewPartnerFormPage extends ReusableUtils {
 	}
 
 	public void clickOnSaveButton() {
+		scrollIntoView(saveButton);
 		waitUntilClickable(saveButton).click();
+		waitUntilInvisibility(saveButton);
 	}
 
 }

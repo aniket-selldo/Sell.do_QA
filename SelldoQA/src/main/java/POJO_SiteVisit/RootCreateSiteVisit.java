@@ -1,9 +1,9 @@
-package POJO_CreateFollowup;
+package POJO_SiteVisit;
 
-public class Root {
+public class RootCreateSiteVisit {
 	private String api_key;
 	private String client_id;
-	private Followup followup;
+	private SiteVisit site_visit;
 
 	public String getApi_key() {
 		return api_key;
@@ -21,11 +21,12 @@ public class Root {
 		this.client_id = client_id;
 	}
 
-	public Followup getFollowup() {
-		return followup;
+	public SiteVisit getSite_visit() {
+		return site_visit;
 	}
 
-	public void setFollowup(Followup followup) {
-		this.followup = followup;
+	public void setSite_visit(SiteVisit site_visit) {
+		this.site_visit = site_visit;
 	}
+
 }

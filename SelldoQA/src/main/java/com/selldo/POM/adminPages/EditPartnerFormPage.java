@@ -29,7 +29,7 @@ public class EditPartnerFormPage extends ReusableUtils {
 	private WebElement sourceOfRequirement;
 	@FindBy(how = How.XPATH, using = "//a[@href='#channel-partner-contact']")
 	private WebElement contactDetails;
-	@FindBy(how = How.ID, using = "channel_partner_contact_salutation")
+	@FindBy(how = How.ID, using = "s2id_channel_partner_contact_salutation")
 	private WebElement salutation;
 	@FindBy(how = How.ID, using = "channel_partner_contact_first_name")
 	private WebElement firstName;
@@ -57,7 +57,7 @@ public class EditPartnerFormPage extends ReusableUtils {
 	private WebElement reraNumber;
 	@FindBy(how = How.XPATH, using = "//label[text()='Property type']/following::input[1]")
 	private WebElement propertyType;
-	@FindBy(how = How.XPATH, using = "//ul[@class='select2-results']//li//div")
+	@FindBy(how = How.CSS, using = "ul[class='select2-results'] li")
 	private List<WebElement> propertyType_All;
 	@FindBy(how = How.XPATH, using = "//label[text()='Min budget']/following::input[1]")
 	private WebElement minBudget;
@@ -67,94 +67,105 @@ public class EditPartnerFormPage extends ReusableUtils {
 	private WebElement saveButton;
 	@FindBy(how = How.CSS, using = "#modal-remote-form-inner > div > div > div.modal-header > button > i")
 	private WebElement closeForm;
+	@FindBy(how = How.XPATH, using = "//span[text()='salutation']")
+	private WebElement salutations;
+	@FindBy(how = How.CSS, using = "#select2-drop li")
+	private List<WebElement> getAllSalutation;
 
 	public void changePartnerName(String partner) {
-		name.clear();
-		name.sendKeys(partner);
+		waitUntilVisiblity(name).clear();
+		waitUntilVisiblity(name).sendKeys(partner);
 	}
 
 	public void selectDateOfJoining() {
-		dateOfJoining.clear();
+		waitUntilVisiblity(dateOfJoining).clear();
 		List<WebElement> dates = wholeCalender;
 		int total_node = dates.size();
 		for (int i = 0; i < total_node; i++) {
 			String date = dates.get(i).getText();
 			if (date.equals("10")) {
-				dates.get(i).click();// Clicking on above selected date
+				waitUntilClickable(dates.get(i)).click();// Clicking on above selected date
 				break;
 			}
 		}
 	}
 
 	public void changeSourceOfRecruitment(String source) {
-		sourceOfRequirement.clear();
-		sourceOfRequirement.sendKeys(source);
+		waitUntilVisiblity(sourceOfRequirement).clear();
+		waitUntilVisiblity(sourceOfRequirement).sendKeys(source);
 	}
 
 	public void clickOnContactDetailsTab() {
-		contactDetails.click();
+		waitUntilClickable(contactDetails).click();
 	}
 
 	public void changeSalutation() {
 
 		selectByIndex(salutation, 2);
 	}
+	public void selectSalutation(String salutatio) {
+		waitUntilClickable(salutation).click();
+		wait(1000);
+		waitUntilClickable(
+				getAllSalutation.stream().filter(S -> S.getText().equalsIgnoreCase(salutatio)).findFirst().get())
+				.click();
+	}
 
 	public void changeFirstName(String fName) {
-		firstName.clear();
-		firstName.sendKeys(fName);
+		waitUntilVisiblity(firstName).clear();
+		waitUntilVisiblity(firstName).sendKeys(fName);
 	}
 
 	public void changeLastName(String lName) {
-		lastName.clear();
-		lastName.sendKeys(lName);
+		waitUntilVisiblity(lastName).clear();
+		waitUntilVisiblity(lastName).sendKeys(lName);
 	}
 
 	public void changePhone(String phone) {
 		WebElement element = phoneField;
-		element.clear();
-		element.sendKeys(phone);
+		waitUntilVisiblity(element).clear();
+		waitUntilVisiblity(element).sendKeys(phone);
 	}
 
 	public void changeEmail(String pEmail) throws InterruptedException {
-		email.clear();
+		waitUntilVisiblity(email).clear();
 		Thread.sleep(1000);
 		WebElement webElement = email;
-		webElement.sendKeys(pEmail);
+		waitUntilVisiblity(webElement).sendKeys(pEmail);
 	}
 
 	public void changeAlternatePhone(String aPhone) {
 		WebElement webElement = alternatePhone;
-		webElement.clear();
-		webElement.sendKeys(aPhone);
+		waitUntilVisiblity(webElement).clear();
+		waitUntilVisiblity(webElement).sendKeys(aPhone);
 
 	}
 
 	public void changeAlternateEmail(String aEmail) {
-		alternateEmail.clear();
-		alternateEmail.sendKeys(aEmail);
+		waitUntilVisiblity(alternateEmail).clear();
+		waitUntilVisiblity(alternateEmail).sendKeys(aEmail);
 	}
 
 	public void changeDesignation(String des) {
-		designation.clear();
-		designation.sendKeys(des);
+		waitUntilVisiblity(designation).clear();
+		waitUntilVisiblity(designation).sendKeys(des);
 	}
 
 	public void changePanNumber(String pan) {
-		panNumber.sendKeys(pan);
+		waitUntilVisiblity(panNumber).sendKeys(pan);
 	}
 
 	public void clickOnSpecialization() {
-		specialization.click();
+		waitUntilClickable(specialization).click();
 	}
 
 	public void changeChannelPartnerType() {
-		channelPartnerType.click();
+		waitUntilClickable(channelPartnerType).click();
 		List<WebElement> list = channelPartnerType_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("National")) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on Local");
 				break;
 			}
@@ -162,17 +173,20 @@ public class EditPartnerFormPage extends ReusableUtils {
 	}
 
 	public void changeReraNumber() {
-		reraNumber.clear();
-		reraNumber.sendKeys("200123457");
+		waitUntilVisiblity(reraNumber).clear();
+		waitUntilVisiblity(reraNumber).sendKeys("200123457");
 	}
 
 	public void changePropertyType() {
-		propertyType.click();
+		waitUntilClickable(propertyType).click();
+		wait(2000);
 		List<WebElement> list = propertyType_All;
+		int index = (int) (Math.random() * propertyType_All.size());
+		String str= waitUntilVisiblity(propertyType_All.get(index)).getText().trim();
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
-			if (ele.getAttribute("innerHTML").contains("Studio")) {
-				ele.click();
+			if (ele.getAttribute("innerHTML").contains(str)) {
+				waitUntilClickable(ele).click();
 				System.out.println("Clicked on Studio");
 				break;
 			}
@@ -180,20 +194,20 @@ public class EditPartnerFormPage extends ReusableUtils {
 	}
 
 	public void changeMinBudget(String min) {
-		minBudget.clear();
-		minBudget.sendKeys(min);
+		waitUntilVisiblity(minBudget).clear();
+		waitUntilVisiblity(minBudget).sendKeys(min);
 	}
 
 	public void changeMaxBudget(String max) {
-		maxBudget.clear();
-		maxBudget.sendKeys(max);
+		waitUntilVisiblity(maxBudget).clear();
+		waitUntilVisiblity(maxBudget).sendKeys(max);
 	}
 
 	public void clickOnSaveButton() {
-		saveButton.click();
+		waitUntilClickable(saveButton).click();
 	}
 
 	public void closeForm() {
-		closeForm.click();
+		waitUntilClickable(closeForm).click();
 	}
 }

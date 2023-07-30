@@ -1,9 +1,13 @@
-package POJO_SiteVisit;
+package POJO_SiteVisitReschedule;
 
-public class Root {
+public class RootSiteVisitReschedule {
+	private SiteVisit_Reschedule site_visit;
 	private String api_key;
 	private String client_id;
-	private SiteVisit site_visit;
+
+	public SiteVisit_Reschedule getSite_visit() {
+		return site_visit;
+	}
 
 	public String getApi_key() {
 		return api_key;
@@ -21,11 +25,7 @@ public class Root {
 		this.client_id = client_id;
 	}
 
-	public SiteVisit getSite_visit() {
-		return site_visit;
-	}
-
-	public void setSite_visit(SiteVisit site_visit) {
+	public void setSite_visit(SiteVisit_Reschedule site_visit) {
 		this.site_visit = site_visit;
 	}
 

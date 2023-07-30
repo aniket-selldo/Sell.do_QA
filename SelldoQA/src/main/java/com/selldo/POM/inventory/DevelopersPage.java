@@ -43,10 +43,11 @@ public class DevelopersPage extends ReusableUtils {
 	@FindBy(how = How.XPATH, using = "//table[@class='table table-responsive']/tbody/tr/td[1]")
 	private List<WebElement> getAllDevloperName;
 
-	public String  getAnyDevloperName() {
-		return getAllDevloperName.stream().findAny().get().getText();
+	public String getAnyDevloperName() {
+		int index = (int) (Math.random() * getAllDevloperName.size());
+		return waitUntilVisiblity(getAllDevloperName.get(index)).getText().trim();
 	}
-	
+
 	public void clickOnNewDevekoperButton() {
 		waitUntilClickable(newDeveloperButton).click();
 	}

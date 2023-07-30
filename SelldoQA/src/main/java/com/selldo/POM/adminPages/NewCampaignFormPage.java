@@ -36,6 +36,8 @@ public class NewCampaignFormPage extends ReusableUtils {
 	private WebElement project;
 	@FindBy(how = How.CSS, using = "#select2-drop ul li:nth-child(1) div")
 	private WebElement selectProject;
+	@FindBy(how = How.XPATH, using = "//*[@id='select2-drop']/div/input")
+	private WebElement enterProjectName;
 	@FindBy(how = How.XPATH, using = "//div[@class='select2-drop select2-display-none select2-with-searchbox select2-drop-active select2-drop-above']//ul//li")
 	private WebElement project_All;
 	@FindBy(how = How.XPATH, using = "//input[@class='select2-input select2-default'][@id='s2id_autogen3']")
@@ -134,15 +136,24 @@ public class NewCampaignFormPage extends ReusableUtils {
 	private WebElement project_SmsShortCode;
 	@FindBy(how = How.XPATH, using = "//*[@id=\"s2id_rule_source\"]/a/span[1]")
 	private WebElement source_SmsShortCode;
+	@FindBy(how = How.LINK_TEXT, using = "Next")
+	private WebElement clickOnNext;
 	@FindBy(how = How.XPATH, using = "//*[@id=\"select2-drop\"]/ul/li[24]/div")
 	private List<WebElement> project_SmsShortCode_List;
+	@FindBy(how = How.XPATH, using = "//*[@id=\"select2-drop\"]/ul/li")
+	private List<WebElement> getAllProjectName;
+	
+	public void clickOnNext() {
+		scrollIntoView(clickOnNext);
+		waitUntilClickable(clickOnNext).click();
+	}
 
 	public void enterCamapignName(String nameObj) {
-		name.sendKeys(nameObj + generateRandomString());
+		waitUntilVisiblity(name).sendKeys(nameObj + generateRandomString());
 	}
 
 	public void enterRandomCampaignName(String campaignName) {
-		name.sendKeys(campaignName + generateRandomString());
+		waitUntilVisiblity(name).sendKeys(campaignName + generateRandomString());
 
 	}
 
@@ -171,23 +182,28 @@ public class NewCampaignFormPage extends ReusableUtils {
 	}
 
 	public void enterBudget(String budgetObj) {
-		budgetTextBox.click();
-		budget.sendKeys(budgetObj);
+		waitUntilClickable(budgetTextBox).click();
+		waitUntilVisiblity(budget).sendKeys(budgetObj);
 	}
 
-	public void selectProject() throws IOException {
-		project.click();
-		selectProject.click();
+	public void selectProject(String str) throws IOException {
+		waitUntilClickable(project).click();
+		wait(1000);
+		enterProjectName.sendKeys(str);
+		int index = (int) (Math.random() * getAllProjectName.size());
+		wait(1000);
+		getAllProjectName.get(index).click();;
+
 	}
 
 	public void selectTeam() throws IOException {
-		teamField.click();
-		selectTeam.click();
+		waitUntilClickable(teamField).click();
+		waitUntilClickable(selectTeam).click();
 	}
 
 	public void selectSales() throws IOException {
-		salesField.click();
-		selectSales.click();
+		waitUntilClickable(salesField).click();
+		waitUntilClickable(selectSales).click();
 
 	}
 
@@ -196,13 +212,13 @@ public class NewCampaignFormPage extends ReusableUtils {
 		FileInputStream fileInputObj = new FileInputStream(
 				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
 		property.load(fileInputObj);
-		googleAdwordsAccounts.click();
+		waitUntilClickable(googleAdwordsAccounts).click();
 		List<WebElement> list = googleAdwordsAccounts_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML")
 					.contains(property.getProperty("googleAdwords_creatingCampaign_MandatoryFillTest"))) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Selected");
 				break;
 			}
@@ -214,13 +230,13 @@ public class NewCampaignFormPage extends ReusableUtils {
 		FileInputStream fileInputObj = new FileInputStream(
 				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
 		property.load(fileInputObj);
-		facebookAdvertsAccounts.click();
+		waitUntilClickable(facebookAdvertsAccounts).click();
 		List<WebElement> list = facebookAdvertsAccounts_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML")
 					.contains(property.getProperty("facebookAdverts_creatingCampaign_MandatoryFillTest"))) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Selected");
 				break;
 			}
@@ -230,7 +246,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 	// ...................Tracking Emails..........................
 
 	public void clickOnTrackingEmailsTab() {
-		trackingEmailsTab.click();
+		waitUntilClickable(trackingEmailsTab).click();
 	}
 
 	public void clickOnAddButton_TrackingEmail() {
@@ -239,11 +255,11 @@ public class NewCampaignFormPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		add_TrackingEmail.click();
+		waitUntilClickable(add_TrackingEmail).click();
 	}
 
 	public void enterTrackingEmailName(String trackingEmail) {
-		campaignEmail_TrackingEmail.sendKeys(trackingEmail);
+		waitUntilVisiblity(campaignEmail_TrackingEmail).sendKeys(trackingEmail);
 	}
 
 	public void selectProject_TrackingEmails() throws IOException {
@@ -251,13 +267,13 @@ public class NewCampaignFormPage extends ReusableUtils {
 		FileInputStream fileInputObj = new FileInputStream(
 				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
 		property.load(fileInputObj);
-		project_TrackingEmail.click();
+		waitUntilClickable(project_TrackingEmail).click();
 		List<WebElement> list = project_TrackingEmail_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML")
 					.contains(property.getProperty("project_trackingEmails_creatingCampaign_MandatoryFillTest"))) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Selected");
 				break;
 			}
@@ -270,13 +286,13 @@ public class NewCampaignFormPage extends ReusableUtils {
 		FileInputStream fileInputObj = new FileInputStream(
 				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
 		property.load(fileInputObj);
-		source_TrackingEmail.click();
+		waitUntilClickable(source_TrackingEmail).click();
 		List<WebElement> list = source_TrackingEmail_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML")
 					.contains(property.getProperty("source_trackingEmails_creatingCampaign_MandatoryFillTest"))) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Selected");
 				break;
 			}
@@ -284,7 +300,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 	}
 
 	public void enterSubSource_TrackingEmails(String sub) {
-		subSource_TrackingEmail.sendKeys(sub);
+		waitUntilVisiblity(subSource_TrackingEmail).sendKeys(sub);
 	}
 
 	public void selectTeam_TrackingEmails() throws IOException {
@@ -292,13 +308,13 @@ public class NewCampaignFormPage extends ReusableUtils {
 		FileInputStream fileInputObj = new FileInputStream(
 				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
 		property.load(fileInputObj);
-		source_TrackingEmail.click();
+		waitUntilClickable(source_TrackingEmail).click();
 		List<WebElement> list = source_TrackingEmail_All;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML")
 					.contains(property.getProperty("team_trackingEmails_creatingCampaign_MandatoryFillTest"))) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Selected");
 				break;
 			}
@@ -306,7 +322,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 	}
 
 	public void clickOnSaveButton_TrackingEmails() {
-		saveButton_TrackingEmail.click();
+		waitUntilClickable(saveButton_TrackingEmail).click();
 	}
 
 	// ...................Tracking Numbers..........................
@@ -317,7 +333,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		trackingNumbersTab_TrackingNumber.click();
+		waitUntilClickable(trackingNumbersTab_TrackingNumber).click();
 	}
 
 	public void clickOnShowOtherVirtualNumber_TrackingNumbers() {
@@ -326,19 +342,19 @@ public class NewCampaignFormPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		showOtherVirtualNumbers_TrackingNumber.click();
+		waitUntilClickable(showOtherVirtualNumbers_TrackingNumber).click();
 	}
 
 	public void clickOnActionBar_TrackingNumbers() {
-		actionBar_TrackingNumber.click();
+		waitUntilClickable(actionBar_TrackingNumber).click();
 	}
 
 	public void clickOnAddLink_TrackingNumbers() {
-		addLink_TrackingNumber.click();
+		waitUntilClickable(addLink_TrackingNumber).click();
 	}
 
 	public void clickOnSaveButton_TrackingNumbers() {
-		saveButton_TrackingNumber.click();
+		waitUntilClickable(saveButton_TrackingNumber).click();
 	}
 
 	// ...................Input Channels..........................
@@ -349,7 +365,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		inputChannelTab.click();
+		waitUntilClickable(inputChannelTab).click();
 	}
 
 	public void clickOnAddButton_InputChannel() {
@@ -358,7 +374,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		addButton_InputChannel.click();
+		waitUntilClickable(addButton_InputChannel).click();
 	}
 
 	public void selectApiChannel() {
@@ -367,7 +383,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 	}
 
 	public void clickOnSaveButton_InputChannel() {
-		saveButton_InputChannel.click();
+		waitUntilClickable(saveButton_InputChannel).click();
 	}
 
 	// ...................SMS Shortcodes..........................
@@ -378,7 +394,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		smsShortcodesTab.click();
+		waitUntilClickable(smsShortcodesTab).click();
 	}
 
 	// Accepting an alert popup while clicking on the tab
@@ -393,12 +409,12 @@ public class NewCampaignFormPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		addDropdown_SmsShortcode.click();
+		waitUntilClickable(addDropdown_SmsShortcode).click();
 		List<WebElement> list = add_options_SmsShortcode;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML").contains("Send unit to 26266")) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Selected");
 			} else {
 				System.out.println("Not present");
@@ -410,17 +426,17 @@ public class NewCampaignFormPage extends ReusableUtils {
 
 	// Entering message
 	public void enterMessage(String enter) {
-		messageShortCode.sendKeys(enter);
+		waitUntilVisiblity(messageShortCode).sendKeys(enter);
 	}
 
 	// Selecting Project
 	public void selectProject_SmsShortCode() throws IOException {
 		/*
-		 * project_SmsShortCode.click(); List<WebElement> list =
+		 * project_SmsShortCode).click(); List<WebElement> list =
 		 * project_SmsShortCode_List); try { Thread.sleep(1000); } catch
 		 * (InterruptedException e) { e.printStackTrace(); } for (WebElement ele : list)
 		 * { System.out.println("Values " + ele.getAttribute("innerHTML")); if
-		 * (ele.getAttribute("innerHTML").contains("gsd")) { ele.click();
+		 * (ele.getAttribute("innerHTML").contains("gsd")) { ele).click();
 		 * System.out.println("Selected");} else{ System.out.println("Not present");
 		 * break; }
 		 * 
@@ -431,13 +447,13 @@ public class NewCampaignFormPage extends ReusableUtils {
 		FileInputStream fileInputObj1 = new FileInputStream(
 				System.getProperty("user.dir") + "//src//main//java//Config File//global.properties");
 		property1.load(fileInputObj1);
-		project_SmsShortCode.click();
+		waitUntilClickable(project_SmsShortCode).click();
 		List<WebElement> list = project_SmsShortCode_List;
 		for (WebElement ele : list) {
 			System.out.println("Values " + ele.getAttribute("innerHTML"));
 			if (ele.getAttribute("innerHTML")
 					.contains(property1.getProperty("project_trackingEmails_creatingCampaign_MandatoryFillTest"))) {
-				ele.click();
+				waitUntilClickable(ele).click();
 				System.out.println("Selected");
 				break;
 			}
@@ -452,10 +468,10 @@ public class NewCampaignFormPage extends ReusableUtils {
 //		} catch (InterruptedException e) {
 //			e.printStackTrace();
 //		}
-//		source_SmsShortCode.sendKeys(source);
+//		source_SmsShortCode).sendKeys(source);
 //	}
 	public void clickOnSaveButton_SmsShortcode() {
-		saveButton_SmsShortcode.click();
+		waitUntilClickable(saveButton_SmsShortcode).click();
 	}
 
 	public void clickOnNextButton_SmsShortcode() {
@@ -464,7 +480,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		nextButton.click();
+		waitUntilClickable(nextButton).click();
 	}
 
 	public void clickOnFinishButton() {
@@ -473,12 +489,12 @@ public class NewCampaignFormPage extends ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		finishButton.click();
+		waitUntilClickable(finishButton).click();
 	}
 
 	public void clickOnSaveAndNextButton() {
 
-		saveAndNextButton.click();
+		waitUntilClickable(saveAndNextButton).click();
 
 	}
 }
