@@ -3,50 +3,52 @@ package API;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import POJO_SiteVisitReschedule.CampaignInfo;
-import POJO_SiteVisitReschedule.ExternalCalendarReference;
-import POJO_SiteVisitReschedule.GpsTracking;
-import POJO_SiteVisitReschedule.RootSiteVisitReschedule;
-import POJO_SiteVisitReschedule.SiteVisit_Reschedule;
+import POJO_SiteVisitReschedule_2.Root_ResceduleSV_2;
+import POJO_SiteVisitReschedule_2.SiteVisit;
+import POJO_SiteVisitReschedule_2_GET.Root_sv_re_2;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 public class ResceduleSV {
 
+	public Root_sv_re_2 reschedule_sitevisit(String FullAccessAPI, String clientID, String leadID, String svid) {
+
+		Root_ResceduleSV_2 root = new Root_ResceduleSV_2();
+		SiteVisit svr = new SiteVisit();
+
+		svr.setLead_id(leadID);
+		svr.set_id(svid);
+
+		int days = 1;
+		svr.setScheduled_on(
+				new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime() + (days * (1000 * 60 * 60 * 24)))
+						+ " IST");
+
+		svr.setEnds_on(new SimpleDateFormat("dd-MM-yyyy HH:mm")
+				.format(new Date().getTime() + (days * (1000 * 60 * 60 * 24)) + (15 * 60000)) + " IST");
+		svr.setType("site_visit");
+		root.setSite_visit(svr);
+		root.setApi_key(FullAccessAPI);
+		root.setClient_id(clientID);
+
+		String url = "https://v2.sell.do/client/leads/" + leadID + "/site_visits/" + svid;
+		return RestAssured.given().contentType(ContentType.JSON).body(root).put(url).then().extract().response()
+				.as(Root_sv_re_2.class);
+	}
+
 	public static void main(String[] args) {
 		String apiFull = "c13ad8e13264b1c22bc39bb475889c7e";
 		String APIRes = "fa8d6ca0217e676a7b0e06f51c32568c";
 		String clientID = "587ddb2b5a9db31da9000002";
 		String Userid = "587de77426300a3aca000003";
+		String leadID = "64c69f41b08345aad3c0d648";
+		String svID = new getAllLeadActivity().get(apiFull, clientID, leadID).getResults().get(0).getSite_visit()
+				.get_id();
+		System.out.println(svID);
 
-		SiteVisit_Reschedule svr = new SiteVisit_Reschedule();
-		RootSiteVisitReschedule root = new RootSiteVisitReschedule();
-		GpsTracking gt = new GpsTracking();
-		ExternalCalendarReference exc = new ExternalCalendarReference();
-		CampaignInfo ci = new CampaignInfo();
+		String a =new ResceduleSV().reschedule_sitevisit(apiFull, clientID, leadID, svID).getSite_visit().get_id();
+		System.out.println(a);
 
-		svr.set_id("64c5648db083455200caa24b");
-		svr.setAgenda("Reschedule site visit by Rest Assured");
-		svr.set_id("64c25453b08345383aacae3b");
-		String CurrentTime=new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime() + (2 * (1000 * 60 * 60 * 24)))+" IST";
-		svr.setScheduled_on(CurrentTime);
-		
-	    CurrentTime=new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime() + (2 * (1000 * 60 * 60 * 24))+(15 * 60000))+" IST";
-		svr.setEnds_on(CurrentTime);
-		
-		svr.setProject_id("587dec4626300a3aca00001c");
-		
-		svr.setStatus("scheduled");
-		
-		root.setApi_key(apiFull);
-		root.setClient_id(clientID);
-		root.setSite_visit(svr);
-		String url = "https://v2.sell.do/client/leads/64c25453b08345383aacae3b/site_visits/64c5648db083455200caa24b";
-		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all().put(url).then().log().all().extract().response();
 	}
-	String s[]={"Scheduled on can't be blank",
-    "Project can't be blank",
-    "Project cannot be empty",
-    "Status is not included in the list"};
 }

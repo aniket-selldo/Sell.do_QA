@@ -18,6 +18,7 @@ import com.selldo.Utility.API_Reusable;
 import POJO_CreateFollowup.Followup;
 import POJO_CreateFollowup.RootFolloup;
 import POJO_CreateFollowup_GET.Root_followUp_Get;
+import POJO_GetAllActivityOnLead.Root_GetAllLeadActivity;
 import POJO_LeadCreate.Form;
 import POJO_LeadCreate.Lead;
 import POJO_LeadCreate.Note;
@@ -95,6 +96,8 @@ public class APIs extends API_Reusable {
 
 	}
 
+	// ============================ Lead Related  =========================
+
 	public String getLeadId(String APIKey, String ClientID, String leadCRMID) {
 
 		Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
@@ -103,29 +106,10 @@ public class APIs extends API_Reusable {
 		String leadCRMid = response.jsonPath().getString("id[0]").trim();
 		return leadCRMid;
 	}
-
-	public ArrayList<String> getAllProjectID(String APIKey, String ClientID) {
-
-		String page = null;
-		ArrayList<String> ary = new ArrayList<String>();
-
-		String URL = prop("URL") + "/client/projects.json";
-		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
-				.queryParam("page", page).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when()
-				.get(URL).then().extract().response().jsonPath().getInt("total");
-		System.out.println("Total Project On this client is " + totalProject);
-		int totalPage = (totalProject / 15);
-
-		for (int i = 1; i <= totalPage; i++) {
-			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
-					.queryParam("page", i).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when().get()
-					.then().extract().response();
-			for (int j = 0; j < 15; j++) {
-				ary.add(response.jsonPath().getString("results[" + j + "]._id"));
-				// System.out.println(response.jsonPath().getString("results[" + j + "]._id"));
-			}
-		}
-		return ary;
+	public Root_GetAllLeadActivity get(String fullAPI,String ClientID,String leadID) {
+		String URL = prop("URL")+"/client/leads/"+leadID+"/activities?api_key="+fullAPI+"&client_id="+ClientID;
+		return RestAssured.given().contentType(ContentType.JSON).when().get(URL).then().extract().response()
+				.as(Root_GetAllLeadActivity.class);
 	}
 
 	public Root_CreateLead_GET createLead(String APIKey, String User) {
@@ -157,7 +141,32 @@ public class APIs extends API_Reusable {
 
 		return RestAssured.given().urlEncodingEnabled(true).contentType(ContentType.JSON).body(root).when().post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response().as(Root_CreateLead_GET.class);
 	}
+	// ============================ Other  =========================
 
+	public ArrayList<String> getAllProjectID(String APIKey, String ClientID) {
+		
+		String page = null;
+		ArrayList<String> ary = new ArrayList<String>();
+		
+		String URL = prop("URL") + "/client/projects.json";
+		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+				.queryParam("page", page).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when()
+				.get(URL).then().extract().response().jsonPath().getInt("total");
+		System.out.println("Total Project On this client is " + totalProject);
+		int totalPage = (totalProject / 15);
+		
+		for (int i = 1; i <= totalPage; i++) {
+			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+					.queryParam("page", i).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when().get()
+					.then().extract().response();
+			for (int j = 0; j < 15; j++) {
+				ary.add(response.jsonPath().getString("results[" + j + "]._id"));
+				// System.out.println(response.jsonPath().getString("results[" + j + "]._id"));
+			}
+		}
+		return ary;
+	}
+	
 	@Test
 	public void Tests() throws FileNotFoundException, IOException {
 
@@ -166,9 +175,10 @@ public class APIs extends API_Reusable {
 		String clientID = "587ddb2b5a9db31da9000002";
 		String Userid = "587ddb2b5a9db31da9000001";
 		String LEADCRMID =createLead(APIRes, Userid).getSell_do_lead_id();
+		System.out.println(">>>>>>>"+LEADCRMID);
 		String leadID=getLeadId(apiFull,clientID,LEADCRMID);
 		
-		
+		Update_Lead.UpdateLead(apiFull, clientID, leadID);
 	}
 
 }

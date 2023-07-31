@@ -71,7 +71,7 @@ public class Update_Lead {
 		JsonPath jsnPath = response.jsonPath();
 	}
 
-	public static void UpdateLead(String leadID, String URL, String APIKey, String ClientID)
+	public static void UpdateLead( String APIKey, String ClientID,String leadID)
 			throws FileNotFoundException, IOException {
 
 		Properties prop = new Properties();
@@ -87,7 +87,7 @@ public class Update_Lead {
 		Lead Lead = new Lead();
 		Root root = new Root();
 
-		RestAssured.baseURI = prop.getProperty("URL") + "/client/leads/" + leadID + ".json";
+		
 
 		root.setApi_key(APIKey);
 		root.setClient_id(ClientID);
@@ -95,7 +95,7 @@ public class Update_Lead {
 		Lead.setFirst_name("Aniket");
 		Lead.setLast_name("LastName");
 		Lead.setTime_zone("Asia/Calcutta");
-		Lead.setStage("incoming");
+		Lead.setStage("Prospect");
 		Lead.setStatus(null);
 		Lead.setNri(false);
 		receivedFrom.setCampaign_id("");
@@ -105,18 +105,15 @@ public class Update_Lead {
 		primaryEmail.setEmail("i77wgzksysu@sell.do");
 		primaryEmail.setEmail_type("office");
 		Lead.setPrimary_email(primaryEmail);
-		ArrayList<String> project_ids = new ArrayList<String>();
-		project_ids.add("64b0dbb8b08345f63030cd4c");
-		Lead.setInterested_project_ids(project_ids);
-		Lead.setSales_id("587ddb2b5a9db31da9000001");
+//		ArrayList<String> project_ids = new ArrayList<String>();
+//		project_ids.add("64b0dbb8b08345f63030cd4c");
+//		Lead.setInterested_project_ids(project_ids);
+		//Lead.setSales_id("587ddb2b5a9db31da9000001");
 		root.setLead(Lead);
-
-		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all().put();
-		int statusCode = response.getStatusCode();
-		System.out.println("Status code: " + statusCode);
+		String URL = prop.getProperty("URL") + "/client/leads/" + leadID + ".json";
+		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).log().all().put(URL);
 		String responseBody = response.getBody().asString();
 		System.out.println("Response body: " + responseBody);
-		JsonPath jsnPath = response.jsonPath();
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {
