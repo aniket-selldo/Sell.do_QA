@@ -18,11 +18,8 @@ public class AddingChannelPartner_FilledFormTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("pswd"));
+		login.login(prop("Client_id"), prop("Password"));
 
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
 		SettingsPage settingsPage = new SettingsPage(driver);
 
 		PartnersPage PartnersPage = new PartnersPage(driver);

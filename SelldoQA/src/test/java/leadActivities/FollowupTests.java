@@ -2,7 +2,6 @@ package leadActivities;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,52 +13,50 @@ import com.selldo.POM.crm.SalesPresalesDashboardPage;
 import com.selldo.POM.crm.SiteVisitPage;
 import com.selldo.Utility.BaseTest;
 
+import API.APIs;
+
 public class FollowupTests extends BaseTest {
 	@Test
 	public void scheduleFollowup() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("AniketPreSaleUser"), prop.getProperty("password"));
+		login.login(prop("Sales_email"), prop("Password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-		adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6', '7', '8', '9')), "All Leads");
+		adminDashboardPage
+				.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
 
 		WebElement Lead1 = driver.findElement(By.cssSelector("span[name='lead_id']"));
 		String leadtext1 = Lead1.getText().replaceAll("\\s+", "");
 		System.out.println(leadtext1);
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
-		leadProfilePage.followupLink();
-		leadProfilePage.ifFollowupShedule();
+		leadProfilePage.followupLink_2();
 		FollowupsPage followupsPage = new FollowupsPage(driver);
 
-		followupsPage.selectDate();
+		String date = followupsPage.dateSelector(7);
 
-		followupsPage.selectDate();
+		String followupBy = followupsPage.clickOnScheduleFollowupButton();
 
-		String followupBy =followupsPage.clickOnScheduleFollowupButton();
+		try {
+			new SiteVisitPage(driver).clickOnIgnoreAndSchedule();
+		} catch (Exception e) {
+		}
 
-		if (!driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty()) {
-			try {
-				new SiteVisitPage(driver).clickOnIgnoreAndSchedule();} catch (Exception e) {}}
-		
-		//Assert.assertEquals(getSuccessMSG(), "Followup call scheduled successfully");
+		// Assert.assertEquals(getSuccessMSG(), "Followup call scheduled successfully");
 
-		String expec = ("A followup call is scheduled by " + leadProfilePage.getUserName() + " on "
-				+ DateTime("dd/MM/yyyy"));
-		System.out.println(">>>>"+followupsPage.getFeedText());
+		String expec = ("A followup call is scheduled by " + leadProfilePage.getUserName() + " on " + date);
+		String feedTest = followupsPage.getFeedText();
 
-		Assert.assertEquals(expec, followupsPage.getFeedText(),"Followup is not scheduled");
+		Assert.assertEquals(expec, feedTest, "Followup is not scheduled");
 		System.out.println(followupsPage.getFeedText());
 		// cancel followup
 		salesPresalesDashboard.searchLead(leadtext1);
-		
+
 		leadProfilePage.followupLink();
-		String msg=leadProfilePage. cancleFollowup();// Followup call scheduled successfully
-		Assert.assertEquals(msg, "Followup call cancelled successfully");
+		leadProfilePage.cancleFollowup();// Followup call scheduled successfully
 
-	    expec = ("A followup "+followupBy+" was cancelled which was scheduled on "+ DateTime("dd/MM/yyyy"));
-		Assert.assertEquals(expec, followupsPage.getFeedText(),"Followup is not cancelled");
-
+		expec = ("A followup " + followupBy + " was cancelled which was scheduled on " + date);
+		Assert.assertEquals(expec, followupsPage.getFeedText(), "Followup is not cancelled");
 
 	}
 

@@ -6,7 +6,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.inventory.UnitsPage;
 import com.selldo.Utility.BaseTest;
@@ -14,16 +13,11 @@ import com.selldo.Utility.BaseTest;
 public class SearchingUnitTest extends BaseTest {
 
 	@Test
-
 	public void searchingUnitTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		login.login(prop("Client_id"), prop("Password"));
 
 		Thread.sleep(3000);
 

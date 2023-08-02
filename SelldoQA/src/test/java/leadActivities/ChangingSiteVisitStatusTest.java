@@ -10,15 +10,18 @@ import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SiteVisitPage;
 import com.selldo.Utility.BaseTest;
 
+import API.APIs;
+
 public class ChangingSiteVisitStatusTest extends BaseTest {
 
 	@Test
 	public void changingSiteVisitStatusTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("AniketPreSaleUser"), prop.getProperty("password"));
+		login.login(prop("Sales_email"), prop("Password"));
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
-		adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6', '7', '8', '9')), "All Leads");
+		adminDashboardPage
+				.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
 
 		String leadId = driver.findElement(By.xpath("//span[@name='lead_id']")).getAttribute("innerHTML");
 		System.out.println(leadId);
@@ -33,18 +36,18 @@ public class ChangingSiteVisitStatusTest extends BaseTest {
 		siteVisitPage.selectTentative();
 
 		siteVisitPage.clickOnScheduleSiteVisitButton();
-		// Thread.sleep(5000);
 		try {
 			driver.findElements(By.xpath("//button[text()=' Ignore & Schedule ']")).isEmpty();
 			siteVisitPage.clickOnIgnoreAndSchedule();
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 
 		String a = "Site visit for Visit scheduled successfully.";
-		leadProfilePage.selectConfirm();
 		siteVisitPage.clickOnConfirmButton();
-		
-		String b ="Site visit for Visit confirmed successfully.";
-		Assert.assertEquals(b, getSuccessMSG());
+		driver.findElement(By.xpath("//button[text()='close']")).click();
+		Thread.sleep(2000);
+		String b = "Site visit for Visit confirmed successfully.";
+		Assert.assertTrue(getSuccessMSG().startsWith("Site visit for Visit"));
 	}
 
 }

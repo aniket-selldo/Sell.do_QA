@@ -19,11 +19,7 @@ public class EditingDeveloperTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		login.login(prop("Client_id"), prop("Password"));
 
 		DevelopersPage developersPage = new DevelopersPage(driver);
 

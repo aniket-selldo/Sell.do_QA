@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
+import com.selldo.POM.inventory.NewDeveloperFormPage;
 import com.selldo.POM.inventory.NewUnitFormPage;
 import com.selldo.POM.inventory.UnitsPage;
 import com.selldo.Utility.BaseTest;
@@ -19,23 +20,20 @@ public class AddingNewUnitTest extends BaseTest {
 	@Test
 	public void addingNewUnitTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("admin"), prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		login.login(prop("Client_id"), prop("Password"));
 
 		UnitsPage unitsPage = new UnitsPage(driver);
 		NewUnitFormPage newUnitFormPage = new NewUnitFormPage(driver);
-
+		NewDeveloperFormPage newDeveloperFormPage = new NewDeveloperFormPage(driver);
+		String getAnyDevloperName = newDeveloperFormPage.getFirstDevloperName();
 		WebElement element = driver.findElement(By.cssSelector("i.ion-cube"));
 		Actions action = new Actions(driver);
 		action.moveToElement(element).build().perform();
 		driver.findElement(By.linkText("Units")).click();
 
 		unitsPage.clickOnNewUnitButton();
-
-		newUnitFormPage.enterDeveloperName("UTVQYWTZUS");
+	
+		newUnitFormPage.enterDeveloperName(getAnyDevloperName);
 
 		newUnitFormPage.enterProjectName(Project.Aniket_Project_03);
 
@@ -46,7 +44,7 @@ public class AddingNewUnitTest extends BaseTest {
 
 		newUnitFormPage.enterUnitName(unitName);
 
-		newUnitFormPage.enterNumberOfFloors(prop.getProperty("numberOfFloors_addingNewUnitTest"));
+		newUnitFormPage.enterNumberOfFloors("39");
 
 		newUnitFormPage.enterUnitBaseRate(Random("N", 10));
 

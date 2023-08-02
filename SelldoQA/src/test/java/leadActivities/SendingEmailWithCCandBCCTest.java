@@ -1,16 +1,15 @@
 package leadActivities;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
-import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.EmailPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
 import com.selldo.Utility.BaseTest;
+
+import API.APIs;
 
 public class SendingEmailWithCCandBCCTest extends BaseTest {
 
@@ -18,38 +17,31 @@ public class SendingEmailWithCCandBCCTest extends BaseTest {
 	public void sendingEmailWithCCandBCCTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login("aniket.khandizod+sae02@sell.do", "amura@123");
-		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
+		login.login(prop("Sales_email"), prop("Password"));
 
-		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
-		adminDashboardPage.searchLead(Integer.parseInt(R('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')),
-				"All Leads");
+		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
+
+		salesPresalesDashboard
+				.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
-		extentTest.get().log(Status.INFO, "Clicking on Email Link.......");
 		leadProfilePage.clickOnEmailLink();
 
 		EmailPage emailPage = new EmailPage(driver);
 
-		extentTest.get().log(Status.INFO, "Entering Email for CC.......");
 		emailPage.enterCCEmail("aniket.khandizod+CC@sell.do");
 
-		extentTest.get().log(Status.INFO, "Entering Email for BCC.......");
 		emailPage.enterBCCEmail("aniket.khandizod+BCC@sell.do");
 
-		extentTest.get().log(Status.INFO, "Entering Subject of Email.......");
 		emailPage.enterSubject("Email Subject generated via Automation");
 
-		extentTest.get().log(Status.INFO, "Entering text in email body......");
-		emailPage.entertextInBody("Body Of Email "+random("Body Of Email","AN",1000));
+		emailPage.entertextInBody("Body Of Email "+Random("AN",1000));
 
-		extentTest.get().log(Status.INFO, "Clicking on Send Email Button.......");
 		emailPage.clickOnSendEmailButton();
 		Assert.assertEquals(getSuccessMSG(), "Email sent successfully", "email not sended succesfully");
 
 		Thread.sleep(500);
 
-		extentTest.get().log(Status.INFO, "Clicking on Email link under activities section.......");
 		leadProfilePage.clickEmail_d();
 
 		Thread.sleep(500);
@@ -57,10 +49,8 @@ public class SendingEmailWithCCandBCCTest extends BaseTest {
 		SalesPresalesDashboardPage salesPresalesDashboardPage = new SalesPresalesDashboardPage(driver);
 		salesPresalesDashboardPage.pageRefresh();
 
-		extentTest.get().log(Status.INFO, "Fetching the text appeared after sending email....");
 		String text =leadProfilePage.getEmailStatus();
 
-		extentTest.get().log(Status.INFO, "Verifying the text under Email activities....");
 		String exp[] = {"outgoing  |  delivered","outgoing  |  -"};
 		Assert.assertEquals(text, exp[1], "send mail status not as expected");
 

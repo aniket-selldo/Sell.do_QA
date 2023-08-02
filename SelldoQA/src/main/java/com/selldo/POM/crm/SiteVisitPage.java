@@ -1,5 +1,7 @@
 package com.selldo.POM.crm;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -144,6 +146,7 @@ public class SiteVisitPage extends ReusableUtils {
 	public void clickOnConfirmButton() throws Exception {
 //		WebElement ele = driver.findElement(By.xpath("//div[@class='noty_message']"));
 //		waitUntilInvisibility(ele);
+		scrollIntoView(confirmButton);
 		jsClick(confirmButton);
 	}
 
@@ -257,6 +260,13 @@ public class SiteVisitPage extends ReusableUtils {
 				break;
 			}
 		}
+	}
+	public void dateSelector(int value) {
+		WebElement ele =driver.findElement(By.xpath("//input[@name='conducted_date']"));
+		String date =new SimpleDateFormat("dd/MM/yyyy")
+				.format(new Date().getTime() + (value * (1000 * 60 * 60 * 24)));
+		jsSendKey(ele,date);
+		
 	}
 
 	public void sitevisitConductedDate(String dt) throws Exception {

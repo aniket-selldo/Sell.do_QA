@@ -1,14 +1,11 @@
 package inventory;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.inventory.FloorPlansPage;
+import com.selldo.POM.inventory.NewDeveloperFormPage;
 import com.selldo.POM.inventory.NewFloorPlanFormPage;
 import com.selldo.Utility.BaseTest;
 
@@ -21,19 +18,14 @@ public class AddingNewFloorPlanTest extends BaseTest {
 	@Test
 	public void addingNewFloorPlanTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
 		FloorPlansPage floorPlansPage = new FloorPlansPage(driver);
 		NewFloorPlanFormPage newFloorPlanFormPage = new NewFloorPlanFormPage(driver);
+		NewDeveloperFormPage newDeveloperFormPage = new NewDeveloperFormPage(driver);
+		login.login(prop("Client_id"), prop("Password"));
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
-		clientLogin.clientLogin(prop.getProperty("Client"));
-
-		WebElement element = driver.findElement(By.cssSelector("i.ion-cube"));
-		Actions action = new Actions(driver);
-		action.moveToElement(element).build().perform();
-		driver.findElement(By.linkText("Developers")).click();
-		// String getAnyDevloperName = newDeveloperFormPage.getAnyDevloperName();
-		String getAnyDevloperName = "UTVQYWTZUS";
+	
+		String getAnyDevloperName = newDeveloperFormPage.getFirstDevloperName().split(" ")[0];
+	
 		newFloorPlanFormPage.clickOnFloorPlan();
 
 		floorPlansPage.clickOnNewFloorPlanButton();

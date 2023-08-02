@@ -1,5 +1,7 @@
 package com.selldo.POM.crm;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -77,11 +79,21 @@ public class FollowupsPage extends ReusableUtils {
 		waitUntilClickable(ScheduleOnDateField).click();
 		waitUntilClickable(selectToday).click();
 	}
+	public String dateSelector(int value) {
+		WebElement ele =driver.findElement(By.cssSelector("input[name='scheduled_date']"));
+		waitUntilVisiblity(ele);
+		String date =new SimpleDateFormat("dd/MM/yyyy")
+				.format(new Date().getTime() + (value * (1000 * 60 * 60 * 24)));
+		jsSendKey(ele,date);
+		return date;
+		
+	}
 
 	public String getFeedText() {
+		
+		driver.navigate().refresh();
 		wait(2000);
-		return waitUntilVisiblity(driver.findElement(By.cssSelector(
-				"#tab-activity > div.activities_list > div:nth-child(1) div.card div:nth-child(1) > div.col-lg-11"))
+		return waitUntilVisiblity(driver.findElement(By.xpath("(//div[@class='col-lg-11'])[1]"))
 				).getText().split(",")[0].trim();
 	}
 	// Clicking on Schedule On Time field
@@ -115,8 +127,10 @@ public class FollowupsPage extends ReusableUtils {
 
 	// Clicking on Schedule Followup button
 	public String clickOnScheduleFollowupButton() {
+		wait(2000);
+		String text =waitUntilVisiblity(followupBy).getText().toLowerCase().trim();
 		jsClick(ScheduleFollowupButton);
-		return waitUntilVisiblity(followupBy).getText().toLowerCase().trim();
+		return text;
 	}
 	public void clickOnScheduleFollowupButton2() {
 		jsClick(ScheduleFollowupButton);

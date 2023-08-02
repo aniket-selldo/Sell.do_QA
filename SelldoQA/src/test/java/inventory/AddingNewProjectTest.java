@@ -21,12 +21,8 @@ public class AddingNewProjectTest extends BaseTest {
 		LoginPage login = new LoginPage(driver);
 		NewDeveloperFormPage newDeveloperFormPage = new NewDeveloperFormPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
+		login.login(prop("Client_id"), prop("Password"));
 
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
-		
 		WebElement element = driver.findElement(By.cssSelector("i.ion-cube"));
 		Actions action = new Actions(driver);
 		action.moveToElement(element).build().perform();
@@ -49,7 +45,7 @@ public class AddingNewProjectTest extends BaseTest {
 
 		newProjectFormPage.enterDeveloperName(developerName);
 
-		newProjectFormPage.enterDescription(prop.getProperty("description_addingNewProjectTest"));
+		newProjectFormPage.enterDescription(Random("AN",100));
 
 		newProjectFormPage.selectSales();
 
@@ -61,23 +57,23 @@ public class AddingNewProjectTest extends BaseTest {
 
 		newProjectFormPage.selectProjectType();
 
-		newProjectFormPage.enterLocality(prop.getProperty("locality_addingNewProjectTest"));
+		newProjectFormPage.enterLocality(Random("AN",100));
 
-		newProjectFormPage.enterLatitude(prop.getProperty("latitude_addingNewProjectTest"));
+		newProjectFormPage.enterLatitude(Random("N",2));
 
-		newProjectFormPage.enterLongitude(prop.getProperty("longitude_addingNewProjectTest"));
+		newProjectFormPage.enterLongitude(Random("N",2));
 
-		newProjectFormPage.enterAddress(prop.getProperty("address_addingNewProjectTest"));
+		newProjectFormPage.enterAddress(Random("AN",100));
 
-		newProjectFormPage.enterStreet(prop.getProperty("street_addingNewProjectTest"));
+		newProjectFormPage.enterStreet(Random("AN",100));
 
-		newProjectFormPage.enterCity(prop.getProperty("city_addingNewProjectTest"));
+		newProjectFormPage.enterCity(Random("AN",100));
 		
-		newProjectFormPage.selectCountry(prop.getProperty("country_addingNewProjectTest"));
+		newProjectFormPage.selectCountry("India");
 
-		newProjectFormPage.selectState(prop.getProperty("state_addingNewProjectTest"));
+		newProjectFormPage.selectState("Maharashtra");
 
-		newProjectFormPage.enterZip(prop.getProperty("zip_addingNewProjectTest"));
+		newProjectFormPage.enterZip(Random("N",6));
 
 		newProjectFormPage.clickOnSaveButton();
 

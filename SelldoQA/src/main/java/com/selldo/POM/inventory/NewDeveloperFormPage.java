@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
@@ -81,6 +83,13 @@ public class NewDeveloperFormPage extends ReusableUtils {
 	public String getAnyDevloperName() {
         int index = (int)(Math.random() * getAnyDevloperName.size());
 		return waitUntilVisiblity(getAnyDevloperName.get(index)).getText().trim();
+	}
+	public String getFirstDevloperName() {
+		WebElement element = driver.findElement(By.cssSelector("i.ion-cube"));
+		Actions action = new Actions(driver);
+		action.moveToElement(element).build().perform();
+		driver.findElement(By.linkText("Developers")).click();
+		return waitUntilVisiblity(getAnyDevloperName.get(0)).getText().trim();
 	}
 
 	public String getDevlopersName() {

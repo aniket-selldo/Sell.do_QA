@@ -1,5 +1,8 @@
 package com.selldo.POM.crm;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,6 +70,15 @@ public class LogOfflineCallPage extends ReusableUtils {
 		waitUntilClickable(selectToday);
 		selectToday.click();
 	}
+	public String dateSelector(int value) {
+		//WebElement ele =driver.findElement(By.cssSelector("input[name='scheduled_date']"));
+		waitUntilVisiblity(date);
+		String date2 =new SimpleDateFormat("dd/MM/yyyy")
+				.format(new Date().getTime() + (value * (1000 * 60 * 60 * 24)));
+		jsSendKey(date,date2);
+		return date2;
+		
+	}
 
 	public void selectTime() throws InterruptedException {
 		waitUntilClickable(time);
@@ -104,6 +116,7 @@ public class LogOfflineCallPage extends ReusableUtils {
 	public void clickOnSaveButton() {
 		waitUntilClickable(saveButton);
 		saveButton.click();
+		wait(1000);
 	}
 
 	public void clickOnViewNotesLink() {

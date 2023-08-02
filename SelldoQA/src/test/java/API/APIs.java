@@ -95,6 +95,7 @@ public class APIs extends API_Reusable {
 		return response.as(Root_sitevisitSchedule_Get.class);
 
 	}
+	
 
 	// ============================ Lead Related  =========================
 
@@ -121,7 +122,7 @@ public class APIs extends API_Reusable {
 		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
 		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
 		lead.setEmail(RandomStringUtils.randomAlphanumeric(10) + "@sell.do");
-		lead.setPhone("123" + RandomStringUtils.randomNumeric(7));
+		lead.setPhone("7" +RandomStringUtils.randomNumeric(9));
 		lead.setSalutation("mr");
 		lead.setTime_zone("Asia/Calcutta");
 		lead.setStage("incoming");

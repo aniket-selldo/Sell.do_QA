@@ -13,16 +13,11 @@ import com.selldo.Utility.BaseTest;
 public class AddingChannelPartner_MandatoryFillTest extends BaseTest {
 
 	@Test
-
 	public void addingChannelPartner_MandatoryFillTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("pswd"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		login.login(prop("Client_id"), prop("Password"));
 
 		SettingsPage settingsPage = new SettingsPage(driver);
 

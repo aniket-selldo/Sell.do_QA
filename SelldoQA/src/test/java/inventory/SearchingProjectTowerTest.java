@@ -18,12 +18,7 @@ public class SearchingProjectTowerTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
-
+		login.login(prop("Client_id"), prop("Password"));
 		Thread.sleep(3000);
 
 		ProjectTowersPage projectTowersPage = new ProjectTowersPage(driver);

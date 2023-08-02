@@ -9,10 +9,10 @@ import myPom.loginPage;
 
 public class CreateClinet extends BaseTest {
 	
-	@Test
+	//@Test
 	public void createPostpaidClient() {
-		String ClientName = "Shyam_Sunder";
-		String Email ="rajat.patil";
+		String ClientName = "2aug2023_postpaid";
+		String Email ="aniket.khandizod";
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);
 		loginPage.login_suppoort();
@@ -42,11 +42,11 @@ public class CreateClinet extends BaseTest {
 		String respone = page.clickOnsave();
 		Assert.assertEquals(respone, "", "Success massage not as expected");
 	}
-	//@Test
+	@Test
 	public void createPrepaidClient() throws InterruptedException {
-		String BuisnessName="26july2023_PrePaid";
+		String BuisnessName="2aug2023_prepaid";
 		String Email ="aniket.khandizod";
-		driver.get(prop.getProperty("URL")+"/signup?plan=selection");
+		driver.get(prop("URL")+"/signup?plan=selection");
 		PrepaidClientCreation page = new PrepaidClientCreation(driver);
 		page.enterClientFirstName(Random("A",10));
 		page.enterClientLastName(Random("A",10));
@@ -81,6 +81,6 @@ public class CreateClinet extends BaseTest {
 		page.clickOnContinue();
 		Assert.assertTrue(page.validateClientName(BuisnessName));
 		Thread.sleep(10000);
-		driver.get(prop.getProperty("LogOut"));
+		driver.get(prop("Logout"));
 	}
 }

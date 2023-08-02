@@ -6,7 +6,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.inventory.EditFloorPlanPage;
 import com.selldo.POM.inventory.FloorPlansPage;
@@ -19,11 +18,7 @@ public class EditingFloorPlanTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		login.login(prop("Client_id"), prop("Password"));
 
 		FloorPlansPage floorPlansPage = new FloorPlansPage(driver);
 

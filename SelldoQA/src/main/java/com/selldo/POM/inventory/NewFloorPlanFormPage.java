@@ -112,7 +112,12 @@ public class NewFloorPlanFormPage extends ReusableUtils {
 		wait(1000);
 		waitUntilVisiblity(projectInputField).sendKeys(Keys.ENTER);
 	}
-
+	public void enterProjectName(String project) throws InterruptedException {
+		waitUntilClickable(projectSpan).click();
+		waitUntilVisiblity(projectInputField).sendKeys(project);
+		wait(1000);
+		waitUntilVisiblity(projectInputField).sendKeys(Keys.ENTER);
+	}
 	public void enterProjectTowerName(String tower) throws InterruptedException {
 		waitUntilClickable(projectTowerSpan).click();
 		waitUntilVisiblity(projectTowerInputField).sendKeys(tower);

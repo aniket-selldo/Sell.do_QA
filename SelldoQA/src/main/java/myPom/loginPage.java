@@ -28,9 +28,9 @@ public class loginPage extends ReusableUtils {
 	
 	public LoginAsClient login(){
 		Square(userName);
-		userName.sendKeys(getGobalData().getProperty("id"));
+		userName.sendKeys(getGobalData().getProperty("Admin_id"));
 		Square(password);
-		password.sendKeys(getGobalData().getProperty("pswd"));
+		password.sendKeys(getGobalData().getProperty("Password"));
 		Square(signIn);
 		jsClick(signIn);
 		return new LoginAsClient(driver);
@@ -39,7 +39,7 @@ public class loginPage extends ReusableUtils {
 		Square(userName);
 		userName.sendKeys(getGobalData().getProperty("SM"));
 		Square(password);
-		password.sendKeys(getGobalData().getProperty("pswd"));
+		password.sendKeys(getGobalData().getProperty("Password"));
 		Square(signIn);
 		jsClick(signIn);
 		return new LoginAsClient(driver);

@@ -80,7 +80,7 @@ public class AdminDashboardPage extends ReusableUtils {
 	private WebElement developers;
 	@FindBy(how = How.CSS, using = "div.pending-invoices-alert.small.float-right.mr-2")
 	private WebElement clientName;
-	@FindBy(how = How.XPATH, using = "//div[text()='new enquries ']")
+	@FindBy(how = How.XPATH, using = "//div[text()='NEW ENQUIRIES ']")
 	private WebElement newEnquiry;
 	@FindBy(how = How.CSS, using = "[class='td-lead_id goto_details']") // tbody[@class='crm-leads']//a[contains(@class,'td-l')]
 	private List<WebElement> getAnyLeadID;
@@ -206,19 +206,19 @@ public class AdminDashboardPage extends ReusableUtils {
 
 	// TO search lead using lead id
 	public void searchLead(String leadId) throws InterruptedException {
-		waitUntilClickable(newEnquiry).click();
-		wait(1000);
-		waitUntilVisiblity(
-				driver.findElement(By.xpath("//*[contains(@class,'select2-container form-control select2 cl')]")))
-				.click();
-		waitUntilVisiblity(driver.findElement(By.xpath(".//div[@id='select2-drop']//input"))).sendKeys("All Leads");// Incoming
-																													// All
-																													// Leads
-		waitUntilVisiblity(driver.findElement(By.xpath("//li[contains(@class,'select2-re')]"))).click();
-		waitUntilVisibilityOfElements(getAnyLeadID);
-		wait(1000);
-		// String leadId=getAnyLeadID.get(lead).getText();
-		System.out.println("Selected Lead id >> " + leadId);
+//		waitUntilClickable(newEnquiry).click();
+//		wait(1000);
+//		waitUntilVisiblity(
+//				driver.findElement(By.xpath("//*[contains(@class,'select2-container form-control select2 cl')]")))
+//				.click();
+//		waitUntilVisiblity(driver.findElement(By.xpath(".//div[@id='select2-drop']//input"))).sendKeys("All Leads");// Incoming
+//																													// All
+//																													// Leads
+//		waitUntilVisiblity(driver.findElement(By.xpath("//li[contains(@class,'select2-re')]"))).click();
+//		waitUntilVisibilityOfElements(getAnyLeadID);
+//		wait(1000);
+//		// String leadId=getAnyLeadID.get(lead).getText();
+//		System.out.println("Selected Lead id >> " + leadId);
 		waitUntilClickable(searchField).click();
 		waitUntilVisiblity(searchTextBox).sendKeys(leadId);
 		waitUntilVisiblity(driver.findElement(By.xpath("//div[@class='select2-result-label']"))).click();
@@ -227,7 +227,9 @@ public class AdminDashboardPage extends ReusableUtils {
 	public void serchLeadGlobally(String leadId) {
 		waitUntilClickable(clickOnGlobalSearch).click();
 		waitUntilVisiblity(enterInGlobalSearch).sendKeys(leadId);
-		waitUntilClickable(clickOnSearchSuggation).click();
+		wait(1000);
+		waitUntilVisiblity(enterInGlobalSearch).sendKeys(Keys.ENTER);
+		//waitUntilClickable(clickOnSearchSuggation).click();
 	}
 	public String getLeadURL_ID(String leadId) {
 		waitUntilClickable(clickOnGlobalSearch).click();
@@ -296,6 +298,7 @@ public class AdminDashboardPage extends ReusableUtils {
 	public void SelectList(String reassign) throws Exception {
 		waitUntilClickable(listField).click();
 		waitUntilVisiblity(listSearch).sendKeys(reassign);
+		wait(1000);
 		listSearch.sendKeys(Keys.ENTER);
 	}
 

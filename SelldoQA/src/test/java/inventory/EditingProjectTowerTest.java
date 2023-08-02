@@ -6,7 +6,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.inventory.EditProjectTowerFormPage;
 import com.selldo.POM.inventory.ProjectTowersPage;
@@ -18,11 +17,7 @@ public class EditingProjectTowerTest extends BaseTest {
 	public void editingProjectTowerTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		login.login(prop("Client_id"), prop("Password"));
 
 		ProjectTowersPage projectTowersPage = new ProjectTowersPage(driver);
 

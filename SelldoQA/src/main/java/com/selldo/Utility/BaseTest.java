@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -33,7 +32,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -42,16 +40,15 @@ enum Browser {
 	chromeAdv, firefox, edge, safari, HeadLess, Chrome;
 }
 
-public class BaseTest {
+public class BaseTest  {
 
-	public static Properties prop;
 	public WebDriver driver;
 	public WebDriverWait wait;
 
 	@BeforeMethod(alwaysRun = true)
 	protected void browserConfig() throws FileNotFoundException, IOException, AWTException {
 		// -------------------Property Files-------------------//
-		prop = new Properties();
+		Properties prop = new Properties();
 		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
 		// -------------------get Browser Property-------------------//
 		String browser = prop.getProperty("browser").trim();
@@ -177,7 +174,10 @@ public class BaseTest {
 	}
 
 	public String randomEmail() {
-		return "aniket.khandizod+" + Random("AN", 10) + "@sell.do";
+		String email[] = prop("Email").split("@");
+		String name = email[0];
+		String domain = email[1];
+		return name + "+" + Random("AN", 10) + "@" + domain;
 	}
 
 	public String randomEmail(String str) {
@@ -189,7 +189,7 @@ public class BaseTest {
 	}
 
 	public String randomPhone() {
-		return " 12345" + Random("N", 5);
+		return " 7" + Random("N", 9);
 	}
 
 	public WebElement loading() {
@@ -245,5 +245,20 @@ public class BaseTest {
 			break;
 		}
 		return s;
+	}
+
+	public String prop(String propee) {
+		Properties proper = new Properties();
+		try {
+			proper.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return proper.getProperty(propee);
+	}
+
+	public void logout() {
+		driver.get(prop("URL") + "/users/logout");
 	}
 }

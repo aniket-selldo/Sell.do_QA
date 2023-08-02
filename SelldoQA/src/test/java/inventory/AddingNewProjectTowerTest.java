@@ -19,11 +19,7 @@ public class AddingNewProjectTowerTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		login.login(prop("Client_id"), prop("Password"));
 
 		ProjectTowersPage projectTowersPage = new ProjectTowersPage(driver);
 
@@ -39,7 +35,7 @@ public class AddingNewProjectTowerTest extends BaseTest {
 
 		newProjectTowerFormPage.enterProjectName(Project.Aniket_Project_03);
 
-		newProjectTowerFormPage.enterTotalFloorsNumber("8");
+		newProjectTowerFormPage.enterTotalFloorsNumber(Random("N",2));
 
 		newProjectTowerFormPage.clickOnSaveButton();
 

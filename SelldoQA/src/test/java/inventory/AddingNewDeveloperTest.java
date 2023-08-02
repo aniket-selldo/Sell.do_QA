@@ -21,11 +21,7 @@ public class AddingNewDeveloperTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		login.login(prop("Client_id"), prop("Password"));
 
 		DevelopersPage developersPage = new DevelopersPage(driver);
 
@@ -44,17 +40,17 @@ public class AddingNewDeveloperTest extends BaseTest {
 
 		newDeveloperFormPage.enterDescription(Random("AN", 200));
 
-		newDeveloperFormPage.enterAddress(prop.getProperty("address_addingNewDeveloperTest"));
+		newDeveloperFormPage.enterAddress(Random("A",10));
 
-		newDeveloperFormPage.enterStreet(prop.getProperty("street_addingNewDeveloperTest"));
+		newDeveloperFormPage.enterStreet(Random("A",10));
 
-		String city = prop.getProperty("city_addingNewDeveloperTest");
+		String city = Random("A",10);
 
 		newDeveloperFormPage.enterCity(city);
 
-		newDeveloperFormPage.selectCountry(prop.getProperty("country_addingNewDeveloperTest"));
+		newDeveloperFormPage.selectCountry("India");
 
-		newDeveloperFormPage.selectState(prop.getProperty("state_addingNewDeveloperTest"));
+		newDeveloperFormPage.selectState("Maharashtra");
 
 		newDeveloperFormPage.enterZip(Random("N", 6));
 
@@ -72,7 +68,7 @@ public class AddingNewDeveloperTest extends BaseTest {
 
 		newDeveloperFormPage.enterAlternateNumber(randomPhone());
 
-		newDeveloperFormPage.PAN("EXZPK1234R");
+		newDeveloperFormPage.PAN((Random("A",5)+Random("N",4)+Random("A",1)).toUpperCase());
 
 		newDeveloperFormPage.designation(Random("A", 5));
 

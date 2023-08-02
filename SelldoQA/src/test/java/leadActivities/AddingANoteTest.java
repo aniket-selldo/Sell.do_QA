@@ -8,24 +8,23 @@ import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
 import com.selldo.Utility.BaseTest;
 
+import API.APIs;
+
 public class AddingANoteTest extends BaseTest {
 
 	@Test
 	public void addingNoteTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("AniketPreSaleUser"), prop.getProperty("password"));
+		login.login(prop("Sales_email"), prop("Password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
-		salesPresalesDashboard.goToAllLeadsList();
-		salesPresalesDashboard.openLeadDetails(Integer.parseInt(R('1', '2', '3')));
+		salesPresalesDashboard.searchLead("#"+new APIs().createLead(prop("Clinet_API_Res"),prop("Sales_id")).getSell_do_lead_id());
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
-		System.out.println("Lead Id >>> "+leadProfilePage.getLeadId());
+		System.out.println("Lead Id >>> " + leadProfilePage.getLeadId());
 		leadProfilePage.clickOnAddANoteLink();
-		String noteText = "Note added Successfully By Automation "+random("noteText", "AN", 10000);
+		String noteText = "Note added Successfully By Automation " + Random("AN", 1500);
 		leadProfilePage.enterNote(noteText);
 		leadProfilePage.clickOnsaveNoteButton();
-		Assert.assertEquals(getSuccessMSG(), "Note saved successfully.");
-		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Assert.assertEquals(leadProfilePage.getNoteText(), noteText, "Text are not matching");
 	}

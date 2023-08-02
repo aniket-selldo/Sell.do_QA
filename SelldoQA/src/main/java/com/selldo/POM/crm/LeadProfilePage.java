@@ -341,6 +341,10 @@ public class LeadProfilePage extends ReusableUtils {
 		}
 
 	}
+	public void followupLink_2() {
+		waitUntilClickable(more).click();
+		waitUntilClickable(followupLink).click();
+	}
 
 	public String ifFollowupShedule() {
 		wait(1000);
@@ -413,13 +417,25 @@ public class LeadProfilePage extends ReusableUtils {
 				break;
 			}
 		}
+		
 	}
 
 	public void selectMarkDidNotVisit() {
+//		waitUntilClickable(actionBar_Sitevisit.get(0)).click();
+//		List<WebElement> list = waitUntilVisibilityOfElements(actionBar_Options);
+//		for (WebElement ele : list) {
+//			if (ele.getAttribute("innerHTML").contains("Mark did not visit")) {
+//				waitUntilClickable(ele).click();
+//				break;
+//			}
+//		}
+		wait(3000);
 		waitUntilClickable(actionBar_Sitevisit.get(0)).click();
-		List<WebElement> list = waitUntilVisibilityOfElements(actionBar_Options);
+		waitUntilVisibilityOfElements(actionBar_Options);
+		List<WebElement> list = actionBar_Options;
 		for (WebElement ele : list) {
-			if (ele.getAttribute("innerHTML").contains("Mark did not visit")) {
+			if (ele.getText().trim().contains("Mark did not visit")) {
+				wait(1000);
 				waitUntilClickable(ele).click();
 				break;
 			}
@@ -427,10 +443,21 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void selectMarkNotInterested() {
+//		waitUntilClickable(actionBar_Sitevisit.get(0)).click();
+//		List<WebElement> list = waitUntilVisibilityOfElements(actionBar_Options);
+//		for (WebElement ele : list) {
+//			if (ele.getAttribute("innerHTML").contains("Mark not interested")) {
+//				waitUntilClickable(ele).click();
+//				break;
+//			}
+//		}
+		wait(3000);
 		waitUntilClickable(actionBar_Sitevisit.get(0)).click();
-		List<WebElement> list = waitUntilVisibilityOfElements(actionBar_Options);
+		waitUntilVisibilityOfElements(actionBar_Options);
+		List<WebElement> list = actionBar_Options;
 		for (WebElement ele : list) {
-			if (ele.getAttribute("innerHTML").contains("Mark not interested")) {
+			if (ele.getText().trim().contains("Mark not interested")) {
+				wait(1000);
 				waitUntilClickable(ele).click();
 				break;
 			}
