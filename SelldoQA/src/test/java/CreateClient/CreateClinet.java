@@ -1,3 +1,4 @@
+package CreateClient;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -12,7 +13,6 @@ public class CreateClinet extends BaseTest {
 	@Test
 	public void createPostpaidClient() {
 		String ClientName = "Export_Test_Postpaid";
-		String Email ="aniket.khandizod";
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);
 		loginPage.login_suppoort();
@@ -23,7 +23,7 @@ public class CreateClinet extends BaseTest {
 		page.selectBuisnessType();
 		page.shortName(Random("A", 6));
 		page.enterClientWebsite(Random("AN", 7));
-		page.enterclinetEmail(randomEmail(Email));
+		page.enterclinetEmail(randomEmail());
 		page.uploadFile("nun");
 		page.enterClientPhone(randomPhone());
 		page.enterMask(Random("A", 6));
@@ -36,22 +36,21 @@ public class CreateClinet extends BaseTest {
 		page.enterUserFirstName(ClientName);
 		page.enterUserLasttName("user");
 		page.enterUserPhone(randomPhone());
-		page.enterEmail(randomEmail(Email));
+		page.enterEmail(randomEmail());
 		page.enterUserTeam(Random("A", 7));
 		//page.selectVendores();
 		String respone = page.clickOnsave();
 		Assert.assertEquals(respone, "", "Success massage not as expected");
 	}
-	//@Test
+	@Test
 	public void createPrepaidClient() throws InterruptedException {
 		String BuisnessName="Export_Test_Prepaid";
-		String Email ="aniket.khandizod";
 		driver.get(prop("URL")+"/signup?plan=selection");
 		PrepaidClientCreation page = new PrepaidClientCreation(driver);
 		page.enterClientFirstName(Random("A",10));
 		page.enterClientLastName(Random("A",10));
 		page.enterPassword("amura@123");
-		page.enterClientEmail(randomEmail(Email));
+		page.enterClientEmail(randomEmail());
 		page.enterClientPhone(randomPhone());
 		page.enterBuisnessName(BuisnessName);
 		String buisnessType[]= {"Developer","Broker"};
@@ -65,7 +64,7 @@ public class CreateClinet extends BaseTest {
 		page.clickOnSignUp();
 		page.user_first_name(Random("A",10));
 		page.user_last_name(Random("A",10));
-		page.user_email(randomEmail(Email));
+		page.user_email(randomEmail());
 		page.user_phone(randomPhone());
 		page.clickOnSaveAndContinue();
 		page.client_address_address1("Pune");

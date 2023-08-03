@@ -3,13 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="leadActivities.SendingEmailWithCCandBCCTest">
+      <class name="API.APIs">
         <methods>
-          <include name="browserConfig"/>
-          <include name="sendingEmailWithCCandBCCTest"/>
-          <include name="terminate"/>
+          <include name="Tests"/>
         </methods>
-      </class> <!-- leadActivities.SendingEmailWithCCandBCCTest -->
+      </class> <!-- API.APIs -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

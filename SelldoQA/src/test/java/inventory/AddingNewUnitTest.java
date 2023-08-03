@@ -20,7 +20,7 @@ public class AddingNewUnitTest extends BaseTest {
 	@Test
 	public void addingNewUnitTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		login.login(prop("Client_id"), prop("Password"));
+		login.login(prop("Clinet_Email"), prop("Password"));
 
 		UnitsPage unitsPage = new UnitsPage(driver);
 		NewUnitFormPage newUnitFormPage = new NewUnitFormPage(driver);

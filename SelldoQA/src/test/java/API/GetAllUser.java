@@ -8,6 +8,8 @@ import java.util.Properties;
 
 import com.selldo.Utility.XLUtils;
 
+import POJO_GetAllUser_GET.AllUser;
+import POJO_GetAllUser_GET.Root_GetAllUser;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -77,37 +79,22 @@ public class GetAllUser {
 		System.out.println("Done");
 	}
 
-	public static ArrayList<String> getUserList(String APIKeys,String ClientID ) throws FileNotFoundException, IOException {
+	public static Root_GetAllUser getUserList(String APIKeys, String ClientID)
+			throws FileNotFoundException, IOException {
 		Properties prop = new Properties();
 		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
-		
+
 		String full = prop.getProperty("URL") + "/client/users.json?api_key=" + APIKeys + "&client_id=" + ClientID + "";
+		return RestAssured.given().when().get(full).then().extract().response().as(Root_GetAllUser.class);
 
-		Response response = RestAssured.given().contentType(ContentType.JSON).when().get(full).then().extract()
-				.response();
-		System.out.println(response.jsonPath().getString("page"));
-		System.out.println(response.asString());
-
-		JsonPath js = new JsonPath(response.asString());
-		
-		int AllUserCount = js.getInt("all_users.size()");
-		ArrayList<String>ary=new ArrayList<String>();
-		for (int i = 0; i < AllUserCount; i++) {
-			ary.add(js.getString("all_users["+i+"].text"));
-		}
-//		String SalesName = js.getString("all_users[0].text");
-//		String SalesRole =js.getString("all_users[0].role");
-//		String SalesStatus =js.getString("all_users[0].is_active");
-//		
-//		System.out.println(AllUserCount +" "+SalesName  +" "+ SalesRole  +" "+ SalesStatus );
-		return ary;
-
-		
 	}
 
 	public static void main(String[] args) throws IOException {
-		String APIKeys = "c4d649781e5451ce2903b34b02496e2c";
-		String ClientID = "64a2be1db0834560eaa19563";
-		getUserList(APIKeys,ClientID);
+		String APIKeys = "d2d386fbcc9805220d76fa9137519e78";
+		String ClientID = "587ddb2b5a9db31da9000002";
+		String s= getUserList(APIKeys, ClientID).getAll_users().stream().filter(S->S.getText().equalsIgnoreCase("New User56")).map(S->S.getId()).findFirst().get();
+		System.out.println(s);
+		//getUserList(APIKeys, ClientID);587ddb2c5a9db31da9000005
+
 	}
 }

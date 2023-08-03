@@ -2,6 +2,7 @@ package API;
 
 import static io.restassured.RestAssured.given;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.testng.annotations.Test;
@@ -19,6 +21,7 @@ import POJO_CreateFollowup.Followup;
 import POJO_CreateFollowup.RootFolloup;
 import POJO_CreateFollowup_GET.Root_followUp_Get;
 import POJO_GetAllActivityOnLead.Root_GetAllLeadActivity;
+import POJO_GetAllUser_GET_2.Root_GetAllUser_GET_2;
 import POJO_LeadCreate.Form;
 import POJO_LeadCreate.Lead;
 import POJO_LeadCreate.Note;
@@ -71,7 +74,7 @@ public class APIs extends API_Reusable {
 		RootCreateSiteVisit root = new RootCreateSiteVisit();
 		SiteVisit siteVisit = new SiteVisit();
 
-		siteVisit.setProject_id(getAllProjectID(APIKey, CliendID).get(0));
+		siteVisit.setProject_id(getAllProjectID().get(0));
 		String CurrentTime = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime() + (10 * 60000))
 				+ " IST";
 		siteVisit.setScheduled_on(CurrentTime);
@@ -89,31 +92,33 @@ public class APIs extends API_Reusable {
 		root.setClient_id(CliendID);
 		root.setSite_visit(siteVisit);
 
-		String leadID = getLeadId(APIKey, CliendID, leadCRMID);
+		String leadID = getLeadId(leadCRMID);
 		String url = prop("URL") + "/client/leads/" + leadID + "/site_visits.json";
 		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).post(url);
 		return response.as(Root_sitevisitSchedule_Get.class);
 
 	}
-	
 
-	// ============================ Lead Related  =========================
+	// ============================ Lead Related =========================
 
-	public String getLeadId(String APIKey, String ClientID, String leadCRMID) {
+	public String getLeadId(String leadCRMID) {
 
 		Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
-				.queryParam("search", "#" + leadCRMID).queryParam("client_id", ClientID).queryParam("api_key", APIKey)
-				.when().get(prop("URL") + "/client/get_db_id").then().log().all().extract().response();
+				.queryParam("search", "#" + leadCRMID).queryParam("client_id", prop("Client_id"))
+				.queryParam("api_key", prop("Clinet_API_Full")).when().get(prop("URL") + "/client/get_db_id").then()
+				.extract().response();
 		String leadCRMid = response.jsonPath().getString("id[0]").trim();
 		return leadCRMid;
 	}
-	public Root_GetAllLeadActivity get(String fullAPI,String ClientID,String leadID) {
-		String URL = prop("URL")+"/client/leads/"+leadID+"/activities?api_key="+fullAPI+"&client_id="+ClientID;
+
+	public Root_GetAllLeadActivity getAllLeadActivity( String leadCRMID) {
+		String URL = prop("URL") + "/client/leads/" + getLeadId(leadCRMID) + "/activities?api_key=" + prop("Clinet_API_Full") + "&client_id="
+				+ prop("Client_id");
 		return RestAssured.given().contentType(ContentType.JSON).when().get(URL).then().extract().response()
 				.as(Root_GetAllLeadActivity.class);
 	}
 
-	public Root_CreateLead_GET createLead(String APIKey, String User) {
+	public Root_CreateLead_GET createLead(String User) {
 
 		Note note = new Note();
 		note.setContent("Note By Rest Assured");
@@ -122,7 +127,7 @@ public class APIs extends API_Reusable {
 		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
 		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
 		lead.setEmail(RandomStringUtils.randomAlphanumeric(10) + "@sell.do");
-		lead.setPhone("7" +RandomStringUtils.randomNumeric(9));
+		lead.setPhone("7" + RandomStringUtils.randomNumeric(9));
 		lead.setSalutation("mr");
 		lead.setTime_zone("Asia/Calcutta");
 		lead.setStage("incoming");
@@ -130,7 +135,6 @@ public class APIs extends API_Reusable {
 		lead.setNri(false);
 		lead.setProject_id("");
 		lead.setSales(User);
-
 		Form form = new Form();
 		form.setNote(note);
 		form.setLead(lead);
@@ -138,48 +142,126 @@ public class APIs extends API_Reusable {
 		selldo.setForm(form);
 		RootLeadCreate root = new RootLeadCreate();
 		root.setSell_do(selldo);
-		root.setApi_key(APIKey);
+		root.setApi_key(prop("Clinet_API_Res"));
 
-		return RestAssured.given().urlEncodingEnabled(true).contentType(ContentType.JSON).body(root).when().post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response().as(Root_CreateLead_GET.class);
+		return RestAssured.given().urlEncodingEnabled(true).contentType(ContentType.JSON).body(root).when()
+				.post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response()
+				.as(Root_CreateLead_GET.class);
 	}
-	// ============================ Other  =========================
+	// ============================ Other =========================
 
-	public ArrayList<String> getAllProjectID(String APIKey, String ClientID) {
-		
+	public ArrayList<String> getAllProjectID() {
+
 		String page = null;
 		ArrayList<String> ary = new ArrayList<String>();
-		
+
 		String URL = prop("URL") + "/client/projects.json";
 		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
-				.queryParam("page", page).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when()
-				.get(URL).then().extract().response().jsonPath().getInt("total");
+				.queryParam("page", page).queryParam("client_id", prop("Client_id"))
+				.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response().jsonPath()
+				.getInt("total");
 		System.out.println("Total Project On this client is " + totalProject);
 		int totalPage = (totalProject / 15);
-		
+
 		for (int i = 1; i <= totalPage; i++) {
 			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
-					.queryParam("page", i).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when().get()
-					.then().extract().response();
+					.queryParam("page", i).queryParam("client_id", prop("Client_id"))
+					.queryParam("api_key", prop("Clinet_API_Full")).when().get().then().extract().response();
 			for (int j = 0; j < 15; j++) {
 				ary.add(response.jsonPath().getString("results[" + j + "]._id"));
-				// System.out.println(response.jsonPath().getString("results[" + j + "]._id"));
 			}
 		}
 		return ary;
 	}
-	
+
+	public String getProjectID(String nameOfProject) {
+
+		String page = null;
+		ArrayList<String> ary = new ArrayList<String>();
+
+		String URL = prop("URL") + "/client/projects.json";
+		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+				.queryParam("page", page).queryParam("client_id", prop("Client_id"))
+				.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response().jsonPath()
+				.getInt("total");
+		System.out.println("Total Project On this client is " + totalProject);
+		int totalPage = (totalProject / 15);
+
+		for (int i = 1; i <= totalPage; i++) {
+			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+					.queryParam("page", i).queryParam("client_id", prop("Client_id"))
+					.queryParam("api_key", prop("Clinet_API_Full")).when().get().then().extract().response();
+			for (int j = 0; j < 15; j++) {
+				ary.add(response.jsonPath().getString("results[" + j + "].name"));
+			}
+		}
+		return ary.stream().filter(S -> S.equalsIgnoreCase(nameOfProject)).findFirst().get();
+	}
+
+	public String getProjectName(String nameOfProject) {
+
+		String page = null;
+		ArrayList<String> ary = new ArrayList<String>();
+
+		String URL = prop("URL") + "/client/projects.json";
+		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+				.queryParam("page", page).queryParam("client_id", prop("Client_id"))
+				.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response().jsonPath()
+				.getInt("total");
+		System.out.println("Total Project On this client is " + totalProject);
+		int totalPage = (totalProject / 15);
+
+		for (int i = 1; i <= totalPage; i++) {
+			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+					.queryParam("page", i).queryParam("client_id", prop("Client_id"))
+					.queryParam("api_key", prop("Clinet_API_Full")).when().get().then().extract().response();
+			for (int j = 0; j < 15; j++) {
+				ary.add(response.jsonPath().getString("results[" + j + "]._id"));
+			}
+		}
+		return ary.stream().filter(S -> S.equalsIgnoreCase(nameOfProject)).findFirst().get();
+	}
+	// ============================ User related =========================
+
+	public Root_GetAllUser_GET_2 getUserList() throws FileNotFoundException, IOException {
+		Properties prop = new Properties();
+		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
+
+		String full = prop.getProperty("URL") + "/client/users.json?api_key=" + prop("Clinet_API_Full") + "&client_id="
+				+ prop("Client_id");
+		return RestAssured.given().when().get(full).then().extract().response().as(Root_GetAllUser_GET_2.class);
+	}
+
+	public String GetUserNameByID(String id) {
+		try {
+			return getUserList().getAll_users().stream().filter(S -> S.getId().equalsIgnoreCase(id))
+					.map(S -> S.getText()).findFirst().get();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String GetUserIDByName(String name) {
+		try {
+			return getUserList().getAll_users().stream().filter(S -> S.getText().trim().equalsIgnoreCase(name))
+					.map(S -> S.getId()).findFirst().get();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	@Test
 	public void Tests() throws FileNotFoundException, IOException {
 
-		String apiFull = "c13ad8e13264b1c22bc39bb475889c7e";
+		String apiFull = "d2d386fbcc9805220d76fa9137519e78";
 		String APIRes = "fa8d6ca0217e676a7b0e06f51c32568c";
 		String clientID = "587ddb2b5a9db31da9000002";
 		String Userid = "587ddb2b5a9db31da9000001";
-		String LEADCRMID =createLead(APIRes, Userid).getSell_do_lead_id();
-		System.out.println(">>>>>>>"+LEADCRMID);
-		String leadID=getLeadId(apiFull,clientID,LEADCRMID);
-		
-		Update_Lead.UpdateLead(apiFull, clientID, leadID);
+		getAllLeadActivity("10380").getResults().stream().forEach(S->System.out.println(S.getNote().getContent()));
 	}
 
 }
