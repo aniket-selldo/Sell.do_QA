@@ -118,7 +118,7 @@ public class AdminDashboardPage extends ReusableUtils {
 		LoginPage login = new LoginPage(driver);
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-		login.login("ketan@amuratech.com", "amura@123");
+		login.login(prop("Aniket_SM"), prop("Aniket_SM_PSWD"));
 
 		try {
 			waitUntilClickable(clickOnSetting, 1).isDisplayed();

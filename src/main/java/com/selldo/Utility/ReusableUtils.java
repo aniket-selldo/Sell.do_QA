@@ -47,6 +47,15 @@ public class ReusableUtils {
 		}
 		return prop;
 	}
+	protected String prop(String str) {
+		Properties prop = new Properties();
+		try {
+			prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return prop.getProperty(str);
+	}
 
 // --------------------------Wait ------------------------
 

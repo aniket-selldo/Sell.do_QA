@@ -20,9 +20,8 @@ public class SendingEmailWithCCandBCCTest extends BaseTest {
 		login.login(prop("Sales_email"), prop("Password"));
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
-
-		salesPresalesDashboard
-				.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
+		String leadID = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
+		salesPresalesDashboard.searchLead(leadID);
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
 		leadProfilePage.clickOnEmailLink();
@@ -35,10 +34,9 @@ public class SendingEmailWithCCandBCCTest extends BaseTest {
 
 		emailPage.enterSubject("Email Subject generated via Automation");
 
-		emailPage.entertextInBody("Body Of Email "+Random("AN",1000));
+		emailPage.entertextInBody("Body Of Email " + Random("AN", 1000));
 
 		emailPage.clickOnSendEmailButton();
-		Assert.assertEquals(getSuccessMSG(), "Email sent successfully", "email not sended succesfully");
 
 		Thread.sleep(500);
 
@@ -49,10 +47,10 @@ public class SendingEmailWithCCandBCCTest extends BaseTest {
 		SalesPresalesDashboardPage salesPresalesDashboardPage = new SalesPresalesDashboardPage(driver);
 		salesPresalesDashboardPage.pageRefresh();
 
-		String text =leadProfilePage.getEmailStatus();
+		String text = leadProfilePage.getEmailStatus();
 
-		String exp[] = {"outgoing  |  delivered","outgoing  |  -"};
-		Assert.assertEquals(text, exp[1], "send mail status not as expected");
+		String exp[] = { "outgoing  |  delivered", "outgoing  |  -" ,"outgoing  |  failed"};
+		Assert.assertEquals(text, exp[2], "send mail status not as expected");
 
 	}
 

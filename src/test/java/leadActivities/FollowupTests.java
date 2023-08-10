@@ -22,8 +22,8 @@ public class FollowupTests extends BaseTest {
 		login.login(prop("Sales_email"), prop("Password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-		adminDashboardPage
-				.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
+		String leadID ="#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
+		adminDashboardPage.searchLead(leadID);
 
 		WebElement Lead1 = driver.findElement(By.cssSelector("span[name='lead_id']"));
 		String leadtext1 = Lead1.getText().replaceAll("\\s+", "");
@@ -33,7 +33,7 @@ public class FollowupTests extends BaseTest {
 		leadProfilePage.followupLink_2();
 		FollowupsPage followupsPage = new FollowupsPage(driver);
 
-		String date = followupsPage.dateSelector(7);
+		String date = followupsPage.dateSelector(12);
 
 		String followupBy = followupsPage.clickOnScheduleFollowupButton();
 
@@ -42,15 +42,12 @@ public class FollowupTests extends BaseTest {
 		} catch (Exception e) {
 		}
 
-		// Assert.assertEquals(getSuccessMSG(), "Followup call scheduled successfully");
-
 		String expec = ("A followup call is scheduled by " + leadProfilePage.getUserName() + " on " + date);
 		String feedTest = followupsPage.getFeedText();
 
 		Assert.assertEquals(expec, feedTest, "Followup is not scheduled");
 		System.out.println(followupsPage.getFeedText());
-		// cancel followup
-		salesPresalesDashboard.searchLead(leadtext1);
+		salesPresalesDashboard.searchLead(leadID);
 
 		leadProfilePage.followupLink();
 		leadProfilePage.cancleFollowup();// Followup call scheduled successfully

@@ -105,10 +105,9 @@ public class EmailPage extends ReusableUtils {
 	}
 
 	public void enterCCEmail(String cc) throws Exception {
-
-		jsClick(addCCLink);
+		addCCLink.click();;
 		waitUntilVisiblity(CCInputField).sendKeys(cc);
-		Thread.sleep(1000);
+		wait(1000);
 		waitUntilVisiblity(CCInputField).sendKeys(Keys.RETURN);
 	}
 	
@@ -122,7 +121,7 @@ public class EmailPage extends ReusableUtils {
 	}
 	public void enterBCCEmail(String bcc) throws Exception {
 
-		jsClick(addBCCLink);
+		addBCCLink.click();;
 		waitUntilVisiblity(BCCInputField).sendKeys(bcc);
 		Thread.sleep(1000);
 		waitUntilVisiblity(BCCInputField).sendKeys(Keys.RETURN);

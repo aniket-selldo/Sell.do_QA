@@ -80,10 +80,11 @@ public class TaskPage extends ReusableUtils {
 	}
 
 	public void clickOnSaveButton() throws Exception {
-		waitUntilClickable(saveButton);
-		saveButton.click();
+		wait(1000);
+		jsClick(saveButton);
 	}
 	public void selectTaskStatus(String str) {
+		wait(1000);
 		selectByVisibleText(selectTaskStatus,str);
 	}
 }

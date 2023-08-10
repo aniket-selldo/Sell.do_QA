@@ -21,7 +21,7 @@ public class AddingNewProjectTest extends BaseTest {
 		LoginPage login = new LoginPage(driver);
 		NewDeveloperFormPage newDeveloperFormPage = new NewDeveloperFormPage(driver);
 
-		login.login(prop("Client_id"), prop("Password"));
+		login.login(prop("Clinet_Email"), prop("Password"));
 
 		WebElement element = driver.findElement(By.cssSelector("i.ion-cube"));
 		Actions action = new Actions(driver);

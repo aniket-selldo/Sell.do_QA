@@ -18,7 +18,7 @@ public class AddingANoteTest extends BaseTest {
 		LoginPage login = new LoginPage(driver);
 		login.login(prop("Sales_email"), prop("Password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
-		salesPresalesDashboard.searchLead("#"+new APIs().createLead(prop("Clinet_API_Res"),prop("Sales_id")).getSell_do_lead_id());
+		salesPresalesDashboard.searchLead("#"+new APIs().createLead(prop("Sales_id")).getSell_do_lead_id());
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 		System.out.println("Lead Id >>> " + leadProfilePage.getLeadId());
 		leadProfilePage.clickOnAddANoteLink();

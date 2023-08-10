@@ -24,10 +24,10 @@ public class LogOfflineCall_InboundNotAnsweredTest extends BaseTest {
 		LogOfflineCallPage logOfflineCallPage = new LogOfflineCallPage(driver);
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
+		String leadID = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
 
-		adminDashboardPage
-		.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
-		
+		adminDashboardPage.searchLead(leadID);
+
 		leadProfilePage.selectLogOfflineCalls();
 
 		logOfflineCallPage.selectDirection_Inbound();
@@ -68,7 +68,8 @@ public class LogOfflineCall_InboundNotAnsweredTest extends BaseTest {
 		System.out.println(" ===" + recordingText);
 
 		Assert.assertEquals(recordingText, "No recording available", "text not matching");
-		Assert.assertEquals(leadProfilePage.getFeedTextCall(), "Incoming  |  Offline  |  Not Answered", "text not matching");
+		Assert.assertEquals(leadProfilePage.getFeedTextCall(), "Incoming  |  Offline  |  Not Answered",
+				"text not matching");
 
 	}
 

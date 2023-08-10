@@ -17,8 +17,7 @@ public class ExportBookingsTest extends BaseTest {
 	public void exportBookingsTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("superadmin_name") + prop.getProperty("superadmin_email"),
-				prop.getProperty("password"));
+		login.login(prop("Admin_id"), prop("Password"));
 
 		ClientLoginPage clientLogin = new ClientLoginPage(driver);
 
@@ -40,7 +39,7 @@ public class ExportBookingsTest extends BaseTest {
 
 		exportPage.clickOnNextButton();
 
-		 exportPage.scrollToBottom(); 
+		exportPage.scrollToBottom();
 
 		exportPage.clickOnExportButton();
 
@@ -79,7 +78,7 @@ public class ExportBookingsTest extends BaseTest {
 
 		String exportStatus = exportPage.getExportStatus();
 
-		//exportPage.refreshExport();
+		// exportPage.refreshExport();
 		Assert.assertEquals(exportStatus, "completed", "Export is not completed successfully");
 
 		// exportPage.clickOnFilterCrossIcon();
@@ -87,7 +86,7 @@ public class ExportBookingsTest extends BaseTest {
 		String emailInHistory = exportPage.getEmailAttribute();
 		System.out.println(emailInHistory);
 
-		//Thread.sleep(3000);
+		// Thread.sleep(3000);
 
 		Assert.assertEquals(emailInHistory, emailToWhichExported, "Not matched");
 		if (exportPage.getExportCount() > 0 && !exportPage.getFileDisplayedOrNot()) {

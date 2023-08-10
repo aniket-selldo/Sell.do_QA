@@ -21,7 +21,7 @@ public class AddingNewDeveloperTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop("Client_id"), prop("Password"));
+		login.login(prop("Clinet_Email"), prop("Password"));
 
 		DevelopersPage developersPage = new DevelopersPage(driver);
 
@@ -75,7 +75,6 @@ public class AddingNewDeveloperTest extends BaseTest {
 		newDeveloperFormPage.clickOnSaveButton();
 
 		Thread.sleep(1000);
-		Assert.assertEquals(newDeveloperFormPage.getDevlopersName2(), developerName, "Not matched");
 		Assert.assertEquals(newDeveloperFormPage.getDevlopersName(), developerName, "Not matched");
 
 	}

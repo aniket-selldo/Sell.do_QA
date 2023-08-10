@@ -6,8 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
@@ -22,6 +20,7 @@ import POJO_CreateFollowup.RootFolloup;
 import POJO_CreateFollowup_GET.Root_followUp_Get;
 import POJO_GetAllActivityOnLead.Root_GetAllLeadActivity;
 import POJO_GetAllUser_GET_2.Root_GetAllUser_GET_2;
+import POJO_GetFollowUpCancelationReson.Root_CancellationReasons;
 import POJO_LeadCreate.Form;
 import POJO_LeadCreate.Lead;
 import POJO_LeadCreate.Note;
@@ -62,41 +61,60 @@ public class APIs extends API_Reusable {
 		return response.as(Root_followUp_Get.class);
 	}
 
+	public ArrayList<String> getAllFollowupCancelationResons() {
+		String URL = prop("URL") + "/client/configuration/followup_cancellation_reasons";
+		Response res = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+				.queryParam("client_id", prop("Client_id")).queryParam("api_key", prop("Clinet_API_Full")).when()
+				.get(URL).then().extract().response();
+
+		ArrayList<String> ary = new ArrayList<String>();
+		System.out.println();
+		for (int i = 0; i < 6; i++) {
+			ary.add(res.jsonPath().getString("[" + i + "].text"));
+			System.out.println(res.jsonPath().getString("[" + i + "].text"));
+		}
+		return ary;
+
+	}
+
 	// ============================ Site Visit =========================
 
-	public Root_sitevisitSchedule_Get createSiteVisit(String APIKey, String CliendID, String USerID, String leadCRMID) {
-
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH");// yyyy/MM/dd
-		LocalDateTime now = LocalDateTime.now();
-		String date = dtf.format(now) + ":59 IST";
-		System.out.println("Date >> " + date);
+	public Root_sitevisitSchedule_Get createSiteVisit(String leadCRMID, int min_ahead) {
 
 		RootCreateSiteVisit root = new RootCreateSiteVisit();
 		SiteVisit siteVisit = new SiteVisit();
 
 		siteVisit.setProject_id(getAllProjectID().get(0));
-		String CurrentTime = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime() + (10 * 60000))
+		// int min_ahead = 20;
+		String CurrentTime = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime() + (min_ahead * 60000))
 				+ " IST";
 		siteVisit.setScheduled_on(CurrentTime);
-		String NextTime = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime() + (25 * 60000)) + " IST";
+		String NextTime = new SimpleDateFormat("dd-MM-yyyy HH:mm")
+				.format(new Date().getTime() + ((15 + min_ahead) * 60000)) + " IST";
 		siteVisit.setEnds_on(NextTime);
-		siteVisit.setSales_id(USerID);
+		siteVisit.setSales_id(prop("Sales_id"));
 		siteVisit.setSitevisit_type("visit");// visit | home_visit | online_walkthrough
 		siteVisit.setAgenda("Agenda By Rest Assured");
-		siteVisit.setConfirmed(false);
+		siteVisit.setConfirmed(true);
 		siteVisit.setLead_crm_id(leadCRMID);
 		siteVisit.setRating("4");
 		siteVisit.setTest("test");
 
-		root.setApi_key(APIKey);
-		root.setClient_id(CliendID);
+		root.setApi_key(prop("Clinet_API_Full"));
+		root.setClient_id(prop("Client_id"));
 		root.setSite_visit(siteVisit);
 
-		String leadID = getLeadId(leadCRMID);
-		String url = prop("URL") + "/client/leads/" + leadID + "/site_visits.json";
-		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).post(url);
-		return response.as(Root_sitevisitSchedule_Get.class);
+		String url = prop("URL") + "/client/leads/" + getLeadId(leadCRMID) + "/site_visits.json";
+		return RestAssured.given().contentType(ContentType.JSON).body(root).post(url).then().extract().response()
+				.as(Root_sitevisitSchedule_Get.class);
 
+	}
+
+	public void markAllSiteVisitConductedOnLead(String leadID) {
+
+		getAllLeadActivity(leadID).getResults().stream()
+				.filter(S -> S.getSite_visit() != null && S.getSite_visit().getStatus().equalsIgnoreCase("scheduled"))
+				.forEach(S -> new MarkSiteVisitConducted().markSVSconducted(leadID, S.getSite_visit().get_id()));
 	}
 
 	// ============================ Lead Related =========================
@@ -111,9 +129,9 @@ public class APIs extends API_Reusable {
 		return leadCRMid;
 	}
 
-	public Root_GetAllLeadActivity getAllLeadActivity( String leadCRMID) {
-		String URL = prop("URL") + "/client/leads/" + getLeadId(leadCRMID) + "/activities?api_key=" + prop("Clinet_API_Full") + "&client_id="
-				+ prop("Client_id");
+	public Root_GetAllLeadActivity getAllLeadActivity(String leadCRMID) {
+		String URL = prop("URL") + "/client/leads/" + getLeadId(leadCRMID) + "/activities?api_key="
+				+ prop("Clinet_API_Full") + "&client_id=" + prop("Client_id");
 		return RestAssured.given().contentType(ContentType.JSON).when().get(URL).then().extract().response()
 				.as(Root_GetAllLeadActivity.class);
 	}
@@ -166,12 +184,37 @@ public class APIs extends API_Reusable {
 		for (int i = 1; i <= totalPage; i++) {
 			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
 					.queryParam("page", i).queryParam("client_id", prop("Client_id"))
-					.queryParam("api_key", prop("Clinet_API_Full")).when().get().then().extract().response();
+					.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response();
 			for (int j = 0; j < 15; j++) {
 				ary.add(response.jsonPath().getString("results[" + j + "]._id"));
 			}
 		}
 		return ary;
+	}
+
+	public String getRandomProjectID() {
+
+		String page = null;
+		ArrayList<String> ary = new ArrayList<String>();
+
+		String URL = prop("URL") + "/client/projects.json";
+		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+				.queryParam("page", page).queryParam("client_id", prop("Client_id"))
+				.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response().jsonPath()
+				.getInt("total");
+		System.out.println("Total Project On this client is " + totalProject);
+		int totalPage = (totalProject / 15);
+
+		for (int i = 1; i <= totalPage; i++) {
+			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+					.queryParam("page", i).queryParam("client_id", prop("Client_id"))
+					.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response();
+			for (int j = 0; j < 15; j++) {
+				ary.add(response.jsonPath().getString("results[" + j + "]._id"));
+			}
+		}
+		int index = (int) (Math.random() * ary.size());
+		return ary.get(index);
 	}
 
 	public String getProjectID(String nameOfProject) {
@@ -257,11 +300,19 @@ public class APIs extends API_Reusable {
 	@Test
 	public void Tests() throws FileNotFoundException, IOException {
 
-		String apiFull = "d2d386fbcc9805220d76fa9137519e78";
-		String APIRes = "fa8d6ca0217e676a7b0e06f51c32568c";
-		String clientID = "587ddb2b5a9db31da9000002";
-		String Userid = "587ddb2b5a9db31da9000001";
-		getAllLeadActivity("10380").getResults().stream().forEach(S->System.out.println(S.getNote().getContent()));
+//		String apiFull = "d2d386fbcc9805220d76fa9137519e78";
+//		String APIRes = "fa8d6ca0217e676a7b0e06f51c32568c";
+//		String clientID = "587ddb2b5a9db31da9000002";
+//		String Userid = "587ddb2b5a9db31da9000001";
+//		getAllLeadActivity("10267").getResults().stream().filter(S -> S.getSite_visit() != null&&S.getSite_visit().getStatus().equalsIgnoreCase("scheduled"))
+//				.forEach(S -> markAllSiteVisitConductedOnLead("10267",S.getSite_visit().get_id()));
+		;
+
+		// createSiteVisit("10267", 57);
+		// markAllSiteVisitConductedOnLead("10267");
+		// System.out.println(getAllFollowupCancelationResons().getText());
+		getAllFollowupCancelationResons();
+
 	}
 
 }

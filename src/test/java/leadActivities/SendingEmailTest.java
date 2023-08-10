@@ -17,11 +17,10 @@ public class SendingEmailTest extends BaseTest {
 	public void sendingEmailTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login("aniket.khandizod+sae02@sell.do", "amura@123");
+		login.login(prop("Sales_email"), prop("Password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
-
-		salesPresalesDashboard
-				.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
+		String leadID = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
+		salesPresalesDashboard.searchLead(leadID);
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 

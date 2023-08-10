@@ -21,8 +21,9 @@ public class ReschedulingSiteVisitTest extends BaseTest {
 		LoginPage login = new LoginPage(driver);
 		login.login(prop("Sales_email"), prop("Password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
+		String leadID = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
 
-		salesPresalesDashboard.searchLead("#"+new APIs().createLead(prop("Clinet_API_Res"),prop("Sales_id")).getSell_do_lead_id());
+		salesPresalesDashboard.searchLead(leadID);
 
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
@@ -33,7 +34,8 @@ public class ReschedulingSiteVisitTest extends BaseTest {
 
 		siteVisitPage.selectProject();
 
-		int date = siteVisitPage.sitevisitScheduleDate();
+		//int date = siteVisitPage.sitevisitScheduleDate();
+		siteVisitPage.siteVisitSceduleDate(0);
 
 		siteVisitPage.clickOnScheduleSiteVisitButton();
 
@@ -56,7 +58,8 @@ public class ReschedulingSiteVisitTest extends BaseTest {
 				.getText();
 		System.out.println(projectName);
 
-		siteVisitPage.sitevisitRescheduleDate();
+		//siteVisitPage.sitevisitRescheduleDate();
+		String rescheduleDate =siteVisitPage.siteVisitResceduleDate(5);
 
 		siteVisitPage.clickOnRescheduleButton();
 
@@ -78,7 +81,7 @@ public class ReschedulingSiteVisitTest extends BaseTest {
 
 		System.out.println(">>> " + text);
 		Assert.assertEquals(text.split(",")[0],
-				"The Site visit is scheduled for " + projectName + " on " + "" + 28 + "/" + DateTime("MM/YYYY"));
+				"The Site visit is scheduled for " + projectName + " on " + "" + rescheduleDate);
 
 	}
 

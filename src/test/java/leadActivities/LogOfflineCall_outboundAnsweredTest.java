@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LogOfflineCallPage;
@@ -26,8 +25,9 @@ public class LogOfflineCall_outboundAnsweredTest extends BaseTest {
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
-		adminDashboardPage
-		.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
+		String leadID = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
+
+		adminDashboardPage.searchLead(leadID);
 
 		leadProfilePage.selectLogOfflineCalls();
 
@@ -52,17 +52,7 @@ public class LogOfflineCall_outboundAnsweredTest extends BaseTest {
 		leadProfilePage.clickOnCall_d();
 
 		String text = leadProfilePage.callText();
-
-		//Assert.assertTrue(text.contains("You had an outgoing call with the Lead"));
-
-		/*
-		 * String directionText = driver.findElement(By.cssSelector(
-		 * "#tab-activity > div.activities_list > div:nth-child(1) > div > div.card > div > div:nth-child(3) > div:nth-child(2) > span"
-		 * )) .getText(); System.out.println(directionText);
-		 * System.out.println("Length Of leadId -> " + directionText.length()); String
-		 * croppedDirectionText = directionText.substring(0, +directionText.length() -
-		 * 5); System.out.println(croppedDirectionText);
-		 */
+		
 		Assert.assertEquals(leadProfilePage.getFeedTextCall(), "Outgoing  |  Offline  |  Answered",
 				"text not matching");
 

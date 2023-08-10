@@ -15,7 +15,7 @@ public class AddAccessSM extends BaseTest {
 	@Test
 	public void addSMPermsssion() throws InterruptedException {
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("SM"), prop.getProperty("password"));
+		login.login(prop("SM"), prop("Password"));
 
 		waitUntilClickable(driver.findElement(By.linkText("Support Permissions"))).click();
 		addSMpermission("aniket.khandizod@sell.do");

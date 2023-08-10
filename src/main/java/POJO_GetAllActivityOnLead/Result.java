@@ -1,11 +1,20 @@
 package POJO_GetAllActivityOnLead;
 
 public class Result {
-	private Note note;
-	private Feed feed;
-	private SiteVisit site_visit;
-	private Followup followup;
-	private Whatsapp whatsapp;
+	 private Followup followup;
+	   private Feed feed;
+	   private SiteVisit site_visit;
+	   private Email email;
+	   private Whatsapp whatsapp;
+	   private Note note;
+
+	public Email getEmail() {
+		return email;
+	}
+
+	public void setEmail(Email email) {
+		this.email = email;
+	}
 
 	public Note getNote() {
 		return note;

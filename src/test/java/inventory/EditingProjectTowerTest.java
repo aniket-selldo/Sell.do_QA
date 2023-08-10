@@ -17,7 +17,7 @@ public class EditingProjectTowerTest extends BaseTest {
 	public void editingProjectTowerTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop("Client_id"), prop("Password"));
+		login.login(prop("Clinet_Email"), prop("Password"));
 
 		ProjectTowersPage projectTowersPage = new ProjectTowersPage(driver);
 

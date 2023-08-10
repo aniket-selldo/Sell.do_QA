@@ -20,8 +20,7 @@ public class ChangingSiteVisitStatusTest extends BaseTest {
 		login.login(prop("Sales_email"), prop("Password"));
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
-		adminDashboardPage
-				.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
+		adminDashboardPage.searchLead("#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id());
 
 		String leadId = driver.findElement(By.xpath("//span[@name='lead_id']")).getAttribute("innerHTML");
 		System.out.println(leadId);

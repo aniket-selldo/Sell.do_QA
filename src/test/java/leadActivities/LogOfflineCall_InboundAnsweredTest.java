@@ -25,9 +25,9 @@ public class LogOfflineCall_InboundAnsweredTest extends BaseTest {
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
 		LogOfflineCallPage logOfflineCallPage = new LogOfflineCallPage(driver);
+		String leadID = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
 
-		adminDashboardPage
-		.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
+		adminDashboardPage.searchLead(leadID);
 
 		leadProfilePage.selectLogOfflineCalls();
 

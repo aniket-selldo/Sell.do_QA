@@ -12,8 +12,10 @@ public class Feed {
 	private Object project_id;
 	private String sales_id;
 	private Date updated_at;
+	private String workflow;
 	private Extras extras;
 	private String content;
+	private String reason;
 
 	public String get_id() {
 		return _id;
@@ -87,6 +89,14 @@ public class Feed {
 		this.updated_at = updated_at;
 	}
 
+	public String getWorkflow() {
+		return workflow;
+	}
+
+	public void setWorkflow(String workflow) {
+		this.workflow = workflow;
+	}
+
 	public Extras getExtras() {
 		return extras;
 	}
@@ -101,5 +111,13 @@ public class Feed {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 }

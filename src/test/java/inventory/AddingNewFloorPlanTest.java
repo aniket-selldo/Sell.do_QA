@@ -21,7 +21,7 @@ public class AddingNewFloorPlanTest extends BaseTest {
 		FloorPlansPage floorPlansPage = new FloorPlansPage(driver);
 		NewFloorPlanFormPage newFloorPlanFormPage = new NewFloorPlanFormPage(driver);
 		NewDeveloperFormPage newDeveloperFormPage = new NewDeveloperFormPage(driver);
-		login.login(prop("Client_id"), prop("Password"));
+		login.login(prop("Clinet_Email"), prop("Password"));
 
 	
 		String getAnyDevloperName = newDeveloperFormPage.getFirstDevloperName().split(" ")[0];

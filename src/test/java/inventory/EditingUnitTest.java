@@ -18,7 +18,7 @@ public class EditingUnitTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop("Client_id"), prop("Password"));
+		login.login(prop("Clinet_Email"), prop("Password"));
 
 		UnitsPage unitsPage = new UnitsPage(driver);
 

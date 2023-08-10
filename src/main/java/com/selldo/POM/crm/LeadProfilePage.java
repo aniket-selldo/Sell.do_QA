@@ -587,6 +587,7 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void clickEmail_d() {
+		wait(1000);
 		jsClick(more_d);
 		jsClick(email_d);
 	}

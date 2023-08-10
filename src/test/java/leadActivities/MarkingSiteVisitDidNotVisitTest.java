@@ -22,9 +22,9 @@ public class MarkingSiteVisitDidNotVisitTest extends BaseTest {
 		login.login(prop("Sales_email"), prop("Password"));
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
+		String leadID = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
 
-		adminDashboardPage
-		.searchLead("#" + new APIs().createLead(prop("Clinet_API_Res"), prop("Sales_id")).getSell_do_lead_id());
+		adminDashboardPage.searchLead(leadID);
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
 		leadProfilePage.clickOnMeetingLink();

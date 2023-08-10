@@ -60,6 +60,12 @@ public class SiteVisitPage extends ReusableUtils {
 	private WebElement clickOnSiteVisitType;
 	@FindBy(how = How.XPATH, using = "//li[contains(@class,'select2-re')]")
 	private List<WebElement> selectSiteVisitType;
+	@FindBy(how = How.XPATH, using = "//input[@name='scheduled_date']")
+	private WebElement sitevisitdate;
+	@FindBy(how = How.CSS, using = "input[name='scheduled_date']")
+	private WebElement sitevisitrescheduledate;
+	@FindBy(how = How.CSS, using = "input[name='ends_on_date']")
+	private WebElement sitevisitrescheduledate_end;
 
 	// ...................Reschedule Site visit form........................
 
@@ -133,6 +139,11 @@ public class SiteVisitPage extends ReusableUtils {
 		}
 		return Integer.parseInt(date);
 	}
+	public void siteVisitSceduleDate(int ahead) {
+		String date =new SimpleDateFormat("dd/MM/yyyy")
+				.format(new Date().getTime() + (ahead * (1000 * 60 * 60 * 24))) ;
+		jsSendKey(sitevisitdate,date);
+	}
 
 	public void selectDate() throws Exception {
 		waitUntilClickable(scheduleOnDate).click();
@@ -170,6 +181,15 @@ public class SiteVisitPage extends ReusableUtils {
 				break;
 			}
 		}
+	}
+	public String siteVisitResceduleDate(int ahead) {
+		String date =new SimpleDateFormat("dd/MM/yyyy")
+				.format(new Date().getTime() + (ahead * (1000 * 60 * 60 * 24))) ;
+		jsSendKey(sitevisitrescheduledate,date);
+		String date_end =new SimpleDateFormat("dd/MM/yyyy")
+				.format(new Date().getTime() + (ahead * (1000 * 60 * 60 * 24))+ (15 * 60000)) ;
+		jsSendKey(sitevisitrescheduledate_end,date_end);
+		return date;
 	}
 
 	public void clickOnRescheduleButton() throws Exception {

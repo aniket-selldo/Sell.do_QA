@@ -21,7 +21,7 @@ public class AddConductedSiteVisitTest extends BaseTest {
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 		SiteVisitPage siteVisitPage = new SiteVisitPage(driver);
-		salesPresalesDashboard.searchLead("#"+new APIs().createLead(prop("Clinet_API_Res"),prop("Sales_id")).getSell_do_lead_id());
+		salesPresalesDashboard.searchLead("#"+new APIs().createLead(prop("Sales_id")).getSell_do_lead_id());
 		leadProfilePage.selectConductedSiteVisit();
 		siteVisitPage.selectProject();
 		String status = siteVisitPage.selectSiteVisitType("Home Visit");
