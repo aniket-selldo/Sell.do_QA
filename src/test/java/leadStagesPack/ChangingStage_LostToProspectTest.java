@@ -4,54 +4,40 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
 import com.selldo.Utility.BaseTest;
 
+import API.APIs;
+import API.Update_Lead;
+
 public class ChangingStage_LostToProspectTest extends BaseTest {
 
 	@Test
-
 	public void changingStage_LostToProspectTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("name"), prop.getProperty("password"));
+		login.login(prop("Sales_email"), prop("Password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
-
-		extentTest.get().log(Status.INFO, "Clicking on All Leads.......");
-		//salesPresalesDashboard.goToAllLeadsList();
-
-		extentTest.get().log(Status.INFO, "Selecting Lost list......");
-		//salesPresalesDashboard.SelectList("Lost");
-
-		extentTest.get().log(Status.INFO, "Opening Lead Details page of a lead under Lost stage......");
-		//salesPresalesDashboard.openLeadDetails();
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-		String leadId = adminDashboardPage.searchLead(Integer.parseInt(R('1', '2', '3', '4', '5', '6', '7')), "Lost");
-		extentTest.get().log(Status.INFO, "Getting Lead Id whose stage is to be changed.......");
+		String leadID = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
+		new Update_Lead().LeadStageChnage(leadID,"lost");
+
+		String leadId = adminDashboardPage.searchLead(leadID);
 		String leadIdObj = driver.findElement(By.cssSelector("span[name='lead_id']")).getText().replaceAll("\\s+", "");
 		System.out.println(leadIdObj);
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
-		extentTest.get().log(Status.INFO, "Changing stage from Lost to Prospect.......");
-
 		leadProfilePage.changing_Stage("Prospect");
 
-		extentTest.get().log(Status.INFO, "Going to dashboard.......");
 		salesPresalesDashboard.selectLeadActions(2);
 
-		//wait.until(ExpectedConditions.presenceOfElementLocated(salesPresalesDashboard.searchField));
-
-		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
 		salesPresalesDashboard.searchLead(leadId);
-		
-		Thread.sleep(2000);
 
-		extentTest.get().log(Status.INFO, "Verifying stage changed from Lost to Prospect.......");
+		Thread.sleep(2000);
 
 		String textDropdownObj = driver.findElement(By.cssSelector("#stage-span")).getText().trim();
 		System.out.println(textDropdownObj);

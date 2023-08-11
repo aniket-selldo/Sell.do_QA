@@ -593,6 +593,7 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void clickSms_d() {
+		wait(3000);
 		waitUntilClickable(more_d).click();
 		waitUntilClickable(sms_d).click();
 	}

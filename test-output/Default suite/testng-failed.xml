@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="leadActivities.SendSmsTest">
+      <class name="listsPack.EditingBookingListTest">
         <methods>
           <include name="browserConfig"/>
-          <include name="sendingSmsTest"/>
+          <include name="editingBookingListTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- leadActivities.SendSmsTest -->
+      </class> <!-- listsPack.EditingBookingListTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

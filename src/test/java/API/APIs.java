@@ -166,6 +166,36 @@ public class APIs extends API_Reusable {
 				.post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response()
 				.as(Root_CreateLead_GET.class);
 	}
+	public Root_CreateLead_GET createLead(String api,String User) {
+
+		Note note = new Note();
+		note.setContent("Note By Rest Assured");
+
+		Lead lead = new Lead();
+		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
+		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
+		lead.setEmail(RandomStringUtils.randomAlphanumeric(10) + "@sell.do");
+		lead.setPhone("7" + RandomStringUtils.randomNumeric(9));
+		lead.setSalutation("mr");
+		lead.setTime_zone("Asia/Calcutta");
+		lead.setStage("incoming");
+		lead.setStatus(null);
+		lead.setNri(false);
+		lead.setProject_id("");
+		lead.setSales(User);
+		Form form = new Form();
+		form.setNote(note);
+		form.setLead(lead);
+		SellDo selldo = new SellDo();
+		selldo.setForm(form);
+		RootLeadCreate root = new RootLeadCreate();
+		root.setSell_do(selldo);
+		root.setApi_key(api);
+
+		return RestAssured.given().urlEncodingEnabled(true).contentType(ContentType.JSON).body(root).when()
+				.post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response()
+				.as(Root_CreateLead_GET.class);
+	}
 	// ============================ Other =========================
 
 	public ArrayList<String> getAllProjectID() {

@@ -24,12 +24,14 @@ public class SmsPage extends ReusableUtils {
 	private WebElement sendSmsButton;
 	@FindBy(how = How.XPATH, using = "//label[text()='Compose using template']/following::span[1]")
 	private WebElement templateDropdown;
+	@FindBy(how = How.CSS, using = "div[class='form-group sms_template_select'] div")
+	private WebElement clickOnSelectTamplete;
 	@FindBy(how = How.CSS, using = "#select2-drop > ul > li > div")
 	private List<WebElement> template_dd;
-
+	
 	public void selectSmsTemplate(String templateName) {
-
-		waitUntilClickable(templateDropdown).click();
+		waitUntilClickable(clickOnSelectTamplete).click();
+	//	waitUntilClickable(templateDropdown).click();
 		List<WebElement> list = template_dd;
 
 		for (WebElement ele : list) {

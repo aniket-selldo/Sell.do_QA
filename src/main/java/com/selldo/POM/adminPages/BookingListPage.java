@@ -61,11 +61,15 @@ public class BookingListPage extends ReusableUtils {
 	private WebElement saveButton;
 	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::i[1]")
 	private WebElement actionbar;
+	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::i")
+	private List<WebElement> actionbarList;
 	@FindBy(how = How.LINK_TEXT, using = "Edit")
 	private WebElement editLink;
 	@FindBy(how = How.CSS, using = "table tbody tr:nth-child(1) td:nth-child(1)")
 	private WebElement getListName;
 	public String getListName() {
+		wait(5000);
+		refresh();
 		return waitUntilClickable(getListName).getText().trim();
 	}
 
@@ -100,8 +104,10 @@ public class BookingListPage extends ReusableUtils {
 
 	public void selectSales() {
 		// Scroll to bottom of page
+		wait(1000);
 		scrollIntoView(salesSpan);
-		waitUntilClickable(salesSpan).click();;
+		wait(1000);
+		waitUntilClickable(salesSpan).click();
 		waitUntilClickable(selectDropdownValue).click();
 	}
 
@@ -131,8 +137,8 @@ public class BookingListPage extends ReusableUtils {
 		waitUntilClickable(saveButton).click();
 	}
 
-	public void selectEditLink() {
-		waitUntilClickable(actionbar).click();
+	public void selectEditLink(int location) {
+		waitUntilClickable(actionbarList.get(location)).click();
 		waitUntilClickable(editLink).click();
 		wait(2000);
 	}

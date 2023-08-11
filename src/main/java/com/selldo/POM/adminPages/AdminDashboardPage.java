@@ -205,7 +205,7 @@ public class AdminDashboardPage extends ReusableUtils {
 	}
 
 	// TO search lead using lead id
-	public void searchLead(String leadId) throws InterruptedException {
+	public String searchLead(String leadId) throws InterruptedException {
 //		waitUntilClickable(newEnquiry).click();
 //		wait(1000);
 //		waitUntilVisiblity(
@@ -222,6 +222,8 @@ public class AdminDashboardPage extends ReusableUtils {
 		waitUntilClickable(searchField).click();
 		waitUntilVisiblity(searchTextBox).sendKeys(leadId);
 		waitUntilVisiblity(driver.findElement(By.xpath("//div[@class='select2-result-label']"))).click();
+		System.out.println("Search lead id >> "+leadId);
+		return leadId;
 	}
 
 	public void serchLeadGlobally(String leadId) {

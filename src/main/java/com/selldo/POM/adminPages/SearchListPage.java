@@ -45,10 +45,16 @@ public class SearchListPage extends ReusableUtils {
 	private WebElement editLink;
 	@FindBy(how = How.XPATH, using = "//div[@class='daterangepicker dropdown-menu single opensright show-calendar']//tr//td")
 	private List<WebElement> scheduledActivityRange_CalendarEndDate;
+	@FindBy(how = How.LINK_TEXT, using = "Between")
+	private WebElement clickOnBetween;
 	@FindBy(how = How.XPATH, using = "//input[@class='datepicker starts_on input-normal']")
 	private WebElement startDate;
 	@FindBy(how = How.XPATH, using = "//input[@class='datepicker ends_on input-normal']")
 	private WebElement endDate;
+	@FindBy(how = How.CSS, using = "div[class='tab-pane fade active show'] input[class='starts_on input-normal']")
+	private WebElement startDate_1;
+	@FindBy(how = How.CSS, using = "div[class='tab-pane fade active show'] input[class='ends_on input-normal']")
+	private WebElement endDate_1;
 	@FindBy(how = How.CSS, using = "button[class='btn btn-sm btn-primary applyBtn']")
 	private WebElement applyButton;
 	@FindBy(how = How.XPATH, using = "//*[@id=\"s2id_search_criterium_date_range_order\"]/a/span[1]")
@@ -57,10 +63,11 @@ public class SearchListPage extends ReusableUtils {
 	private List<WebElement> orderList;
 	@FindBy(how = How.XPATH, using = "//th[text()='name']/following::span[1]")
 	private WebElement getLestName;
-	
+
 	public void clickOnNewListButton() {
 		waitUntilClickable(newListButton).click();
 	}
+
 	public String getLestName() {
 		return waitUntilVisiblity(getLestName).getText().trim();
 	}
@@ -94,11 +101,20 @@ public class SearchListPage extends ReusableUtils {
 		}
 	}
 
+	public void selectScheduledActivityRange_02() {
+		waitUntilClickable(scheduledActivityRangeSpan).click();
+		waitUntilClickable(startDate_1).click();
+		waitUntilVisiblity(startDate_1).sendKeys("2");
+		waitUntilClickable(endDate_1).click();
+		waitUntilVisiblity(endDate_1).sendKeys("10");
+		waitUntilClickable(applyButton).click();
+	}
+
 	public void selectScheduledActivityRange() {
 
 		// Click Scheduled activity range field
 		waitUntilClickable(scheduledActivityRangeSpan).click();
-
+		waitUntilClickable(clickOnBetween).click();
 		// Click Start date field and select the date
 		waitUntilClickable(startDate).click();
 		List<WebElement> dates = scheduledActivityRange_CalendarStartDate;
@@ -110,7 +126,7 @@ public class SearchListPage extends ReusableUtils {
 				break;
 			}
 		}
-	
+
 		// Click end date field and select the select date
 		waitUntilClickable(endDate).click();
 		List<WebElement> dates2 = scheduledActivityRange_CalendarEndDate;
@@ -122,7 +138,6 @@ public class SearchListPage extends ReusableUtils {
 				break;
 			}
 		}
-		
 
 		// Click Apply button
 		waitUntilClickable(applyButton).click();
