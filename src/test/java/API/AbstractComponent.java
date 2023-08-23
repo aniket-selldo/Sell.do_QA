@@ -24,6 +24,6 @@ public class AbstractComponent {
         System.out.println("\n2. Map with Key and its duplicate count : \n");
         duplicateCountMap.forEach(
                 (key, value) -> System.out.println("Key : " + key + "\t Count : " + value)
-                ); 
+                ); //
 	}
 }
