@@ -4,10 +4,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.ExportPage;
 import com.selldo.POM.adminPages.SettingsPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -18,13 +16,8 @@ public class ExportInvoices_ItemizedBill_EmailTest extends BaseTest {
 	public void exportInvoices_ItemizedBill_EmailTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-
-		login.login(prop.getProperty("superadmin_name") + prop.getProperty("superadmin_email"),
-				prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("client_name"));
+		login.login(prop("Amura_Admin"), prop("Password"));
+		
 		SettingsPage settingsPage = new SettingsPage(driver);
 
 		ExportPage exportPage = new ExportPage(driver);
@@ -37,7 +30,7 @@ public class ExportInvoices_ItemizedBill_EmailTest extends BaseTest {
 
 		exportPage.selectInvoiceType_Email();
 
-		String emailToWhichExported = prop.getProperty("export_email");
+		String emailToWhichExported = prop("Export_Gmail");
 
 		exportPage.enterEmail(emailToWhichExported);
 		exportPage.clickOnNextButton();
@@ -67,19 +60,15 @@ public class ExportInvoices_ItemizedBill_EmailTest extends BaseTest {
 		String itemisedBill_Email = exportPage.getExportLabel();
 		System.out.println(itemisedBill_Email);
 
-		// Assert.assertEquals(itemisedBill_Email, "Itemized Bill Emails - Export 1",
-		// "Not matched");
 		Assert.assertTrue(
 				driver.findElements(By.cssSelector("#export_type")).get(0).getText().contains("Invoices (Email)"),
-				"Not matched");// Booking Details - Export 1
+				"Not matched");
 
-		// wait.until(ExpectedConditions.visibilityOfElementLocated(exportPage.exportStatus));
 		exportPage.refreshExport();
 		String exportStatus = exportPage.getExportStatus();
 
 		Assert.assertEquals(exportStatus, "completed", "Export is not completed successfully");
-
-		// exportPage.clickOnFilterCrossIcon();
+		Assert.assertTrue(exportPage.getExportStatus_vlaidateAll());
 
 		String emailInHistory = exportPage.getEmailAttribute();
 		System.out.println(emailInHistory);

@@ -3,11 +3,8 @@ package otherLeadActivitiesPack;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
@@ -15,72 +12,63 @@ import com.selldo.POM.crm.MergeLeadsPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
 import com.selldo.Utility.BaseTest;
 
+import API.APIs;
+import API.Update_Lead;
+
 public class MergingTwoLeadsFromSameStagesTest extends BaseTest {
 
 	@Test
+	public void mergingTwoLeadsFromSameStagesTest() throws Exception {LoginPage login = new LoginPage(driver);
+	login.login(prop("Sales_email"), prop("Password"));
 
-	public void mergingTwoLeadsFromSameStagesTest() throws Exception {
-		LoginPage login = new LoginPage(driver);
-		login.login("aniket.khandizod+pre02@sell.do", "amura@123");
-		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
+	Thread.sleep(3000);
 
-		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
+	AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
-		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
+	SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
-		extentTest.get().log(Status.INFO, "Going to All Lead List.......");
-		salesPresalesDashboard.goToAllLeadsList();
+	LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
 
-		Thread.sleep(2000);
+	String leadID = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
+	new Update_Lead().LeadStageChnage(leadID,"incoming");
 
-		extentTest.get().log(Status.INFO, "Selecting Prospect list......");
-		adminDashboardPage.SelectList("Incoming");
-		adminDashboardPage.clearFilter();
-		extentTest.get().log(Status.INFO, "Opening Lead Deatils Page.......");
-		salesPresalesDashboard.openLeadDetails(Integer.parseInt(R('0','1','2','3','4','5','6','7')));
+	adminDashboardPage.searchLead(leadID);
 
-		WebElement Lead1 = driver.findElement(By.cssSelector("span[name='lead_id']"));
-		String leadtext1 = (Lead1.getText().replaceAll("\\s+", "").substring(1)) + "#";
+	WebElement Lead1 = driver.findElement(By.cssSelector("span[name='lead_id']"));
+	String leadtext1 = (Lead1.getText().replaceAll("\\s+", "").substring(1)) + "#";
+	System.out.println(leadtext1);
 
-		System.out.println(leadtext1);
+	salesPresalesDashboard.goToAllLeadsList();
 
-		extentTest.get().log(Status.INFO, "Going to All Lead List.......");
-		salesPresalesDashboard.goToAllLeadsList();
+	String leadID2 = "#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
+	new Update_Lead().LeadStageChnage(leadID2, "incoming");
+	adminDashboardPage.searchLead(leadID2);
+	
+	leadProfilePage.selectMergeLeads();
 
-		extentTest.get().log(Status.INFO, "Selecting Prospect list......");
-		adminDashboardPage.SelectList("Prospect");
-		adminDashboardPage.clearFilter();
-		extentTest.get().log(Status.INFO, "Opening Lead Deatils Page.......");
-		salesPresalesDashboard.openLeadDetails(Integer.parseInt(R('0','1','2','3','4','5','6','7')));
+	MergeLeadsPage mergeLeadsPage = new MergeLeadsPage(driver);
 
-		extentTest.get().log(Status.INFO, "Selecting Merge Leads from more.......");
-		leadProfilePage.selectMergeLeads();
+	mergeLeadsPage.searchingLeadToBeMerged(leadtext1);
 
-		MergeLeadsPage mergeLeadsPage = new MergeLeadsPage(driver);
+	Thread.sleep(2000);
 
-		extentTest.get().log(Status.INFO, "Searching lead to be merged.......");
-		mergeLeadsPage.searchingLeadToBeMerged(leadtext1);
+	mergeLeadsPage.clickOnMergeThisButton();
 
-		Thread.sleep(2000);
+	mergeLeadsPage.enteringSomeNotes(Random("AN", 100));
 
-		extentTest.get().log(Status.INFO, "Clicking on Merge This Button.......");
-		mergeLeadsPage.clickOnMergeThisButton();
+	mergeLeadsPage.clickOnMergeLeadsButton();
 
-		extentTest.get().log(Status.INFO, "Writing some notes.......");
-		mergeLeadsPage.enteringSomeNotes("Note Added By Automation "+random("","A",1000));
+	Thread.sleep(3000);
 
-		extentTest.get().log(Status.INFO, "Clicking on Merge Leads Button.......");
-		mergeLeadsPage.clickOnMergeLeadsButton();
+	salesPresalesDashboard.searchLead(leadtext1);
+	Thread.sleep(2000);
 
-		Thread.sleep(3000);
-
-		salesPresalesDashboard.searchLead(leadtext1);
-		Thread.sleep(2000);
-		extentTest.get().log(Status.INFO, "Validating that stage of second lead changed to unqualified..............");
-		System.out.println("Started verification");
-		Assert.assertEquals(leadProfilePage.getLeadStage() , "Unqualified", "Merged lead not found under unqualified list");
-		System.out.println("Completed verification");
-
-	}
+	System.out.println("Started verification");
+	Thread.sleep(2000);
+	driver.navigate().refresh();
+	System.out.println(">>>> " + salesPresalesDashboard.getCurretLeadStatus());
+	Assert.assertEquals(salesPresalesDashboard.getCurretLeadStatus(), "unqualified",
+			"Merged lead not found under unqualified list");
+	System.out.println("Completed verification");}
 
 }

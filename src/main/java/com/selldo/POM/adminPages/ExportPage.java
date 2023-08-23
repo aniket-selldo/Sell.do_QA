@@ -60,6 +60,8 @@ public class ExportPage extends ReusableUtils {
 	private WebElement project_dd;
 	@FindBy(how = How.XPATH, using = "//div[@class='card card-body mb-3'][1]//tr[3]//td[4]/span")
 	public WebElement exportStatus;
+	@FindBy(how = How.XPATH, using = "//div[@class='card card-body mb-3'][1]//tr//td[4]/span")
+	public List<WebElement> getAllexportStatus;
 	@FindBy(how = How.XPATH, using = "//div[@class='card card-body mb-3'][1]//tr[2]//td[2]/span")
 	public WebElement exportCount;
 	@FindBy(how = How.XPATH, using = "//div[@class='card card-body mb-3'][1]//tr[3]//td[4]/a")
@@ -155,6 +157,13 @@ public class ExportPage extends ReusableUtils {
 		} catch (Exception e) {
 			return "";
 		}
+	}
+	public boolean getExportStatus_vlaidateAll() {
+		long count =getAllexportStatus.stream().filter(S->S.getText().trim().equalsIgnoreCase("completed")).count();
+		if(count>=1) {
+			return true;
+		}
+		else return false;
 	}
 
 	public void clickOnExportLeadsTab() {

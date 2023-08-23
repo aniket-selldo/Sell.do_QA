@@ -18,7 +18,8 @@ public class PushLead {
 		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
 
 		String onlyProject = "{\n" + "    \"project_id\":\""+projectID+"\"\n" + "}";
-		String onlyTeam = "{\n" + "    \"project_id\":\""+projectID+"\"\n" + "}";
+//		String onlyTeam = "{\n" + "    \"project_id\":\""+projectID+"\"\n" + "}";
+//		String withSales ="";
 		Response response = RestAssured
 				.given().contentType(ContentType.JSON).body(onlyProject).post(prop.getProperty("URL") + "/client/leads/"
 						+ leadID + "/push_to_sales?api_key=" + api_key + "&client_id=" + client_id + "")

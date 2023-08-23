@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.configuration2.Configuration;
+import org.apache.commons.configuration2.builder.fluent.Configurations;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -185,7 +188,7 @@ public class BaseTest  {
 	}
 
 	public String randomPAN() {
-		return "" + Random("A", 5) + Random("N", 4) + Random("A", 1);
+		return "" + Random("A", 5).toUpperCase() + Random("N", 4) + Random("A", 1).toUpperCase();
 	}
 
 	public String randomPhone() {
@@ -248,14 +251,15 @@ public class BaseTest  {
 	}
 
 	public String prop(String propee) {
-		Properties proper = new Properties();
+		Configurations configs = new Configurations();
+		Configuration config = null;
 		try {
-			proper.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
-		} catch (IOException e) {
+			config = configs.properties(new File(System.getProperty("user.dir") + "/config.properties"));
+		} catch (ConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return proper.getProperty(propee);
+		return config.getString(propee);
 	}
 
 	public void logout() {

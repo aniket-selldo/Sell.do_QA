@@ -4,10 +4,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.ExportPage;
 import com.selldo.POM.adminPages.SettingsPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -18,12 +16,7 @@ public class ExportCampaignsTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("superadmin_name") + prop.getProperty("superadmin_email"),
-				prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("client_name"));
+		login.login(prop("Amura_Admin"), prop("Password"));
 
 		SettingsPage settingsPage = new SettingsPage(driver);
 
@@ -36,7 +29,7 @@ public class ExportCampaignsTest extends BaseTest {
 
 		exportPage.selectCampaign();
 
-		String emailToWhichExported = prop.getProperty("export_email");
+		String emailToWhichExported = prop("Export_Gmail");
 
 		exportPage.enterEmail(emailToWhichExported);
 		exportPage.clickOnNextButton();
@@ -74,6 +67,8 @@ public class ExportCampaignsTest extends BaseTest {
 		String exportStatus =  exportPage.getExportStatus();
 
 		Assert.assertEquals(exportStatus, "completed", "Export is not completed successfully");
+		
+		Assert.assertTrue(exportPage.getExportStatus_vlaidateAll());
 
 		//exportPage.clickOnFilterCrossIcon();
 

@@ -34,6 +34,8 @@ public class LeadBookingFormPage extends ReusableUtils {
 	private WebElement stageDropdown;
 	@FindBy(how = How.XPATH, using = "(//span[text()='Select'])[1]")
 	private WebElement projectDropdown;
+	@FindBy(how = How.CSS, using = "#select2-drop li")
+	private List<WebElement> getAnyProjectName;
 	@FindBy(how = How.XPATH, using = ".//*[@id='select2-drop']/div/input")
 	private WebElement projectDropdownInputField;
 	@FindBy(how = How.XPATH, using = ".//*[@id='select2-drop']/ul/li[1]/div")
@@ -137,6 +139,7 @@ public class LeadBookingFormPage extends ReusableUtils {
 	}
 
 	public void selectStage(String bookingType) {
+		wait(2000);
 		selectByVisibleText(stageDropdown, "Confirmed");
 	}
 
@@ -146,8 +149,17 @@ public class LeadBookingFormPage extends ReusableUtils {
 
 	public void selectProject(String project) {
 		waitUntilClickable(projectDropdown).click();
+		wait(1000);
 		waitUntilVisiblity(projectDropdownInputField).sendKeys(project);
+		wait(1000);
 		waitUntilClickable(project_dd).click();
+	}
+
+	public void selectAnyProject() {
+		waitUntilClickable(projectDropdown).click();
+		wait(2000);
+		int index = (int) (Math.random() * getAnyProjectName.size());
+		waitUntilVisiblity(getAnyProjectName.get(index)).click();
 	}
 
 	public void selectUnitType(String unit) {

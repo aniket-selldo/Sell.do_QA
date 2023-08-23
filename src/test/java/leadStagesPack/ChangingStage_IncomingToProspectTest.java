@@ -3,9 +3,7 @@ package leadStagesPack;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
@@ -13,7 +11,6 @@ import com.selldo.POM.crm.SalesPresalesDashboardPage;
 import com.selldo.Utility.BaseTest;
 
 import API.APIs;
-import API.Update_Lead;
 
 public class ChangingStage_IncomingToProspectTest extends BaseTest {
 

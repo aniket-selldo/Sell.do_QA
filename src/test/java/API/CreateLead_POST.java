@@ -20,6 +20,7 @@ import POJO_LeadCreate.RootLeadCreate;
 import POJO_LeadCreate.SellDo;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
@@ -124,7 +125,7 @@ public class CreateLead_POST {
 		root.setApi_key(APIKey);
 
 		Response response = RestAssured.given().contentType(ContentType.JSON).body(root)
-				.post(prop.getProperty("URL") + "/api/leads/create");
+				.post(prop.getProperty("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response();
 
 //		int statusCode = response.getStatusCode();
 //		System.out.println("Status code: " + statusCode);

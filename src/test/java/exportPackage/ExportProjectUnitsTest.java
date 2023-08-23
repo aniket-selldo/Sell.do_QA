@@ -5,10 +5,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.ExportPage;
 import com.selldo.POM.adminPages.SettingsPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -20,12 +18,7 @@ public class ExportProjectUnitsTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("superadmin_name") + prop.getProperty("superadmin_email"),
-				prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("client_name"));
+		login.login(prop("Amura_Admin"), prop("Password"));
 
 		SettingsPage settingsPage = new SettingsPage(driver);
 
@@ -37,19 +30,16 @@ public class ExportProjectUnitsTest extends BaseTest {
 
 		exportPage.selectProject();
 
-		String emailToWhichExported = prop.getProperty("export_email");
+		String emailToWhichExported = prop("Export_Gmail");
 
 		exportPage.enterEmail(emailToWhichExported);
 		exportPage.clickOnNextButton();
 
 		exportPage.clickOnExportButton();
 
-		// Thread.sleep(2000);
-
 		exportPage.clickOnExportCrossIcon();
 		Assert.assertEquals(getSuccessMSG(),
 				"Export has been scheduled and will be emailed to " + emailToWhichExported + ".");
-		// Thread.sleep(2000);
 
 		exportPage.scrollToBottom();
 
@@ -71,6 +61,7 @@ public class ExportProjectUnitsTest extends BaseTest {
 				"Not matched");
 		exportPage.refreshExport();
 		String exportStatus = exportPage.getExportStatus();
+		Assert.assertTrue(exportPage.getExportStatus_vlaidateAll());
 
 		Assert.assertEquals(exportStatus, "completed", "Export is not completed successfully");
 

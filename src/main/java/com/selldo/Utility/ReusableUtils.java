@@ -270,7 +270,7 @@ public class ReusableUtils {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		zoom = 80;
 		// js.executeScript("document.body.style.zoom='"+(zoom+0.10)+"%'");
-		js.executeScript("arguments[0].style.border='5px solid Red'", we);
+		js.executeScript("arguments[0].style.border='5px solid Green'", we);
 		return we;
 	}
 

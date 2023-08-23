@@ -42,7 +42,7 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement SMS;
 	@FindBy(how = How.XPATH, using = "//i[@class='ion-android-calendar mr-2']")
 	private WebElement meeting;
-	@FindBy(how = How.ID, using = "activity_tabs_more_lead_profile")
+	@FindBy(how = How.XPATH, using = "(//a[@id='activity_tabs_more_lead_profile'])[1]")
 	private WebElement more;// change
 	@FindBy(how = How.CSS, using = "#lead_reassign_lead_profile")
 	private WebElement reassign;
@@ -78,7 +78,7 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement userIcon;
 	@FindBy(how = How.CSS, using = "[data-method=\"delete\"]")
 	private WebElement logout;
-	@FindBy(how = How.XPATH, using = "//a[text()='Back to admin']")
+	@FindBy(how = How.LINK_TEXT, using = "Back to admin")
 	private WebElement backToAdmin;
 	@FindBy(how = How.XPATH, using = "//div[@class='timeline-item activity notes']//span[1]") // chanve
 																								// //li[@class='nav-item
@@ -501,9 +501,11 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void backToAdmin() throws Exception {
-		waitUntilClickable(userIcon).click();
-		waitUntilClickable(userIcon).click();
-		waitUntilClickable(backToAdmin).click();
+		wait(1000);
+		jsClick(userIcon);
+		wait(1000);
+		
+		(backToAdmin).click();;
 
 	}
 
@@ -775,8 +777,11 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void selectBookings() {
+		
+		waitUntilInvisibility(saveButton);
 		scrollBy(-450);
-		waitUntilClickable(more).click();
+		wait(2000);
+		jsClick(more);
 		waitUntilClickable(bookings).click();
 	}
 

@@ -11,16 +11,20 @@ import java.util.Date;
 import java.util.Properties;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.openqa.selenium.Cookie;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.Test;
 
+import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.API_Reusable;
 
+import POJO_Constant_GET.Root_getConstant;
 import POJO_CreateFollowup.Followup;
 import POJO_CreateFollowup.RootFolloup;
 import POJO_CreateFollowup_GET.Root_followUp_Get;
 import POJO_GetAllActivityOnLead.Root_GetAllLeadActivity;
 import POJO_GetAllUser_GET_2.Root_GetAllUser_GET_2;
-import POJO_GetFollowUpCancelationReson.Root_CancellationReasons;
 import POJO_LeadCreate.Form;
 import POJO_LeadCreate.Lead;
 import POJO_LeadCreate.Note;
@@ -30,6 +34,7 @@ import POJO_LeadCreate_GET.Root_CreateLead_GET;
 import POJO_SiteVisit.RootCreateSiteVisit;
 import POJO_SiteVisit.SiteVisit;
 import POJO_SiteVisit_GET.Root_sitevisitSchedule_Get;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
@@ -166,7 +171,8 @@ public class APIs extends API_Reusable {
 				.post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response()
 				.as(Root_CreateLead_GET.class);
 	}
-	public Root_CreateLead_GET createLead(String api,String User) {
+
+	public Root_CreateLead_GET createLead(String api, String User) {
 
 		Note note = new Note();
 		note.setContent("Note By Rest Assured");
@@ -327,22 +333,25 @@ public class APIs extends API_Reusable {
 		return null;
 	}
 
+	
+	public Root_getConstant getConstant() {
+		WebDriverManager.chromedriver().setup();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--headless");
+		ChromeDriver driver = new ChromeDriver(options);
+		driver.get(prop("URL"));
+		new LoginPage(driver).login(prop("PreSales_id_amura"), prop("Password"));
+
+		Cookie CRM_session = driver.manage().getCookieNamed("_crm_session");
+		Cookie sesion_id = driver.manage().getCookieNamed("_session_id");
+		String url = prop("URL") + "/client/constants";
+		return RestAssured.given().with()
+				.header("Cookie", "_crm_session=" + CRM_session.getValue() + ";_session_id=" + sesion_id.getValue())
+				.when().get(url).then().extract().response().as(Root_getConstant.class);
+	}
+
 	@Test
 	public void Tests() throws FileNotFoundException, IOException {
-
-//		String apiFull = "d2d386fbcc9805220d76fa9137519e78";
-//		String APIRes = "fa8d6ca0217e676a7b0e06f51c32568c";
-//		String clientID = "587ddb2b5a9db31da9000002";
-//		String Userid = "587ddb2b5a9db31da9000001";
-//		getAllLeadActivity("10267").getResults().stream().filter(S -> S.getSite_visit() != null&&S.getSite_visit().getStatus().equalsIgnoreCase("scheduled"))
-//				.forEach(S -> markAllSiteVisitConductedOnLead("10267",S.getSite_visit().get_id()));
-		;
-
-		// createSiteVisit("10267", 57);
-		// markAllSiteVisitConductedOnLead("10267");
-		// System.out.println(getAllFollowupCancelationResons().getText());
-		getAllFollowupCancelationResons();
-
 	}
 
 }

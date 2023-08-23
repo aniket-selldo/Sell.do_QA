@@ -1,37 +1,28 @@
 package login;
 
-import org.testng.AssertJUnit;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
 public class Presales_LoginTest extends BaseTest {
 
-
 	@Test
 	public void presalesLoginTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		
-	extentTest.get().log(Status.INFO, "Logging in to presales user......");
-		login.login(prop.getProperty("nameAA") + "+" + prop.getProperty("presales_email"),
-				prop.getProperty("password"));
+
+		login.login(prop("presales_login"), prop("Password"));
 
 		Thread.sleep(3000);
 
-
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
-		extentTest.get().log(Status.INFO, "Logging out of Selldo......");
 		adminDashboardPage.loggingOut();
-		AssertJUnit.assertEquals(getSuccessMSG2(), "Signed out successfully.","Signout Unsuccesful");
-
+		Assert.assertEquals(login.getSignoutMassage(), "Signed out successfully", "Signout Unsuccesful");
 
 	}
-
-
 
 }

@@ -4,10 +4,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.ExportPage;
 import com.selldo.POM.adminPages.SettingsPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -18,12 +16,8 @@ public class ExportPartnersTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("superadmin_name") + prop.getProperty("superadmin_email"),
-				prop.getProperty("password"));
+		login.login(prop("Amura_Admin"), prop("Password"));
 
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("client_name"));
 		SettingsPage settingsPage = new SettingsPage(driver);
 
 		ExportPage exportPage = new ExportPage(driver);
@@ -34,20 +28,16 @@ public class ExportPartnersTest extends BaseTest {
 
 		exportPage.selectDuration();
 
-		String emailToWhichExported = prop.getProperty("export_email");
+		String emailToWhichExported = prop("Export_Gmail");
 
 		exportPage.enterEmail(emailToWhichExported);
 		exportPage.clickOnNextButton();
 
 		exportPage.clickOnExportButton();
 
-		// Thread.sleep(2000);
-
 		exportPage.clickOnExportCrossIcon();
 		Assert.assertEquals(getSuccessMSG(),
 				"Export has been scheduled and will be emailed to " + emailToWhichExported + ".");
-
-		// Thread.sleep(2000);
 
 		exportPage.scrollToBottom();
 
@@ -64,14 +54,13 @@ public class ExportPartnersTest extends BaseTest {
 		String partner = exportPage.getExportLabel();
 		System.out.println(partner);
 
-		// Assert.assertEquals(partner, "Channel Partner - Export 1", "Not matched");
 		Assert.assertTrue(driver.findElements(By.cssSelector("#export_type")).get(0).getText()
 				.contains("Channel Partners - Export"), "Not matched");// Booking Details - Export 1
 
-		// wait.until(ExpectedConditions.visibilityOfElementLocated(exportPage.exportStatus));
 		exportPage.refreshExport();
 		String exportStatus = exportPage.getExportStatus();
 		Assert.assertEquals(exportStatus, "completed", "Export is not completed successfully");
+		Assert.assertTrue(exportPage.getExportStatus_vlaidateAll());
 
 		String emailInHistory = exportPage.getEmailAttribute();
 		System.out.println(emailInHistory);

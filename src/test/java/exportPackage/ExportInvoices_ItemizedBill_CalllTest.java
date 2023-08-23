@@ -4,10 +4,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.ExportPage;
 import com.selldo.POM.adminPages.SettingsPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -18,12 +16,8 @@ public class ExportInvoices_ItemizedBill_CalllTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("superadmin_name") + prop.getProperty("superadmin_email"),
-				prop.getProperty("password"));
+		login.login(prop("Amura_Admin"), prop("Password"));
 
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("client_name"));
 		SettingsPage settingsPage = new SettingsPage(driver);
 
 		ExportPage exportPage = new ExportPage(driver);
@@ -36,7 +30,7 @@ public class ExportInvoices_ItemizedBill_CalllTest extends BaseTest {
 
 		exportPage.selectInvoiceType_Call();
 
-		String emailToWhichExported = prop.getProperty("export_email");
+		String emailToWhichExported = prop("Export_Gmail");
 
 		exportPage.enterEmail(emailToWhichExported);
 		exportPage.clickOnNextButton();
@@ -66,19 +60,14 @@ public class ExportInvoices_ItemizedBill_CalllTest extends BaseTest {
 		String itemisedBill_Call = exportPage.getExportLabel();
 		System.out.println(itemisedBill_Call);
 
-		// Assert.assertEquals(itemisedBill_Call, "Itemized Bill Calls - Export 1", "Not
-		// matched");
 		Assert.assertTrue(driver.findElements(By.cssSelector("#export_type")).get(0).getText()
 				.contains("Invoices (Call) - Export"), "Not matched");// Booking Details - Export 1
-//exportInvoices_ItemizedBill_CalllTest
-		// wait.until(ExpectedConditions.visibilityOfElementLocated(exportPage.exportStatus));
 		exportPage.refreshExport();
 		String exportStatus = exportPage.getExportStatus();
 
-		// Assert.assertEquals(exportStatus, "Completed", "Export is not completed
-		// successfully");
 		Assert.assertEquals(exportStatus, "completed", "Export is not completed successfully");
 
+		Assert.assertTrue(exportPage.getExportStatus_vlaidateAll());
 		// exportPage.clickOnFilterCrossIcon();
 
 		String emailInHistory = exportPage.getEmailAttribute();

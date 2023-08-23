@@ -24,6 +24,8 @@ public class LoginPage extends ReusableUtils {
 	private WebElement Password;
 	@FindBy(how = How.CSS, using = ".btn.btn-primary")
 	private WebElement SignIn;
+	@FindBy(how = How.XPATH, using = "//div[@class='alert alert-success']")
+	private WebElement getSignOutMessage;
 
 	public void login(String myusername, String mypassword) {
 		waitUntilVisiblity(Email).sendKeys(myusername.trim());// Taking email
@@ -31,5 +33,10 @@ public class LoginPage extends ReusableUtils {
 		jsClick(SignIn);// Clicking on Sign in button
 
 	}
+	
+	public String getSignoutMassage() {
+		return waitUntilVisiblity(getSignOutMessage).getText().replaceAll("[^A-Za-z0-9 ]", "").trim();
+	}
+	
 
 }

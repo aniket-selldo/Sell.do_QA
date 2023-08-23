@@ -4,10 +4,8 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.ExportPage;
 import com.selldo.POM.adminPages.SettingsPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -17,11 +15,7 @@ public class ExportBookingsTest extends BaseTest {
 	public void exportBookingsTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop("Admin_id"), prop("Password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("client_name"));
+		login.login(prop("Amura_Admin"), prop("Password"));
 
 		SettingsPage settingsPage = new SettingsPage(driver);
 
@@ -33,7 +27,7 @@ public class ExportBookingsTest extends BaseTest {
 
 		exportPage.selectDuration();
 
-		String emailToWhichExported = prop.getProperty("export_email");
+		String emailToWhichExported = prop("Export_Gmail");
 
 		exportPage.enterEmail(emailToWhichExported);
 

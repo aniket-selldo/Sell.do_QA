@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
@@ -23,17 +22,20 @@ public class GetAllProjectIDAndName {
 		String page = null;
 		ArrayList<String> ary = new ArrayList<String>();
 
-		RestAssured.baseURI = prop.getProperty("URL");
-		RestAssured.basePath = "/client/projects.json";
+		String url = prop.getProperty("URL") + "/client/projects.json";
 		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
-				.queryParam("page", page).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when().get()
-				.then().extract().response().jsonPath().getInt("total");
+				.queryParam("page", page).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when()
+				.get(url).then().extract().response().jsonPath().getInt("total");
 		System.out.println("Total Project On this client is " + totalProject);
-		int totalPage = (totalProject / 15);
+
+		int totalPage = totalProject;
+		if (totalProject > 15) {
+			totalPage = (totalProject / 15);
+		}
 
 		for (int i = 1; i <= totalPage; i++) {
 			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
-					.queryParam("page", i).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when().get()
+					.queryParam("page", i).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when().get(url)
 					.then().extract().response();
 			for (int j = 0; j < 15; j++) {
 				ary.add(response.jsonPath().getString("results[" + j + "]._id"));
@@ -42,5 +44,19 @@ public class GetAllProjectIDAndName {
 		}
 		return ary;
 	}
+	public static void main(String[] args) throws FileNotFoundException, IOException {
+		String apiKeyFullAccess = "c4d649781e5451ce2903b34b02496e2c";
+		String clinetID = "64a2be1db0834560eaa19563";
+		getAllProjectID(apiKeyFullAccess,clinetID);
+	}
 
 }
+
+
+
+
+
+
+
+
+
