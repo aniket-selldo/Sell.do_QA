@@ -61,8 +61,7 @@ public class BaseTest  {
 			// ================Add Extension==========
 			// options.addExtensions(new File(System.getProperty("user.dir")
 			// +"/AdBlock-—-best-ad-blocker.crx"));
-			options.addExtensions(
-					new File(System.getProperty("user.dir") + "/When-the-Night-Falls-1;-rainbow;-1080p.crx"));
+		//	options.addExtensions(new File(System.getProperty("user.dir") + "/When-the-Night-Falls-1;-rainbow;-1080p.crx"));
 
 			// ================To disable Automation name==========
 			options.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });

@@ -267,6 +267,8 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement clickOnCancleFollowupButton;
 	@FindBy(how = How.XPATH, using = "(//div[@class='timeline-item activity notes']//span)[1]")
 	private WebElement getFirstNoteText;
+	@FindBy(how = How.XPATH, using = "//button[@type='submit']")
+	private WebElement SendBrochure;
 	
 	public String getLeadStage() {
 		for (int i = 0; i < 50; i++) {
@@ -510,6 +512,7 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void clickOnEmailLink() {
+		wait(5000);
 		waitUntilClickable(email).click();
 		waitUntilClickable(ComposeEmail).click();
 	}
@@ -559,6 +562,9 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void openEmailActivities() {
+		WebElement ele = driver.findElement(By.xpath("//div[@class='tc loading_screen_bars']"));
+		waitUntilInvisibility(ele,500);
+		wait(1000);
 		waitUntilClickable(more_d).click();
 		waitUntilClickable(email_Activity).click();
 
@@ -818,13 +824,14 @@ public class LeadProfilePage extends ReusableUtils {
 		EnterEmail.sendKeys(randomEmail());
 		jsClick(ClickOnSave);
 
-		try {
-			for (int i = 0; i < ClickOnTrashButton.size(); i++) {
-				jsClick(ClickOnTrashButton.get(i));
-			}
-			jsClick(ClickOnSave);
-		} catch (Exception e) {
-		}
+//		try {
+//			for (int i = 0; i < ClickOnTrashButton.size(); i++) {
+//				jsClick(ClickOnTrashButton.get(i));
+//			}
+//			jsClick(ClickOnSave);
+//		} catch (Exception e) {
+//		}
+		jsClick(ClickOnSave);
 	}
 	public String callText() {
 

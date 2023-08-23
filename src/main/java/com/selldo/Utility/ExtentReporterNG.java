@@ -19,7 +19,7 @@ public class ExtentReporterNG {
 		// -----------------------------------------------------------------------------
 		String path = System.getProperty("user.dir") + "//reports//AutomationReport.html";
 		ExtentSparkReporter reporter = new ExtentSparkReporter(path);
-		reporter.config().setReportName("Sell.do Web Automation Results");
+		reporter.config().setReportName("Sell.do Web login test Results");
 		reporter.config().setDocumentTitle("Sell.do Automation Report");
 		reporter.config().setTheme(Theme.DARK);
 

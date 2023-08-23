@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="otherLeadActivitiesPack.SearchingLeadByAdminTest">
+      <class name="CreateClient.CreateClinet">
         <methods>
           <include name="browserConfig"/>
+          <include name="createPrepaidClient"/>
           <include name="terminate"/>
-          <include name="searchingLeadByAdminTest"/>
         </methods>
-      </class> <!-- otherLeadActivitiesPack.SearchingLeadByAdminTest -->
+      </class> <!-- CreateClient.CreateClinet -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

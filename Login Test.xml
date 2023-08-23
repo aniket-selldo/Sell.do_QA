@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<listeners>
+		<listener class-name="com.selldo.Utility.Listneers"></listener>
+		<listener class-name="com.selldo.Utility.AnnotationTransformer"></listener>
+	</listeners>
+  <test thread-count="5" name="Test">
+       <classes>
+      <class name="login.PostSalesManager_LoginTest"/>
+      <class name="login.Presales_LoginTest"/>
+      <class name="login.Sales_LoginTest"/>
+      <class name="login.PresalesManager_LoginTest"/>
+      <class name="login.SalesManager_LoginTest"/>
+      <class name="login.Admin_LoginTest"/>
+      <class name="login.SuperAdmin_LoginTest"/>
+      <class name="login.SupportManager_LoginTest"/>
+      <class name="login.Postsales_LoginTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

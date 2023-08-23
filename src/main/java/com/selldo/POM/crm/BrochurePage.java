@@ -71,7 +71,7 @@ public class BrochurePage extends ReusableUtils {
 
 	// Clicking on Send Brochure button
 	public void clickOnSendBrochureButton() {
-		waitUntilClickable(SendBrochure).click();
+		jsClick(SendBrochure);
 	}
 
 	// Select Product

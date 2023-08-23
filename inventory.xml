@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<listeners>
+		<listener class-name="com.selldo.Utility.Listneers"></listener>
+		<listener class-name="com.selldo.Utility.AnnotationTransformer"></listener>
+	</listeners>
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="inventory.EditingUnitTest"/>
+      <class name="inventory.AddingNewProjectTest"/>
+      <class name="inventory.EditingProjectTest"/>
+      <class name="inventory.SearchingUnitTest"/>
+      <class name="inventory.AddingNewProjectTowerTest"/>
+      <class name="inventory.SearchingProjectTest"/>
+      <class name="inventory.SearchingProjectTowerTest"/>
+      <class name="inventory.AddingNewFloorPlanTest"/>
+      <class name="inventory.AddingNewUnitTest"/>
+      <class name="inventory.EditingProjectTowerTest"/>
+      <class name="inventory.SearchingFloorPlanTest"/>
+      <class name="inventory.EditingFloorPlanTest"/>
+      <class name="inventory.SearchingDeveloperTest"/>
+      <class name="inventory.AddingNewDeveloperTest"/>
+      <class name="inventory.EditingDeveloperTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
