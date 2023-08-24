@@ -51,7 +51,7 @@ public class API_Reusable {
 	}
 
 	public String randomPhone() {
-		return " 12345" + Random("N", 5);
+		return " 72345" + Random("N", 5);
 	}
 
 	public String Random(int size) {

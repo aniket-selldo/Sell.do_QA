@@ -14,7 +14,6 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.Test;
 
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.API_Reusable;
@@ -25,6 +24,7 @@ import POJO_CreateFollowup.RootFolloup;
 import POJO_CreateFollowup_GET.Root_followUp_Get;
 import POJO_GetAllActivityOnLead.Root_GetAllLeadActivity;
 import POJO_GetAllUser_GET_2.Root_GetAllUser_GET_2;
+import POJO_Get_Sales_PreSales_PostSales_GET.Root_GetUsersWithType;
 import POJO_LeadCreate.Form;
 import POJO_LeadCreate.Lead;
 import POJO_LeadCreate.Note;
@@ -202,7 +202,8 @@ public class APIs extends API_Reusable {
 				.post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response()
 				.as(Root_CreateLead_GET.class);
 	}
-	// ============================ Other =========================
+	
+	// ============================ Inventry =========================
 
 	public ArrayList<String> getAllProjectID() {
 
@@ -300,6 +301,18 @@ public class APIs extends API_Reusable {
 		}
 		return ary.stream().filter(S -> S.equalsIgnoreCase(nameOfProject)).findFirst().get();
 	}
+	
+	public void AddDevloperInClient() {
+		AddDevloper AddDevloper = new AddDevloper();
+		System.out.println(AddDevloper.addDevloper().get_id());
+	}
+	
+	public void AddProjectTower() {
+		AddProjectTower AddProjectTower = new AddProjectTower();
+		System.out.println(AddProjectTower.addProjectTower(getRandomProjectID()).get_id());
+	}
+	
+	
 	// ============================ User related =========================
 
 	public Root_GetAllUser_GET_2 getUserList() throws FileNotFoundException, IOException {
@@ -332,6 +345,12 @@ public class APIs extends API_Reusable {
 		}
 		return null;
 	}
+	
+	public void getUserData(String userRole,String flag) {
+		GetUser GetUser = new GetUser();
+		Root_GetUsersWithType[] ary=GetUser.getAll("presales", flag);
+	}
+	// ============================ Other =========================
 
 	
 	public Root_getConstant getConstant() {
@@ -350,8 +369,5 @@ public class APIs extends API_Reusable {
 				.when().get(url).then().extract().response().as(Root_getConstant.class);
 	}
 
-	@Test
-	public void Tests() throws FileNotFoundException, IOException {
-	}
 
 }

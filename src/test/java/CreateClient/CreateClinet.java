@@ -12,7 +12,7 @@ public class CreateClinet extends BaseTest {
 	
 	@Test
 	public void createPostpaidClient() {
-		String ClientName = "23aug_postpaid_01";
+		String ClientName = "24aug_postpaid_03";
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);
 		loginPage.login_suppoort();
