@@ -47,7 +47,7 @@ public class AddAccessSM extends BaseTest {
 			}
 		}
 	}
-//
+
 	protected WebElement waitUntilVisiblity(WebElement we) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(we));
