@@ -12,7 +12,7 @@ public class CreateClinet extends BaseTest {
 	
 	@Test
 	public void createPostpaidClient() {
-		String ClientName = "Demo_postpaid_03";
+		String ClientName = "5Oct_PostPaid";
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);
 		loginPage.login_suppoort();
@@ -35,7 +35,7 @@ public class CreateClinet extends BaseTest {
 		page.enterZip(414003);
 		page.enterUserFirstName(ClientName);
 		page.enterUserLasttName("user");
-		page.enterUserPhone(randomPhone());
+		page.enterUserPhone(randomPhone());				
 		page.enterEmail(randomEmail());
 		page.enterUserTeam(Random("A", 7));
 		//page.selectVendores();
@@ -44,12 +44,12 @@ public class CreateClinet extends BaseTest {
 	}
 	@Test
 	public void createPrepaidClient() throws InterruptedException {
-		String BuisnessName="Prepaid_01";
+		String BuisnessName="5Oct_Prepaid_01";
 		driver.get(prop("URL")+"/signup?plan=selection");
 		PrepaidClientCreation page = new PrepaidClientCreation(driver);
 		page.enterClientFirstName(Random("A",10));
 		page.enterClientLastName(Random("A",10));
-		page.enterPassword("amura@123");
+		page.enterPassword("Selldo@321");
 		page.enterClientEmail(randomEmail());
 		page.enterClientPhone(randomPhone());
 		page.enterBuisnessName(BuisnessName);

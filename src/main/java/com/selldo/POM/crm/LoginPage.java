@@ -26,8 +26,13 @@ public class LoginPage extends ReusableUtils {
 	private WebElement SignIn;
 	@FindBy(how = How.XPATH, using = "//div[@class='alert alert-success']")
 	private WebElement getSignOutMessage;
+	@FindBy(how = How.CSS, using = "#user-account-icon")
+	private WebElement clickOnProfile;
+	@FindBy(how = How.LINK_TEXT, using = "Go to Login as Client")
+	private WebElement ClickOnGoToLoginAsClient;
 
 	public void login(String myusername, String mypassword) {
+	
 		waitUntilVisiblity(Email).sendKeys(myusername.trim());// Taking email
 		waitUntilVisiblity(Password).sendKeys(mypassword.trim());// Taking password
 		jsClick(SignIn);// Clicking on Sign in button
@@ -38,5 +43,22 @@ public class LoginPage extends ReusableUtils {
 		return waitUntilVisiblity(getSignOutMessage).getText().replaceAll("[^A-Za-z0-9 ]", "").trim();
 	}
 	
+	public void loginAsSuperAdmin_SM(String myusername, String mypassword) {
+
+		String currentURL = driver.getCurrentUrl();
+		String smURL=prop("URL") + "/client/support_dashboard";
+		String superAdminURL = prop("URL") + "/admin/clients/login_as_client";
+		System.out.println(currentURL);
+	
+		waitUntilVisiblity(Email).sendKeys(myusername.trim());// Taking email
+		waitUntilVisiblity(Password).sendKeys(mypassword.trim());// Taking password
+		jsClick(SignIn);// Clicking on Sign in button
+		if (currentURL.equalsIgnoreCase(smURL)||currentURL.equalsIgnoreCase(superAdminURL)) {
+			waitUntilClickable(clickOnProfile).click();
+			waitUntilClickable(ClickOnGoToLoginAsClient).click();
+		}
+
+	
+	}
 
 }

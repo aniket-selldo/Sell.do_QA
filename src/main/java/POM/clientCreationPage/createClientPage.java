@@ -120,15 +120,23 @@ public class createClientPage extends ReusableUtils {
 	private WebElement frameSwitch;
 	@FindBy(how = How.XPATH, using = "//div[@class='noty_message']")
 	private WebElement succesPopup;
+	@FindBy(how = How.CSS, using = "#user-account-icon")
+	private WebElement clickOnProfile;
+	@FindBy(how = How.LINK_TEXT, using = "Go to Login as Client")
+	private WebElement ClickOnGoToLoginAsClient;
 
 	public void clickOnClientButton() {
+		String currentURL = driver.getCurrentUrl();
+		System.out.println(currentURL);
+		if (currentURL.equalsIgnoreCase(prop("URL") + "/client/support_dashboard")) {
+			waitUntilClickable(clickOnProfile).click();
+			waitUntilClickable(ClickOnGoToLoginAsClient).click();
+		}
 		waitUntilClickable(addClientButton).click();
-		;
-
 	}
 
 	public void enterFirstName(String name) {
-		waitUntilVisiblity(firstName).sendKeys(random("firstName", "AN", 7));
+		waitUntilVisiblity(firstName).sendKeys(name);
 	}
 
 	public void enterLastName(String name) {

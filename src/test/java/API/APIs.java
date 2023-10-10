@@ -14,7 +14,6 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.Test;
 
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.API_Reusable;
@@ -25,6 +24,7 @@ import POJO_CreateFollowup.RootFolloup;
 import POJO_CreateFollowup_GET.Root_followUp_Get;
 import POJO_GetAllActivityOnLead.Root_GetAllLeadActivity;
 import POJO_GetAllUser_GET_2.Root_GetAllUser_GET_2;
+import POJO_Get_Sales_PreSales_PostSales_GET.Root_GetUsersWithType;
 import POJO_LeadCreate.Form;
 import POJO_LeadCreate.Lead;
 import POJO_LeadCreate.Note;
@@ -202,7 +202,8 @@ public class APIs extends API_Reusable {
 				.post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response()
 				.as(Root_CreateLead_GET.class);
 	}
-	// ============================ Other =========================
+
+	// ============================ Inventry =========================
 
 	public ArrayList<String> getAllProjectID() {
 
@@ -253,6 +254,66 @@ public class APIs extends API_Reusable {
 		return ary.get(index);
 	}
 
+	public String getdisableEnventryName() {
+
+		String page = null;
+		ArrayList<String> flag = new ArrayList<String>();
+		ArrayList<String> Name = new ArrayList<String>();
+
+		String URL = prop("URL") + "/client/projects.json";
+		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+				.queryParam("page", page).queryParam("client_id", prop("Client_id"))
+				.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response().jsonPath()
+				.getInt("total");
+		System.out.println("Total Project On this client is " + totalProject);
+		int totalPage = (totalProject / 15);
+
+		for (int i = 1; i <= totalPage; i++) {
+			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+					.queryParam("page", i).queryParam("client_id", prop("Client_id"))
+					.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response();
+
+			for (int j = 0; j < 15; j++) {
+				flag.add(response.jsonPath().getString("results[" + j + "].inventory_enabled"));
+				Name.add(response.jsonPath().getString("results[" + j + "].name"));
+				if (response.jsonPath().getString("results[" + j + "].inventory_enabled").equalsIgnoreCase("false")) {
+					return response.jsonPath().getString("results[" + j + "].name");
+				}
+			}
+		}
+		return null;
+	}
+
+	public String getEnableEnventryName() {
+
+		String page = null;
+		ArrayList<String> flag = new ArrayList<String>();
+		ArrayList<String> Name = new ArrayList<String>();
+
+		String URL = prop("URL") + "/client/projects.json";
+		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+				.queryParam("page", page).queryParam("client_id", prop("Client_id"))
+				.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response().jsonPath()
+				.getInt("total");
+		System.out.println("Total Project On this client is " + totalProject);
+		int totalPage = (totalProject / 15);
+
+		for (int i = 1; i <= totalPage; i++) {
+			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+					.queryParam("page", i).queryParam("client_id", prop("Client_id"))
+					.queryParam("api_key", prop("Clinet_API_Full")).when().get(URL).then().extract().response();
+
+			for (int j = 0; j < 15; j++) {
+				flag.add(response.jsonPath().getString("results[" + j + "].inventory_enabled"));
+				Name.add(response.jsonPath().getString("results[" + j + "].name"));
+				if (response.jsonPath().getString("results[" + j + "].inventory_enabled").equalsIgnoreCase("true")) {
+					return response.jsonPath().getString("results[" + j + "].name");
+				}
+			}
+		}
+		return null;
+	}
+
 	public String getProjectID(String nameOfProject) {
 
 		String page = null;
@@ -300,6 +361,17 @@ public class APIs extends API_Reusable {
 		}
 		return ary.stream().filter(S -> S.equalsIgnoreCase(nameOfProject)).findFirst().get();
 	}
+
+	public void AddDevloperInClient() {
+		AddDevloper AddDevloper = new AddDevloper();
+		System.out.println(AddDevloper.addDevloper().get_id());
+	}
+
+	public void AddProjectTower() {
+		AddProjectTower AddProjectTower = new AddProjectTower();
+		System.out.println(AddProjectTower.addProjectTower(getRandomProjectID()).get_id());
+	}
+
 	// ============================ User related =========================
 
 	public Root_GetAllUser_GET_2 getUserList() throws FileNotFoundException, IOException {
@@ -333,7 +405,12 @@ public class APIs extends API_Reusable {
 		return null;
 	}
 
-	
+	public void getUserData(String userRole, String flag) {
+		GetUser GetUser = new GetUser();
+		Root_GetUsersWithType[] ary = GetUser.getAll("presales", flag);
+	}
+	// ============================ Other =========================
+
 	public Root_getConstant getConstant() {
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
@@ -348,10 +425,6 @@ public class APIs extends API_Reusable {
 		return RestAssured.given().with()
 				.header("Cookie", "_crm_session=" + CRM_session.getValue() + ";_session_id=" + sesion_id.getValue())
 				.when().get(url).then().extract().response().as(Root_getConstant.class);
-	}
-
-	@Test
-	public void Tests() throws FileNotFoundException, IOException {
 	}
 
 }

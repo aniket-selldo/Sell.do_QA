@@ -35,8 +35,8 @@ public class GetAllProjectIDAndName {
 
 		for (int i = 1; i <= totalPage; i++) {
 			Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
-					.queryParam("page", i).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when().get(url)
-					.then().extract().response();
+					.queryParam("page", i).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when()
+					.get(url).then().extract().response();
 			for (int j = 0; j < 15; j++) {
 				ary.add(response.jsonPath().getString("results[" + j + "]._id"));
 				// System.out.println(response.jsonPath().getString("results[" + j + "]._id"));
@@ -44,19 +44,36 @@ public class GetAllProjectIDAndName {
 		}
 		return ary;
 	}
+
+	public static ArrayList<String> getAllProjectID(String APIKey, String ClientID, int numberOfProject)
+			throws FileNotFoundException, IOException {
+
+		Properties prop = new Properties();
+		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
+
+		String page = null;
+		ArrayList<String> ary = new ArrayList<String>();
+
+		String url = prop.getProperty("URL") + "/client/projects.json";
+		int totalProject = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with()
+				.queryParam("page", page).queryParam("client_id", ClientID).queryParam("api_key", APIKey).when()
+				.get(url).then().extract().response().jsonPath().getInt("total");
+		System.out.println("Total Project On this client is " + totalProject + " But Add on Lead " + numberOfProject);
+
+		Response response = given().urlEncodingEnabled(true).contentType(ContentType.JSON).with().queryParam("page", 1)
+				.queryParam("client_id", ClientID).queryParam("api_key", APIKey).when().get(url).then().extract()
+				.response();
+		for (int j = 0; j < numberOfProject; j++) {
+			ary.add(response.jsonPath().getString("results[" + j + "]._id"));
+			// System.out.println(response.jsonPath().getString("results[" + j + "]._id"));
+		}
+		return ary;
+	}
+
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		String apiKeyFullAccess = "c4d649781e5451ce2903b34b02496e2c";
 		String clinetID = "64a2be1db0834560eaa19563";
-		getAllProjectID(apiKeyFullAccess,clinetID);
+		getAllProjectID(apiKeyFullAccess, clinetID);
 	}
 
 }
-
-
-
-
-
-
-
-
-

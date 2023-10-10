@@ -5,9 +5,7 @@
 		<listener class-name="com.selldo.Utility.Listneers"></listener>
 		<listener class-name="com.selldo.Utility.AnnotationTransformer"></listener>
 	</listeners>
-  <test thread-count="1" parallel="classes" name="Test">
-
-		<!--exportPackage -->
+	<test thread-count="1" name="Test">
 		<classes>
 			<class name="exportPackage.ExportVirtualNumbersTest" />
 			<class name="exportPackage.ExportProjectUnitsTest" />

@@ -1,5 +1,6 @@
 package com.selldo.POM.crm;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -44,6 +45,7 @@ public class PushToSalesPage extends ReusableUtils {
 	public void selectUser(String userName) throws InterruptedException {
 		waitUntilClickable(SelectUserDropdown).click();// Clicking on User dropdown
 		waitUntilVisiblity(SelectUserTextField).sendKeys(userName);// Typing team name
+		SelectUserTextField.sendKeys(Keys.SPACE);
 		waitUntilClickable(UserFromDropdown).click();// Selecting User from dropdown
 	}
 

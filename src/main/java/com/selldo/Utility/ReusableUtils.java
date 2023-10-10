@@ -85,6 +85,11 @@ public class ReusableUtils {
 		wait.until(ExpectedConditions.invisibilityOf(we));
 		return we;
 	}
+	protected WebElement waitUntilInvisibility(WebElement we, int time) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
+		wait.until(ExpectedConditions.invisibilityOf(we));
+		return we;
+	}
 
 	protected WebElement waitUntilClickable(WebElement we) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
@@ -180,6 +185,7 @@ public class ReusableUtils {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(we);
 		Square(we);
+		wait(1000);
 		actions.click();
 		actions.sendKeys(s);
 		actions.build().perform();
@@ -274,9 +280,9 @@ public class ReusableUtils {
 		return we;
 	}
 
-	protected void deZoom() {
+	protected void deZoom(int in) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("document.body.style.zoom='80%'");
+		js.executeScript("document.body.style.zoom='"+in+"%'");
 	}
 
 	protected WebElement jsSendKey(WebElement we, String txt) {
@@ -447,11 +453,31 @@ public class ReusableUtils {
 	}
 
 	public String randomEmail() {
-		return "aniket.khandizod+" + random("", "AN", 10) + "@sell.do";
+		return "aniket.khandizod+" + Random( "AN", 10) + "@sell.do";
 	}
 
 	public String randomPhone() {
-		return " 12345" + random("", "N", 5);
+		return " 12345" + Random( "N", 5);
+	}
+	public String Random(String type, int size) {
+		String Return = "";
+		switch (type) {
+		case "AN":
+			Return = RandomStringUtils.randomAlphanumeric(size);
+			break;// pX4Mv3KsJU
+		case "A":
+			Return = RandomStringUtils.randomAlphabetic(size);
+			break;// ZLTRqGyuXk
+		case "R":
+			Return = RandomStringUtils.random(size);
+			break;// 嚰险걻鯨贚䵧縓
+		case "N":
+			Return = RandomStringUtils.randomNumeric(size);
+			break;// 3511779161
+		default:
+			break;
+		}
+		return Return;
 	}
 
 }

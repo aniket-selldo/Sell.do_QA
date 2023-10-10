@@ -7,6 +7,8 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import com.selldo.Utility.API_Reusable;
+
 import POJO_LeadCreate.AddressesField;
 import POJO_LeadCreate.Form;
 import POJO_LeadCreate.Lead;
@@ -24,7 +26,7 @@ import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-public class CreateLead_POST {
+public class CreateLead_POST extends API_Reusable {
 
 	public static String createLeadByAPI() throws FileNotFoundException, IOException {
 		Properties prop = new Properties();
@@ -43,10 +45,8 @@ public class CreateLead_POST {
 		Lead lead = new Lead();
 		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
 		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
-		// String emailID = new Faker().internet().emailAddress();
-		String eamilID2 = RandomStringUtils.randomAlphanumeric(10) + "@sell.do";
-		lead.setEmail(eamilID2);
-		lead.setPhone("123" + RandomStringUtils.randomNumeric(7));
+		lead.setEmail(randomEmail2());
+		lead.setPhone(randomPhone2());
 		lead.setSalutation("mr");
 		lead.setTime_zone("Asia/Calcutta");
 		lead.setStage("incoming");
@@ -104,8 +104,8 @@ public class CreateLead_POST {
 		Lead lead = new Lead();
 		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
 		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
-		lead.setEmail(RandomStringUtils.randomAlphanumeric(10) + "@sell.do");
-		lead.setPhone("123" + RandomStringUtils.randomNumeric(7));
+		lead.setEmail(randomEmail2());
+		lead.setPhone(randomPhone2());
 		lead.setSalutation("mr");
 		lead.setTime_zone("Asia/Calcutta");
 		lead.setStage("incoming");

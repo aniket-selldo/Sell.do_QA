@@ -12,7 +12,7 @@ public class loginPage extends ReusableUtils {
 
 	public WebDriver driver;
 
-	public loginPage(WebDriver driver)  {
+	public loginPage(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -26,7 +26,8 @@ public class loginPage extends ReusableUtils {
 	@FindBy(how = How.CSS, using = ".btn.btn-primary")
 	private WebElement signIn;
 	
-	public LoginAsClient login(){
+
+	public LoginAsClient login() {
 		Square(userName);
 		userName.sendKeys(getGobalData().getProperty("Admin_id"));
 		Square(password);
@@ -35,7 +36,8 @@ public class loginPage extends ReusableUtils {
 		jsClick(signIn);
 		return new LoginAsClient(driver);
 	}
-	public LoginAsClient login_suppoort(){
+
+	public LoginAsClient login_suppoort() {
 		Square(userName);
 		userName.sendKeys(getGobalData().getProperty("SM"));
 		Square(password);
@@ -44,6 +46,14 @@ public class loginPage extends ReusableUtils {
 		jsClick(signIn);
 		return new LoginAsClient(driver);
 	}
-	
-}
+	public LoginAsClient login_suppoort(String id,String ps) {
+		Square(userName);
+		userName.sendKeys(id);
+		Square(password);
+		password.sendKeys(ps);
+		Square(signIn);
+		jsClick(signIn);
+		return new LoginAsClient(driver);
+	}
 
+}

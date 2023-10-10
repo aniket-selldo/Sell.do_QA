@@ -55,6 +55,7 @@ public class BrochurePage extends ReusableUtils {
 
 	// Writing the subject for email
 	public void writingSubject(String mysubject) {
+		wait(3000);
 		waitUntilVisiblity(Subject).clear();
 		Subject.sendKeys(mysubject);
 	}
@@ -71,7 +72,7 @@ public class BrochurePage extends ReusableUtils {
 
 	// Clicking on Send Brochure button
 	public void clickOnSendBrochureButton() {
-		waitUntilClickable(SendBrochure).click();
+		jsClick(SendBrochure);
 	}
 
 	// Select Product

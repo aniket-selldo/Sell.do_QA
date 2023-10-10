@@ -1,14 +1,18 @@
 package com.selldo.POM.adminPages;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
 
 import com.selldo.Utility.ReusableUtils;
+import com.selldo.Utility.XLUtils;
 
 public class ImportPage extends ReusableUtils {
 	public WebDriver driver;
@@ -82,8 +86,9 @@ public class ImportPage extends ReusableUtils {
 	public void enterEmail(String email) {
 
 		scrollBy(500);
-		waitUntilVisiblity(emailField);
-		moveToAndSendKey(emailField, email);
+		waitUntilVisiblity(emailField).sendKeys(randomEmail());
+		wait(2000);
+		emailField.sendKeys(Keys.ENTER);
 	}
 
 	public void enterName() {
@@ -206,5 +211,5 @@ public class ImportPage extends ReusableUtils {
 		wait(500);
 		driver.navigate().refresh();
 	}
-
+	
 }

@@ -1,20 +1,33 @@
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.math.BigDecimal;
 
 public class testt {
+	
+	public static void m1() {
+		File htmlFile = new File("/home/aniket/eclipse-workspace/SelldoQA/reports/AutomationReport.html");
+		try {
+			Desktop.getDesktop().browse(htmlFile.toURI());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
-		double v1=931.3009999999987;
-		double v2=0.0034;
-		double v3=1.1+1.1+1.1;
+		double arr[] = { 2880.0, 20.0, 20.0, 4800.0, 50.0, 1224000000.0, 66000.0, 1452.0, 92.4, 277.20000000000005,
+				11520.0, 1000.0, 1500.0 };
+		double sum = 0.0;
 		
-		//System.out.println(v1-v2);
 		
-		System.out.println(v1-v3);
+		
+		for (int i = 0; i < arr.length; i++) {
+			sum = sum + arr[i];
+		}
+		System.out.println("Sum of all the elements of an array: " + sum);
+		System.out.println("1) " + BigDecimal.valueOf(sum).toPlainString());
+	
 	}
 }
 
-
-// 160 charchter sms -> *2
-// 60 sec -> *2
-
-//sms -> 983.0009999999997
-// email -> 980.8009999999997

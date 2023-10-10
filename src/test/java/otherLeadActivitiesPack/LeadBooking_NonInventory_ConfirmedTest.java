@@ -37,7 +37,7 @@ public class LeadBooking_NonInventory_ConfirmedTest extends BaseTest {
 
 		LeadBookingFormPage leadBooking = new LeadBookingFormPage(driver);
 		//leadBooking.selectProject("Mamta Building");
-		leadBooking.selectProject("Mamta Building");
+		leadBooking.selectProject(new APIs().getdisableEnventryName() );
 		leadBooking.addPhoneNumber(randomPhone());
 
 		jse.executeScript("window.scrollBy(0,250)", "");
@@ -60,7 +60,7 @@ public class LeadBooking_NonInventory_ConfirmedTest extends BaseTest {
 
 		leadBooking.inputBedroomPreferences("2 BHK");
 
-		leadBooking.inputPanNumber("ASXCD1234S");
+		leadBooking.inputPanNumber(randomPAN());
 
 		leadBooking.inputBasicRate("1000");
 

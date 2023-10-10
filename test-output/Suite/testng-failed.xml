@@ -5,57 +5,15 @@
     <listener class-name="com.selldo.Utility.Listneers"/>
     <listener class-name="com.selldo.Utility.AnnotationTransformer"/>
   </listeners>
-  <test thread-count="5" parallel="classes" name="Test(failed)">
+  <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="dashboardBucketsPack.NewEnquiries_VerificationTest">
+      <class name="login.SupportManager_LoginTest">
         <methods>
           <include name="browserConfig"/>
-          <include name="newEnquiries_VerificationTest"/>
+          <include name="supportManager_LoginTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- dashboardBucketsPack.NewEnquiries_VerificationTest -->
-      <class name="dashboardBucketsPack.MissedSitevisit_VerificationTest">
-        <methods>
-          <include name="browserConfig"/>
-          <include name="missedSitevisit_VerificationTest"/>
-          <include name="terminate"/>
-        </methods>
-      </class> <!-- dashboardBucketsPack.MissedSitevisit_VerificationTest -->
-      <class name="dashboardBucketsPack.TodaysSitevisit_VerificationTest">
-        <methods>
-          <include name="browserConfig"/>
-          <include name="todaysSitevisit_VerificationTest"/>
-          <include name="terminate"/>
-        </methods>
-      </class> <!-- dashboardBucketsPack.TodaysSitevisit_VerificationTest -->
-      <class name="dashboardBucketsPack.MissedFollowup_VerificationTest">
-        <methods>
-          <include name="browserConfig"/>
-          <include name="missedFollowup_VerificationTest"/>
-          <include name="terminate"/>
-        </methods>
-      </class> <!-- dashboardBucketsPack.MissedFollowup_VerificationTest -->
-      <class name="dashboardBucketsPack.TodaysFollowup_VerificationTest">
-        <methods>
-          <include name="browserConfig"/>
-          <include name="todaysFollowup_VerificationTest"/>
-          <include name="terminate"/>
-        </methods>
-      </class> <!-- dashboardBucketsPack.TodaysFollowup_VerificationTest -->
-      <class name="dashboardBucketsPack.ReengagedLeads_VerificationTest">
-        <methods>
-          <include name="browserConfig"/>
-          <include name="reengagedLeads_VerificationTest"/>
-          <include name="terminate"/>
-        </methods>
-      </class> <!-- dashboardBucketsPack.ReengagedLeads_VerificationTest -->
-      <class name="dashboardBucketsPack.NFA_VerificationTest">
-        <methods>
-          <include name="browserConfig"/>
-          <include name="nFA_VerificationTest"/>
-          <include name="terminate"/>
-        </methods>
-      </class> <!-- dashboardBucketsPack.NFA_VerificationTest -->
+      </class> <!-- login.SupportManager_LoginTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
