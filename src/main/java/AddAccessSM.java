@@ -21,7 +21,6 @@ public class AddAccessSM extends BaseTest {
 		addSMpermission("aniket.khandizod@sell.do");
 
 	}
-//
 	public void addSMpermission(String str) throws InterruptedException {
 
 		for (int j = 0; j < 5; j++) {
