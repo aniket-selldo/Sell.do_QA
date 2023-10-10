@@ -55,6 +55,7 @@ public class BrochurePage extends ReusableUtils {
 
 	// Writing the subject for email
 	public void writingSubject(String mysubject) {
+		wait(3000);
 		waitUntilVisiblity(Subject).clear();
 		Subject.sendKeys(mysubject);
 	}

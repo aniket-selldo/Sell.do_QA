@@ -112,22 +112,40 @@ public class AdminDashboardPage extends ReusableUtils {
 	private WebElement clickOnSearchSuggation;
 	@FindBy(how = How.CSS, using = "#stage-span")
 	private WebElement leadStatus;
+	@FindBy(how = How.CSS, using = "#user-account-icon")
+	private WebElement clickOnProfile;
+	@FindBy(how = How.LINK_TEXT, using = "Go to Login as Client")
+	private WebElement ClickOnGoToLoginAsClient;
 	// ################## Autoforwading On Off ###################
+	
+	public void logOutFromSM() {
+		String currentURL = driver.getCurrentUrl();
+		if (currentURL.equalsIgnoreCase(prop("URL") + "/client/support_dashboard")) {
+			waitUntilClickable(clickOnProfile).click();
+			waitUntilClickable(ClickOnGoToLoginAsClient).click();
+		}
+	}
 
 	public void AutoForwading(String admin, Strategy STRATEGY_FOR_LEAD_PUSH_TO_SALES, AutoForwarding flag) {
 		LoginPage login = new LoginPage(driver);
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 		ClientLoginPage clientLogin = new ClientLoginPage(driver);
 		login.login(prop("Aniket_SM"), prop("Aniket_SM_PSWD"));
-
-		try {
-			waitUntilClickable(clickOnSetting, 1).isDisplayed();
-			System.out.println("SM Alredy loggedIn");
-			adminDashboardPage.loggingOut();
-			login.login("ketan@amuratech.com", "amura@123");
-		} catch (Exception e) {
-			System.out.println("SM No Alredy loggedIn");
-
+//
+//		try {
+//			waitUntilClickable(clickOnSetting, 1).isDisplayed();
+//			System.out.println("SM Alredy loggedIn");
+//			adminDashboardPage.loggingOut();
+//			login.login("ketan@amuratech.com", "amura@123");
+//		} catch (Exception e) {
+//			System.out.println("SM No Alredy loggedIn");
+//
+//		}
+		String currentURL = driver.getCurrentUrl();
+		System.out.println(currentURL);
+		if (currentURL.equalsIgnoreCase(prop("URL") + "/client/support_dashboard")) {
+			waitUntilClickable(clickOnProfile).click();
+			waitUntilClickable(ClickOnGoToLoginAsClient).click();
 		}
 		clientLogin.clientLogin(admin);
 		waitUntilClickable(clickOnSetting).click();

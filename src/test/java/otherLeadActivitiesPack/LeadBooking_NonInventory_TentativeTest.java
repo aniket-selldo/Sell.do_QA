@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LeadBookingFormPage;
 import com.selldo.POM.crm.LeadProfilePage;
@@ -18,7 +17,6 @@ import API.APIs;
 public class LeadBooking_NonInventory_TentativeTest extends BaseTest {
 
 	@Test
-
 	public void bookingALead_ConfirmedTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
@@ -31,10 +29,7 @@ public class LeadBooking_NonInventory_TentativeTest extends BaseTest {
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 		adminDashboardPage.searchLead("#" + new APIs().createLead(prop("Sales_id")).getSell_do_lead_id());
-		;
 
-		// getExtTest().log(Status.INFO, "Getting Lead Id whose stage is to be
-		// changed.......");
 		String leadIdObj = driver.findElement(By.cssSelector("span[name='lead_id']")).getText().replaceAll("\\s+", "");
 		System.out.println(leadIdObj);
 
@@ -43,43 +38,42 @@ public class LeadBooking_NonInventory_TentativeTest extends BaseTest {
 		leadProfilePage.changing_Stage("Booked");
 
 		LeadBookingFormPage leadBooking = new LeadBookingFormPage(driver);
-		leadBooking.selectProject("Mamta Building");
-		leadBooking.addPhoneNumber(prop.getProperty("Applicant_Phone_Number"));
+		leadBooking.selectProject(new APIs().getdisableEnventryName() );
+		leadBooking.addPhoneNumber(randomPhone());
 
 		Thread.sleep(3000);
 
 		jse.executeScript("window.scrollBy(0,250)", "");
 
-		leadBooking.selectUnitType(prop.getProperty("UnitType_BookingALead"));
+		leadBooking.selectUnitType("villa");
 
-		leadBooking.inputFloorNumber(prop.getProperty("FloorNumber_BookingALead"));
+		leadBooking.inputFloorNumber(Random("N",1));
 
-		leadBooking.inputUnitNumber(prop.getProperty("UnitNumber_BookingALead"));
+		leadBooking.inputUnitNumber(Random("N",1));
 
-		leadBooking.inputBuildingName(prop.getProperty("BuildingName_BookingALead"));
+		leadBooking.inputBuildingName(Random("N",1));
 
-		leadBooking.inputCarpetArea(prop.getProperty("CarpetArea_BookingALead"));
+		leadBooking.inputCarpetArea(Random("N",3));
 
-		leadBooking.inputSaleableArea(prop.getProperty("SaleableArea_BookingALead"));
+		leadBooking.inputSaleableArea(Random("N",3));
 
-		leadBooking.inputParkingNumber(prop.getProperty("ParkingNumber_BookingALead"));
+		leadBooking.inputParkingNumber(Random("N",2));
 
-		leadBooking.inputBedroomPreferences(prop.getProperty("BedroomPreferences_BookingALead"));
+		leadBooking.inputBedroomPreferences(R('1','2','3'));
 
-		leadBooking.inputPanNumber(prop.getProperty("PanNumber_BookingALead"));
+		leadBooking.inputPanNumber(randomPAN());
 
-		leadBooking.inputBasicRate(prop.getProperty("BasicRate_BookingALead"));
+		leadBooking.inputBasicRate(Random("N",5));
 
-		leadBooking.inputEffectiveRate(prop.getProperty("EffectiveRate_BookingALead"));
+		leadBooking.inputEffectiveRate(Random("N",5));
 
-		leadBooking.inputOffer(prop.getProperty("InputOffer_BookingALead"));
+		leadBooking.inputOffer("New Offer");
 
-		leadBooking.inputAddressAndStreet(prop.getProperty("Address_BookingALead"),
-				prop.getProperty("Street_BookingALead"));
+		leadBooking.inputAddressAndStreet(Random("A",10),Random("A",10));
 
-		leadBooking.inputCityAndState(prop.getProperty("City_BookingALead"), prop.getProperty("State_BookingALead"));
+		leadBooking.inputCityAndState("Pune","Maharashtra");
 
-		leadBooking.inputCountryAndZip(prop.getProperty("Zip_BookingALead"));
+		leadBooking.inputCountryAndZip(Random("N",6));
 
 		leadBooking.clickOnSaveButton();
 

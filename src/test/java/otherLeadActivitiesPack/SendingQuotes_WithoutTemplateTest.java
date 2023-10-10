@@ -5,7 +5,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.EmailPage;
 import com.selldo.POM.crm.LeadProfilePage;
@@ -13,65 +12,51 @@ import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.QuotesPage;
 import com.selldo.Utility.BaseTest;
 
-import API.CreateLead_POST;
+import API.APIs;
 
 public class SendingQuotes_WithoutTemplateTest extends BaseTest {
 
 	@Test
 	public void sendingQuotes_WithoutTemplateTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		login.login("aniket.khandizod+cc@sell.do", "amura@123");
-    	AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
+		login.login(prop("PreSales_email"), prop("Password"));
+		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
-		adminDashboardPage.loginAsUser("AniketPreSale00");
+		String leadID = "#" + new APIs().createLead(prop("PreSales_id")).getSell_do_lead_id();
 
-		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
-		//adminDashboardPage.searchLead(Integer.parseInt(R('0', '1', '2', '3', '4', '5', '6', '7')), "Incoming");
-		adminDashboardPage.serchLeadGlobally(CreateLead_POST.createLeadByAPI(APIKey, PreSalesUserID));
+		adminDashboardPage.serchLeadGlobally(leadID);
 
 		LeadProfilePage leadProfilePage = new LeadProfilePage(driver);
-		//leadProfilePage.addEmail();
+		// leadProfilePage.addEmail();
 
-		extentTest.get().log(Status.INFO, "Clicking on Email Link.......");
 		leadProfilePage.clickOnEmailLink();
-		
+
 		Thread.sleep(2000);
-		
+
 		EmailPage emailPage = new EmailPage(driver);
-		
-		extentTest.get().log(Status.INFO, "Select Quotes from dropdown.......");
+
 		emailPage.selectPriceQuoteOption();
 
-		extentTest.get().log(Status.INFO, "Select Any Product......");
 		emailPage.selectAnyProduct();
 		emailPage.selectAnyTamplete();
 		QuotesPage quotesPage = new QuotesPage(driver);
 
-
-		extentTest.get().log(Status.INFO, "Writing Subject.......");
-		String subjectText = "Subject By Automation " + random("", "AN", 1000);
+		String subjectText = "Subject By Automation " + Random( "AN", 1000);
 		quotesPage.writingSubject(subjectText);
 
-		extentTest.get().log(Status.INFO, "Writing some text in body.......");
-		quotesPage.writingSomeTextInBody(prop.getProperty("email_sendingQuotes_WithoutTemplateTest"));
+		quotesPage.writingSomeTextInBody(Random("AN",100));
 
-		extentTest.get().log(Status.INFO, "Clicking on Send Quote Button.......");
 		quotesPage.clickOnSendPriceQuoteButton();
 
 		Thread.sleep(2000);
 
-		extentTest.get().log(Status.INFO, "Clicking on Email Link under activities section.......");
 		leadProfilePage.openEmailActivities();
-
-		extentTest.get().log(Status.INFO, "Verifying that Quote is sent.......");
 
 		SoftAssert assertion = new SoftAssert();
 		System.out.println("Started verification");
-		Assert.assertEquals(driver
-				.findElement(By.cssSelector(
-						"#tab-activity > div.activities_list > div:nth-child(1) > div > div.card > div > div:nth-child(1) > div.col-lg-11 > span"))
-				.getText(),"TEst", "Not matched");
-		System.out.println("Completed verification");
+		Assert.assertEquals(driver.findElement(By.cssSelector(
+				"#tab-activity > div.activities_list > div:nth-child(1) > div > div.card > div > div:nth-child(1) > div.col-lg-11 > span"))
+				.getText(), subjectText, "Not matched");
 		assertion.assertAll();
 
 	}

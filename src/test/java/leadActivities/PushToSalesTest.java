@@ -33,8 +33,6 @@ public class PushToSalesTest extends BaseTest {
 		int leadCount_b = salesPresalesDashboard.getPushToSalesCount();
 		System.out.println(leadCount_b);
 
-		//leadProfilePage.backToAdmin();
-
 		logout();
 		login.login(prop("PreSales_email"), prop("Password"));
 

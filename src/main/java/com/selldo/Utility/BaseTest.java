@@ -93,6 +93,9 @@ public class BaseTest  {
 			driver = new SafariDriver();
 		} else if (browser.equalsIgnoreCase("HtmlUnitDriver")) {
 			driver = new HtmlUnitDriver(BrowserVersion.CHROME);
+			HtmlUnitDriver	driver2 = new HtmlUnitDriver(true);
+			driver2.setJavascriptEnabled(true);
+			this.driver=driver2;
 		} else if (browser.equalsIgnoreCase("ChromeDriver")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
@@ -187,7 +190,8 @@ public class BaseTest  {
 	}
 
 	public String randomPAN() {
-		return "" + Random("A", 5).toUpperCase() + Random("N", 4) + Random("A", 1).toUpperCase();
+		String _4th = R('A','B','C','F','G','H','L','J','P','T','F');
+		return Random("A", 3).toUpperCase()+_4th + Random("A", 1).toUpperCase()+ Random("N", 4) + Random("A", 1).toUpperCase();
 	}
 
 	public String randomPhone() {

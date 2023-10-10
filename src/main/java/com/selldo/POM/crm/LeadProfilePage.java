@@ -298,7 +298,9 @@ public class LeadProfilePage extends ReusableUtils {
 	
 
 	public String clickOnFollowupNote() {
-		waitUntilClickable(clickOnViewNotesOfSiteVisit).click();
+		deZoom(80);
+		wait(1000);
+		jsClick(clickOnViewNotesOfSiteVisit);
 		return waitUntilVisiblity(getNoteTextOfSiteVisit).getText().trim();
 	}
 
@@ -562,8 +564,8 @@ public class LeadProfilePage extends ReusableUtils {
 	}
 
 	public void openEmailActivities() {
-		WebElement ele = driver.findElement(By.xpath("//div[@class='tc loading_screen_bars']"));
-		waitUntilInvisibility(ele,500);
+//		WebElement ele = driver.findElement(By.xpath("//div[@class='tc loading_screen_bars']"));
+//		waitUntilInvisibility(ele,500);
 		wait(1000);
 		waitUntilClickable(more_d).click();
 		waitUntilClickable(email_Activity).click();

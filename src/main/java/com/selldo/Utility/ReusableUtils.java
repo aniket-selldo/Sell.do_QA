@@ -185,6 +185,7 @@ public class ReusableUtils {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(we);
 		Square(we);
+		wait(1000);
 		actions.click();
 		actions.sendKeys(s);
 		actions.build().perform();
@@ -279,9 +280,9 @@ public class ReusableUtils {
 		return we;
 	}
 
-	protected void deZoom() {
+	protected void deZoom(int in) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("document.body.style.zoom='80%'");
+		js.executeScript("document.body.style.zoom='"+in+"%'");
 	}
 
 	protected WebElement jsSendKey(WebElement we, String txt) {

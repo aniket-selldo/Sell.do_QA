@@ -1,5 +1,9 @@
 package com.selldo.Utility;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -61,6 +65,14 @@ public class Listneers extends BaseTest implements ITestListener {
 	@Override
 	public void onFinish(ITestContext context) {
 		extent.flush();
+		String path = System.getProperty("user.dir") + "//reports//AutomationReport.html";
+		File htmlFile = new File(path);
+		try {
+			Desktop.getDesktop().browse(htmlFile.toURI());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
