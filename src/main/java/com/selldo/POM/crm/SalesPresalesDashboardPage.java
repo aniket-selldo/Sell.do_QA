@@ -27,6 +27,8 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 //
 	@FindBy(how = How.CSS, using = "i.ion-ios-people")
 	private WebElement leadsIcon;
+	@FindBy(how = How.CSS, using = "#get_leads_count")
+	private WebElement getHashCount;
 	@FindBy(how = How.XPATH, using = "//a[normalize-space()='All Leads']")
 	private WebElement allLeadsLink;
 	@FindBy(how = How.CSS, using = "i.ion-cube")
@@ -61,8 +63,10 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private WebElement newEnquiryBucket;
 	@FindBy(how = How.XPATH, using = "//div[@id='reengaged-leads']//div[@class='tile-item-body text-success']")
 	private WebElement reengagedLeadsBucket;
-	@FindBy(how = How.XPATH, using = "//div[@id='missed-calls']//div[@class='tile-item-body text-danger']")
+	@FindBy(how = How.XPATH, using = "//div[@data-name='missed_calls']")
 	private WebElement missedCallsBucket;
+	@FindBy(how = How.CSS, using = "div[data-name='missed_calls'] span[class='title-item-body-count']")
+	private WebElement missedCallsBucketcount;
 	@FindBy(how = How.XPATH, using = "//div[@id='nfa-leads']//div[@class='tile-item-body text-danger']")
 	private WebElement nFABucket;
 	@FindBy(how = How.CSS, using = "i#user-account-icon")
@@ -159,7 +163,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	}
 
 	public void clickOnOpenTasksLink() {
-		
+
 		jsClick(openTasksLink);
 		wait(5000);
 	}
@@ -273,6 +277,11 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 
 	}
 
+	public String getMisscallBucketCount() {
+		String leadCount_missedCallsBucket = waitUntilVisiblity(missedCallsBucketcount).getText();
+		return (leadCount_missedCallsBucket);
+	}
+
 	public void clickOnnewEnquiryBucket() {
 		waitUntilClickable(newEnquiryBucket).click();
 	}
@@ -283,6 +292,12 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 
 	public void clickOnMissedCallsBucket() {
 		waitUntilClickable(missedCallsBucket).click();
+	}
+
+	public String getHashStringCount() {
+		waitUntilClickable(getHashCount).click();
+		wait(5000);
+		return  getHashCount.getText();
 	}
 
 	public void clickOnNFAbucket() {
@@ -357,7 +372,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	public void editUserProfile() {
 		jsClick(userAccountIcon);
 		jsClick(editProfile);
-		
+
 	}
 
 	public void closeEditProfile() {
@@ -371,7 +386,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	}
 
 	public void clickOnMissedFollowupBucket() {
-	//	waitUntilClickable(openTasksLink).click();
+		// waitUntilClickable(openTasksLink).click();
 		waitUntilClickable(missedFollowups).click();
 	}
 

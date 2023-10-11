@@ -109,7 +109,7 @@ public class NewUserFormPage extends ReusableUtils {
 	}
 
 	public void selectRole_Admin() {
-
+		wait(5000);
 		selectByVisibleText(roleDropdown, "Admin");
 	}
 
@@ -120,16 +120,20 @@ public class NewUserFormPage extends ReusableUtils {
 	}
 
 	public void selectTeam() {
-
+		wait(1000);
 		waitUntilClickable(teamDropdown).click();
+		wait(1000);
 		waitUntilClickable(team_dd).click();
 	}
+
 	public void selectTeam2() {
 
 		waitUntilClickable(teamDropdown2).click();
 		wait(1000);
-		waitUntilClickable(team_dd2.get(1)).click();;
+		waitUntilClickable(team_dd2.get(1)).click();
+		;
 	}
+
 	public void selectTeamForManager() {
 
 		waitUntilClickable(managerTeamDropdown).click();

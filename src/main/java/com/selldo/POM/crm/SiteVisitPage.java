@@ -64,6 +64,8 @@ public class SiteVisitPage extends ReusableUtils {
 	private WebElement sitevisitdate;
 	@FindBy(how = How.CSS, using = "input[name='scheduled_date']")
 	private WebElement sitevisitrescheduledate;
+	@FindBy(how = How.CSS, using = "input[name='conducted_date']")
+	private WebElement conductedSitevisitrescheduledate;
 	@FindBy(how = How.CSS, using = "input[name='ends_on_date']")
 	private WebElement sitevisitrescheduledate_end;
 
@@ -213,6 +215,11 @@ public class SiteVisitPage extends ReusableUtils {
 				break;
 			}
 		}
+	}
+	public void ConductedSiteVisitDate(int ahead) {
+		String date =new SimpleDateFormat("dd/MM/yyyy")
+				.format(new Date().getTime() + (ahead * (1000 * 60 * 60 * 24))) ;
+		jsSendKey(conductedSitevisitrescheduledate,date);
 	}
 	public void sitevisitConductedOnDate2() {
 		waitUntilClickable(scheduleOnDate_ConductedOn).click();

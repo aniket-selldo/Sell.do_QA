@@ -29,7 +29,7 @@ public class ManageUsersPage extends ReusableUtils {
 	private WebElement applyButton;
 	@FindBy(how = How.XPATH, using = "//a[text()='Clear All']")
 	private WebElement clearAll;
-	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::i[7]")
+	@FindBy(how = How.XPATH, using = "//th[text()='Actions']/following::i[4]")
 	private WebElement actionBar;
 	@FindBy(how = How.XPATH, using = "//div[@class='dropdown extended show']//a[text()='Edit']")
 	private WebElement edit;
@@ -77,14 +77,14 @@ public class ManageUsersPage extends ReusableUtils {
 	public void searchUser2(String emailID) {
 		wait(5000);
 		waitUntilClickable(funnelIcon).click();
-		waitUntilVisiblity(searchInputField).sendKeys(emailID);
+		waitUntilVisiblity(searchInputField).sendKeys(emailID.trim());
 		waitUntilClickable(clickToAblolish).click();
 		waitUntilClickable(applyButton).click();
 	}
 
 	public void searchUser(String emailID) {
 		waitUntilClickable(funnelIcon).click();
-		waitUntilVisiblity(searchInputField).sendKeys(emailID);
+		waitUntilVisiblity(searchInputField).sendKeys(emailID.trim());
 		waitUntilClickable(applyButton).click();
 	}
 

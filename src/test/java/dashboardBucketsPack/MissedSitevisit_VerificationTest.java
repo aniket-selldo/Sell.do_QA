@@ -3,7 +3,6 @@ package dashboardBucketsPack;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
@@ -16,7 +15,7 @@ public class MissedSitevisit_VerificationTest extends BaseTest {
 	public void missedSitevisit_VerificationTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("name"), prop.getProperty("password"));
+		login.login(prop("PreSales_email_amura"), prop("Password"));
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
@@ -30,7 +29,7 @@ public class MissedSitevisit_VerificationTest extends BaseTest {
 
 		salesPresalesDashboard.clickOnMissedSitevisitBucket();
 
-		salesPresalesDashboard.openLeadProfile(2);
+		salesPresalesDashboard.openLeadProfile(3);
 
 		leadProfilePage.clickSitvisit_d();
 
@@ -50,9 +49,8 @@ public class MissedSitevisit_VerificationTest extends BaseTest {
 		Thread.sleep(3000);
 
 		salesPresalesDashboard.refreshDashboardStats();
-		salesPresalesDashboard.clickOnOpenTasksLink();
-
 		Thread.sleep(5000);
+		salesPresalesDashboard.clickOnOpenTasksLink();
 
 		String count_missedSiteVisitAfter = salesPresalesDashboard.getMissedSiteVisits();
 		System.out.println(count_missedSiteVisitAfter);
