@@ -282,6 +282,8 @@ public class AdminDashboardPage extends ReusableUtils {
 		}
 
 		waitUntilClickable(userLoginButton).click();
+		waitUntilVisiblity(userAccountIcon);
+		wait(1000);
 		System.out.println("Selected User >>> " + userName);
 
 	}

@@ -36,69 +36,72 @@ public class EditUserFormPage extends ReusableUtils {
 	private WebElement SaveButton;
 
 	public void changeFirstName(String firstname) {
-		FirstName.clear();
-		FirstName.sendKeys(firstname);
+		waitUntilVisiblity(FirstName).clear();
+		waitUntilVisiblity(FirstName).sendKeys(firstname);
 	}
 
 	public void changeLastName(String lastname) {
-		LastName.clear();
-		LastName.sendKeys(lastname);
+		waitUntilVisiblity(LastName).clear();
+		waitUntilVisiblity(LastName).sendKeys(lastname);
 	}
 
 	public void changePhone(String phone) {
-		Phone.clear();
-		Phone.sendKeys(phone);
+		System.out.println("Update phone -> "+phone);
+		waitUntilVisiblity(Phone).clear();
+		waitUntilVisiblity(Phone).sendKeys(phone);
 	}
 
 	public void changeEmail(String email) {
-		Email.clear();
-		Email.sendKeys(email);
+		System.out.println("Update Email -> "+email);
+		waitUntilVisiblity(Email).clear();
+		waitUntilVisiblity(Email).sendKeys(email);
 	}
 
 	// Selecting Department
 
 	public void changeDepartmentToPresales() {
+		waitUntilVisiblity(DepartmentDropdown);
 		selectByVisibleText(DepartmentDropdown, "Pre Sales");
 	}
 
 	public void changeDepartmentToSales() {
-		selectByVisibleText(DepartmentDropdown, "Sales");
+		selectByVisibleText(waitUntilVisiblity(DepartmentDropdown), "Sales");
 	}
 
 	public void changeDepartmentToPostSales() {
-		selectByVisibleText(DepartmentDropdown, "Post Sales");
+		selectByVisibleText(waitUntilVisiblity(DepartmentDropdown), "Post Sales");
 	}
 
 	// Selecting Role
 
 	public void changeRoleToPresales() {
-		selectByVisibleText(RoleDropdown, "Pre Sales");
+		selectByVisibleText(waitUntilVisiblity(RoleDropdown), "Pre Sales");
 	}
 
 	public void changeRoleToSales() {
-		selectByVisibleText(RoleDropdown, "Sales");
+		selectByVisibleText(waitUntilVisiblity(RoleDropdown), "Sales");
 	}
 
 	public void changeRoleToPostSales() {
-		selectByVisibleText(RoleDropdown, "Post Sales");
+		selectByVisibleText(waitUntilVisiblity(RoleDropdown), "Post Sales");
 	}
 
 	public void changeRoleToManager() {
-		selectByVisibleText(RoleDropdown, "Manager");
+		selectByVisibleText(waitUntilVisiblity(RoleDropdown), "Manager");
 	}
 
 	public void changeRoleToAdmin() {
-		selectByVisibleText(RoleDropdown, "Admin");
+		selectByVisibleText(waitUntilVisiblity(RoleDropdown), "Admin");
 	}
 
 	// Selecting Team
 
 	public void changeTeamByIndex() {
-		selectByIndex(TeamDropdown, 1);
+		selectByIndex(waitUntilVisiblity(TeamDropdown), 1);
 	}
 
 	public void changeTeamByText() {
-		selectByVisibleText(TeamDropdown, "TeamX");
+		selectByVisibleText(waitUntilVisiblity(TeamDropdown), "TeamX");
 	}
 
 //	public void selectTeam() {
@@ -118,7 +121,7 @@ public class EditUserFormPage extends ReusableUtils {
 	// }
 	//
 	// public void selectTeam(){
-	// TeamDropdown.click();
+	// TeamDropdown).click();
 	// Select oSelect = new Select(TeamDropdown));
 	// for (WebElement ele : oSelect)
 	// {
@@ -130,14 +133,15 @@ public class EditUserFormPage extends ReusableUtils {
 	//
 	// else {
 	//
-	// ele.click();
+	// ele).click();
 	// break;
 	// }
 	// }
 	// }
 
 	public void clickOnSaveButton() {
-		SaveButton.click();
+		waitUntilVisiblity(SaveButton).click();
+		driver.get(prop("URL")+"/client/users");
 	}
 
 }

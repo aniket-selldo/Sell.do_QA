@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.crm.FollowupsPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
@@ -14,12 +13,11 @@ import com.selldo.Utility.BaseTest;
 
 public class MissedFollowup_VerificationTest extends BaseTest {
 
-	@Test()
-
+	@Test
 	public void missedFollowup_VerificationTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("name"), prop.getProperty("password"));
+		login.login(prop("Sales_email"), prop("Password"));
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 		SiteVisitPage siteVisitPage = new SiteVisitPage(driver);

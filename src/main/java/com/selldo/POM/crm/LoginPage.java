@@ -53,6 +53,7 @@ public class LoginPage extends ReusableUtils {
 		waitUntilVisiblity(Email).sendKeys(myusername.trim());// Taking email
 		waitUntilVisiblity(Password).sendKeys(mypassword.trim());// Taking password
 		jsClick(SignIn);// Clicking on Sign in button
+		wait(2000);
 		if (currentURL.equalsIgnoreCase(smURL)||currentURL.equalsIgnoreCase(superAdminURL)) {
 			waitUntilClickable(clickOnProfile).click();
 			waitUntilClickable(ClickOnGoToLoginAsClient).click();

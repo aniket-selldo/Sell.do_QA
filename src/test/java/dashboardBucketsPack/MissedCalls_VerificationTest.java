@@ -1,7 +1,5 @@
 package dashboardBucketsPack;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,27 +13,21 @@ public class MissedCalls_VerificationTest extends BaseTest {
 	public void missedCalls_VerificationTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("name"), prop.getProperty("password"));
-
+		login.login(prop("Sales_email"), prop("Password"));
+		
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
 		salesPresalesDashboard.refreshDashboardStats();
 
 		Thread.sleep(3000);
-
-		WebElement count_missedCallsBucket = driver
-				.findElement(By.cssSelector("div[id='missed-calls'] span[class='title-item-body-count']"));
-		String leadCount_missedCallsBucket = count_missedCallsBucket.getText();
+		String leadCount_missedCallsBucket = salesPresalesDashboard.getMisscallBucketCount();
 		System.out.println(leadCount_missedCallsBucket);
 
 		salesPresalesDashboard.clickOnMissedCallsBucket();
 
 		Thread.sleep(3000);
 
-		WebElement we = driver.findElement(By.cssSelector("#get_leads_count"));
-		we.click();
-		Thread.sleep(5000);
-		String leadCount_MissedCalls = we.getText();
+		String leadCount_MissedCalls=salesPresalesDashboard.getHashStringCount();
 		System.out.println(leadCount_MissedCalls);
 
 		// Get count of leads from string

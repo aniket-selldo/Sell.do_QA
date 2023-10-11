@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="A_Experiment.Test001">
+      <class name="dashboardBucketsPack.NewEnquiries_VerificationTest">
         <methods>
           <include name="browserConfig"/>
-          <include name="t1"/>
+          <include name="newEnquiries_VerificationTest"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- A_Experiment.Test001 -->
+      </class> <!-- dashboardBucketsPack.NewEnquiries_VerificationTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
