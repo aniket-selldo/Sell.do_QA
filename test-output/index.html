@@ -103,7 +103,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="dashboardBucketsPack.NewEnquiries_VerificationTest" class="method navigator-link" hash-for-method="newEnquiries_VerificationTest">newEnquiries_VerificationTest</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="CreateClient.CreateClinet" class="method navigator-link" hash-for-method="createPostpaidClient">createPostpaidClient</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -121,23 +121,23 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">dashboardBucketsPack.NewEnquiries_VerificationTest</span>
+              <span class="class-name">CreateClient.CreateClinet</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="newEnquiries_VerificationTest">
-                  </a> <!-- newEnquiries_VerificationTest -->
-                  <span class="method-name">newEnquiries_VerificationTest</span>
-                  <div class="stack-trace">org.openqa.selenium.WebDriverException: disconnected: not connected to DevTools
-  (failed to check if window was closed: disconnected: not connected to DevTools)
+                  <a name="createPostpaidClient">
+                  </a> <!-- createPostpaidClient -->
+                  <span class="method-name">createPostpaidClient</span>
+                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@class=&apos;noty_message&apos;]&quot;}
   (Session info: chrome=115.0.5790.98)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
 Build info: version: &apos;4.9.1&apos;, revision: &apos;eb2032df7f&apos;
 System info: os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.2.0-33-generic&apos;, java.version: &apos;17.0.7&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [3e774da2c866b7ed794334682db6da02, findElement {using=css selector, value=//div[@id=&apos;contact_new_leads&apos;]//span}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 115.0.5790.98, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: /tmp/.com.google.Chrome.vCalYd}, goog:chromeOptions: {debuggerAddress: localhost:39479}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:39479/devtoo..., se:cdpVersion: 115.0.5790.98, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 3e774da2c866b7ed794334682db6da02
+Command: [f4d64dc53e58f718da3c202dd15b3f4b, findElement {using=xpath, value=//div[@class=&apos;noty_message&apos;]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 115.0.5790.98, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: /tmp/.com.google.Chrome.jekOG6}, goog:chromeOptions: {debuggerAddress: localhost:33843}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:cdp: ws://localhost:33843/devtoo..., se:cdpVersion: 115.0.5790.98, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: f4d64dc53e58f718da3c202dd15b3f4b
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -154,7 +154,11 @@ Session ID: 3e774da2c866b7ed794334682db6da02
 	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:352)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:344)
-	at dashboardBucketsPack.NewEnquiries_VerificationTest.newEnquiries_VerificationTest(NewEnquiries_VerificationTest.java:27)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
+	at jdk.proxy2/jdk.proxy2.$Proxy16.getText(Unknown Source)
+	at POM.clientCreationPage.createClientPage.clickOnsave(createClientPage.java:274)
+	at CreateClient.CreateClinet.createPostpaidClient(CreateClinet.java:44)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -192,7 +196,7 @@ Session ID: 3e774da2c866b7ed794334682db6da02
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/tmp/testng-eclipse-1136534319/testng-customsuite.xml</span>
+            <span class="header-content">/tmp/testng-eclipse-1872788167/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -201,11 +205,11 @@ Session ID: 3e774da2c866b7ed794334682db6da02
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;dashboardBucketsPack.NewEnquiries_VerificationTest&quot;&gt;
+      &lt;class name=&quot;CreateClient.CreateClinet&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;newEnquiries_VerificationTest&quot;/&gt;
+          &lt;include name=&quot;createPostpaidClient&quot;/&gt;
         &lt;/methods&gt;
-      &lt;/class&gt; &lt;!-- dashboardBucketsPack.NewEnquiries_VerificationTest --&gt;
+      &lt;/class&gt; &lt;!-- CreateClient.CreateClinet --&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -247,14 +251,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'newEnquiries_VerificationTest')
-data.setCell(0, 2, 'dashboardBucketsPack.NewEnquiries_VerificationTest')
-data.setCell(0, 3, 12648);
+data.setCell(0, 1, 'createPostpaidClient')
+data.setCell(0, 2, 'CreateClient.CreateClinet')
+data.setCell(0, 3, 14541);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 12 seconds</span>
+              <span class="suite-total-time">Total running time: 14 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -269,9 +273,16 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">0 ignored methods</span>
+            <span class="header-content">1 ignored method</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">CreateClient.CreateClinet</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">createPrepaidClient</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
         <div panel-name="chronological-Default_suite" class="panel">
@@ -280,7 +291,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">dashboardBucketsPack.NewEnquiries_VerificationTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">CreateClient.CreateClinet</div> <!-- chronological-class-name -->
               <div class="configuration-method before">
                 <span class="method-name">browserConfig</span>
                 <span class="method-start">0 ms</span>
@@ -288,12 +299,12 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">newEnquiries_VerificationTest</span>
-                <span class="method-start">7521 ms</span>
+                <span class="method-name">createPostpaidClient</span>
+                <span class="method-start">2919 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">terminate</span>
-                <span class="method-start">20174 ms</span>
+                <span class="method-start">17463 ms</span>
               </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

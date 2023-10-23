@@ -2,6 +2,7 @@ package POM.clientCreationPage;
 
 import java.util.List;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -89,6 +90,16 @@ public class PrepaidClientCreation extends ReusableUtils {
 	private WebElement clickOnContinue;
 	@FindBy(how = How.XPATH, using = "(//div[@class='small float-right mr-2 mt-2']/span)[1]")
 	private WebElement clinetNameOnUIValidation;
+	@FindBy(how = How.CSS, using = "div[class='select2-container form-control sales_select2']")
+	private WebElement SalesPersonName;
+	@FindBy(how = How.CSS, using = "div[class='select2-container form-control onboarding_select2']")
+	private WebElement OnboardingPersonName;
+	@FindBy(how = How.CSS, using = "div[id='select2-drop'] input")
+	private WebElement EnterText;
+	@FindBy(how = How.XPATH, using = "//*[@id='select2-drop']/div/input")
+	private WebElement EnterText2;
+	@FindBy(how = How.CSS, using = "div[class='select2-result-label']")
+	private WebElement Recomendation;
 
 	public void enterClientFirstName(String str) {
 		waitUntilVisiblity(enterClientFirstName).sendKeys(str);
@@ -114,23 +125,43 @@ public class PrepaidClientCreation extends ReusableUtils {
 		waitUntilVisiblity(enterBuisnessName).sendKeys(str);
 	}
 
+	
+
 	public void selectBuisnessType(String str) {
 		waitUntilClickable(selectBuisnessType).click();
-		waitUntilClickable(selectDropdown.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get()).click();
+		waitUntilClickable(selectDropdown.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+				.click();
 	}
 
 	public void selectIndustryType(String str) {
 		waitUntilClickable(selectIndustryType).click();
-		waitUntilClickable(selectDropdown.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get()).click();
+		waitUntilClickable(selectDropdown.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+				.click();
 	}
 
 	public void enterClientWebSite(String str) {
 		waitUntilVisiblity(enterClientWebSite).sendKeys("https://www." + str + ".com");
 	}
+	public void enterSalesPersonName(String str) {
+
+		waitUntilClickable(SalesPersonName).click();
+		waitUntilVisiblity(EnterText).sendKeys(str);
+		waitUntilVisiblity(Recomendation);
+		EnterText2.sendKeys(Keys.ENTER);
+
+	}
+
+	public void enterOnboardingPersonName(String str) {
+		waitUntilClickable(OnboardingPersonName).click();
+		waitUntilVisiblity(EnterText).sendKeys(str);
+		waitUntilVisiblity(Recomendation);
+		EnterText2.sendKeys(Keys.ENTER);
+	}
 
 	public void selectPlan(String str) {
 		waitUntilVisiblity(selectPlan).sendKeys(str);
-		waitUntilClickable(selectDropdown.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get()).click();
+		waitUntilClickable(selectDropdown.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+				.click();
 	}
 
 	public void clickOnSignUp() {
@@ -138,9 +169,11 @@ public class PrepaidClientCreation extends ReusableUtils {
 	}
 
 	public void clickOnAreYouBroker(boolean flag) {
-		if(flag) {
-		waitUntilClickable(clickOnAreYouBroker).click();}
+		if (flag) {
+			waitUntilClickable(clickOnAreYouBroker).click();
+		}
 	}
+	
 
 	public void switchToCapta() {
 		driver.switchTo().frame(frame_one);
@@ -171,7 +204,7 @@ public class PrepaidClientCreation extends ReusableUtils {
 	}
 
 	public void client_address_address1(String str) {
-		waitUntilVisiblity(client_address_address1,100).sendKeys(str);
+		waitUntilVisiblity(client_address_address1, 100).sendKeys(str);
 	}
 
 	public void client_address_address2(String str) {
@@ -207,7 +240,7 @@ public class PrepaidClientCreation extends ReusableUtils {
 	}
 
 	public void clickOnContinue() {
-		waitUntilClickable(clickOnContinue,100).click(); // need more time
+		waitUntilClickable(clickOnContinue, 100).click(); // need more time
 	}
 
 	public boolean validateClientName(String str) {

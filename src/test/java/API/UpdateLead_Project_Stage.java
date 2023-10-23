@@ -6,14 +6,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.selldo.Utility.API_Reusable;
+
 import POJO_LeadUpdate_Stage_Project.Lead;
 import POJO_LeadUpdate_Stage_Project.Root;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-public class UpdateLead_Project_Stage {
+public class UpdateLead_Project_Stage extends API_Reusable  {
 	public static void updateProjectAndStage(String APIKey, String ClientID, String leadID, String leadStage,
 			ArrayList<String> str) throws FileNotFoundException, IOException {
 		Properties prop = new Properties();
@@ -28,11 +29,23 @@ public class UpdateLead_Project_Stage {
 		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).put(prop.getProperty("URL")
 				+ "/client/leads/" + leadID + ".json?api_key=" + APIKey + "&client_id=" + ClientID + "");
 
-//		int statusCode = response.getStatusCode();
-//		System.out.println("Status code: " + statusCode);
-//		String responseBody = response.getBody().asString();
-//		System.out.println("Response body: " + responseBody);
-//		JsonPath jsnPath = response.jsonPath();
+	}
+	public static String CreateUpdateProjectAndStageOfLead(String leadStage,
+			int addProjectNumber) throws FileNotFoundException, IOException {
+		String leadCRMID= new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
+		String leadID =new APIs().getLeadId(leadCRMID);
+		Properties prop = new Properties();
+		prop.load(new FileInputStream(System.getProperty("user.dir") + "/config.properties"));
+
+		Lead lead = new Lead();
+		lead.setStage(leadStage);
+		lead.setInterested_project_ids(new GetAllProjectIDAndName().getAllProjectID(addProjectNumber));
+		Root root = new Root();
+		root.setLead(lead);
+
+		Response response = RestAssured.given().contentType(ContentType.JSON).body(root).put(prop.getProperty("URL")
+				+ "/client/leads/" + leadID + ".json?api_key=" + prop("Clinet_API_Full") + "&client_id=" + prop("Client_id") + "");
+		return "#"+leadCRMID;
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException {

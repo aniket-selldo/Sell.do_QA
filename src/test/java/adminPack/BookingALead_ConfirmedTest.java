@@ -7,7 +7,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LeadBookingFormPage;
 import com.selldo.POM.crm.LeadProfilePage;
@@ -17,6 +16,8 @@ import com.selldo.POM.inventory.NewUnitFormPage;
 import com.selldo.POM.inventory.UnitsPage;
 import com.selldo.Utility.BaseTest;
 
+import API.APIs;
+import API.UpdateLead_Project_Stage;
 import inventory.AddingNewUnitTest;
 
 public class BookingALead_ConfirmedTest extends BaseTest {
@@ -46,8 +47,8 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 		AddingNewUnitTest addingNewUnitTest = new AddingNewUnitTest();
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
-		addNewUnit();
-		driver.get(System.getProperty("user.dir") + "/users/logout");
+		String s = new UpdateLead_Project_Stage().CreateUpdateProjectAndStageOfLead("prospect",2);
+	//	driver.get(System.getProperty("user.dir") + "/users/logout");
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -55,14 +56,9 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("name") + "+" + prop.getProperty("user_email_bookingALead_ConfirmedTest"),
-				prop.getProperty("password"));
+		login.login(prop("Sales_email"), prop("Password"));
 
-		salesPresalesDashboard.goToAllLeadsList();
-
-		salesPresalesDashboard.SelectList("Opportunity");
-
-		salesPresalesDashboard.openLeadDetails(1);
+		salesPresalesDashboard.searchLead(s);
 
 		String leadIdObj = driver.findElement(By.cssSelector("span[name='lead_id']")).getText().replaceAll("\\s+", "");
 		System.out.println("Lead ID-" + leadIdObj);
@@ -89,34 +85,33 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 
 		leadBooking.clickBasicDetails();
 
-		leadBooking.addingAndRemovingSecondaryBookingName(prop.getProperty("SecondaryBookingName_BookingALead"));
+		leadBooking.addingAndRemovingSecondaryBookingName("asd");
 
 		Thread.sleep(3000);
 
 		jse.executeScript("window.scrollBy(0,250)", "");
 
-		leadBooking.selectStage(prop.getProperty("Confirm_Booking"));
+		leadBooking.selectStage("Tentetive");
 
-		leadBooking.inputFloorNumber(prop.getProperty("FloorNumber_BookingALead"));
+		leadBooking.inputFloorNumber("5");
 
-		leadBooking.inputBuildingName(prop.getProperty("BuildingName_BookingALead"));
+		leadBooking.inputBuildingName("Name Bu");
 
-		leadBooking.inputCarpetArea(prop.getProperty("CarpetArea_BookingALead"));
+		leadBooking.inputCarpetArea("100");
 
-		leadBooking.inputSaleableArea(prop.getProperty("SaleableArea_BookingALead"));
+		leadBooking.inputSaleableArea("100");
 
-		leadBooking.inputParkingNumber(prop.getProperty("ParkingNumber_BookingALead"));
+		leadBooking.inputParkingNumber("2");
 
-		leadBooking.inputBedroomPreferences(prop.getProperty("BedroomPreferences_BookingALead"));
+		leadBooking.inputBedroomPreferences("3");
 
-		leadBooking.inputPanNumber(prop.getProperty("PanNumber_BookingALead"));
+		leadBooking.inputPanNumber("ASERT1234E");
 
-		leadBooking.inputAddressAndStreet(prop.getProperty("Address_BookingALead"),
-				prop.getProperty("Street_BookingALead"));
+		leadBooking.inputAddressAndStreet("Ahmednager", "Pune");
 
-		leadBooking.inputCityAndState(prop.getProperty("City_BookingALead"), prop.getProperty("State_BookingALead"));
+		leadBooking.inputCityAndState("Pune", "Maharashtra");
 
-		leadBooking.inputCountryAndZip(prop.getProperty("Zip_BookingALead"));
+		leadBooking.inputCountryAndZip("414003");
 
 		leadBooking.clickOnSaveButton();
 
@@ -163,11 +158,11 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 
 	public void addNewUnit() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("admin"), prop.getProperty("password"));
+		login.login(prop("Admin_id"), prop("Password"));
 
 		ClientLoginPage clientLogin = new ClientLoginPage(driver);
 
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		clientLogin.clientLogin(prop("Client_Name"));
 
 		UnitsPage unitsPage = new UnitsPage(driver);
 		NewUnitFormPage newUnitFormPage = new NewUnitFormPage(driver);
@@ -179,7 +174,7 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 
 		unitsPage.clickOnNewUnitButton();
 
-		newUnitFormPage.enterDeveloperName("AniketBuisnessNameMain");
+		newUnitFormPage.enterDeveloperName("Aniket");
 
 		newUnitFormPage.enterProjectName("Aniket Project 02");
 
@@ -191,7 +186,7 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 
 		newUnitFormPage.enterUnitName(unitName);
 
-		newUnitFormPage.enterNumberOfFloors(prop.getProperty("numberOfFloors_addingNewUnitTest"));
+		newUnitFormPage.enterNumberOfFloors("7");
 
 		newUnitFormPage.enterUnitBaseRate(Random("N", 10));
 
@@ -210,5 +205,24 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 		newUnitFormPage.enterNumberOfFloors(Random("N", 1));
 
 		newUnitFormPage.clickOnSaveButton();
+	}
+
+
+
+	public void mmm3() {
+//		String s = new APIs().GetAllDevloperID()[2].get_id();
+//		System.out.println(s);
+//
+//		String ss = new GetAllProjectIDAndName().getAllProjectID(1).get(0);
+//		System.out.println(ss);
+//		
+//		String sss = new APIs().getAllProjectTowerID()[2].get_id();
+//		System.out.println(sss);
+//		
+//		String ssss = new APIs().GetAllUnitConfigurationID()[0].get_id();
+//		System.out.println(ssss);
+		
+		String sssss = new APIs().addUnit();
+		System.out.println(sssss);
 	}
 }

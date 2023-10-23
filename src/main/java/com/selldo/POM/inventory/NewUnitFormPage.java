@@ -133,6 +133,12 @@ public class NewUnitFormPage extends ReusableUtils {
 		wait(1000);
 		waitUntilVisiblity(projectInputField).sendKeys(Keys.ENTER);
 	}
+	public void enterProjectName(String pro) throws InterruptedException {
+		waitUntilClickable(project).click();
+		waitUntilVisiblity(projectInputField).sendKeys(pro.replaceAll("[^A-Za-z0-9]", " "));
+		wait(1000);
+		waitUntilVisiblity(projectInputField).sendKeys(Keys.ENTER);
+	}
 
 	public void enterProjectTowerName(String tower) throws InterruptedException {
 		waitUntilClickable(projectTower).click();

@@ -12,7 +12,7 @@ public class CreateClinet extends BaseTest {
 	
 	@Test
 	public void createPostpaidClient() {
-		String ClientName = "5Oct_PostPaid";
+		String ClientName = "19Oct_PostPaid_03";
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);
 		loginPage.login_suppoort();
@@ -24,6 +24,8 @@ public class CreateClinet extends BaseTest {
 		page.shortName(Random("A", 6));
 		page.enterClientWebsite(Random("AN", 7));
 		page.enterclinetEmail(randomEmail());
+		page.enterSalesPersonName(Random("A",10));
+		page.enterOnboardingPersonName(Random("A",10));
 		page.uploadFile("nun");
 		page.enterClientPhone(randomPhone());
 		page.enterMask(Random("A", 6));
@@ -44,7 +46,7 @@ public class CreateClinet extends BaseTest {
 	}
 	@Test
 	public void createPrepaidClient() throws InterruptedException {
-		String BuisnessName="5Oct_Prepaid_01";
+		String BuisnessName="19Oct_PrePaid_03";
 		driver.get(prop("URL")+"/signup?plan=selection");
 		PrepaidClientCreation page = new PrepaidClientCreation(driver);
 		page.enterClientFirstName(Random("A",10));
@@ -58,6 +60,8 @@ public class CreateClinet extends BaseTest {
 		String industryType[]= {"Real Estate","Education","BFSI","Generic"};
 		page.selectIndustryType(industryType[0]);
 		page.enterClientWebSite(Random("A",10));
+		page.enterSalesPersonName(Random("A",10));
+		page.enterOnboardingPersonName(Random("A",10));
 		//page.selectPlan("Default Custom");
 		page.clickOnAreYouBroker(false);
 		page.switchToCapta();
