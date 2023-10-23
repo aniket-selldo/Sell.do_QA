@@ -3,6 +3,7 @@ package POM.clientCreationPage;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -124,6 +125,16 @@ public class createClientPage extends ReusableUtils {
 	private WebElement clickOnProfile;
 	@FindBy(how = How.LINK_TEXT, using = "Go to Login as Client")
 	private WebElement ClickOnGoToLoginAsClient;
+	@FindBy(how = How.XPATH, using = "//label[@name='client[ob_details][sales]']/parent::div/div")
+	private WebElement SalesPersonName;
+	@FindBy(how = How.XPATH, using = "//label[@name='client[ob_details][onboarding]']/parent::div/div")
+	private WebElement OnboardingPersonName;
+	@FindBy(how = How.CSS, using = "div[id='select2-drop'] input")
+	private WebElement EnterText;
+	@FindBy(how = How.XPATH, using = "//*[@id='select2-drop']/div/input")
+	private WebElement EnterText2;
+	@FindBy(how = How.CSS, using = "div[class='select2-result-label']")
+	private WebElement Recomendation;
 
 	public void clickOnClientButton() {
 		String currentURL = driver.getCurrentUrl();
@@ -162,6 +173,22 @@ public class createClientPage extends ReusableUtils {
 
 	public void enterclinetEmail(String name) {
 		waitUntilVisiblity(clientEmail).sendKeys(name);
+	}
+
+	public void enterSalesPersonName(String str) {
+
+		waitUntilClickable(SalesPersonName).click();
+		waitUntilVisiblity(EnterText).sendKeys(str);
+		waitUntilVisiblity(Recomendation);
+		EnterText2.sendKeys(Keys.ENTER);
+
+	}
+
+	public void enterOnboardingPersonName(String str) {
+		waitUntilClickable(OnboardingPersonName).click();
+		waitUntilVisiblity(EnterText).sendKeys(str);
+		waitUntilVisiblity(Recomendation);
+		EnterText2.sendKeys(Keys.ENTER);
 	}
 
 	public void uploadFile(String fileName) {

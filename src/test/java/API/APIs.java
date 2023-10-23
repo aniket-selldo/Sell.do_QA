@@ -1,6 +1,7 @@
 package API;
 
 import static io.restassured.RestAssured.given;
+import static org.testng.Assert.ARRAY_MISMATCH_TEMPLATE;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,12 +19,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.API_Reusable;
 
+import POJO_AddDevloper_GET.Root_AddDevloper_GET;
 import POJO_Constant_GET.Root_getConstant;
 import POJO_CreateFollowup.Followup;
 import POJO_CreateFollowup.RootFolloup;
 import POJO_CreateFollowup_GET.Root_followUp_Get;
 import POJO_GetAllActivityOnLead.Root_GetAllLeadActivity;
+import POJO_GetAllDevloperID.Root_GetAllDevID;
 import POJO_GetAllUser_GET_2.Root_GetAllUser_GET_2;
+import POJO_GetUnitConfiguration.Root_GetAllUnitConfigurationID;
 import POJO_Get_Sales_PreSales_PostSales_GET.Root_GetUsersWithType;
 import POJO_LeadCreate.Form;
 import POJO_LeadCreate.Lead;
@@ -34,10 +38,12 @@ import POJO_LeadCreate_GET.Root_CreateLead_GET;
 import POJO_SiteVisit.RootCreateSiteVisit;
 import POJO_SiteVisit.SiteVisit;
 import POJO_SiteVisit_GET.Root_sitevisitSchedule_Get;
+import POJO_getAllProjectTowerID.Root_GetAllTowerID;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class APIs extends API_Reusable {
@@ -372,6 +378,51 @@ public class APIs extends API_Reusable {
 		System.out.println(AddProjectTower.addProjectTower(getRandomProjectID()).get_id());
 	}
 
+	public Root_GetAllDevID[] GetAllDevloperID() {
+		String URL = prop("URL") + "/client/developers.json";
+		return given().urlEncodingEnabled(false).contentType(ContentType.JSON).with()
+				.queryParam("client_id", prop("Client_id")).queryParam("api_key", prop("Clinet_API_Full")).when()
+				.get(URL).then().extract().response().as(Root_GetAllDevID[].class);
+
+	}
+
+	public Root_GetAllTowerID[] getAllProjectTowerID() {
+		String URL = prop("URL") + "/client/project_towers.json";
+		return given().urlEncodingEnabled(false).contentType(ContentType.JSON).with()
+				.queryParam("client_id", prop("Client_id")).queryParam("api_key", prop("Clinet_API_Full")).when()
+				.get(URL).then().extract().response().as(Root_GetAllTowerID[].class);
+	}
+
+	public Root_GetAllUnitConfigurationID[] GetAllUnitConfigurationID() {
+		String URL = prop("URL") + "/client/unit_configurations.json";
+		return given().urlEncodingEnabled(false).contentType(ContentType.JSON).with()
+				.queryParam("client_id", prop("Client_id")).queryParam("api_key", prop("Clinet_API_Full")).when()
+				.get(URL).then().extract().response().as(Root_GetAllUnitConfigurationID[].class);
+	}
+
+	public String addUnit() {
+		String str = null;
+		given().urlEncodingEnabled(true).contentType(ContentType.URLENC)
+				.formParam("project_unit[developer_id]", GetAllDevloperID()[0].get_id())
+				.formParam("project_unit[project_id]", new GetAllProjectIDAndName().getAllProjectID(1).get(0))
+				.formParam("project_unit[project_tower_id]", getAllProjectTowerID()[0].get_id())
+				.formParam("project_unit[unit_configuration_id]", GetAllUnitConfigurationID()[0].get_id())
+				.formParam("project_unit[name]", str = Random("AN", 10)).formParam("project_unit[floor]", "2")
+				.formParam("project_unit[unit_index]", "2").formParam("project_unit[base_rate]", "2580")
+				.formParam("project_unit[base_price]", "1754400")
+				.formParam("project_unit[calculated_agreement_value]", "")
+				.formParam("project_unit[calculated_total_price]", "0.0").formParam("project_unit[security_amount]", "")
+				.formParam("project_unit[maintenance_amount]", "").formParam("project_unit[property_purpose]", "sale")
+				.formParam("project_unit[type]", "apartment").formParam("project_unit[category]", "premium")
+				.formParam("project_unit[bedrooms]", "0").formParam("project_unit[bathrooms]", "0")
+				.formParam("project_unit[measure]", "sq_ft").formParam("project_unit[carpet]", "680")
+				.formParam("project_unit[saleable]", "680").formParam("project_unit[loading]", "11.7647")
+				.formParam("commit", "Save").formParam("api_key", prop("Clinet_API_Full"))
+				.formParam("client_id", prop("Client_id")).when().post(prop("URL") + "/client/project_units.json")
+				.then().extract().response();
+		return str;
+	}
+
 	// ============================ User related =========================
 
 	public Root_GetAllUser_GET_2 getUserList() throws FileNotFoundException, IOException {
@@ -411,20 +462,53 @@ public class APIs extends API_Reusable {
 	}
 	// ============================ Other =========================
 
-	public Root_getConstant getConstant() {
+	public JsonPath getConstant(String id, String password) {
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless");
 		ChromeDriver driver = new ChromeDriver(options);
 		driver.get(prop("URL"));
-		new LoginPage(driver).login(prop("PreSales_id_amura"), prop("Password"));
+		new LoginPage(driver).login(id, password);
 
 		Cookie CRM_session = driver.manage().getCookieNamed("_crm_session");
 		Cookie sesion_id = driver.manage().getCookieNamed("_session_id");
+
 		String url = prop("URL") + "/client/constants";
-		return RestAssured.given().with()
+		JsonPath js = RestAssured.given().with()
 				.header("Cookie", "_crm_session=" + CRM_session.getValue() + ";_session_id=" + sesion_id.getValue())
-				.when().get(url).then().extract().response().as(Root_getConstant.class);
+				// .header("Cookie", ck)
+				.header("Host", prop("URL").split("//")[1]).header("Accept", "*/*").when().get(url).then().log().all()
+				.extract().response().jsonPath();
+		System.out.println("Constant API working Fine");
+		return js;
+
+	}
+
+	public String[] getFullAccessAPI(String id, String password) {
+		JsonPath js = getConstant(id, password);
+		int numberOfAPIs = js.getInt("Constants.api_clients.size()");
+		String Full = null;
+		String Res = null;
+		for (int i = 0; i < numberOfAPIs - 1; i++) {
+			String APIType = js.getString("Constants.api_clients["+i+"].name").trim();
+			String APICategory = js.getString("Constants.api_clients[" + i + "].category").trim();
+			if (APIType.equalsIgnoreCase("selldo access") && APICategory.equalsIgnoreCase("full_access")) {
+				Full = js.getString("Constants.api_clients[" + i + "]._id");
+			} else if (APIType.equalsIgnoreCase("website") && APICategory.equalsIgnoreCase("restricted")) {
+				Res = js.getString("Constants.api_clients[" + i + "]._id");
+			}
+		}
+		String out[] = { Full, Res };
+		return out;
+	}
+
+	public static void main(String[] args) {
+		APIs api = new APIs();
+		String []apiss=api.getFullAccessAPI(prop("Sales_email"), prop("Password"));
+		System.out.println(apiss[0]);
+		System.out.println(apiss[1]);
+		
+		
 	}
 
 }

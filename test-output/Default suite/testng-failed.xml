@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="dashboardBucketsPack.NewEnquiries_VerificationTest">
+      <class name="CreateClient.CreateClinet">
         <methods>
           <include name="browserConfig"/>
-          <include name="newEnquiries_VerificationTest"/>
+          <include name="createPostpaidClient"/>
           <include name="terminate"/>
         </methods>
-      </class> <!-- dashboardBucketsPack.NewEnquiries_VerificationTest -->
+      </class> <!-- CreateClient.CreateClinet -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
