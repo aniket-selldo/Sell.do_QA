@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -47,6 +48,7 @@ public class ReusableUtils {
 		}
 		return prop;
 	}
+
 	protected String prop(String str) {
 		Properties prop = new Properties();
 		try {
@@ -85,6 +87,7 @@ public class ReusableUtils {
 		wait.until(ExpectedConditions.invisibilityOf(we));
 		return we;
 	}
+
 	protected WebElement waitUntilInvisibility(WebElement we, int time) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
 		wait.until(ExpectedConditions.invisibilityOf(we));
@@ -138,6 +141,26 @@ public class ReusableUtils {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+//	protected void wait(int value) {
+//		waitBySeconds(value);
+//	}
+
+	protected void waitBySeconds(int value) {
+		long minutes = TimeUnit.MILLISECONDS.toMinutes(value);
+		long seconds = TimeUnit.MILLISECONDS.toSeconds(value) - TimeUnit.MINUTES.toSeconds(minutes);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		for (long i = seconds; i > 0; i--) {
+			try {
+				js.executeScript("alert('Wait for " + (i) + " seconds');");
+				Thread.sleep(1000);
+				driver.switchTo().alert().accept();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 //-------------------------------- Action ----------------------
 
@@ -245,6 +268,11 @@ public class ReusableUtils {
 		Square(we);
 	}
 
+	protected void refreshPageByJS(WebElement we) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("history.go(0)");
+	}
+
 	protected WebElement scrollIntoViewUp(WebElement we) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].scrollIntoView(false);", we);
@@ -261,7 +289,10 @@ public class ReusableUtils {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
 		wait.until(ExpectedConditions.elementToBeClickable(we));
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		System.out.println("jsClicked Element -> " + we.getText().trim());
+		long start = System.currentTimeMillis();
+		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
+		System.out.print("jsClicked Element -> " + we.getText().trim());
+		System.out.println("  Elapsed time: " + (System.currentTimeMillis() - start));
 		executor.executeScript("arguments[0].click();", we);
 		Square(we);
 	}
@@ -282,7 +313,7 @@ public class ReusableUtils {
 
 	protected void deZoom(int in) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("document.body.style.zoom='"+in+"%'");
+		js.executeScript("document.body.style.zoom='" + in + "%'");
 	}
 
 	protected WebElement jsSendKey(WebElement we, String txt) {
@@ -431,7 +462,7 @@ public class ReusableUtils {
 		return Noty;
 	}
 
-	protected String getDate(int a, String of) {
+	protected String getDate(long a, String of) {
 
 		String s = "";
 		switch (of) {
@@ -442,7 +473,13 @@ public class ReusableUtils {
 			s = new SimpleDateFormat("M").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
 			break;
 		case "Y":
-			s = new SimpleDateFormat("YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			s = new SimpleDateFormat("YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24 )));
+			break;
+		case "m":
+			s = new SimpleDateFormat("mm").format(new Date().getTime() + (a * (1000 * 60 )));
+			break;
+		case "H":
+			s = new SimpleDateFormat("hh").format(new Date().getTime() + (a * (1000 * 60 * 60 )));
 			break;
 
 		default:
@@ -453,12 +490,13 @@ public class ReusableUtils {
 	}
 
 	public String randomEmail() {
-		return "aniket.khandizod+" + Random( "AN", 10) + "@sell.do";
+		return "aniket.khandizod+" + Random("AN", 10) + "@sell.do";
 	}
 
 	public String randomPhone() {
-		return " 12345" + Random( "N", 5);
+		return " 12345" + Random("N", 5);
 	}
+
 	public String Random(String type, int size) {
 		String Return = "";
 		switch (type) {

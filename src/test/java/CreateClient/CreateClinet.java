@@ -1,7 +1,9 @@
 package CreateClient;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.github.javafaker.Faker;
 import com.selldo.Utility.BaseTest;
 
 import POM.clientCreationPage.PrepaidClientCreation;
@@ -9,76 +11,82 @@ import POM.clientCreationPage.createClientPage;
 import myPom.loginPage;
 
 public class CreateClinet extends BaseTest {
-	//sds
+	
+
 	@Test
 	public void createPostpaidClient() {
-		String ClientName = "19Oct_PostPaid_03";
+		String ClientName = "7Dec_PostPaid_00";
+		Faker faker = new Faker();
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);
 		loginPage.login_suppoort();
 		page.clickOnClientButton();
-		page.enterFirstName(Random("A", 7));
-		page.enterLastName(Random("A", 7));
+		page.enterFirstName(faker.firstName());
+		page.enterLastName(faker.lastName());
 		page.enterBuisnessName(ClientName);
 		page.selectBuisnessType();
 		page.shortName(Random("A", 6));
 		page.enterClientWebsite(Random("AN", 7));
 		page.enterclinetEmail(randomEmail());
-		page.enterSalesPersonName(Random("A",10));
-		page.enterOnboardingPersonName(Random("A",10));
+		page.enterSalesPersonName(faker.firstName());
+		page.enterOnboardingPersonName(faker.firstName());
 		page.uploadFile("nun");
 		page.enterClientPhone(randomPhone());
 		page.enterMask(Random("A", 6));
 		page.selectIndustry(0);// 0) Real Estate 1) Education 2) BFSI 3) Generic
-		page.enterAddres(Random("A", 6));
+		page.enterAddres(faker.streetAddress(true));
 		page.enterCountry(1);
 		page.enterState(1);
-		page.enterCity("Pune");
+		page.enterCity(faker.country());
 		page.enterZip(414003);
-		page.enterUserFirstName(ClientName);
-		page.enterUserLasttName("user");
-		page.enterUserPhone(randomPhone());				
+		page.enterUserFirstName("Sales");
+		page.enterUserLasttName("User");
+		page.enterUserPhone(randomPhone());
 		page.enterEmail(randomEmail());
-		page.enterUserTeam(Random("A", 7));
-		//page.selectVendores();
+		page.enterUserTeam("DeafultTeam");
+		// page.selectVendores();
 		String respone = page.clickOnsave();
 		Assert.assertEquals(respone, "", "Success massage not as expected");
 	}
+
 	@Test
 	public void createPrepaidClient() throws InterruptedException {
-		String BuisnessName="19Oct_PrePaid_03";
-		driver.get(prop("URL")+"/signup?plan=selection");
+		String date = getDate(0,"D").trim();
+		String month = getDate(0,"M1").trim();
+		String BuisnessName = date+month+"_Prepiad_00";
+		Faker faker = new Faker();
+		driver.get(prop("URL") + "/signup?plan=selection");
 		PrepaidClientCreation page = new PrepaidClientCreation(driver);
-		page.enterClientFirstName(Random("A",10));
-		page.enterClientLastName(Random("A",10));
-		page.enterPassword("Selldo@321");
+		page.enterClientFirstName("Admin");
+		page.enterClientLastName("User");
+		page.enterPassword("selldo@321");
 		page.enterClientEmail(randomEmail());
 		page.enterClientPhone(randomPhone());
 		page.enterBuisnessName(BuisnessName);
-		String buisnessType[]= {"Developer","Broker"};
+		String buisnessType[] = { "Developer", "Broker" };
 		page.selectBuisnessType(buisnessType[0]);
-		String industryType[]= {"Real Estate","Education","BFSI","Generic"};
+		String industryType[] = { "Real Estate", "Education", "BFSI", "Generic" };
 		page.selectIndustryType(industryType[0]);
-		page.enterClientWebSite(Random("A",10));
-		page.enterSalesPersonName(Random("A",10));
-		page.enterOnboardingPersonName(Random("A",10));
-		//page.selectPlan("Default Custom");
+		page.enterClientWebSite(Random("A", 10));
+		page.enterSalesPersonName(faker.firstName());
+		page.enterOnboardingPersonName(faker.firstName());
+		// page.selectPlan("Default Custom");
 		page.clickOnAreYouBroker(false);
 		page.switchToCapta();
 		page.clickOnSignUp();
-		page.user_first_name(Random("A",10));
-		page.user_last_name(Random("A",10));
+		page.user_first_name("Sales");
+		page.user_last_name("User");
 		page.user_email(randomEmail());
 		page.user_phone(randomPhone());
 		page.clickOnSaveAndContinue();
-		page.client_address_address1("Pune");
-		page.client_address_address2("Baner High Street");
+		page.client_address_address1(faker.streetAddress(false));
+		page.client_address_address2(faker.streetAddress(true));
 		page.selectClient_address_country();
 		page.selectClient_country_state();
 		page.client_address_city("Pune");
 		page.client_address_zip(414003);
-		page.promotional_sms_mask(Random("A",6));
-		page.transactional_sms_mask(Random("A",6));
+		page.promotional_sms_mask(Random("A", 6));
+		page.transactional_sms_mask(Random("A", 6));
 		page.client_image("nun");
 		page.clickOnSaveAndContinue();
 		page.clickOnContinue();

@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
@@ -24,7 +23,7 @@ public class NewEnquiries_VerificationTest extends BaseTest {
 
 		Thread.sleep(3000);
 
-		String leadCount_b = driver.findElement(By.cssSelector("//div[@id='contact_new_leads']//span")).getText();
+		String leadCount_b = driver.findElement(By.xpath("//div[@id='contact_new_leads']//span")).getText();
 		System.out.println(leadCount_b);
 
 		salesPresalesDashboard.clickOnnewEnquiryBucket();
@@ -49,15 +48,15 @@ public class NewEnquiries_VerificationTest extends BaseTest {
 		Thread.sleep(4000);
 
 		WebElement count_a = driver
-				.findElement(By.cssSelector("div[id='new-enquires'] span[class='title-item-body-count']"));
+				.findElement(By.cssSelector("#contact_new_leads span"));
 		String leadCount_a = count_a.getText();
 		System.out.println(leadCount_a);
 
-		SoftAssert assertion = new SoftAssert();
+		long prviousValue =Integer.parseInt(leadCount_b);
+		long currentValue =Integer.parseInt(leadCount_a);
+		System.out.println("Initial value :"+leadCount_b+" currentValue : "+leadCount_a);
+		Assert.assertEquals((prviousValue-1), currentValue, "Count is same as before sending email");
 
-		Assert.assertNotEquals(leadCount_b, leadCount_a, "Count is same as before sending email");
-
-		assertion.assertAll();
 
 	}
 }

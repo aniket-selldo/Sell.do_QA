@@ -59,7 +59,7 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private WebElement details;
 	@FindBy(how = How.XPATH, using = "//span[text()='Search...']")
 	public WebElement searchField;
-	@FindBy(how = How.XPATH, using = "//div[@id='new-enquires']//div[@class='tile-item-body text-success']")
+	@FindBy(how = How.XPATH, using = "//div[@id='contact_new_leads']//span")
 	private WebElement newEnquiryBucket;
 	@FindBy(how = How.XPATH, using = "//div[@id='reengaged-leads']//div[@class='tile-item-body text-success']")
 	private WebElement reengagedLeadsBucket;
@@ -119,9 +119,9 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private WebElement ClickOnAddProjectButton;
 	@FindBy(how = How.CSS, using = "div.dropdown.stage.float-left.mr-1 button span[data-title='label']")
 	private WebElement getCurretLeadStatus;
-	@FindBy(how = How.CSS, using = "#reengaged-leads div:nth-child(2)")
+	@FindBy(how = How.CSS, using = "#reengaged_leads span")
 	private WebElement getReenggagedLeadCount;
-	@FindBy(how = How.CSS, using = "#get_leads_count")
+	@FindBy(how = How.CSS, using = ".leads-count-note a")
 	private WebElement getLeadHash;
 	@FindBy(how = How.XPATH, using = "//input[@id='user_first_name']")
 	private WebElement getFirstNameOfUser;
@@ -135,6 +135,24 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	private WebElement getSecondaryPhoneOfUser;
 	@FindBy(how = How.XPATH, using = "//tr[@class='leads-small']")
 	private List<WebElement> getLeadListVisiblity;
+	@FindBy(how = How.CSS, using = "#unscheduled_leads span")
+	private WebElement clickOnNFABucket;
+	@FindBy(how = How.CSS, using = "#pending_emails span")
+	private WebElement UnreadEmailBox;
+	@FindBy(how = How.CSS, using = "#ion_funnel_lead_profile")
+	private WebElement clickOnFilter;
+	@FindBy(how = How.LINK_TEXT, using = "Clear All")
+	private WebElement clickOnClarAll;
+	@FindBy(how = How.XPATH, using = "//button[@class='btn btn-sm mt-1 btn-outline-primary small apply-filter']")
+	private WebElement clickOnApply;
+
+	public String getNFABucketCount() {
+		return waitUntilVisiblity(clickOnNFABucket).getText().trim();
+	}
+
+	public String getUnreadEmailCount() {
+		return waitUntilVisiblity(UnreadEmailBox).getText().trim();
+	}
 
 	public String getFirstNameOfUser() {
 		return waitUntilVisiblity(getFirstNameOfUser).getAttribute("value").trim();
@@ -238,6 +256,13 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 				.click();
 	}
 
+	public void clearAllFilter() {
+		waitUntilClickable(clickOnFilter).click();
+		waitUntilClickable(clickOnClarAll).click();
+		//waitUntilClickable(clickOnApply).click();
+
+	}
+
 	public void goToAllLeadsList() {
 
 		moveToElement(leadsIcon);
@@ -270,9 +295,13 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 		waitUntilClickable(refreshIcon).click();
 		wait(3000);
 		try {
+			wait(3000);
 			jsClick(refreshIcon);
 			wait(3000);
 		} catch (Exception e) {
+			wait(3000);
+			jsClick(refreshIcon);
+			wait(3000);
 		}
 
 	}
@@ -297,11 +326,11 @@ public class SalesPresalesDashboardPage extends ReusableUtils {
 	public String getHashStringCount() {
 		waitUntilClickable(getHashCount).click();
 		wait(5000);
-		return  getHashCount.getText();
+		return getHashCount.getText();
 	}
 
 	public void clickOnNFAbucket() {
-		waitUntilClickable(nFABucket).click();
+		waitUntilClickable(clickOnNFABucket).click();
 	}
 
 	public void selectMarkOnBreak() {

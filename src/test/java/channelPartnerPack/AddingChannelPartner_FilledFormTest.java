@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import com.selldo.POM.adminPages.NewPartnerFormPage;
 import com.selldo.POM.adminPages.PartnersPage;
 import com.selldo.POM.adminPages.SettingsPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -18,7 +17,7 @@ public class AddingChannelPartner_FilledFormTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop("Client_id"), prop("Password"));
+		login.login(prop("Clinet_Email"), prop("Password"));
 
 		SettingsPage settingsPage = new SettingsPage(driver);
 
@@ -32,8 +31,6 @@ public class AddingChannelPartner_FilledFormTest extends BaseTest {
 
 		PartnersPage.clickOnNewPartnerButton();
 
-		Thread.sleep(2000);
-
 		String PartnerName = "MANDATORY_"+Random("A", 10).toUpperCase();
 		newPartnerFormPage.enterPartnerName(PartnerName);
 
@@ -42,7 +39,6 @@ public class AddingChannelPartner_FilledFormTest extends BaseTest {
 		newPartnerFormPage.enterSourceOfRecruitment("Online");
 
 		newPartnerFormPage.clickOnContactDetailsTab();
-		Thread.sleep(2000);
 
 		newPartnerFormPage.selectSalutation("Mrs.");
 
@@ -60,7 +56,7 @@ public class AddingChannelPartner_FilledFormTest extends BaseTest {
 
 		newPartnerFormPage.enterDesignation(Random("A", 10));
 
-		newPartnerFormPage.enterPanNumber("EXZPK1345X");
+		newPartnerFormPage.enterPanNumber(randomPAN());
 		
 		newPartnerFormPage.enterAddress("Near Sell.do");
 		

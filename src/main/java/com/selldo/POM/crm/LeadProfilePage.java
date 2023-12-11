@@ -136,7 +136,7 @@ public class LeadProfilePage extends ReusableUtils {
 	@FindBy(how = How.XPATH, using = "//a[@class='dropdown-item lead_stage']")
 	private List<WebElement> stageDropdown_All;
 
-	@FindBy(how = How.XPATH, using = "//a[text()='Save']")
+	@FindBy(how = How.CSS, using = "#save_stage_and_status_lead_profile")
 	private WebElement saveButton;
 
 	// Why was this customer Lost? popup appeared when stage changed to Lost
@@ -269,7 +269,19 @@ public class LeadProfilePage extends ReusableUtils {
 	private WebElement getFirstNoteText;
 	@FindBy(how = How.XPATH, using = "//button[@type='submit']")
 	private WebElement SendBrochure;
+	@FindBy(how = How.XPATH, using = "(//span[text()='Select'])[1]")
+	private WebElement selectProjhectForBooking;
+	@FindBy(how = How.CSS, using = "li[class='select2-results-dept-0 select2-result select2-result-selectable']")
+	private List<WebElement> BookingProjectDropDown;
 	
+	
+	//Booking page
+	public void selectproject(String str) {
+		waitUntilClickable(selectProjhectForBooking).click();
+		waitUntilClickable(BookingProjectDropDown.stream().filter(S->S.getText().contains(str)).findFirst().get()).click();
+		
+	}
+
 	public String getLeadStage() {
 		for (int i = 0; i < 50; i++) {
 			if(waitUntilVisiblity(getLeadStage).getText().trim().equalsIgnoreCase("Prospect")) {
@@ -701,13 +713,13 @@ public class LeadProfilePage extends ReusableUtils {
 		for (WebElement ele : list) {
 			if (ele.getText().trim().equalsIgnoreCase(stageName)) {
 				waitUntilVisiblity(ele);
-				wait(1000);
-				ele.click();
+				jsClick(ele);
 				break;
 			}
 		}
-		wait(1000);
-		jsClick(saveButton);
+//		wait(5000);
+		//jsClick(saveButton);
+		saveButton.click();
 	}
 
 	public void selectReasonForLostOrUnqualified() {
@@ -783,6 +795,8 @@ public class LeadProfilePage extends ReusableUtils {
 			}
 		}
 	}
+	
+	
 
 	public void selectBookings() {
 		

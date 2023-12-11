@@ -32,8 +32,10 @@ public class AdminDashboardPage extends ReusableUtils {
 
 	@FindBy(how = How.CSS, using = "i.ion-ios-people")
 	private WebElement leadsIcon;
-	@FindBy(how = How.XPATH, using = "//*[contains(@class,'select2-container form-control select2 c')]")
+	@FindBy(how = How.CSS, using = ".app-search-list .select2-choice")
 	private WebElement listField;
+	@FindBy(how = How.CSS, using = ".form-control.select2.clean-select2.lead-list.select2-offscreen")
+	private WebElement selectListField;
 	@FindBy(how = How.CSS, using = "#select2-drop > div > input")
 	private WebElement listSearch;
 	@FindBy(how = How.CSS, using = "i.ion-chatbubbles")
@@ -322,6 +324,11 @@ public class AdminDashboardPage extends ReusableUtils {
 		waitUntilVisiblity(listSearch).sendKeys(reassign);
 		wait(1000);
 		listSearch.sendKeys(Keys.ENTER);
+	}
+	public void SelectListBySelectClass(String reassign) throws Exception {
+		//selectListField
+		waitUntilClickable(listField).click();
+		selectByVisibleText(selectListField,reassign);
 	}
 
 	public void openManageUsersPage() {

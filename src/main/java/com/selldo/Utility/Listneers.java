@@ -59,11 +59,12 @@ public class Listneers extends BaseTest implements ITestListener {
 
 	@Override
 	public void onStart(ITestContext context) {
-
+		extentTest.get().log(Status.INFO, "Test Start");
 	}
 
 	@Override
 	public void onFinish(ITestContext context) {
+		extentTest.get().log(Status.INFO, "Test Start");
 		extent.flush();
 		String path = System.getProperty("user.dir") + "//reports//AutomationReport.html";
 		File htmlFile = new File(path);

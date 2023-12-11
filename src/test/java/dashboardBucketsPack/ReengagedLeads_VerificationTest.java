@@ -3,7 +3,6 @@ package dashboardBucketsPack;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
 import com.selldo.Utility.BaseTest;
@@ -14,7 +13,7 @@ public class ReengagedLeads_VerificationTest extends BaseTest {
 	public void reengagedLeads_VerificationTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("name"), prop.getProperty("password"));
+		login.login(prop("PreSales_email_amura"), prop("Password"));
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 

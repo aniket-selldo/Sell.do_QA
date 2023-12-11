@@ -51,7 +51,7 @@ public class MissedSitevisit_VerificationTest extends BaseTest {
 		salesPresalesDashboard.refreshDashboardStats();
 		Thread.sleep(5000);
 		salesPresalesDashboard.clickOnOpenTasksLink();
-
+		salesPresalesDashboard.clickOnOpenTasksLink();
 		String count_missedSiteVisitAfter = salesPresalesDashboard.getMissedSiteVisits();
 		System.out.println(count_missedSiteVisitAfter);
 

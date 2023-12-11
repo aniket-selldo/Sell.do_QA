@@ -5,9 +5,9 @@
     <classes>
       <class name="CreateClient.CreateClinet">
         <methods>
-          <include name="browserConfig"/>
           <include name="createPostpaidClient"/>
           <include name="terminate"/>
+          <include name="browserConfig"/>
         </methods>
       </class> <!-- CreateClient.CreateClinet -->
     </classes>

@@ -47,7 +47,7 @@ public class GetAllProjectIDAndName extends API_Reusable {
 		return ary;
 	}
 
-	public static ArrayList<String> getAllProjectID(int numberOfProject)
+	public ArrayList<String> getAllProjectID(int numberOfProject)
 			 {
 
 

@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import com.selldo.POM.adminPages.NewPartnerFormPage;
 import com.selldo.POM.adminPages.PartnersPage;
 import com.selldo.POM.adminPages.SettingsPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -17,7 +16,7 @@ public class AddingChannelPartner_MandatoryFillTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop("Client_id"), prop("Password"));
+		login.login(prop("Clinet_Email"), prop("Password"));
 
 		SettingsPage settingsPage = new SettingsPage(driver);
 
@@ -57,7 +56,7 @@ public class AddingChannelPartner_MandatoryFillTest extends BaseTest {
 
 		newPartnerFormPage.entercity("Pune");
 
-		newPartnerFormPage.enterZip("414002");
+		newPartnerFormPage.enterZip(randomZip());
 
 		newPartnerFormPage.clickOnSaveButton();
 

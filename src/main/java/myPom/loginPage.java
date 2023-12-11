@@ -28,10 +28,11 @@ public class loginPage extends ReusableUtils {
 	
 
 	public LoginAsClient login() {
+		
 		Square(userName);
 		userName.sendKeys(getGobalData().getProperty("Admin_id"));
 		Square(password);
-		password.sendKeys(getGobalData().getProperty("Password"));
+		password.sendKeys(getGobalData().getProperty("Password")+"aadasad");
 		Square(signIn);
 		jsClick(signIn);
 		return new LoginAsClient(driver);

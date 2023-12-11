@@ -68,7 +68,7 @@ public class createClientPage extends ReusableUtils {
 	private WebElement userFirstName;
 	@FindBy(how = How.ID, using = "user_last_name")
 	private WebElement userLastName;
-	@FindBy(how = How.CSS, using = "input[class='form-control phone_number non_form_field unique_phone']")
+	@FindBy(how = How.XPATH, using = "//input[@data-field=\"user[phone]\"]")
 	private WebElement userPhone;
 	@FindBy(how = How.ID, using = "user_email")
 	private WebElement userEmail;
@@ -125,9 +125,9 @@ public class createClientPage extends ReusableUtils {
 	private WebElement clickOnProfile;
 	@FindBy(how = How.LINK_TEXT, using = "Go to Login as Client")
 	private WebElement ClickOnGoToLoginAsClient;
-	@FindBy(how = How.XPATH, using = "//label[@name='client[ob_details][sales]']/parent::div/div")
+	@FindBy(how = How.XPATH, using = "//*[@id=\"s2id_autogen3\"]/a/span[1]")
 	private WebElement SalesPersonName;
-	@FindBy(how = How.XPATH, using = "//label[@name='client[ob_details][onboarding]']/parent::div/div")
+	@FindBy(how = How.XPATH, using = "//*[@id=\"s2id_autogen5\"]/a/span[1]")
 	private WebElement OnboardingPersonName;
 	@FindBy(how = How.CSS, using = "div[id='select2-drop'] input")
 	private WebElement EnterText;
