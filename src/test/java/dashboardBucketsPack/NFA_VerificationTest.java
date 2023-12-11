@@ -1,11 +1,9 @@
 package dashboardBucketsPack;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
@@ -19,16 +17,14 @@ public class NFA_VerificationTest extends BaseTest {
 	public void nFA_VerificationTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login("aniket.khandizod+user033@sell.do", prop.getProperty("password"));
+		login.login(prop("PreSales_email_amura"), prop("Password"));
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
 		salesPresalesDashboard.refreshDashboardStats();
 
 		Thread.sleep(3000);
 
-		WebElement count_b = driver
-				.findElement(By.cssSelector("div[id='nfa-leads'] span[class='title-item-body-count']"));
-		String leadCount_b = count_b.getText();
+		String leadCount_b = salesPresalesDashboard.getNFABucketCount();
 		System.out.println(leadCount_b);
 
 		salesPresalesDashboard.clickOnNFAbucket();
@@ -77,9 +73,9 @@ public class NFA_VerificationTest extends BaseTest {
 
 		Thread.sleep(3000);
 
-		WebElement count_a = driver
-				.findElement(By.cssSelector("div[id='nfa-leads'] span[class='title-item-body-count']"));
-		String leadCount_a = count_a.getText();
+//		WebElement count_a = driver
+//				.findElement(By.cssSelector("div[id='nfa-leads'] span[class='title-item-body-count']"));
+		String leadCount_a =  salesPresalesDashboard.getNFABucketCount();
 		System.out.println(leadCount_a);
 
 		Assert.assertNotEquals(leadCount_b, leadCount_a, "Count is same as before scheduling site visit");

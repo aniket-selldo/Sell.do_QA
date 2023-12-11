@@ -44,7 +44,7 @@ public class PartnersPage extends ReusableUtils {
 
 	public void clickOnNewPartnerButton() {
 		waitUntilClickable(newPartner).click();
-		wait(1000);
+		wait(3000);
 	}
 
 	public String searchPartner(String partner) throws Exception {

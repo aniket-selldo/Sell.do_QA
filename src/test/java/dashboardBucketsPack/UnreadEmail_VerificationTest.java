@@ -1,11 +1,8 @@
 package dashboardBucketsPack;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.POM.crm.SalesPresalesDashboardPage;
@@ -16,7 +13,7 @@ public class UnreadEmail_VerificationTest extends BaseTest {
 	@Test
 	public void unreadEmail_VerificationTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		login.login("aniket.khandizod+user033@sell.do", prop.getProperty("password"));
+		login.login(prop("PreSales_email_amura"), prop("Password"));
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
@@ -25,14 +22,14 @@ public class UnreadEmail_VerificationTest extends BaseTest {
 
 		Thread.sleep(3000);
 
-		WebElement count_unreadEmailBucket = driver
-				.findElement(By.cssSelector("div[id='pending-emails'] span[class='title-item-body-count']"));
-		String leadCount_unreadEmailBucket = count_unreadEmailBucket.getText();
+		String leadCount_unreadEmailBucket = salesPresalesDashboard.getUnreadEmailCount();
 		System.out.println(leadCount_unreadEmailBucket);
 
 		salesPresalesDashboard.goToAllLeadsList();
 
-		adminDashboardPage.SelectList("Pending Emails");
+		adminDashboardPage.SelectListBySelectClass("Pending Emails");
+		
+		salesPresalesDashboard.clearAllFilter();
 
 		Thread.sleep(3000);
 

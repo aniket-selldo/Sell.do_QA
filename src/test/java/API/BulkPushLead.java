@@ -14,7 +14,7 @@ public class BulkPushLead extends AbstractComponent {
 		ArrayList<String> st = new ArrayList<String>();
 		ArrayList<String> ary = GetAllProjectIDAndName.getAllProjectID(apiKeyFullAccess, clinetID);
 
-		for (int i = 0; i < 500; i++) {
+		for (int i = 0; i < 5; i++) {
 			String leadCRMID = CreateLead_POST.createLeadByAPI(apiKeyWebSite, user);
 			String LeadID = GetLeadID.getLeadId(apiKeyFullAccess, clinetID, leadCRMID);
 
@@ -48,11 +48,12 @@ public class BulkPushLead extends AbstractComponent {
 		}
 
 	}
-	public static void demooo() {
-		new APIs().getFullAccessAPI();
-	}
+//	public static void demooo() {
+//		new APIs().getFullAccessAPI();
+//	}
 
 	public static void main(String[] args) throws FileNotFoundException, IOException, InterruptedException {
-		demooo() ;
+		CreateLeadWithMultipleIPs() ;
+		// pushLead();
 	}
 }

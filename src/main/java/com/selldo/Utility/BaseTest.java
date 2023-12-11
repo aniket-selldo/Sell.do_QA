@@ -40,7 +40,23 @@ enum Browser {
 	chromeAdv, firefox, edge, safari, HeadLess, Chrome;
 }
 
-public class BaseTest  {
+enum Date_formatter {
+	Full_Date("TodaysDate1"),Full_Date_Short("TodaysDate"), Month_int("M"), Month_short_String("M2"), Month_full_String("M3"), Day("D"),
+	Year_Short("Y"), Year_Full("Y1"), Minute("m"), Hour("H"), AMPM("AMPM"), Week_Short_String("Week"),
+	Week_Full_String("Week1");
+
+	private final String dates;
+
+	Date_formatter(String dates) {
+		this.dates = dates;
+	}
+
+	public String getDates() {
+		return dates;
+	}
+}
+
+public class BaseTest {
 
 	public WebDriver driver;
 	public WebDriverWait wait;
@@ -58,7 +74,8 @@ public class BaseTest  {
 			// ================Add Extension==========
 			// options.addExtensions(new File(System.getProperty("user.dir")
 			// +"/AdBlock-—-best-ad-blocker.crx"));
-		//	options.addExtensions(new File(System.getProperty("user.dir") + "/When-the-Night-Falls-1;-rainbow;-1080p.crx"));
+			// options.addExtensions(new File(System.getProperty("user.dir") +
+			// "/When-the-Night-Falls-1;-rainbow;-1080p.crx"));
 
 			// ================To disable Automation name==========
 			options.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
@@ -90,9 +107,9 @@ public class BaseTest  {
 			driver = new SafariDriver();
 		} else if (browser.equalsIgnoreCase("HtmlUnitDriver")) {
 			driver = new HtmlUnitDriver(BrowserVersion.CHROME);
-			HtmlUnitDriver	driver2 = new HtmlUnitDriver(true);
+			HtmlUnitDriver driver2 = new HtmlUnitDriver(true);
 			driver2.setJavascriptEnabled(true);
-			this.driver=driver2;
+			this.driver = driver2;
 		} else if (browser.equalsIgnoreCase("ChromeDriver")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
@@ -186,13 +203,18 @@ public class BaseTest  {
 		return str + "+" + Random("AN", 10) + "@sell.do";
 	}
 
+	public String randomZip() {
+		return "4" + Random("N", 5);
+	}
+
 	public String randomPAN() {
-		String _4th = R('A','B','C','F','G','H','L','J','P','T','F');
-		return Random("A", 3).toUpperCase()+_4th + Random("A", 1).toUpperCase()+ Random("N", 4) + Random("A", 1).toUpperCase();
+		String _4th = R('A', 'B', 'C', 'F', 'G', 'H', 'L', 'J', 'P', 'T', 'E');
+		return Random("A", 3).toUpperCase() + _4th + Random("A", 1).toUpperCase() + Random("N", 4)
+				+ Random("A", 1).toUpperCase();
 	}
 
 	public String randomPhone() {
-		return " 7" + Random("N", 9);
+		return " " + R('7', '8', '9') + Random("N", 9);
 	}
 
 	public WebElement loading() {
@@ -229,7 +251,7 @@ public class BaseTest  {
 		js.executeScript("document.body.style.zoom='80%'");
 	}
 
-	protected String getDate(int a, String of) {
+	protected String getDate(long a, String of) {
 
 		String s = "";
 		switch (of) {
@@ -238,11 +260,84 @@ public class BaseTest  {
 			break;
 		case "M":
 			s = new SimpleDateFormat("M").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;// integer month
+		case "M2":
+			s = new SimpleDateFormat("MMM").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;// half month name
+		case "M3":
+			s = new SimpleDateFormat("MMMM").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;// Full month name
+		case "Y":
+			s = new SimpleDateFormat("YY").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
 			break;
+		case "Y1":
+			s = new SimpleDateFormat("YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;
+		case "m":
+			s = new SimpleDateFormat("mm").format(new Date().getTime() + (a * (1000 * 60)));
+			break;
+		case "H":
+			s = new SimpleDateFormat("hh").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		case "Week":
+			s = new SimpleDateFormat("EEE").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		case "Week1":
+			s = new SimpleDateFormat("EEEE").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		case "AMPM":
+			s = new SimpleDateFormat("a").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		case "TodaysDate":
+			s = new SimpleDateFormat("dd/M/YY").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		case "TodaysDate1":
+			s = new SimpleDateFormat("dd/M/YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		default:
+			System.out.println("please select valid input");
+			break;
+		}
+		return s;
+	}
+
+	protected static String getDate(long a, Date_formatter of) {
+
+		String s = "";
+		switch (of.getDates()) {
+		case "D":
+			s = new SimpleDateFormat("dd").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;
+		case "M":
+			s = new SimpleDateFormat("M").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;// integer month
+		case "M2":
+			s = new SimpleDateFormat("MMM").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;// half month name
+		case "M3":
+			s = new SimpleDateFormat("MMMM").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
+			break;// Full month name
 		case "Y":
 			s = new SimpleDateFormat("YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
 			break;
-
+		case "m":
+			s = new SimpleDateFormat("mm").format(new Date().getTime() + (a * (1000 * 60)));
+			break;
+		case "H":
+			s = new SimpleDateFormat("hh").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		case "Week":
+			s = new SimpleDateFormat("EEE").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		case "Week1":
+			s = new SimpleDateFormat("EEEE").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		case "AMPM":
+			s = new SimpleDateFormat("a").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
+		case "TodaysDate":
+			s = new SimpleDateFormat("dd/M/YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60)));
+			break;
 		default:
 			System.out.println("please select valid input");
 			break;

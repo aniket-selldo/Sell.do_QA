@@ -15,7 +15,7 @@ import com.selldo.POM.crm.SalesPresalesDashboardPage;
 import com.selldo.Utility.BaseTest;
 
 public class BookingALead_TentativeTest extends BaseTest {
-e
+
 	/*
 	 * final static Logger logger =
 	 * Logger.getLogger(BookingALead_TentativeTest.class);
@@ -58,7 +58,7 @@ e
 	public void bookingALead_TentativeTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login(prop.getProperty("AniketAdmin"), prop.getProperty("password"));
+		//login.login(prop.getProperty("AniketAdmin"), prop.getProperty("password"));
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -66,19 +66,16 @@ e
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
+		login.login(prop("Sales_email"), prop("Password"));
 
-		login.login(prop.getProperty("name") + "+" + prop.getProperty("user_email_bookingALead_ConfirmedTest"),
-				prop.getProperty("password"));
-		extentTest.get().log(Status.INFO, "Clicking on All Leads.......");
 		salesPresalesDashboard.goToAllLeadsList();
 
-		extentTest.get().log(Status.INFO, "Selecting Booked list......");
 		salesPresalesDashboard.SelectList("Opportunity");
+		
+		salesPresalesDashboard.clearAllFilter();
 
-		extentTest.get().log(Status.INFO, "Opening Lead Details page of a lead under Booked stage......");
 		salesPresalesDashboard.openLeadDetails(1);
 
-		extentTest.get().log(Status.INFO, "Getting Lead Id whose stage is to be changed.......");
 		String leadIdObj = driver.findElement(By.cssSelector("span[name='lead_id']")).getText().replaceAll("\\s+", "");
 		System.out.println(leadIdObj);
 
@@ -86,107 +83,77 @@ e
 
 		jse.executeScript("window.scrollBy(0,250)", "");
 
-		extentTest.get().log(Status.INFO, "Adding Inventory of a project.......");
 		leadProfilePage.addingInventory();
 
 		jse.executeScript("window.scrollBy(0,-250)", "");
 
 		Thread.sleep(2000);
 
-		extentTest.get().log(Status.INFO, "Changing filters.......");
 		leadProfilePage.changeFilters();
 
-		extentTest.get().log(Status.INFO, "Selecting unit to be booked.......");
 		leadProfilePage.selectingUnit();
 
 		Thread.sleep(2000);
 
-		extentTest.get().log(Status.INFO, "Marking booked.......");
 		leadProfilePage.bookingUnit();
 
 		LeadBookingFormPage leadBooking = new LeadBookingFormPage(driver);
 
-		extentTest.get().log(Status.INFO, "Adding Cost Details.................");
 		leadBooking.addingCostDetails();
 
-		extentTest.get().log(Status.INFO, "Adding Basic Details...........");
 		leadBooking.clickBasicDetails();
 
-		extentTest.get().log(Status.INFO, "Adding and removing secondary booking name.......");
-		leadBooking.addingAndRemovingSecondaryBookingName(prop.getProperty("SecondaryBookingName_BookingALead"));
+		leadBooking.addingAndRemovingSecondaryBookingName("ac");
 
 		Thread.sleep(3000);
 
 		jse.executeScript("window.scrollBy(0,250)", "");
 
-		extentTest.get().log(Status.INFO, "Taking Floor number.......");
-		leadBooking.inputFloorNumber(prop.getProperty("FloorNumber_BookingALead"));
+		leadBooking.inputFloorNumber("3");
 
-		extentTest.get().log(Status.INFO, "Taking Building name.......");
-		leadBooking.inputBuildingName(prop.getProperty("BuildingName_BookingALead"));
+		leadBooking.inputBuildingName("sd");
 
-		extentTest.get().log(Status.INFO, "Taking Carpet area.......");
-		leadBooking.inputCarpetArea(prop.getProperty("CarpetArea_BookingALead"));
+		leadBooking.inputCarpetArea("12");
 
-		extentTest.get().log(Status.INFO, "Taking Saleable area.......");
-		leadBooking.inputSaleableArea(prop.getProperty("SaleableArea_BookingALead"));
+		leadBooking.inputSaleableArea("23");
 
-		extentTest.get().log(Status.INFO, "Taking Parking number.......");
-		leadBooking.inputParkingNumber(prop.getProperty("ParkingNumber_BookingALead"));
+		leadBooking.inputParkingNumber("34");
 
-		extentTest.get().log(Status.INFO, "Selecting Bedroom preferences.......");
-		leadBooking.inputBedroomPreferences(prop.getProperty("BedroomPreferences_BookingALead"));
+		leadBooking.inputBedroomPreferences("2");
 
-		extentTest.get().log(Status.INFO, "Selecting Pan Number.......");
-		leadBooking.inputPanNumber(prop.getProperty("PanNumber_BookingALead"));
+		leadBooking.inputPanNumber("EXZPL1234J");
 
-		extentTest.get().log(Status.INFO, "Selecting Address and Street.......");
-		leadBooking.inputAddressAndStreet(prop.getProperty("Address_BookingALead"),
-				prop.getProperty("Street_BookingALead"));
+		leadBooking.inputAddressAndStreet("sd","sf");
 
-		extentTest.get().log(Status.INFO, "Selecting City and State.......");
-		leadBooking.inputCityAndState(prop.getProperty("City_BookingALead"),
-				prop.getProperty("State_BookingALead"));
+		leadBooking.inputCityAndState("Pune","Pune");
 
-		extentTest.get().log(Status.INFO, "Selecting Country and Zip.......");
-		leadBooking.inputCountryAndZip(prop.getProperty("Zip_BookingALead"));
+		leadBooking.inputCountryAndZip("414003");
 
-		extentTest.get().log(Status.INFO, "Clicking on Save button............");
 		leadBooking.clickOnSaveButton();
 
 		Thread.sleep(4000);
 
-		extentTest.get().log(Status.INFO, "Selecting Bookings from more.......");
 		leadProfilePage.selectBookings();
 
 		Thread.sleep(2000);
 
-		extentTest.get().log(Status.INFO, "Validating Booking status .......");
 		System.out.println("Started verification");
-		String status  = driver.findElement(By.xpath("//span[@class='badge badge-success']")).getText().toLowerCase();
-		Assert.assertEquals(status, "tentative",
-				"Not matched");
-		System.out.println("Booking status-" +  status);
+		String status = driver.findElement(By.xpath("//span[@class='badge badge-success']")).getText().toLowerCase();
+		Assert.assertEquals(status, "tentative", "Not matched");
+		System.out.println("Booking status-" + status);
 
-		extentTest.get().log(Status.INFO, "Validating 'Add new button' is present..........");
 		Assert.assertEquals(driver.findElement(By.xpath("//button[text()='Add new Booking']")).getText(),
 				"Add new Booking", "Not matched");
 
-		extentTest.get().log(Status.INFO, "Validating 'Close' button is present.........");
-		Assert.assertEquals(
-				driver.findElement(By.xpath("//button[@class='btn btn-default close_profile_form']")).getText().toLowerCase(),
-				"close", "Not matched");
+		Assert.assertEquals(driver.findElement(By.xpath("//button[@class='btn btn-default close_profile_form']"))
+				.getText().toLowerCase(), "close", "Not matched");
 		System.out.println("Completed verification");
 
-		extentTest.get().log(Status.INFO, "Clicking on Close button of Booking details page.......");
 		leadProfilePage.clickOnCloseButton_Bookingdetails();
 
 		Thread.sleep(3000);
 
-		extentTest.get().log(Status.INFO, "Searching lead by Id.......");
 		salesPresalesDashboard.searchLead(leadIdObj);
-
-		extentTest.get().log(Status.INFO, "Verifying stage changed from Incoming to Prospect.......");
 
 		String textDropdownObj = driver
 				.findElement(By.xpath("//button[@class='btn dropdown-toggle btn-sm btn-outline-primary']//span"))

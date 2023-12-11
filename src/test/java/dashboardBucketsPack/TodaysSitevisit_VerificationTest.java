@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.crm.LeadProfilePage;
 import com.selldo.POM.crm.LoginPage;
@@ -18,7 +17,7 @@ public class TodaysSitevisit_VerificationTest extends BaseTest {
 	public void todaysSitevisit_VerificationTest() throws Exception {
 
 		LoginPage login = new LoginPage(driver);
-		login.login("aniket.khandizod+user033@sell.do", prop.getProperty("password"));
+		login.login(prop("Sales_email"), prop("Password"));
 
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 

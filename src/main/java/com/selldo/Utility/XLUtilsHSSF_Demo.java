@@ -15,7 +15,7 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 
-public class XLUtilsHSSF {
+public class XLUtilsHSSF_Demo {
 
 	public FileInputStream fi;
 	public FileOutputStream fo;
@@ -26,7 +26,7 @@ public class XLUtilsHSSF {
 	public CellStyle style;   
 	String path;
 	
-	public XLUtilsHSSF(String path)
+	public XLUtilsHSSF_Demo(String path)
 	{
 		this.path=path;
 	}

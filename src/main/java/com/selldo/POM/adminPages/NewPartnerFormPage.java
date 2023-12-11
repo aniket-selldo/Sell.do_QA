@@ -104,6 +104,7 @@ public class NewPartnerFormPage extends ReusableUtils {
 
 	public void clickOnContactDetailsTab() {
 		waitUntilClickable(contactDetails).click();
+		wait(3000);
 	}
 
 	public void selectSalutation(String salutatio) {
@@ -214,6 +215,7 @@ public class NewPartnerFormPage extends ReusableUtils {
 	}
 
 	public void clickOnSaveButton() {
+		wait(3000);
 		scrollIntoView(saveButton);
 		waitUntilClickable(saveButton).click();
 		waitUntilInvisibility(saveButton);

@@ -30,7 +30,7 @@ public class UpdateLead_Project_Stage extends API_Reusable  {
 				+ "/client/leads/" + leadID + ".json?api_key=" + APIKey + "&client_id=" + ClientID + "");
 
 	}
-	public static String CreateUpdateProjectAndStageOfLead(String leadStage,
+	public  String CreateUpdateProjectAndStageOfLead(String leadStage,
 			int addProjectNumber) throws FileNotFoundException, IOException {
 		String leadCRMID= new APIs().createLead(prop("Sales_id")).getSell_do_lead_id();
 		String leadID =new APIs().getLeadId(leadCRMID);

@@ -18,7 +18,7 @@ public class InvoiceCalculation extends BaseTest {
 		LoginPage login = new LoginPage(driver);
 		login.login(prop("Aniket_SM"), prop("Aniket_SM_PSWD"));
 
-		driver.get(prop("URL") + "/admin/invoices/6501c15db08345beb1c616d6");
+		driver.get(prop("URL") + "/admin/invoices/6571c168b083454e52acbe84");
 		double GST =Double.parseDouble( driver.findElement(By.xpath("//td[starts-with(text(),'Taxes')]/following-sibling::td")).getText());
 		double main =Double.parseDouble( driver.findElement(By.xpath("//td[starts-with(text(),'Total cost')]/following-sibling::td")).getText());
 		double main_GST =Double.parseDouble( driver.findElement(By.xpath("//td[starts-with(text(),'Total Amount')]/following-sibling::td")).getText());

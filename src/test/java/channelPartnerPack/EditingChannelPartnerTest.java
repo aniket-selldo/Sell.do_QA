@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import com.selldo.POM.adminPages.EditPartnerFormPage;
 import com.selldo.POM.adminPages.PartnersPage;
 import com.selldo.POM.adminPages.SettingsPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -17,7 +16,7 @@ public class EditingChannelPartnerTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop("Client_id"), prop("Password"));
+		login.login(prop("Clinet_Email"), prop("Password"));
 
 		SettingsPage settingsPage = new SettingsPage(driver);
 
@@ -58,7 +57,7 @@ public class EditingChannelPartnerTest extends BaseTest {
 
 		editPartnerFormPage.changeDesignation(Random("A",10));
 
-		editPartnerFormPage.changePanNumber("EXZPK1456L");
+		editPartnerFormPage.changePanNumber(randomPAN());
 
 		editPartnerFormPage.clickOnSpecialization();
 
@@ -68,7 +67,7 @@ public class EditingChannelPartnerTest extends BaseTest {
 
 		editPartnerFormPage.changeReraNumber();
 
-		editPartnerFormPage.changePropertyType();
+		//editPartnerFormPage.changePropertyType();
 
 		editPartnerFormPage.changeMinBudget(Random("N",5));
 

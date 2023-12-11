@@ -179,6 +179,7 @@ public class EditPartnerFormPage extends ReusableUtils {
 
 	public void changePropertyType() {
 		waitUntilClickable(propertyType).click();
+		propertyType.clear();
 		wait(2000);
 		List<WebElement> list = propertyType_All;
 		int index = (int) (Math.random() * propertyType_All.size());

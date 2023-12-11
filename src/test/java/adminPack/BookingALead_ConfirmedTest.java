@@ -47,7 +47,6 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 		AddingNewUnitTest addingNewUnitTest = new AddingNewUnitTest();
 		SalesPresalesDashboardPage salesPresalesDashboard = new SalesPresalesDashboardPage(driver);
 
-		String s = new UpdateLead_Project_Stage().CreateUpdateProjectAndStageOfLead("prospect",2);
 	//	driver.get(System.getProperty("user.dir") + "/users/logout");
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -56,7 +55,8 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop("Sales_email"), prop("Password"));
+		login.login(prop("PreSales_email_amura"), prop("Password"));
+		String s = new UpdateLead_Project_Stage().CreateUpdateProjectAndStageOfLead("prospect",2);
 
 		salesPresalesDashboard.searchLead(s);
 
@@ -65,33 +65,37 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 
 		Thread.sleep(1000);
 
-		leadProfilePage.addingInventory();
-
-		jse.executeScript("window.scrollBy(0,-300)", "");
-
-		Thread.sleep(2000);
-
-		leadProfilePage.changeFilters();
-
-		leadProfilePage.selectingUnit();
-
-		Thread.sleep(2000);
-
-		leadProfilePage.bookingUnit();
-
+		leadProfilePage.changing_Stage("booked");
+		
+		leadProfilePage.selectproject("No Inventory Project");
+		
+//		leadProfilePage.addingInventory();
+//
+//		jse.executeScript("window.scrollBy(0,-300)", "");
+//
+//		Thread.sleep(2000);
+//
+//		leadProfilePage.changeFilters();
+//
+//		leadProfilePage.selectingUnit();
+//
+//		Thread.sleep(2000);
+//
+//		leadProfilePage.bookingUnit();
+//
 		LeadBookingFormPage leadBooking = new LeadBookingFormPage(driver);
-
+//
 		leadBooking.addingCostDetails();
-
-		leadBooking.clickBasicDetails();
-
-		leadBooking.addingAndRemovingSecondaryBookingName("asd");
-
-		Thread.sleep(3000);
+//
+//		leadBooking.clickBasicDetails();
+//
+//		leadBooking.addingAndRemovingSecondaryBookingName("asd");
+//
+//		Thread.sleep(3000);
 
 		jse.executeScript("window.scrollBy(0,250)", "");
 
-		leadBooking.selectStage("Tentetive");
+		//leadBooking.selectStage("Tentetive");
 
 		leadBooking.inputFloorNumber("5");
 
@@ -105,7 +109,7 @@ public class BookingALead_ConfirmedTest extends BaseTest {
 
 		leadBooking.inputBedroomPreferences("3");
 
-		leadBooking.inputPanNumber("ASERT1234E");
+		leadBooking.inputPanNumber("AAAAA1111A");
 
 		leadBooking.inputAddressAndStreet("Ahmednager", "Pune");
 

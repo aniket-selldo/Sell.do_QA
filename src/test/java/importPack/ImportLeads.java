@@ -1,13 +1,17 @@
 package importPack;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.adminPages.ImportPage;
 import com.selldo.POM.adminPages.SettingsPage;
@@ -89,6 +93,31 @@ public class ImportLeads extends BaseTest {
 			e.printStackTrace();
 		}
 		return path;
+	}
+	
+	@Test
+	public void demorr() throws InterruptedException {
+		driver.get("https://www.indyatour.com/directory/isd-code");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+		Thread.sleep(1000);
+		List<WebElement>countryName=driver.findElements(By.xpath("//tbody/tr/td[1]"));
+		List<WebElement>countryCode=driver.findElements(By.xpath("//tbody/tr/td[2]"));
+		System.out.println(countryName.size()+" "+countryCode.size());
+		for (int i = 0; i < countryName.size(); i++) {
+			String path = System.getProperty("user.dir") + "/DataFile/CountryCode.xls";
+			XLUtilsHSSF XLUtils = new XLUtilsHSSF(path);
+			try {
+				XLUtils.setCellData("Sheet1", i, 0, countryName.get(i).getText().trim());
+				XLUtils.setCellData("Sheet1", i, 1, countryCode.get(i).getText().trim().replaceAll("[+]", ""));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
 	}
 
 }
