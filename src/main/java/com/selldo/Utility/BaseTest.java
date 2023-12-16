@@ -9,10 +9,13 @@ import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
@@ -21,6 +24,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,11 +33,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 enum Browser {
@@ -41,9 +48,9 @@ enum Browser {
 }
 
 enum Date_formatter {
-	Full_Date("TodaysDate1"),Full_Date_Short("TodaysDate"), Month_int("M"), Month_short_String("M2"), Month_full_String("M3"), Day("D"),
-	Year_Short("Y"), Year_Full("Y1"), Minute("m"), Hour("H"), AMPM("AMPM"), Week_Short_String("Week"),
-	Week_Full_String("Week1");
+	Full_Date("TodaysDate1"), Full_Date_Short("TodaysDate"), Month_int("M"), Month_short_String("M2"),
+	Month_full_String("M3"), Day("D"), Year_Short("Y"), Year_Full("Y1"), Minute("m"), Hour("H"), AMPM("AMPM"),
+	Week_Short_String("Week"), Week_Full_String("Week1");
 
 	private final String dates;
 
@@ -106,10 +113,7 @@ public class BaseTest {
 			WebDriverManager.safaridriver().setup();
 			driver = new SafariDriver();
 		} else if (browser.equalsIgnoreCase("HtmlUnitDriver")) {
-			driver = new HtmlUnitDriver(BrowserVersion.CHROME);
-			HtmlUnitDriver driver2 = new HtmlUnitDriver(true);
-			driver2.setJavascriptEnabled(true);
-			this.driver = driver2;
+		
 		} else if (browser.equalsIgnoreCase("ChromeDriver")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
@@ -351,8 +355,19 @@ public class BaseTest {
 		try {
 			config = configs.properties(new File(System.getProperty("user.dir") + "/config.properties"));
 		} catch (ConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if (propee.equalsIgnoreCase("Email")) {
+			List<String> ls = new ArrayList<>();
+			ls.add("aniket.khandizod@sell.do");
+			ls.add("prerana.hotkar@sell.do");
+			ls.add("hakim.rangwala@sell.do");
+			ls.add("sagar.shejal@sell.do");
+			ls.add("shyam.pandav@sell.do");
+			ls.add("parth.bharadiya@sell.do");
+			String systemName = System.getProperty("user.name");
+			String value = ls.stream().filter(S -> S.startsWith(systemName.substring(0, 5))).findFirst().get();
+			config.setProperty("Email", value);
 		}
 		return config.getString(propee);
 	}

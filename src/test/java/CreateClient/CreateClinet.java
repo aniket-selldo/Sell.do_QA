@@ -15,7 +15,7 @@ public class CreateClinet extends BaseTest {
 
 	@Test
 	public void createPostpaidClient() {
-		String ClientName = "7Dec_PostPaid_00";
+		String ClientName = "Sagar Dev";
 		Faker faker = new Faker();
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);
@@ -52,8 +52,8 @@ public class CreateClinet extends BaseTest {
 	@Test
 	public void createPrepaidClient() throws InterruptedException {
 		String date = getDate(0,"D").trim();
-		String month = getDate(0,"M1").trim();
-		String BuisnessName = date+month+"_Prepiad_00";
+		String month = getDate(0,"M2").trim();
+		String BuisnessName = date+month+"_Prepiad_02";
 		Faker faker = new Faker();
 		driver.get(prop("URL") + "/signup?plan=selection");
 		PrepaidClientCreation page = new PrepaidClientCreation(driver);

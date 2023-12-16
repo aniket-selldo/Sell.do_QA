@@ -296,6 +296,17 @@ public class ReusableUtils {
 		executor.executeScript("arguments[0].click();", we);
 		Square(we);
 	}
+	protected void jsClick(WebElement we,int waitt) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitt));
+		wait.until(ExpectedConditions.elementToBeClickable(we));
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		long start = System.currentTimeMillis();
+		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
+		System.out.print("jsClicked Element -> " + we.getText().trim());
+		System.out.println("  Elapsed time: " + (System.currentTimeMillis() - start));
+		executor.executeScript("arguments[0].click();", we);
+		Square(we);
+	}
 
 	protected void scrollHeight() {
 		JavascriptExecutor js = (JavascriptExecutor) driver;

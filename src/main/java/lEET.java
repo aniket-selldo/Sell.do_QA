@@ -1,26 +1,15 @@
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.List;
 
 public class lEET {
 
 	public static void romanToInt(String s) {
 
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("I", 1);
-		map.put("V", 5);
-		map.put("X", 10);
-		map.put("L", 50);
-		map.put("C", 100);
-		map.put("D", 500);
-		map.put("M", 1000);
-
-		for (int i = 0; i < s.length(); i++) {
-			
-		}
-		
+		List<Integer> ls =Arrays.asList(11,21,2222,334,33445,445,4443,2343,24332,2332324,34334,2343,4565,5654645,232,434,112,898,34);
 
 	}
 
 	public static void main(String[] args) {
-		romanToInt("sdc");
+		romanToInt("sd#scsdk#c");
 	}
 }
