@@ -1,7 +1,6 @@
 package API;
 
 import static io.restassured.RestAssured.given;
-import static org.testng.Assert.ARRAY_MISMATCH_TEMPLATE;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,8 +18,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.API_Reusable;
 
-import POJO_AddDevloper_GET.Root_AddDevloper_GET;
-import POJO_Constant_GET.Root_getConstant;
 import POJO_CreateFollowup.Followup;
 import POJO_CreateFollowup.RootFolloup;
 import POJO_CreateFollowup_GET.Root_followUp_Get;
@@ -177,7 +174,37 @@ public class APIs extends API_Reusable {
 				.post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response()
 				.as(Root_CreateLead_GET.class);
 	}
+	// Used in FU import
+	public Root_CreateLead_GET createLead(String API ,String User,String email ,String phone) {
 
+		Note note = new Note();
+		note.setContent("Note By Rest Assured");
+
+		Lead lead = new Lead();
+		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
+		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
+		lead.setEmail(email);
+		lead.setPhone(phone);
+		lead.setSalutation("mr");
+		lead.setTime_zone("Asia/Calcutta");
+		lead.setStage("incoming");
+		lead.setStatus(null);
+		lead.setNri(false);
+		lead.setProject_id("");
+		lead.setSales(User);
+		Form form = new Form();
+		form.setNote(note);
+		form.setLead(lead);
+		SellDo selldo = new SellDo();
+		selldo.setForm(form);
+		RootLeadCreate root = new RootLeadCreate();
+		root.setSell_do(selldo);
+		root.setApi_key(API);
+
+		return RestAssured.given().urlEncodingEnabled(true).contentType(ContentType.JSON).body(root).when()
+				.post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response()
+				.as(Root_CreateLead_GET.class);
+	}
 	public Root_CreateLead_GET createLead(String api, String User) {
 
 		Note note = new Note();

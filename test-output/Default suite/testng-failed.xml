@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="CreateClient.CreateClinet">
+      <class name="importPack.TC_importFolloups">
         <methods>
-          <include name="createPostpaidClient"/>
           <include name="terminate"/>
+          <include name="importFollowups"/>
           <include name="browserConfig"/>
         </methods>
-      </class> <!-- CreateClient.CreateClinet -->
+      </class> <!-- importPack.TC_importFolloups -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
