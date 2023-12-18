@@ -15,12 +15,10 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.openqa.selenium.WebDriver;
 
-import com.selldo.Utility.ReusableUtils;
 import com.selldo.Utility.XLUtilsHSSF;
 
-public class XL_Utils   {
+public class XL_Utils {
 
 	public String prop(String propee) {
 		Configurations configs = new Configurations();
@@ -289,6 +287,39 @@ public class XL_Utils   {
 		} else if (foruse.equalsIgnoreCase("Conducted")) {
 
 		}
+	}
+
+	public void createHeaderForSiteVisitImport(XLUtilsHSSF xl) throws IOException {
+		int header = 0;
+		int i = 0;
+		// Lead_crm_id
+		xl.setCellData("Sheet1", i, header++, "Lead_crm_id");
+		// Lead Email
+		xl.setCellData("Sheet1", i, header++, "Lead Email");
+		// Lead Phone
+		xl.setCellData("Sheet1", i, header++, "Lead Phone");
+		// Sales ID
+		xl.setCellData("Sheet1", i, header++, "Sales ID");
+		// Project Ids
+		xl.setCellData("Sheet1", i, header++, "Project Ids");
+		// Scheduled on
+		xl.setCellData("Sheet1", i, header++, "Scheduled on");
+		// Ends on
+		xl.setCellData("Sheet1", i, header++, "Ends on");
+		// Agenda
+		xl.setCellData("Sheet1", i, header++, "Agenda");
+		// Sitevisit status
+		xl.setCellData("Sheet1", i, header++, "Sitevisit status");
+		// conducted on
+		xl.setCellData("Sheet1", i, header++, "conducted on");
+		// Notes
+		xl.setCellData("Sheet1", i, header++, "Notes");
+		// pickup
+		xl.setCellData("Sheet1", i, header++, "pickup");
+		// pickup location
+		xl.setCellData("Sheet1", i, header++, "pickup location");
+		// pickup time
+		xl.setCellData("Sheet1", i, header++, "pickup time");
 
 	}
 }

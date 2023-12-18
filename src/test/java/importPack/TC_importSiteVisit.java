@@ -11,10 +11,10 @@ import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 import com.selldo.pom.import_Lead.importLead;
 
-public class TC_importFolloups extends BaseTest {
-	
+public class TC_importSiteVisit extends BaseTest {
+
 	@Test
-	public void importFollowups() throws IOException, InterruptedException {
+	public void importSV() throws IOException {
 		LoginPage login = new LoginPage(driver);
 
 		login.login(prop("Admin_id"), prop("Password"));
@@ -32,28 +32,26 @@ public class TC_importFolloups extends BaseTest {
 
 		settingsPage.clickOnImportTab();
 		
-		importLead.ClickOnFollowupIMport();
+		importLead.ClickOnSiteVisitImport();
 		
 		importLead.ClickOnNewUpload();
 
-		String filePath = 	new FollowupXLfileGenerator ().fileGenerate(2, "Full");
+		String filePath = 	new SiteVisitXLFileGenerator ().FileGeneratorForSiteVisit(10);
 		System.out.println(filePath);
 		importLead.ClickOnUploadButtonAndSendFile(filePath);
 		
-		importLead.EnterOwnEmail("aniket.khandizod@sell.do");	
+		importLead.selectCampeign();
+		
+		importLead.selectSource();
+		
+		importLead.selectSubSource();
+		
+		importLead.EnterOwnEmail("aniket.khandizod@sell.do");
 		
 		importLead.clickOnContinue();
 		
 		importLead.clickOnContinueFinal();
 		
-//		
-//		XLUtilsHSSF xl = new XLUtilsHSSF(filePath);
-//		String leadId=xl.getCellData("Sheet1", 1, 0);
-//		
-//		adminDashboardPage.searchLead("#"+leadId);
-		
 		
 	}
-	
-	
 }

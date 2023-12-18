@@ -101,7 +101,8 @@ public class importLead extends ReusableUtils {
 		waitUntilClickable(ClickOnNewUpload).click();
 	}
 	public void ClickOnUploadButtonAndSendFile(String str) {
-		waitUntilVisiblity(ClickOnUploadButton).sendKeys(str);
+		wait(1000);
+		(ClickOnUploadButton).sendKeys(str);
 	}
 
 	// -------------Lead Import ------------------------
@@ -210,11 +211,13 @@ public class importLead extends ReusableUtils {
 		waitUntilClickable(clickOnContinueFinal).click();
 		wait(1000);
 		driver.switchTo().alert().accept();
-		wait(3000);
+		wait(1000);
 		try {
 			for (;;) {
 				wait(1000);
 				jsClick(clickOnRefreshButton, 2);
+				String dd=driver.findElement(By.xpath("(//table[@class=\"table table-responsive bulk_uploads\"])[1]//td[4]")).getText();
+				System.out.println(dd);
 
 			}
 		} catch (Exception e) {

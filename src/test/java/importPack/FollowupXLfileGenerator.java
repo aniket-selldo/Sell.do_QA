@@ -29,7 +29,7 @@ public class FollowupXLfileGenerator extends XL_Utils {
 				String phone = randomPhone();
 				String ProjectID = prop("Project_id_Amura");
 				int timeDefine = 1;
-				String FUStatus[] = { "conducted" };//"scheduled" , "conducted"
+				String FUStatus[] = { "conducted" };// "scheduled" , "conducted"
 				String FUStatuss = FUStatus[getRandomNumber(0, FUStatus.length)];
 				if (FUStatuss.equalsIgnoreCase("conducted")) {
 					timeDefine = -4;
@@ -45,7 +45,7 @@ public class FollowupXLfileGenerator extends XL_Utils {
 				xl.setCellData("Sheet1", i, row++, salesid.trim());
 				// Scheduled on // 1 HR ahead date
 				String date = new SimpleDateFormat("dd/MM/YYYY-hh:mm:ss")
-						.format(new Date().getTime() + (-3 * (1000 * 60 * 60 * 24 )));
+						.format(new Date().getTime() + (timeDefine * (1000 * 60 * 60 * 24)));
 				xl.setCellData("Sheet1", i, row++, date);
 				// Subject
 				xl.setCellData("Sheet1", i, row++, fk.sentence());
@@ -60,7 +60,7 @@ public class FollowupXLfileGenerator extends XL_Utils {
 				xl.setCellData("Sheet1", i, row++, FUStatuss);
 				// Acted On
 				String date2 = new SimpleDateFormat("dd/MM/YYYY-hh:mm:ss")
-						.format(new Date().getTime() + (-1 * (1000 * 60 )));
+						.format(new Date().getTime() + (0 * (1000 * 60 * 60 * 24)));
 				xl.setCellData("Sheet1", i, row++, date2);
 				// Cancellation Reason
 				xl.setCellData("Sheet1", i, row++, "");
@@ -97,9 +97,4 @@ public class FollowupXLfileGenerator extends XL_Utils {
 		}
 		return path;
 	}
-
-	public static void main(String[] args) throws IOException {
-		new FollowupXLfileGenerator().fileGenerate(10, "Schedule");
-	}
-
 }
