@@ -34,9 +34,14 @@ public class ReusableUtils {
 	private BufferedWriter buffer;
 	private final static int waitingTime_Sec = 5;
 	private static int zoom;
+	public String xlFilePath;
 
 	public ReusableUtils(WebDriver driver) {
 		this.driver = driver;
+	}
+
+	protected int getRandomNumber(int min, int max) {
+		return (int) ((Math.random() * (max - min)) + min);
 	}
 
 	protected Properties getGobalData() {
@@ -296,7 +301,8 @@ public class ReusableUtils {
 		executor.executeScript("arguments[0].click();", we);
 		Square(we);
 	}
-	protected void jsClick(WebElement we,int waitt) {
+
+	protected void jsClick(WebElement we, int waitt) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitt));
 		wait.until(ExpectedConditions.elementToBeClickable(we));
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
@@ -484,13 +490,13 @@ public class ReusableUtils {
 			s = new SimpleDateFormat("M").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
 			break;
 		case "Y":
-			s = new SimpleDateFormat("YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24 )));
+			s = new SimpleDateFormat("YYYY").format(new Date().getTime() + (a * (1000 * 60 * 60 * 24)));
 			break;
 		case "m":
-			s = new SimpleDateFormat("mm").format(new Date().getTime() + (a * (1000 * 60 )));
+			s = new SimpleDateFormat("mm").format(new Date().getTime() + (a * (1000 * 60)));
 			break;
 		case "H":
-			s = new SimpleDateFormat("hh").format(new Date().getTime() + (a * (1000 * 60 * 60 )));
+			s = new SimpleDateFormat("hh").format(new Date().getTime() + (a * (1000 * 60 * 60)));
 			break;
 
 		default:

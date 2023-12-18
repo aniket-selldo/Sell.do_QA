@@ -8,9 +8,8 @@ import com.selldo.Utility.XLUtilsHSSF;
 public class LeadXLfileGenerator extends XL_Utils {
 
 	public String leadImport(int fileCount) throws IOException {
-		String path = System.getProperty("user.dir") + "/DataFile/Lead import.xls";
-		String path2 = createNewXLFile("LeadImport");
-		XLUtilsHSSF xl = new XLUtilsHSSF(path2);
+		String path = createNewXLFile("LeadImport");
+		XLUtilsHSSF xl = new XLUtilsHSSF(path);
 		Faker fk = new Faker();
 		CreateHeaderForLeadImport(xl);
 		for (int i = 1; i < fileCount; i++) {
@@ -111,7 +110,7 @@ public class LeadXLfileGenerator extends XL_Utils {
 			System.out.println("Row " + (i + 1) + " updated done");
 		}
 		System.out.println("<<<<<<Done>>>>>>");
-		return path2;
+		return path;
 
 	}
 

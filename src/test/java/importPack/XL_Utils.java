@@ -5,25 +5,42 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.openqa.selenium.WebDriver;
+
+import com.selldo.Utility.ReusableUtils;
 import com.selldo.Utility.XLUtilsHSSF;
 
-public class XL_Utils {
+public class XL_Utils   {
 
-	public static String prop(String propee) {
+	public String prop(String propee) {
 		Configurations configs = new Configurations();
 		Configuration config = null;
 		try {
 			config = configs.properties(new File(System.getProperty("user.dir") + "/config.properties"));
 		} catch (ConfigurationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if (propee.equalsIgnoreCase("Email")) {
+			List<String> ls = new ArrayList<>();
+			ls.add("aniket.khandizod@sell.do");
+			ls.add("prerana.hotkar@sell.do");
+			ls.add("hakim.rangwala@sell.do");
+			ls.add("sagar.shejal@sell.do");
+			ls.add("shyam.pandav@sell.do");
+			ls.add("parth.bharadiya@sell.do");
+			String systemName = System.getProperty("user.name");
+			String value = ls.stream().filter(S -> S.startsWith(systemName.substring(0, 5))).findFirst().get();
+			config.setProperty("Email", value);
 		}
 		return config.getString(propee);
 	}
@@ -44,7 +61,7 @@ public class XL_Utils {
 		}
 	}
 
-	protected static String getDate(long a, Date_formatter of) {
+	protected String getDate(long a, Date_formatter of) {
 
 		String s = "";
 		switch (of.getDates()) {
@@ -94,7 +111,7 @@ public class XL_Utils {
 		return s;
 	}
 
-	public static String Random(String type, int size) {
+	public String Random(String type, int size) {
 		String Return = "";
 		switch (type) {
 		case "AN":
@@ -115,7 +132,7 @@ public class XL_Utils {
 		return Return;
 	}
 
-	public static String randomNumber(int val) {
+	public String randomNumber(int val) {
 		String st = "";
 		for (int i = 0; i < val; i++) {
 			st = st + getRandomNumber(1, 9);
@@ -123,15 +140,15 @@ public class XL_Utils {
 		return st;
 	}
 
-	protected static String R(char... arr) {
+	public String R(char... arr) {
 		return RandomStringUtils.random(1, arr);
 	}
 
-	public static String randomPhone() {
+	public String randomPhone() {
 		return "" + R('7', '8', '9') + Random("N", 9);
 	}
 
-	public static String randomEmail() {
+	public String randomEmail() {
 		String emaill = prop("Email");
 		String email[] = emaill.split("@");
 		String name = email[0];
@@ -139,15 +156,15 @@ public class XL_Utils {
 		return name + "+" + Random("AN", 10) + "@" + domain;
 	}
 
-	public static int getRandomNumber(int min, int max) {
+	public int getRandomNumber(int min, int max) {
 		return (int) ((Math.random() * (max - min)) + min);
 	}
 
-	public static String createNewXLFile(String fileFor) throws IOException {
+	public String createNewXLFile(String fileFor) throws IOException {
 		String fielPath = null;
 		try (Workbook wb = new HSSFWorkbook()) {
 			// Add two sheets into the workbook
-			fielPath = System.getProperty("user.dir") + "/DataFile/" + fileFor + " " + Random("A", 10) + ".xls";
+			fielPath = System.getProperty("user.dir") + "/ImportJunk/" + fileFor + " " + Random("A", 10) + ".xls";
 			wb.createSheet("Sheet1");
 			// Save the workbook to a file
 			try (OutputStream fileOut = Files.newOutputStream(new File(fielPath).toPath())) {
@@ -243,7 +260,7 @@ public class XL_Utils {
 		// xl.fillYellowColor("Sheet1",i,header);
 	}
 
-	public static void createHeaderForFolloupImport(XLUtilsHSSF xl, String foruse) throws IOException {
+	public void createHeaderForFolloupImport(XLUtilsHSSF xl, String foruse) throws IOException {
 		int header = 0;
 		int i = 0;
 		if (foruse.equalsIgnoreCase("Full")) {

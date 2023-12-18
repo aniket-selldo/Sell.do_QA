@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.adminPages.ImportPage;
 import com.selldo.POM.adminPages.SettingsPage;
+import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 import com.selldo.pom.import_Lead.importLead;
@@ -13,10 +14,14 @@ public class TC_ImportLeads extends BaseTest {
 
 	@Test
 	public void importLeadsTest() throws Exception {
-		LoginPage login = new LoginPage(driver);
 		importLead importLead = new importLead(driver);
 
-		login.login(prop("Clinet_Email"), prop("Password"));
+		LoginPage login = new LoginPage(driver);
+
+		login.login(prop("Admin_id"), prop("Password"));
+		ClientLoginPage clientLoginPage = new ClientLoginPage(driver);
+
+		clientLoginPage.clientLogin(prop("Amura_Name"));
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
@@ -32,33 +37,37 @@ public class TC_ImportLeads extends BaseTest {
 
 		importPage.clickOnNewUploadButton();
 
-		importPage.clickOnUploadButton(new LeadXLfileGenerator().leadImport(10));
+		String filePath = new LeadXLfileGenerator().leadImport(10);
+		importPage.clickOnUploadButton(filePath);
 
 		importLead.selectCampeign();
 
 		importLead.selectSource();
 
 		importLead.selectSubSource();
+		String MediumType[] = { "Api Client", "Email", "Sms Shortcode" };
 
-		importLead.selectMediumType();
+		importLead.selectMediumType(MediumType[getRandomNumber(0, MediumType.length)]);
 
-		importLead.selectDepartment();
+		importLead.selectDepartment("Sales");
 
-		importLead.SelectTeam();
+		importLead.SelectTeam(prop("Team_Name_Amura"));
 
-		importLead.selectSales();
+		importLead.selectSales(prop("Sales_Name_Amura"));
 
-		importLead.selectProject();
+		importLead.selectProject(prop("Project_Name_Amura"));
 
-		importLead.selectProjectforSV();
+		importLead.selectProjectforSV(prop("Project_Name_Amura"));
 
 		importLead.clickOnSendNotificationToLead();
 
-		importLead.EnterOwnEmail(randomEmail());
-		
+		importLead.EnterOwnEmailForFollowup(randomEmail());
+
 		importLead.clickOnContinue();
-		
+
 		importLead.clickOnContinueFinal();
+		
+		importLead.SearchLeadFromXLSheet(filePath);
 
 	}
 }

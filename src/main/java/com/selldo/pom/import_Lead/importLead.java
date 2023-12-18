@@ -3,6 +3,7 @@ package com.selldo.pom.import_Lead;
 import java.io.IOException;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -67,7 +68,43 @@ public class importLead extends ReusableUtils {
 	private WebElement getUploadingStatus;
 	@FindBy(how = How.CSS, using = "#select2-drop li")
 	private List<WebElement> dropdownList;
+	@FindBy(how = How.XPATH, using = "//a[@ubts='Import']")
+	private WebElement ClickONImportButton;
+	@FindBy(how = How.XPATH, using = "(//div[@class='card-body'])[1]")
+	private WebElement clickOnLeadImport;
+	@FindBy(how = How.XPATH, using = "(//div[@class='card-body'])[3]")
+	private WebElement ClickOnFollowupIMport;
+	@FindBy(how = How.XPATH, using = "(//div[@class='card-body'])[2]")
+	private WebElement ClickOnSiteVisitImport;
+	@FindBy(how = How.XPATH, using = "//div[@class='float-right index-page-filters']")
+	private WebElement ClickOnNewUpload;
+	@FindBy(how = How.XPATH, using = "//input[@class='bulk_upload_file']")
+	private WebElement ClickOnUploadButton;
 
+	public void ClickONImportButton() {
+		waitUntilClickable(ClickONImportButton).click();
+	}
+
+	public void clickOnLeadImport() {
+		waitUntilClickable(clickOnLeadImport).click();
+	}
+
+	public void ClickOnFollowupIMport() {
+		waitUntilClickable(ClickOnFollowupIMport).click();
+	}
+
+	public void ClickOnSiteVisitImport() {
+		waitUntilClickable(ClickOnSiteVisitImport).click();
+	}
+
+	public void ClickOnNewUpload() {
+		waitUntilClickable(ClickOnNewUpload).click();
+	}
+	public void ClickOnUploadButtonAndSendFile(String str) {
+		waitUntilVisiblity(ClickOnUploadButton).sendKeys(str);
+	}
+
+	// -------------Lead Import ------------------------
 	int scrollConst = 100;
 
 	public void selectCampeign() {
@@ -89,40 +126,51 @@ public class importLead extends ReusableUtils {
 		waitUntilVisiblity(enterSelectSubSource).sendKeys(Keys.ENTER);
 	}
 
-	public void selectMediumType() {
+	public void selectMediumType(String str) {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectMediumType, 10000).click();
 		waitUntilVisiblity(dropdownList.get(0)).click();
 	}
 
-	public void selectDepartment() {
+	public void selectDepartment(String str) {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectDepartment).click();
-		waitUntilVisiblity(dropdownList.get(0)).click();
+		wait(1000);
+
+		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+				.click();
 	}
 
-	public void SelectTeam() {
+	public void SelectTeam(String str) {
 		scrollBy(scrollConst);
 		waitUntilClickable(SelectTeam).click();
-		waitUntilVisiblity(dropdownList.get(0)).click();
+		wait(1000);
+		waitUntilClickable(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+				.click();
 	}
 
-	public void selectSales() {
+	public void selectSales(String str) {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectSales).click();
-		waitUntilVisiblity(dropdownList.get(0)).click();
+		wait(1000);
+		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+				.click();
 	}
 
-	public void selectProject() {
+	public void selectProject(String str) {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectProject).click();
-		waitUntilVisiblity(dropdownList.get(0)).click();
+		wait(1000);
+		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+				.click();
 	}
 
-	public void selectProjectforSV() {
+	public void selectProjectforSV(String str) {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectProjectforSV).click();
-		waitUntilVisiblity(dropdownList.get(0)).click();
+		wait(1000);
+		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+				.click();
 	}
 
 	public void clickOnSendNotificationToLead() {
@@ -132,7 +180,7 @@ public class importLead extends ReusableUtils {
 
 	public void EnterOwnEmail(String str) {
 		scrollBy(scrollConst);
-		waitUntilClickable(clickOnOwnEmail).click();
+		waitUntilClickable(clickOnOwnEmail,100000).click();
 		waitUntilVisiblity(EnterOwnEmail).sendKeys(str);
 		wait(1000);
 		EnterOwnEmail.sendKeys(Keys.ENTER);
@@ -166,26 +214,33 @@ public class importLead extends ReusableUtils {
 		try {
 			for (;;) {
 				wait(1000);
-				jsClick(clickOnRefreshButton,2);
+				jsClick(clickOnRefreshButton, 2);
 
 			}
 		} catch (Exception e) {
 			System.out.println("Out OF FOr Loop");
 		}
-		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
-		String path = System.getProperty("user.dir") + "/DataFile/Lead import.xls";
-		XLUtilsHSSF xl = new XLUtilsHSSF(path);
-		try {
-			adminDashboardPage.searchLead(xl.getCellData("Sheet1", 1, 3));
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		wait(10000);
 
 	}
 
+	public void SearchLeadFromXLSheet(String str) {
+		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
+		XLUtilsHSSF xl = new XLUtilsHSSF(str);
+		try {
+			adminDashboardPage.searchLead(xl.getCellData("Sheet1", 1, 3));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		wait(10000);
+	}
+
+	// ------------------- FU Import -----------------------
+	public void EnterOwnEmailForFollowup(String str) {
+		waitUntilClickable(clickOnOwnEmail,1000000).click();
+		waitUntilVisiblity(EnterOwnEmail).sendKeys(str);
+		wait(1000);
+		EnterOwnEmail.sendKeys(Keys.ENTER);
+	}
 }
