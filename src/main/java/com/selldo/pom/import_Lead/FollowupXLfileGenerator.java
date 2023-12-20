@@ -1,4 +1,4 @@
-package importPack;
+package com.selldo.pom.import_Lead;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -6,8 +6,6 @@ import java.util.Date;
 
 import com.github.javafaker.Faker;
 import com.selldo.Utility.XLUtilsHSSF;
-
-import API.APIs;
 
 public class FollowupXLfileGenerator extends XL_Utils {
 
@@ -31,8 +29,8 @@ public class FollowupXLfileGenerator extends XL_Utils {
 					timeDefine = -4;
 				}
 				// ------------------------------------------------------------
-				xl.setCellData("Sheet1", i, row++, "" + new APIs()
-						.createLead(prop("Amura_website_api_Amura"), salesid, email, phone).getSell_do_lead_id());
+				xl.setCellData("Sheet1", i, row++,
+						"" + createLead(prop("Amura_website_api_Amura"), salesid, email, phone).getSell_do_lead_id());
 				// Lead Email
 				xl.setCellData("Sheet1", i, row++, email);
 				// Lead Phone
@@ -71,8 +69,8 @@ public class FollowupXLfileGenerator extends XL_Utils {
 				String email = randomEmail();
 				String phone = randomPhone();
 				// Lead CRM ID
-				xl.setCellData("Sheet1", i, row++, "" + new APIs()
-						.createLead(prop("Amura_website_api_Amura"), salesid, email, phone).getSell_do_lead_id());
+				xl.setCellData("Sheet1", i, row++,
+						"" + createLead(prop("Amura_website_api_Amura"), salesid, email, phone).getSell_do_lead_id());
 				// Scheduled on // 1 HR ahead date
 				String date = new SimpleDateFormat("dd/MM/YY-hh:mm:ss")
 						.format(new Date().getTime() + (1 * (1000 * 60 * 60)));

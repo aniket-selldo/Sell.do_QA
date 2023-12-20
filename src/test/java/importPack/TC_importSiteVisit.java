@@ -9,6 +9,7 @@ import com.selldo.POM.adminPages.SettingsPage;
 import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
+import com.selldo.pom.import_Lead.SiteVisitXLFileGenerator;
 import com.selldo.pom.import_Lead.importLead;
 
 public class TC_importSiteVisit extends BaseTest {
@@ -51,6 +52,8 @@ public class TC_importSiteVisit extends BaseTest {
 		importLead.clickOnContinue();
 		
 		importLead.clickOnContinueFinal();
+		
+		deleteFile(filePath);
 		
 		
 	}

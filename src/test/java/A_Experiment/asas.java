@@ -1,7 +1,9 @@
 package A_Experiment;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.configuration2.Configuration;
@@ -31,10 +33,4 @@ public class asas {
 		config.setProperty("Email",value);
 		return config.getString(propee);
 	}
-	
-	
-	public static void main(String[] args) {
-		System.out.println(prop("Email"));
-	}
-
 }

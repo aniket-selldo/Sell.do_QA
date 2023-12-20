@@ -8,6 +8,7 @@ import com.selldo.POM.adminPages.SettingsPage;
 import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
+import com.selldo.pom.import_Lead.LeadXLfileGenerator;
 import com.selldo.pom.import_Lead.importLead;
 
 public class TC_ImportLeads extends BaseTest {
@@ -68,6 +69,8 @@ public class TC_ImportLeads extends BaseTest {
 		importLead.clickOnContinueFinal();
 		
 		importLead.SearchLeadFromXLSheet(filePath);
+		
+		deleteFile(filePath);
 
 	}
 }

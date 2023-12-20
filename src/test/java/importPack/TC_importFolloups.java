@@ -9,6 +9,7 @@ import com.selldo.POM.adminPages.SettingsPage;
 import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
+import com.selldo.pom.import_Lead.FollowupXLfileGenerator;
 import com.selldo.pom.import_Lead.importLead;
 
 public class TC_importFolloups extends BaseTest {
@@ -36,11 +37,11 @@ public class TC_importFolloups extends BaseTest {
 		
 		importLead.ClickOnNewUpload();
 
-		String filePath = 	new FollowupXLfileGenerator ().fileGenerate(2, "Full");
+		String filePath = 	new FollowupXLfileGenerator ().fileGenerate(1, "Full");
 		System.out.println(filePath);
 		importLead.ClickOnUploadButtonAndSendFile(filePath);
 		
-		importLead.EnterOwnEmail("aniket.khandizod@sell.do");	
+		importLead.EnterOwnEmail(prop("Email"));	
 		
 		importLead.clickOnContinue();
 		
@@ -51,7 +52,7 @@ public class TC_importFolloups extends BaseTest {
 //		String leadId=xl.getCellData("Sheet1", 1, 0);
 //		
 //		adminDashboardPage.searchLead("#"+leadId);
-		
+		deleteFile(filePath);
 		
 	}
 	

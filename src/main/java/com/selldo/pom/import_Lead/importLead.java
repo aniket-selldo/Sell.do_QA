@@ -3,7 +3,6 @@ package com.selldo.pom.import_Lead;
 import java.io.IOException;
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -216,8 +215,6 @@ public class importLead extends ReusableUtils {
 			for (;;) {
 				wait(1000);
 				jsClick(clickOnRefreshButton, 2);
-				String dd=driver.findElement(By.xpath("(//table[@class=\"table table-responsive bulk_uploads\"])[1]//td[4]")).getText();
-				System.out.println(dd);
 
 			}
 		} catch (Exception e) {
