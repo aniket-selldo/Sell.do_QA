@@ -53,6 +53,7 @@ public class TC_importSiteVisit extends BaseTest {
 		
 		importLead.clickOnContinueFinal();
 		
+		// Delete File
 		deleteFile(filePath);
 		
 		
