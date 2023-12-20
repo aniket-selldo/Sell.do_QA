@@ -3,7 +3,6 @@ package com.selldo.pom.import_Lead;
 import java.io.IOException;
 import java.util.List;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -101,7 +100,8 @@ public class importLead extends ReusableUtils {
 		waitUntilClickable(ClickOnNewUpload).click();
 	}
 	public void ClickOnUploadButtonAndSendFile(String str) {
-		waitUntilVisiblity(ClickOnUploadButton).sendKeys(str);
+		wait(1000);
+		(ClickOnUploadButton).sendKeys(str);
 	}
 
 	// -------------Lead Import ------------------------
@@ -210,7 +210,7 @@ public class importLead extends ReusableUtils {
 		waitUntilClickable(clickOnContinueFinal).click();
 		wait(1000);
 		driver.switchTo().alert().accept();
-		wait(3000);
+		wait(1000);
 		try {
 			for (;;) {
 				wait(1000);

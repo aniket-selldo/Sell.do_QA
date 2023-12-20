@@ -373,4 +373,15 @@ public class BaseTest {
 	protected int getRandomNumber(int min, int max) {
 		return (int) ((Math.random() * (max - min)) + min);
 	}
+	public void deleteFile(String filePath) {
+		File fl =new File (filePath);
+		boolean flag =fl.delete();
+		if (flag) {
+			String pathcut[] = filePath.split("/");
+			System.out.println(pathcut[pathcut.length-1]+" File deleted");
+		}
+		else {
+			System.out.println("File not deleted");
+		}
+	}
 }

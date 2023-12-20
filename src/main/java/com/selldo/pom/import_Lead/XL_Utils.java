@@ -1,4 +1,4 @@
-package importPack;
+package com.selldo.pom.import_Lead;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +18,48 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import com.selldo.Utility.XLUtilsHSSF;
 
+import POJO_LeadCreate.Form;
+import POJO_LeadCreate.Lead;
+import POJO_LeadCreate.Note;
+import POJO_LeadCreate.RootLeadCreate;
+import POJO_LeadCreate.SellDo;
+import POJO_LeadCreate_GET.Root_CreateLead_GET;
+import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
+import io.restassured.parsing.Parser;
+
 public class XL_Utils {
+
+	public Root_CreateLead_GET createLead(String API, String User, String email, String phone) {
+
+		Note note = new Note();
+		note.setContent("Note By Rest Assured");
+
+		Lead lead = new Lead();
+		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
+		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
+		lead.setEmail(email);
+		lead.setPhone(phone);
+		lead.setSalutation("mr");
+		lead.setTime_zone("Asia/Calcutta");
+		lead.setStage("incoming");
+		lead.setStatus(null);
+		lead.setNri(false);
+		lead.setProject_id("");
+		lead.setSales(User);
+		Form form = new Form();
+		form.setNote(note);
+		form.setLead(lead);
+		SellDo selldo = new SellDo();
+		selldo.setForm(form);
+		RootLeadCreate root = new RootLeadCreate();
+		root.setSell_do(selldo);
+		root.setApi_key(API);
+
+		return RestAssured.given().urlEncodingEnabled(true).contentType(ContentType.JSON).body(root).when()
+				.post(prop("URL") + "/api/leads/create").then().parser("text/html", Parser.JSON).extract().response()
+				.as(Root_CreateLead_GET.class);
+	}
 
 	public String prop(String propee) {
 		Configurations configs = new Configurations();

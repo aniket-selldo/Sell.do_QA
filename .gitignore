@@ -1,3 +1,5 @@
 /target/
 Random Values/
 test-output/
+/.apt_generated/
+/.apt_generated_tests/

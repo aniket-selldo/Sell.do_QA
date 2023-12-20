@@ -3,6 +3,7 @@ package A_Experiment;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 
 import javax.script.ScriptException;
 
@@ -37,16 +38,25 @@ public class aqw {
 
 	public static void main(String[] args) throws FileNotFoundException, ScriptException, NoSuchMethodException {
 		
-//		for (int i = 0; i < 50; i++) {
-//			System.out.print((i)+") ");
-//			System.out.print(getDate(i,"D")+" ");
-//			System.out.print(getDate(i,"M")+" ");
-//			System.out.println(getDate(i,"Y"));
-//			
-//		}
-		System.out.println(getDate(-59,"M")+" "+getDate(-59,"D"));
-//		System.out.println(getDate(2,"Y"));
-//		System.out.println(1000 * 60 * 60 * 24);
-		
+
+
+
+		System.out.println("Add numers");
+		Scanner sc = new Scanner(System.in);
+
+		long userName = sc.nextLong();
+
+		long countDigit = userName;
+
+		int countNumberOfDigit = 0;
+		while (countDigit != 0) {
+			countNumberOfDigit++;
+			countDigit /= 10;
+		}
+
+		System.out.println(countNumberOfDigit);
+	
+	
+		System.out.println("sdhckdsjc");
 	}
 }
