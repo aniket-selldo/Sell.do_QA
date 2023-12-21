@@ -352,7 +352,7 @@ public class BaseTest {
 		} catch (ConfigurationException e) {
 			e.printStackTrace();
 		}
-		if (propee.equalsIgnoreCase("Email")) {
+		if (propee.equalsIgnoreCase("Ema")) {
 			List<String> ls = new ArrayList<>();
 			ls.add("aniket.khandizod@sell.do");
 			ls.add("prerana.hotkar@sell.do");
