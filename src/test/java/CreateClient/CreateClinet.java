@@ -53,7 +53,8 @@ public class CreateClinet extends BaseTest {
 	public void createPrepaidClient() throws InterruptedException {
 		String date = getDate(0,"D").trim();
 		String month = getDate(0,"M2").trim();
-		String BuisnessName = date+month+"_Prepiad_02";
+		//String BuisnessName = date+month+"_Prepiad_02";
+		String BuisnessName = "Sagar001";
 		Faker faker = new Faker();
 		driver.get(prop("URL") + "/signup?plan=selection");
 		PrepaidClientCreation page = new PrepaidClientCreation(driver);

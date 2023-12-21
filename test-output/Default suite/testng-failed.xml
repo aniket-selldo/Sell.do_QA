@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="importPack.TC_importSiteVisit">
+      <class name="channelPartnerPack.AddingChannelPartner_FilledFormTest">
         <methods>
           <include name="terminate"/>
+          <include name="addingChannelPartner_FilledFormTest"/>
           <include name="browserConfig"/>
-          <include name="importSV"/>
         </methods>
-      </class> <!-- importPack.TC_importSiteVisit -->
+      </class> <!-- channelPartnerPack.AddingChannelPartner_FilledFormTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -16,7 +16,7 @@ public class AddingChannelPartner_MandatoryFillTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop("Clinet_Email"), prop("Password"));
+		login.login(prop("Amura_Admin"), prop("Password"));
 
 		SettingsPage settingsPage = new SettingsPage(driver);
 
