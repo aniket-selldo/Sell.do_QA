@@ -3,16 +3,20 @@ package com.selldo.pom.import_Lead;
 import java.io.IOException;
 
 import com.github.javafaker.Faker;
+import com.selldo.Utility.ConsoleColors;
 import com.selldo.Utility.XLUtilsHSSF;
 
 public class LeadXLfileGenerator extends XL_Utils {
 
-	public String leadImport(int fileCount) throws IOException {
+	public String leadImport() throws IOException {
 		String path = createNewXLFile("LeadImport");
 		XLUtilsHSSF xl = new XLUtilsHSSF(path);
 		Faker fk = new Faker();
 		CreateHeaderForLeadImport(xl);
+		int fileCount=Integer.parseInt(prop("ImportCount"));
+		double startTime=System.currentTimeMillis();
 		for (int i = 1; i < fileCount; i++) {
+			double startTimeLoop=System.currentTimeMillis();
 			int row = 0;
 			// First Name
 			xl.setCellData("Sheet1", i, row++, "" + fk.firstName());
@@ -106,10 +110,11 @@ public class LeadXLfileGenerator extends XL_Utils {
 			xl.setCellData("Sheet1", i, row++, fk.streetName());
 			// Area
 			xl.setCellData("Sheet1", i, row++, "12");
-
-			System.out.println("Row " + (i + 1) + " updated done");
+			double endTimeLoop=System.currentTimeMillis();
+			System.out.println(ConsoleColors.CYAN+"Row "+ConsoleColors.RED_BOLD + (i) +ConsoleColors.CYAN+ " updated Time required > "+ConsoleColors.GREEN_BOLD+((endTimeLoop-startTimeLoop)/1000)+ConsoleColors.RESET);
 		}
-		System.out.println("<<<<<<Done>>>>>>");
+		double endTime=System.currentTimeMillis();
+		System.out.println(ConsoleColors.RED_BOLD_BRIGHT+"Total time required >> "+((endTime-startTime)/1000)+ConsoleColors.RESET);
 		return path;
 
 	}

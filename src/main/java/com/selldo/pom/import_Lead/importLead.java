@@ -109,19 +109,19 @@ public class importLead extends ReusableUtils {
 
 	public void selectCampeign() {
 		waitUntilClickable(selectCampeign, 1000000).click();
-		waitUntilVisiblity(dropdownList.get(0)).click();
+		waitUntilVisiblity(dropdownList.stream().filter(S->S.getText().startsWith(prop("Campeign"))).findFirst().get()).click();
 	}
 
 	public void selectSource() {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectSource).click();
-		waitUntilVisiblity(dropdownList.get(0)).click();
+		waitUntilVisiblity(dropdownList.stream().filter(S->S.getText().startsWith(prop("Source"))).findFirst().get()).click();
 	}
 
 	public void selectSubSource() {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectSubSource).click();
-		waitUntilVisiblity(enterSelectSubSource).sendKeys("SubSource_Import");
+		waitUntilVisiblity(enterSelectSubSource).sendKeys(prop("SubSource"));
 		wait(1000);
 		waitUntilVisiblity(enterSelectSubSource).sendKeys(Keys.ENTER);
 	}
@@ -141,35 +141,35 @@ public class importLead extends ReusableUtils {
 				.click();
 	}
 
-	public void SelectTeam(String str) {
+	public void SelectTeam() {
 		scrollBy(scrollConst);
 		waitUntilClickable(SelectTeam).click();
 		wait(1000);
-		waitUntilClickable(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+		waitUntilClickable(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(prop("Team_Name_Amura"))).findFirst().get())
 				.click();
 	}
 
-	public void selectSales(String str) {
+	public void selectSales() {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectSales).click();
 		wait(1000);
-		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().startsWith(prop("Sales_Name_Amura"))).findFirst().get())
 				.click();
 	}
 
-	public void selectProject(String str) {
+	public void selectProject() {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectProject).click();
 		wait(1000);
-		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().startsWith(prop("Project_Name_Amura"))).findFirst().get())
 				.click();
 	}
 
-	public void selectProjectforSV(String str) {
+	public void selectProjectforSV() {
 		scrollBy(scrollConst);
 		waitUntilClickable(selectProjectforSV).click();
 		wait(1000);
-		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().equalsIgnoreCase(str)).findFirst().get())
+		waitUntilVisiblity(dropdownList.stream().filter(S -> S.getText().startsWith(prop("Project_Name_Amura"))).findFirst().get())
 				.click();
 	}
 
@@ -178,10 +178,10 @@ public class importLead extends ReusableUtils {
 		waitUntilClickable(clickOnSendNotificationToLead).click();
 	}
 
-	public void EnterOwnEmail(String str) {
+	public void EnterOwnEmail() {
 		scrollBy(scrollConst);
 		waitUntilClickable(clickOnOwnEmail,100000).click();
-		waitUntilVisiblity(EnterOwnEmail).sendKeys(str);
+		waitUntilVisiblity(EnterOwnEmail).sendKeys(randomEmail());
 		wait(1000);
 		EnterOwnEmail.sendKeys(Keys.ENTER);
 	}

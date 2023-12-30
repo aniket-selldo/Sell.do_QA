@@ -102,7 +102,7 @@ public class ReusableUtils {
 	protected WebElement waitUntilClickable(WebElement we) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
 		wait.until(ExpectedConditions.elementToBeClickable(we));
-		System.out.println("Clicked Element -> " + we.getText().trim());
+		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT+"Clicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
 		Square(we);
 		return we;
 	}
@@ -110,7 +110,7 @@ public class ReusableUtils {
 	protected WebElement waitUntilAttributeValue(WebElement we, String attribute, String Value, int time) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
 		wait.until(ExpectedConditions.attributeContains(we, attribute, Value));
-		System.out.println("Clicked Element -> " + we.getText().trim());
+		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT+"Clicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
 		Square(we);
 		return we;
 	}
@@ -118,6 +118,7 @@ public class ReusableUtils {
 	protected WebElement waitUntilClickable(WebElement we, int time) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
 		wait.until(ExpectedConditions.elementToBeClickable(we));
+		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT+"Clicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
 		Square(we);
 		return we;
 	}
@@ -296,8 +297,8 @@ public class ReusableUtils {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long start = System.currentTimeMillis();
 		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
-		System.out.print("jsClicked Element -> " + we.getText().trim());
-		System.out.println("  Elapsed time: " + (System.currentTimeMillis() - start));
+		System.out.print(ConsoleColors.CYAN_BOLD_BRIGHT+"JSClicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.YELLOW+"  Elapsed time: " + (System.currentTimeMillis() - start)+ConsoleColors.RESET);
 		executor.executeScript("arguments[0].click();", we);
 		Square(we);
 	}
@@ -308,8 +309,8 @@ public class ReusableUtils {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long start = System.currentTimeMillis();
 		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
-		System.out.print("jsClicked Element -> " + we.getText().trim());
-		System.out.println("  Elapsed time: " + (System.currentTimeMillis() - start));
+		System.out.print(ConsoleColors.CYAN_BOLD_BRIGHT+"JSClicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.YELLOW+"  Elapsed time: " + (System.currentTimeMillis() - start)+ConsoleColors.RESET);
 		executor.executeScript("arguments[0].click();", we);
 		Square(we);
 	}
@@ -507,7 +508,10 @@ public class ReusableUtils {
 	}
 
 	public String randomEmail() {
-		return "aniket.khandizod+" + Random("AN", 10) + "@sell.do";
+		String email[] = prop("Email").split("@");
+		String name = email[0];
+		String domain = email[1];
+		return name + "+" + Random("AN", 10) + "@" + domain;
 	}
 
 	public String randomPhone() {

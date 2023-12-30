@@ -2,24 +2,24 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-12-20T17:48:22 IST" name="Default suite" finished-at="2023-12-20T17:48:47 IST" duration-ms="24942">
+  <suite started-at="2023-12-30T18:57:55 IST" name="Default suite" finished-at="2023-12-30T18:59:55 IST" duration-ms="120233">
     <groups>
     </groups>
-    <test started-at="2023-12-20T17:48:22 IST" name="Default test" finished-at="2023-12-20T17:48:47 IST" duration-ms="24942">
-      <class name="channelPartnerPack.SearchingChannelPartnerTest">
-        <test-method is-config="true" signature="browserConfig()[pri:0, instance:channelPartnerPack.SearchingChannelPartnerTest@60d8c9b7]" started-at="2023-12-20T17:48:22 IST" name="browserConfig" finished-at="2023-12-20T17:48:31 IST" duration-ms="8756" status="PASS">
+    <test started-at="2023-12-30T18:57:55 IST" name="Default test" finished-at="2023-12-30T18:59:55 IST" duration-ms="120233">
+      <class name="importPack.TC_ImportLeads">
+        <test-method is-config="true" signature="browserConfig()[pri:0, instance:importPack.TC_ImportLeads@60d8c9b7]" started-at="2023-12-30T18:57:55 IST" name="browserConfig" finished-at="2023-12-30T18:57:58 IST" duration-ms="3102" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserConfig -->
-        <test-method signature="searchingChannelPartnerTest()[pri:0, instance:channelPartnerPack.SearchingChannelPartnerTest@60d8c9b7]" started-at="2023-12-20T17:48:31 IST" name="searchingChannelPartnerTest" finished-at="2023-12-20T17:48:47 IST" duration-ms="16083" status="PASS">
+        <test-method signature="importLeadsTest()[pri:0, instance:importPack.TC_ImportLeads@60d8c9b7]" started-at="2023-12-30T18:57:58 IST" name="importLeadsTest" finished-at="2023-12-30T18:59:55 IST" duration-ms="116994" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- searchingChannelPartnerTest -->
-        <test-method is-config="true" signature="terminate()[pri:0, instance:channelPartnerPack.SearchingChannelPartnerTest@60d8c9b7]" started-at="2023-12-20T17:48:47 IST" name="terminate" finished-at="2023-12-20T17:48:47 IST" duration-ms="81" status="PASS">
+        </test-method> <!-- importLeadsTest -->
+        <test-method is-config="true" signature="terminate()[pri:0, instance:importPack.TC_ImportLeads@60d8c9b7]" started-at="2023-12-30T18:59:55 IST" name="terminate" finished-at="2023-12-30T18:59:55 IST" duration-ms="106" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- terminate -->
-      </class> <!-- channelPartnerPack.SearchingChannelPartnerTest -->
+      </class> <!-- importPack.TC_ImportLeads -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -9,13 +9,14 @@ import com.selldo.Utility.XLUtilsHSSF;
 
 public class FollowupXLfileGenerator extends XL_Utils {
 
-	public String fileGenerate(int rows, String useFor) throws IOException {
+	public String fileGenerate( String useFor) throws IOException {
 		String path = createNewXLFile("FolloupImport");
 		XLUtilsHSSF xl = new XLUtilsHSSF(path);
 		Faker fk = new Faker();
 		createHeaderForFolloupImport(xl, useFor);
+		int fileCount=Integer.parseInt(prop("ImportCount"));
 		if (useFor.equalsIgnoreCase("Full")) {
-			for (int i = 1; i <= rows; i++) {
+			for (int i = 1; i <= fileCount; i++) {
 				int row = 0;
 				// Lead_crm_id
 				String salesid = prop("Sales_id_Amura");
@@ -62,7 +63,7 @@ public class FollowupXLfileGenerator extends XL_Utils {
 			}
 			System.out.println("<<<< FU File Updated for " + useFor + " >>>>");
 		} else if (useFor.equalsIgnoreCase("Schedule")) {
-			for (int i = 1; i < rows; i++) {
+			for (int i = 1; i < fileCount; i++) {
 				int row = 0;
 				// Lead_crm_id
 				String salesid = prop("Sales_id");

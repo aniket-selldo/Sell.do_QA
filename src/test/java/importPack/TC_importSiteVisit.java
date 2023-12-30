@@ -37,7 +37,7 @@ public class TC_importSiteVisit extends BaseTest {
 		
 		importLead.ClickOnNewUpload();
 
-		String filePath = 	new SiteVisitXLFileGenerator ().FileGeneratorForSiteVisit(10);
+		String filePath = 	new SiteVisitXLFileGenerator ().FileGeneratorForSiteVisit();
 		System.out.println(filePath);
 		importLead.ClickOnUploadButtonAndSendFile(filePath);
 		
@@ -47,7 +47,7 @@ public class TC_importSiteVisit extends BaseTest {
 		
 		importLead.selectSubSource();
 		
-		importLead.EnterOwnEmail("aniket.khandizod@sell.do");
+		importLead.EnterOwnEmail();
 		
 		importLead.clickOnContinue();
 		

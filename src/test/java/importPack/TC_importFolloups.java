@@ -13,7 +13,7 @@ import com.selldo.pom.import_Lead.FollowupXLfileGenerator;
 import com.selldo.pom.import_Lead.importLead;
 
 public class TC_importFolloups extends BaseTest {
-	
+
 	@Test
 	public void importFollowups() throws IOException, InterruptedException {
 		LoginPage login = new LoginPage(driver);
@@ -22,7 +22,7 @@ public class TC_importFolloups extends BaseTest {
 		ClientLoginPage clientLoginPage = new ClientLoginPage(driver);
 
 		clientLoginPage.clientLogin(prop("Amura_Name"));
-		
+
 		importLead importLead = new importLead(driver);
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
@@ -32,29 +32,28 @@ public class TC_importFolloups extends BaseTest {
 		adminDashboardPage.clickOnSettingIcon();
 
 		settingsPage.clickOnImportTab();
-		
+
 		importLead.ClickOnFollowupIMport();
-		
+
 		importLead.ClickOnNewUpload();
 
-		String filePath = 	new FollowupXLfileGenerator ().fileGenerate(1, "Full");
+		String filePath = new FollowupXLfileGenerator().fileGenerate("Full");
 		System.out.println(filePath);
 		importLead.ClickOnUploadButtonAndSendFile(filePath);
-		
-		importLead.EnterOwnEmail(prop("Email"));	
-		
+
+		importLead.EnterOwnEmail();
+
 		importLead.clickOnContinue();
-		
+
 		importLead.clickOnContinueFinal();
-		
+
 //		
 //		XLUtilsHSSF xl = new XLUtilsHSSF(filePath);
 //		String leadId=xl.getCellData("Sheet1", 1, 0);
 //		
 //		adminDashboardPage.searchLead("#"+leadId);
 		deleteFile(filePath);
-		
+
 	}
-	
-	
+
 }

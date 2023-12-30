@@ -38,7 +38,7 @@ public class TC_ImportLeads extends BaseTest {
 
 		importPage.clickOnNewUploadButton();
 
-		String filePath = new LeadXLfileGenerator().leadImport(10);
+		String filePath = new LeadXLfileGenerator().leadImport();
 		importPage.clickOnUploadButton(filePath);
 
 		importLead.selectCampeign();
@@ -52,13 +52,13 @@ public class TC_ImportLeads extends BaseTest {
 
 		importLead.selectDepartment("Sales");
 
-		importLead.SelectTeam(prop("Team_Name_Amura"));
+		importLead.SelectTeam();
 
-		importLead.selectSales(prop("Sales_Name_Amura"));
+		importLead.selectSales();
 
-		importLead.selectProject(prop("Project_Name_Amura"));
+		importLead.selectProject();
 
-		importLead.selectProjectforSV(prop("Project_Name_Amura"));
+		importLead.selectProjectforSV();
 
 		importLead.clickOnSendNotificationToLead();
 

@@ -16,6 +16,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import com.github.javafaker.Faker;
 import com.selldo.Utility.XLUtilsHSSF;
 
 import POJO_LeadCreate.Form;
@@ -36,8 +37,8 @@ public class XL_Utils {
 		note.setContent("Note By Rest Assured");
 
 		Lead lead = new Lead();
-		lead.setFirst_name(RandomStringUtils.randomAlphanumeric(7));
-		lead.setLast_name(RandomStringUtils.randomAlphanumeric(7));
+		lead.setFirst_name(new Faker().firstName());
+		lead.setLast_name(new Faker().lastName());
 		lead.setEmail(email);
 		lead.setPhone(phone);
 		lead.setSalutation("mr");

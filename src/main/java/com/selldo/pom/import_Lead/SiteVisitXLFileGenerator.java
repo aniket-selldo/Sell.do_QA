@@ -5,17 +5,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.github.javafaker.Faker;
+import com.selldo.Utility.ConsoleColors;
 import com.selldo.Utility.XLUtilsHSSF;
 
 public class SiteVisitXLFileGenerator extends XL_Utils {
 	
 
-	public String FileGeneratorForSiteVisit(int val) throws IOException {
+	public String FileGeneratorForSiteVisit() throws IOException {
 		Faker fk = new Faker();
 		String path = createNewXLFile("SiteVisitImport");
 		XLUtilsHSSF xl = new XLUtilsHSSF(path);
 		createHeaderForSiteVisitImport(xl);
-		for (int i = 1; i <= val; i++) {
+		int fileCount=Integer.parseInt(prop("ImportCount"));
+		double startTime=System.currentTimeMillis();
+		for (int i = 1; i <= fileCount; i++) {
+			double startTimeLoop=System.currentTimeMillis();
 			int header = 0;
 			String salesid = prop("Sales_id_Amura");
 			String email = randomEmail();
@@ -71,9 +75,11 @@ public class SiteVisitXLFileGenerator extends XL_Utils {
 			} else {
 				header++;
 			}
-			System.out.println("Row " + i + " Updated");
+			double endTimeLoop=System.currentTimeMillis();
+			System.out.println(ConsoleColors.CYAN+"Row "+ConsoleColors.RED_BOLD + (i) +ConsoleColors.CYAN+ " updated Time required > "+ConsoleColors.GREEN_BOLD+((endTimeLoop-startTimeLoop)/1000)+ConsoleColors.RESET);
 		}
-		System.out.println("File Generation completed");
+		double endTime=System.currentTimeMillis();
+		System.out.println(ConsoleColors.RED_BOLD_BRIGHT+"Total time required >> "+((endTime-startTime)/1000)+ConsoleColors.RESET);
 		return path;
 	}
 
