@@ -62,6 +62,7 @@ public class BaseTest {
 
 	public WebDriver driver;
 	public WebDriverWait wait;
+	public ThreadLocal<WebDriver> driver_th = new ThreadLocal<WebDriver>(); // Thread safe
 
 	@BeforeMethod(alwaysRun = true)
 	protected void browserConfig() throws FileNotFoundException, IOException, AWTException {
@@ -73,12 +74,12 @@ public class BaseTest {
 		// -------------------WebDriver-------------------//
 		if (browser.equalsIgnoreCase("chrome")) {
 			ChromeOptions options = new ChromeOptions();
+			// ================ Zoom =================
+			options.addArguments("force-device-scale-factor=0.75");
+			options.addArguments("high-dpi-support=0.75");
 			// ================Add Extension==========
 			// options.addExtensions(new File(System.getProperty("user.dir")
 			// +"/AdBlock-—-best-ad-blocker.crx"));
-			// options.addExtensions(new File(System.getProperty("user.dir") +
-			// "/When-the-Night-Falls-1;-rainbow;-1080p.crx"));
-
 			// ================To disable Automation name==========
 			options.setExperimentalOption("excludeSwitches", new String[] { "enable-automation" });
 			// ================To disble notification popup========
@@ -97,7 +98,6 @@ public class BaseTest {
 			options.addArguments("window-position=2000,0");
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(options);
-
 		} else if (browser.equalsIgnoreCase("firefoxdriver")) {
 			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
@@ -119,14 +119,16 @@ public class BaseTest {
 		driver.get(prop.getProperty("URL"));
 
 		// -------------------Delay Management-------------------//
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		driver_th.set(driver);
 	}
 
 	@AfterMethod(alwaysRun = true)
 	protected void terminate() throws InterruptedException {
 
 		try {
+			//driver_th.get().quit();
 			driver.quit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,13 +138,13 @@ public class BaseTest {
 	public String getScreenshot(String fileName, WebDriver driver) {
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		File file = ts.getScreenshotAs(OutputType.FILE);
-		File filee = new File(System.getProperty("user.dir") + "//reports//" + fileName + ".png");
+		File filee = new File(System.getProperty("user.dir") + "/reports/" + fileName + ".png");
 		try {
 			FileUtils.copyFile(file, filee);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return System.getProperty("user.dir") + "//reports//" + fileName + ".png";
+		return System.getProperty("user.dir") + "/reports/" + fileName + ".png";
 	}
 
 	protected String R(char... arr) {

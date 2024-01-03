@@ -16,6 +16,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -32,7 +33,7 @@ public class ReusableUtils {
 	private WebDriver driver;
 	private FileWriter writer;
 	private BufferedWriter buffer;
-	private final static int waitingTime_Sec = 5;
+	private final static int waitingTime_Sec = 10;
 	private static int zoom;
 	public String xlFilePath;
 
@@ -102,7 +103,8 @@ public class ReusableUtils {
 	protected WebElement waitUntilClickable(WebElement we) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
 		wait.until(ExpectedConditions.elementToBeClickable(we));
-		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT+"Clicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "Clicked Element -> " + ConsoleColors.GREEN_BOLD_BRIGHT
+				+ we.getText().trim() + ConsoleColors.RESET);
 		Square(we);
 		return we;
 	}
@@ -110,7 +112,8 @@ public class ReusableUtils {
 	protected WebElement waitUntilAttributeValue(WebElement we, String attribute, String Value, int time) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
 		wait.until(ExpectedConditions.attributeContains(we, attribute, Value));
-		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT+"Clicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "Clicked Element -> " + ConsoleColors.GREEN_BOLD_BRIGHT
+				+ we.getText().trim() + ConsoleColors.RESET);
 		Square(we);
 		return we;
 	}
@@ -118,9 +121,17 @@ public class ReusableUtils {
 	protected WebElement waitUntilClickable(WebElement we, int time) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(time));
 		wait.until(ExpectedConditions.elementToBeClickable(we));
-		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT+"Clicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
+		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT + "Clicked Element -> " + ConsoleColors.GREEN_BOLD_BRIGHT
+				+ we.getText().trim() + ConsoleColors.RESET);
 		Square(we);
 		return we;
+	}
+
+	protected Alert waitUntilAlertVisible(WebDriver we) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitingTime_Sec));
+		wait.until(ExpectedConditions.alertIsPresent());
+		System.out.println(ConsoleColors.CYAN_BOLD_BRIGHT+"Alert Text >> "+ConsoleColors.RED_BOLD+we.switchTo().alert().getText()+ConsoleColors.RESET);
+		return we.switchTo().alert();
 	}
 
 	protected List<WebElement> waitUntilVisibilityOfElements(List<WebElement> we) {
@@ -297,8 +308,10 @@ public class ReusableUtils {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long start = System.currentTimeMillis();
 		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
-		System.out.print(ConsoleColors.CYAN_BOLD_BRIGHT+"JSClicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
-		System.out.println(ConsoleColors.YELLOW+"  Elapsed time: " + (System.currentTimeMillis() - start)+ConsoleColors.RESET);
+		System.out.print(ConsoleColors.CYAN_BOLD_BRIGHT + "JSClicked Element -> " + ConsoleColors.GREEN_BOLD_BRIGHT
+				+ we.getText().trim() + ConsoleColors.RESET);
+		System.out.println(
+				ConsoleColors.YELLOW + "  Elapsed time: " + (System.currentTimeMillis() - start) + ConsoleColors.RESET);
 		executor.executeScript("arguments[0].click();", we);
 		Square(we);
 	}
@@ -309,8 +322,10 @@ public class ReusableUtils {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		long start = System.currentTimeMillis();
 		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
-		System.out.print(ConsoleColors.CYAN_BOLD_BRIGHT+"JSClicked Element -> " +ConsoleColors.GREEN_BOLD_BRIGHT+ we.getText().trim()+ConsoleColors.RESET);
-		System.out.println(ConsoleColors.YELLOW+"  Elapsed time: " + (System.currentTimeMillis() - start)+ConsoleColors.RESET);
+		System.out.print(ConsoleColors.CYAN_BOLD_BRIGHT + "JSClicked Element -> " + ConsoleColors.GREEN_BOLD_BRIGHT
+				+ we.getText().trim() + ConsoleColors.RESET);
+		System.out.println(
+				ConsoleColors.YELLOW + "  Elapsed time: " + (System.currentTimeMillis() - start) + ConsoleColors.RESET);
 		executor.executeScript("arguments[0].click();", we);
 		Square(we);
 	}

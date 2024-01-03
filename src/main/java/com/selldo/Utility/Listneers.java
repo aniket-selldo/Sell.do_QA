@@ -3,6 +3,7 @@ package com.selldo.Utility;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
@@ -39,12 +40,14 @@ public class Listneers extends BaseTest implements ITestListener {
 		}
 
 		String filePath = null;
+		String filePathTrimmed = null;
 		try {
 
 			filePath = getScreenshot(result.getMethod().getMethodName(), driver);
+			filePathTrimmed = ".." + filePath.split(Paths.get(System.getProperty("user.dir")).getFileName().toString())[1];
 		} catch (Exception e) {
 		}
-		extentTest.get().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
+		extentTest.get().addScreenCaptureFromPath(filePathTrimmed, result.getMethod().getMethodName());
 	}
 
 	@Override
@@ -59,7 +62,7 @@ public class Listneers extends BaseTest implements ITestListener {
 
 	@Override
 	public void onStart(ITestContext context) {
-		extentTest.get().log(Status.INFO, "Test Start");
+		// extentTest.get().log(Status.INFO, "Test Start");
 	}
 
 	@Override

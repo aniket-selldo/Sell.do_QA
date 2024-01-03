@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Random;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -113,6 +114,18 @@ public class NewCampaignFormPage extends ReusableUtils {
 	private WebElement addButton_InputChannel;
 	@FindBy(how = How.XPATH, using = "//select[@id='rule_entity_id']")
 	private WebElement apiChannel_InputChannel;
+	@FindBy(how = How.XPATH, using = "//span[text()='Project']")
+	private WebElement ClickOnProject_InputChannel;
+	@FindBy(how = How.CSS, using = "#select2-drop input[class='select2-input']")
+	private WebElement EnterProjectProject_InputChannel;
+	@FindBy(how = How.XPATH, using = "//div[@class='select2-result-label']")
+	private WebElement SelectProject_InputChannel;
+	@FindBy(how = How.XPATH, using = "//span[text()='Select Source']")
+	private WebElement ClickOnSource_InputChannel;
+	@FindBy(how = How.XPATH, using = "//div[@class='select2-result-label']")
+	private List<WebElement> SelectSource_InputChannel;
+	@FindBy(how = How.CSS, using = "#rule_sub_source")
+	private WebElement EnterSubSource_InputChannel;
 	@FindBy(how = How.XPATH, using = "//a[text()='Save']")
 	private WebElement saveButton_InputChannel;
 	// SMS Shortcodes
@@ -134,18 +147,21 @@ public class NewCampaignFormPage extends ReusableUtils {
 	private WebElement messageShortCode;
 	@FindBy(how = How.XPATH, using = "//span[text()='Project']")
 	private WebElement project_SmsShortCode;
-	@FindBy(how = How.XPATH, using = "//*[@id=\"s2id_rule_source\"]/a/span[1]")
+	@FindBy(how = How.XPATH, using = "(//span[text()='Select Source'])[2]/parent::a")
 	private WebElement source_SmsShortCode;
-	@FindBy(how = How.LINK_TEXT, using = "Next")
+	@FindBy(how = How.XPATH, using = "//div[@class='select2-result-label']")
+	private List<WebElement> SelectSource_SmsShortCode;
+	@FindBy(how = How.XPATH, using = "//li[@class='next']/a")
 	private WebElement clickOnNext;
 	@FindBy(how = How.XPATH, using = "//*[@id=\"select2-drop\"]/ul/li[24]/div")
 	private List<WebElement> project_SmsShortCode_List;
 	@FindBy(how = How.XPATH, using = "//*[@id=\"select2-drop\"]/ul/li")
 	private List<WebElement> getAllProjectName;
-	
+
 	public void clickOnNext() {
+		wait(2000);
 		scrollIntoView(clickOnNext);
-		waitUntilClickable(clickOnNext).click();
+		jsClick(clickOnNext);
 	}
 
 	public void enterCamapignName(String nameObj) {
@@ -186,13 +202,14 @@ public class NewCampaignFormPage extends ReusableUtils {
 		waitUntilVisiblity(budget).sendKeys(budgetObj);
 	}
 
-	public void selectProject(String str) throws IOException {
+	public void selectProject() throws IOException {
 		waitUntilClickable(project).click();
 		wait(1000);
-		enterProjectName.sendKeys(str);
+		enterProjectName.sendKeys(prop("Project_Name_Amura"));
 		int index = (int) (Math.random() * getAllProjectName.size());
 		wait(1000);
-		getAllProjectName.get(index).click();;
+		getAllProjectName.get(index).click();
+		;
 
 	}
 
@@ -250,11 +267,6 @@ public class NewCampaignFormPage extends ReusableUtils {
 	}
 
 	public void clickOnAddButton_TrackingEmail() {
-		try {
-			Thread.sleep(6000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		waitUntilClickable(add_TrackingEmail).click();
 	}
 
@@ -323,25 +335,17 @@ public class NewCampaignFormPage extends ReusableUtils {
 
 	public void clickOnSaveButton_TrackingEmails() {
 		waitUntilClickable(saveButton_TrackingEmail).click();
+		waitUntilInvisibility(saveButton_TrackingEmail);
+
 	}
 
 	// ...................Tracking Numbers..........................
 
 	public void clickOnTrackingNumbersTab() {
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		waitUntilClickable(trackingNumbersTab_TrackingNumber).click();
 	}
 
 	public void clickOnShowOtherVirtualNumber_TrackingNumbers() {
-		try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		waitUntilClickable(showOtherVirtualNumbers_TrackingNumber).click();
 	}
 
@@ -378,8 +382,25 @@ public class NewCampaignFormPage extends ReusableUtils {
 	}
 
 	public void selectApiChannel() {
-		Select oSelect = new Select(apiChannel_InputChannel);
-		oSelect.selectByVisibleText("Makaan Mailer");
+		Select oSelect = new Select(waitUntilVisiblity(apiChannel_InputChannel));
+		oSelect.selectByVisibleText("Website");
+	}
+	
+	public void selectProject_InputChannel() {
+		waitUntilClickable(ClickOnProject_InputChannel).click();
+		waitUntilVisiblity(EnterProjectProject_InputChannel).sendKeys(prop("Project_Name_Amura"));
+		waitUntilClickable(SelectProject_InputChannel).click();
+	}
+
+	public void selectSource_InputChannel() {
+		waitUntilClickable(ClickOnSource_InputChannel).click();
+		waitUntilClickable(SelectSource_InputChannel.stream().filter(S->S.getText().startsWith(prop("Source"))).findFirst().get()).click();
+	}
+
+	public void selectSubSource_InputChannel() {
+		waitUntilVisiblity(EnterSubSource_InputChannel).sendKeys(prop("SubSource"));
+		wait(2000);
+		EnterSubSource_InputChannel.sendKeys(Keys.ENTER);
 	}
 
 	public void clickOnSaveButton_InputChannel() {
@@ -399,7 +420,7 @@ public class NewCampaignFormPage extends ReusableUtils {
 
 	// Accepting an alert popup while clicking on the tab
 	public void clickAlertPopup() {
-		driver.switchTo().alert().accept();
+		waitUntilAlertVisible(driver).accept();
 	}
 
 	// Refactored
@@ -462,38 +483,25 @@ public class NewCampaignFormPage extends ReusableUtils {
 	}
 
 	// Entering Source
-//	public void selectSource_SmsShortCode(String source){
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//		source_SmsShortCode).sendKeys(source);
-//	}
+	public void selectSource_SmsShortCode(){
+		waitUntilVisiblity(source_SmsShortCode).click();;
+		waitUntilClickable(SelectSource_SmsShortCode.stream().filter(S->S.getText().startsWith(prop("Source"))).findFirst().get()).click();
+	}
 	public void clickOnSaveButton_SmsShortcode() {
 		waitUntilClickable(saveButton_SmsShortcode).click();
 	}
 
 	public void clickOnNextButton_SmsShortcode() {
-		try {
-			Thread.sleep(9000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		scrollBy(600);
 		waitUntilClickable(nextButton).click();
 	}
 
 	public void clickOnFinishButton() {
-		try {
-			Thread.sleep(9000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
 		waitUntilClickable(finishButton).click();
 	}
 
 	public void clickOnSaveAndNextButton() {
-
+		scrollBy(600);
 		waitUntilClickable(saveAndNextButton).click();
 
 	}

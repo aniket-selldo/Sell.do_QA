@@ -1,10 +1,24 @@
 package A_Experiment;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Demo {
+	
 
 	public static void main(String[] args) {
 		System.out.println(System.getProperty("os.name"));
 		System.out.println(System.getProperty("user.name"));
+		System.out.println(System.getProperty("java.ext.dirs"));
+		System.out.println(System.getProperty("java.compiler"));
+
+		System.out.println(System.getProperty("os.arch"));
+
+		System.out.println(System.getProperty("java.library.path"));
+
+		System.out.println(System.getProperty("path.separator"));
+
+		System.out.println(System.getProperty("file.separator"));
 
 	
 

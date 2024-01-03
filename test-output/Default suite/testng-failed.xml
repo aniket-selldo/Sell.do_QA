@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="importPack.TC_ImportLeads">
+      <class name="CreateClient.CreateClinet">
         <methods>
+          <include name="createPostpaidClient"/>
           <include name="terminate"/>
-          <include name="importLeadsTest"/>
           <include name="browserConfig"/>
         </methods>
-      </class> <!-- importPack.TC_ImportLeads -->
+      </class> <!-- CreateClient.CreateClinet -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

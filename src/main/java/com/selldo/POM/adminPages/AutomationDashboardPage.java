@@ -26,6 +26,10 @@ public class AutomationDashboardPage extends ReusableUtils {
 	private WebElement searchCampaignSetup;
 	@FindBy(how = How.XPATH, using = "//*[@id=\"select2-drop\"]/ul/li/div")
 	private WebElement clickCampaignSetup;
+	@FindBy(how = How.XPATH, using = "//a[@ubts=\"Workflows\"]")
+	private WebElement clickWorkFlowCard;
+	@FindBy(how = How.XPATH, using = "//a[@ubts=\"Lead Capture Forms\"]")
+	private WebElement clickLeadCaptureFromsCard;
 
 	public void cickOnCampaignSetUp() {
 		campaignSetupTab.click();
@@ -46,6 +50,14 @@ public class AutomationDashboardPage extends ReusableUtils {
 			e.printStackTrace();
 		}
 		actions.moveToElement(clickCampaignSetup).click();
+	}
+
+	public void clickOnWorkFlow() {
+		waitUntilClickable(clickWorkFlowCard).click();
+	}
+
+	public void clickLeadCaptureFroms() {
+		waitUntilClickable(clickLeadCaptureFromsCard).click();
 	}
 
 }

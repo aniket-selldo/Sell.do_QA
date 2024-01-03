@@ -4,13 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import com.selldo.POM.adminPages.AdminDashboardPage;
 import com.selldo.POM.adminPages.AllCampaignPage;
 import com.selldo.POM.adminPages.AutomationDashboardPage;
 import com.selldo.POM.adminPages.NewCampaignFormPage;
-import com.selldo.POM.crm.ClientLoginPage;
 import com.selldo.POM.crm.LoginPage;
 import com.selldo.Utility.BaseTest;
 
@@ -21,11 +19,7 @@ public class CreatingCampaign_FilledFormTest extends BaseTest {
 
 		LoginPage login = new LoginPage(driver);
 
-		login.login(prop.getProperty("id"), prop.getProperty("password"));
-
-		ClientLoginPage clientLogin = new ClientLoginPage(driver);
-
-		clientLogin.clientLogin(prop.getProperty("Client"));
+		login.login(prop("Amura_Admin"), prop("Password"));
 
 		AdminDashboardPage adminDashboardPage = new AdminDashboardPage(driver);
 
@@ -49,23 +43,12 @@ public class CreatingCampaign_FilledFormTest extends BaseTest {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 //		jse.executeScript("window.scrollBy(0,250)", "");
-		newCampaignFormPage.selectProject("Aniket");
+		newCampaignFormPage.selectProject();
 		
 		newCampaignFormPage.clickAlertPopup();
 		
-		newCampaignFormPage.selectSales();
-		
+	//	newCampaignFormPage.selectSales();//This method to select sales is hidden on UI
 		newCampaignFormPage.clickOnSaveAndNextButton();
-
-		newCampaignFormPage.clickOnAddButton_TrackingEmail();
-		
-		newCampaignFormPage.enterTrackingEmailName(Random("A",10));
-		
-		newCampaignFormPage.clickOnSaveButton_TrackingEmails();
-
-		Thread.sleep(5000);
-
-		newCampaignFormPage.clickOnNext();
 
 		// Tracking Emails Tab...................................
 
@@ -80,6 +63,8 @@ public class CreatingCampaign_FilledFormTest extends BaseTest {
 		newCampaignFormPage.enterSubSource_TrackingEmails("Testing");
 
 		newCampaignFormPage.clickOnSaveButton_TrackingEmails();
+		
+		newCampaignFormPage.clickOnNext();
 
 		// Tracking Numbers Tab.....................................
 
@@ -94,7 +79,7 @@ public class CreatingCampaign_FilledFormTest extends BaseTest {
 
 			newCampaignFormPage.clickOnAddLink_TrackingNumbers();
 
-			Thread.sleep(2000);
+			//Thread.sleep(2000);
 
 			newCampaignFormPage.clickOnSaveButton_TrackingNumbers();
 		}
@@ -102,10 +87,12 @@ public class CreatingCampaign_FilledFormTest extends BaseTest {
 		// Input Channels.....................................
 
 		newCampaignFormPage.clickOnInputChannelTab();
-
+		
 		newCampaignFormPage.clickOnAddButton_InputChannel();
-
-		Thread.sleep(2000);
+		
+		newCampaignFormPage.selectSource_InputChannel();
+		
+		newCampaignFormPage.selectSubSource_InputChannel();
 
 		newCampaignFormPage.selectApiChannel();
 
@@ -124,27 +111,22 @@ public class CreatingCampaign_FilledFormTest extends BaseTest {
 
 		// Entering message for SMS
 		newCampaignFormPage.enterMessage(message);
+		
+		//newCampaignFormPage.selectSource_SmsShortCode();
 
 		// Selecting Project
-		/*
-		 * test.log(Status.INFO, "Selecting Project for Sms ShortCode...........");
-		 * newCampaignFormPage.selectProject_SmsShortCode();
-		 */
-		Thread.sleep(3000);
 		// Clicking Save button
 		newCampaignFormPage.clickOnSaveButton_SmsShortcode();
-		Thread.sleep(3000);
-		jse.executeScript("window.scrollBy(0,300)", "");
 
 		newCampaignFormPage.clickOnNextButton_SmsShortcode();
-
-		Thread.sleep(3000);
+		
+		//Thread.sleep(3000);
 
 		campaignName = driver.findElement(By.xpath("//li[@class=\"breadcrumb-item active\"]")).getText();
 
 		newCampaignFormPage.clickOnFinishButton();
 
-		Thread.sleep(3000);
+		//Thread.sleep(3000);
 
 		// String campaignName_List = driver
 		// .findElement(By.xpath("//*[@id=\"campaign_form_container\"]/div[2]/div/ul[1]/li/span")).getText();
@@ -156,20 +138,8 @@ public class CreatingCampaign_FilledFormTest extends BaseTest {
 		System.out.println(campaignName);
 		System.out.println(campaignName_List);
 
-		SoftAssert assertion = new SoftAssert();
-
 		Assert.assertEquals(campaignName_List, campaignName, "Not matched");
 		System.out.println("Completed verification");
-
-		assertion.assertAll();
-
-		/*
-		 * jse.executeScript("window.scrollBy(0,600)", "");
-		 * 
-		 * test.log(Status.INFO, "Clicking on Finish button.....");
-		 * newCampaignFormPage.clickOnFinishButton();
-		 */
-		// assertion.assertAll();
 
 	}
 }

@@ -7,13 +7,13 @@
   </listeners>
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="login.SupportManager_LoginTest">
+      <class name="A_Experiment.asdfghj">
         <methods>
-          <include name="browserConfig"/>
-          <include name="supportManager_LoginTest"/>
+          <include name="m1"/>
           <include name="terminate"/>
+          <include name="browserConfig"/>
         </methods>
-      </class> <!-- login.SupportManager_LoginTest -->
+      </class> <!-- A_Experiment.asdfghj -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

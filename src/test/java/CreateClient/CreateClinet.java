@@ -15,7 +15,7 @@ public class CreateClinet extends BaseTest {
 
 	@Test
 	public void createPostpaidClient() {
-		String ClientName = "Sagar BOAT";
+		String ClientName = "Hardik SMS";
 		Faker faker = new Faker();
 		createClientPage page = new createClientPage(driver);
 		loginPage loginPage = new loginPage(driver);

@@ -20,7 +20,7 @@ public class addingNewTaskTest extends BaseTest {
 	@Test
 	public void addingNewTaskTest() throws Exception {
 		LoginPage login = new LoginPage(driver);
-		login.login(prop("psManager_email"), prop("password"));
+		login.login("tanvi+ps2_manager@sell.do", prop("Password"));
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 

@@ -86,79 +86,83 @@ public class AllCampaignPage extends ReusableUtils {
 	private WebElement delete_NewRoiConfig;
 
 	public void clickOnNewCampaignButton() {
-		newCampaignButton.click();
+		waitUntilClickable(newCampaignButton).click();
 	}
 
 	public void clickOnFunnelIcon() {
-		funnelIcon.click();
+		waitUntilClickable(funnelIcon).click();
 	}
 
 	public void enterCampaignName(String campaignName) {
-		searchCampaignField.sendKeys(campaignName);
+		waitUntilVisiblity(searchCampaignField).sendKeys(campaignName);
 	}
 
 	public void clickOnApplyButton() {
-		applyButton.click();
+		waitUntilClickable(applyButton).click();
 	}
 
 	public void deactivateCampaign() {
-		actionBar.click();
-		deactivateCampaign.click();
+		waitUntilClickable(actionBar).click();
+		waitUntilClickable(deactivateCampaign).click();
+		wait(2000);
+		waitUntilAlertVisible(driver).accept();
 	}
 
 	public void reactivateCampaign() {
-		actionBar.click();
-		reactivateCampaign.click();
+		waitUntilClickable(actionBar).click();
+		waitUntilClickable(reactivateCampaign).click();
+		wait(2000);
+		waitUntilAlertVisible(driver).accept();
 	}
 
 	public void selectRoiConfigution() {
-		actionBar.click();
-		roiConfiguration.click();
+		waitUntilClickable(actionBar).click();
+		waitUntilClickable(roiConfiguration).click();
 	}
 
 	public void clickOnClearAllLink() {
-		clearAllLink.click();
+		waitUntilClickable(clearAllLink).click();
 	}
 
 	public void goingTo2ndLastPage() {
-		linkTo2ndLastPage.click();
+		waitUntilClickable(linkTo2ndLastPage).click();
 	}
 
 	// .................Adding new ROI Config.................
 
 	public void clickOnAddNewConfigButton() {
-		addNewConfigurationButton.click();
+		waitUntilClickable(addNewConfigurationButton).click();
 	}
 
 	public void selectSource() {
-		source_NewRoiConfig.click();
-		sourcedd_NewRoiConfig.click();
+		waitUntilClickable(source_NewRoiConfig).click();
+		waitUntilClickable(sourcedd_NewRoiConfig).click();
 	}
 
 	public void selectSubSource() {
-		subSource_NewRoiConfig.click();
-		subSource_dd_NewRoiConfig.click();
+		waitUntilClickable(subSource_NewRoiConfig).click();
+		waitUntilClickable(subSource_dd_NewRoiConfig).click();
 	}
 
 	public void enterExpectedCpl(String expCpl) {
 		expectedCpl_NewRoiConfig.clear();
-		expectedCpl_NewRoiConfig.get(0).sendKeys(expCpl);
+		waitUntilVisiblity(expectedCpl_NewRoiConfig.get(0)).sendKeys(expCpl);
 	}
 
 	public void enterAmountSpent(String amount) {
 		amountSpent_NewRoiConfig.clear();
-		amountSpent_NewRoiConfig.get(0).sendKeys(amount);
+		waitUntilVisiblity(amountSpent_NewRoiConfig.get(0)).sendKeys(amount);
 	}
 
 	public void selectStartDate() throws Exception {
 		Thread.sleep(2000);
-		startDate_NewRoiConfig.get(0).click();
+		waitUntilClickable(startDate_NewRoiConfig.get(0)).click();
 		List<WebElement> dates = wholeCalender_StartDate_NewRoiConfig;
 		int total_node = dates.size();
 		for (int i = 0; i < total_node; i++) {
 			String date = dates.get(i).getText();
 			if (date.equals("2")) {
-				dates.get(i).click();// Clicking on above selected date
+				waitUntilClickable(dates.get(i)).click();// Clicking on above selected date
 				break;
 			}
 		}
@@ -166,28 +170,28 @@ public class AllCampaignPage extends ReusableUtils {
 
 	public void selectEndDate() throws Exception {
 		Thread.sleep(2000);
-		endDate_NewRoiConfig.get(0).click();
+		waitUntilClickable(endDate_NewRoiConfig.get(0)).click();
 		List<WebElement> dates = wholeCalender_EndDate_NewRoiConfig;
 		int total_node = dates.size();
 		for (int i = 0; i < total_node; i++) {
 			String date = dates.get(i).getText();
 			if (date.equals("12")) {
-				dates.get(i).click();// Clicking on above selected date
+				waitUntilClickable(dates.get(i)).click();// Clicking on above selected date
 				break;
 			}
 		}
 	}
 
 	public void clickOnSaveButton() {
-		saveButton_NewRoiConfig.get(0).click();
+		waitUntilClickable(saveButton_NewRoiConfig.get(0)).click();
 	}
 
 	// .................Editing the ROI Config...............
 
 	public void changeSubSource() throws Exception {
-		closeSubSource_NewRoiConfig.click();
-		subSource_EditRoiConfig.click();
-		subSource_dd_NewRoiConfig.click();
+		waitUntilClickable(closeSubSource_NewRoiConfig).click();
+		waitUntilClickable(subSource_EditRoiConfig).click();
+		waitUntilClickable(subSource_dd_NewRoiConfig).click();
 	}
 
 	public void changeExpectedCpl(String expCpl) {
@@ -217,21 +221,21 @@ public class AllCampaignPage extends ReusableUtils {
 		// Here size -1 need to used to get the element as the element is no visible
 		int size = amountSpent_NewRoiConfig.size();
 		amountSpent_NewRoiConfig.get(size - 1).clear();
-		amountSpent_NewRoiConfig.get(size - 1).sendKeys(amount);
+		waitUntilVisiblity(amountSpent_NewRoiConfig.get(size - 1)).sendKeys(amount);
 
 	}
 
 	public void changeStartDate() throws Exception {
 		Thread.sleep(2000);
 		int size = startDate_NewRoiConfig.size();
-		startDate_NewRoiConfig.get(size - 1).click();
+		waitUntilClickable(startDate_NewRoiConfig.get(size - 1)).click();
 		int size2 = wholeCalender_StartDate_NewRoiConfig.size();
 		List<WebElement> dates = wholeCalender_StartDate_NewRoiConfig;
 		int total_node = dates.size();
 		for (int i = 0; i < total_node; i++) {
 			String date = dates.get(i).getText();
 			if (date.equals("5")) {
-				dates.get(i).click();// Clicking on above selected date
+				waitUntilClickable(dates.get(i)).click();// Clicking on above selected date
 				break;
 			}
 		}
@@ -240,13 +244,13 @@ public class AllCampaignPage extends ReusableUtils {
 	public void changeEndDate() throws Exception {
 		Thread.sleep(2000);
 		int size = endDate_NewRoiConfig.size();
-		endDate_NewRoiConfig.get(size - 1).click();
+		waitUntilClickable(endDate_NewRoiConfig.get(size - 1)).click();
 		List<WebElement> dates = wholeCalender_EndDate_NewRoiConfig;
 		int total_node = dates.size();
 		for (int i = 0; i < total_node; i++) {
 			String date = dates.get(i).getText();
 			if (date.equals("10")) {
-				dates.get(i).click();// Clicking on above selected date
+				waitUntilClickable(dates.get(i)).click();// Clicking on above selected date
 				break;
 			}
 		}
@@ -254,16 +258,16 @@ public class AllCampaignPage extends ReusableUtils {
 
 	public void saveEditConfig() {
 		int size = saveButton_NewRoiConfig.size();
-		saveButton_NewRoiConfig.get(size - 1).click();
+		waitUntilClickable(saveButton_NewRoiConfig.get(size - 1)).click();
 	}
 
 	public void selectEdit_NewRoiConfig() {
-		actionBar_NewRoiConfig.click();
-		edit_NewRoiConfig.click();
+		waitUntilClickable(actionBar_NewRoiConfig).click();
+		waitUntilClickable(edit_NewRoiConfig).click();
 	}
 
 	public void selectDelete_NewRoiConfig() {
-		actionBar_NewRoiConfig.click();
-		delete_NewRoiConfig.click();
+		waitUntilClickable(actionBar_NewRoiConfig).click();
+		waitUntilClickable(delete_NewRoiConfig).click();
 	}
 }
